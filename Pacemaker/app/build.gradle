@@ -1,19 +1,20 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
+    def config = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion config["compile_sdk"]
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.devjj.pacemaker"
-        minSdkVersion 24
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId config["applicationId"]
+        minSdkVersion config["min_sdk"]
+        targetSdkVersion config["target_sdk"]
+        versionCode config["version_code"]
+        versionName config["version_name"]
+        testInstrumentationRunner config["test_runner"]
     }
     buildTypes {
         release {
@@ -24,12 +25,43 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    //implementation fileTree(dir: 'libs', include: ['*.jar'])
+    def applicationDependencies = rootProject.ext.mainApplication
+    def unitTestDependencies = rootProject.ext.unitTesting
+    def acceptanceTestDependencies = rootProject.ext.acceptanceTesting
+
+    // Application dependencies
+    implementation applicationDependencies.kotlin
+    implementation applicationDependencies.appCompat
+    implementation applicationDependencies.coreKtx
+    implementation applicationDependencies.constraintLayout
+    implementation applicationDependencies.dagger
+    implementation applicationDependencies.daggerSupport
+    implementation applicationDependencies.daggerLegacy
+    kapt applicationDependencies.daggerProcessor
+    kapt applicationDependencies.daggerCompiler
+    implementation applicationDependencies.lifecycleExtensions
+    implementation applicationDependencies.lifecycleViewModel
+    implementation applicationDependencies.lifecycleLiveData
+    implementation applicationDependencies.lifecycleRuntime
+    kapt applicationDependencies.lifecycleCompiler
+    implementation applicationDependencies.lifecycleVersion
+    implementation applicationDependencies.lifecycleReactivestreams
+    implementation applicationDependencies.lifecycleFragment
+    implementation applicationDependencies.roomRuntime
+    kapt applicationDependencies.roomCompiler
+    implementation applicationDependencies.roomKtx
+    implementation applicationDependencies.roomRxJava
+    implementation applicationDependencies.roomGuava
+    implementation applicationDependencies.rxJava
+    implementation applicationDependencies.rxKotlin
+
+    // Unit/Integration tests dependencies
+    testImplementation unitTestDependencies.junit
+    testImplementation unitTestDependencies.lifecycleCoreTest
+    testImplementation unitTestDependencies.roomTest
+
+    // Acceptance tests dependencies
+    androidTestImplementation acceptanceTestDependencies.testJunit
+    androidTestImplementation acceptanceTestDependencies.espressoCore
 }

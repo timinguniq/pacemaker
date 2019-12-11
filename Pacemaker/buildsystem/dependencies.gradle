@@ -1,0 +1,134 @@
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+ext {
+    //config
+    compile_sdk = 29
+    applicationId = "com.devjj.pacemaker"
+    min_sdk = 24
+    target_sdk = 29
+    version_code = 1
+    version_name = "1.0"
+    test_runner = "androidx.test.runner.AndroidJUnitRunner"
+
+    //Android libraries
+    appCompat_version = '1.1.0'
+    coreKtx_version = '1.1.0'
+    constraintLayout_version = '1.1.3'
+    lifecycle_version = '2.1.0'
+    room_version = '2.2.1'
+    //archComponents_version = '1.1.1'
+    //glide_version = '4.0.0'
+
+    //Third party libraries
+    //kotlin_coroutines_version = '0.22.1'
+    dagger_version = '2.22'
+    //javaxAnnotations_version = '1.0'
+    //javaxInject_version = '1'
+    //retrofit_version = '2.3.0'
+    //okhttp_logging_interceptor_version = '3.8.1'
+
+    //Unit Testing
+    //robolectric_version = '3.8'
+    junit_version = '4.12'
+    //mockito_version = '1.4.0'
+    //kluent_version = '1.14'
+
+    //Acceptance Testing
+    testjunit_version = '1.1.1'
+    espresso_version = '3.2.0'
+
+    //Development
+    //leakCanaryVersion = '1.5'
+
+    mainApplication = [
+            //백업 코드 혹시 문제 있으면 이 코드 사용 "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+            kotlin:                      "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            //kotlinCoroutines:           "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version",
+            //kotlinCoroutinesAndroid:    "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version",
+            appCompat:                   "androidx.appcompat:appcompat:$appCompat_version",
+            coreKtx:                     "androidx.core:core-ktx:$coreKtx_version",
+            //cardView:                   "com.android.support:cardview-v7:$appCompat_version",
+            //recyclerView:               "com.android.support:recyclerview-v7:$appCompat_version",
+            //design:                     "com.android.support:design:$appCompat_version",
+            constraintLayout:            "androidx.constraintlayout:constraintlayout:$constraintLayout_version",
+            //androidAnnotations:         "com.android.support:support-annotations:$appCompat_version",
+            //archComponents:             "android.arch.lifecycle:extensions:$archComponents_version",
+            //archComponentsCompiler:     "android.arch.lifecycle:compiler:$archComponents_version",
+            //glide:                      "com.github.bumptech.glide:glide:$glide_version",
+            dagger:                      "com.google.dagger:dagger:$dagger_version",
+            daggerSupport:               "com.google.dagger:dagger-android-support:$dagger_version",
+            daggerLegacy:                'androidx.legacy:legacy-support-v4:1.0.0',
+            daggerProcessor:             "com.google.dagger:dagger-android-processor:$dagger_version",
+            daggerCompiler:              "com.google.dagger:dagger-compiler:$dagger_version",
+            // ViewModel and LiveData
+            lifecycleExtensions:         "androidx.lifecycle:lifecycle-extensions:$lifecycle_version",
+            // alternatively - just ViewModel
+            lifecycleViewModel:          "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+            // For Kotlin use lifecycle-viewmodel-ktx
+            // alternatively - just LiveData
+            lifecycleLiveData:           "androidx.lifecycle:lifecycle-livedata:$lifecycle_version",
+            // alternatively - Lifecycles only (no ViewModel or LiveData). Some UI
+            //  AndroidX libraries use this lightweight import for Lifecycle
+            lifecycleRuntime:            "androidx.lifecycle:lifecycle-runtime:$lifecycle_version",
+            lifecycleCompiler:           "androidx.lifecycle:lifecycle-compiler:$lifecycle_version",
+            // For Kotlin use kapt instead of annotationProcessor
+            // alternately - if using Java8, use the following instead of lifecycle-compiler
+            lifecycleVersion:            "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
+            // optional - ReactiveStreams support for LiveData
+            lifecycleReactivestreams:    "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version",
+            lifecycleFragment:           'androidx.fragment:fragment-ktx:1.1.0',
+
+            // Room
+            roomRuntime:                 "androidx.room:room-runtime:$room_version",
+            // For Kotlin use kapt instead of annotationProcessor
+            roomCompiler:                "androidx.room:room-compiler:$room_version",
+            // optional - Kotlin Extensions and Coroutines support for Room
+            roomKtx:                     "androidx.room:room-ktx:$room_version",
+            // optional - RxJava support for Room
+            roomRxJava:                  "androidx.room:room-rxjava2:$room_version",
+            // optional - Guava support for Room, including Optional and ListenableFuture
+            roomGuava:                   "androidx.room:room-guava:$room_version",
+
+            // RxJava
+            rxJava:                      'io.reactivex.rxjava2:rxjava:2.2.9',
+            rxKotlin:                    'io.reactivex.rxjava2:rxkotlin:2.0.2'
+
+
+            //javaxAnnotation:            "javax.annotation:jsr250-api:$javaxAnnotations_version",
+            //javaxInject:                "javax.inject:javax.inject:$javaxInject_version",
+            //retrofit:                   "com.squareup.retrofit2:converter-gson:$retrofit_version",
+            //okhttpLoggingInterceptor:   "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_interceptor_version",
+    ]
+
+    unitTesting = [
+            //kotlin:             "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+            //kotlinTest:         "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
+            //robolectric:        "org.robolectric:robolectric:$robolectric_version",
+            junit:                          "junit:junit:$junit_version",
+            //mockito:            "com.nhaarman:mockito-kotlin:$mockito_version",
+            //kluent:             "org.amshove.kluent:kluent:$kluent_version",
+            // For Kotlin use lifecycle-reactivestreams-ktx
+            // optional - Test helpers for LiveData
+            lifecycleCoreTest:              "androidx.arch.core:core-testing:$lifecycle_version",
+            // room Test helpers
+            roomTest:                       "androidx.room:room-testing:$room_version"
+    ]
+
+    acceptanceTesting = [
+            testJunit:         "androidx.test.ext:junit:$testjunit_version",
+            //testRules:          "com.android.support.test:rules:$runner_version",
+            espressoCore:       "androidx.test.espresso:espresso-core:$espresso_version",
+            //espressoIntents:    "com.android.support.test.espresso:espresso-intents:$espresso_version",
+            //androidAnnotations: "com.android.support:support-annotations:$appCompat_version",
+    ]
+
+    development = [
+            //leakCanary:         "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}",
+            //leakCanaryNoop:     "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}",
+    ]
+}

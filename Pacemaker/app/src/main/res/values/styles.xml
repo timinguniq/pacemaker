@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- 타이틀 없애게 할려고 만든 코드 -->
+    <style name="CustomAppTheme" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+    </style>
+
 </resources>

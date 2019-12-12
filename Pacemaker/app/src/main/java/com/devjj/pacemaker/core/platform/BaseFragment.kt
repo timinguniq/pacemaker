@@ -6,15 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.devjj.pacemaker.AndroidApplication
+import com.devjj.pacemaker.core.di.ApplicationComponent
 import javax.inject.Inject
 
 abstract class BaseFragment : Fragment() {
     abstract fun layoutId(): Int
-/*
+
     val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE){
         (activity?.application as AndroidApplication).appComponent
     }
-*/
+
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

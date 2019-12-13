@@ -14,20 +14,20 @@ import com.devjj.pacemaker.core.extension.inTransaction
 abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_layout)
+        setContentView(R.layout.activity_pacemaker)
 
-            addFragment(savedInstanceState)
+        addFragment(savedInstanceState)
     }
 
     override fun onBackPressed() {
         (supportFragmentManager.findFragmentById(
-            R.id.fragmentContainer) as BaseFragment).onBackPressed()
+            R.id.ap_container_frame) as BaseFragment).onBackPressed()
         super.onBackPressed()
     }
 
     private fun addFragment(savedInstanceState: Bundle?) =
         savedInstanceState ?: supportFragmentManager.inTransaction { add(
-            R.id.fragmentContainer, fragment()) }
+            R.id.ap_container_frame, fragment()) }
 
 
     abstract fun fragment(): BaseFragment

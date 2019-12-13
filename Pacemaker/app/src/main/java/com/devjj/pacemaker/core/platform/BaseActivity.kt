@@ -2,7 +2,9 @@ package com.devjj.pacemaker.core.platform
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.R
+import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.extension.inTransaction
 
 /**
@@ -12,6 +14,12 @@ import com.devjj.pacemaker.core.extension.inTransaction
  * @see AppCompatActivity
  */
 abstract class BaseActivity : AppCompatActivity() {
+
+    val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE){
+        (application as AndroidApplication).appComponent
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pacemaker)

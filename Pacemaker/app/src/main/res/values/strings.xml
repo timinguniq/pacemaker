@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Pacemaker</string>
+    <string name="title_activity_pacemaker">PacemakerActivity</string>
+    <string name="image_not_found">이미지가 없습니다.</string>
+
+    <string name="navigation_home_txv">Home</string>
+    <string name="navigation_play_txv">Play</string>
+    <string name="navigation_history_txv">History</string>
+
 </resources>

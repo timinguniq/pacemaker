@@ -6,4 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".features.pacemaker.PacemakerActivity">
 
+    <ImageView
+        android:id="@+id/ap_setting_imv"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:contentDescription="@string/image_not_found"
+        android:src="@drawable/leak_canary_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ap_container_frame"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+    <FrameLayout
+        android:id="@+id/ap_container_frame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/ap_bottom_navigation_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ap_setting_imv" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/ap_bottom_navigation_view"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/bottomColor"
+        app:layout_constraintTop_toBottomOf="@+id/ap_container_frame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:menu="@menu/menu_bottom"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

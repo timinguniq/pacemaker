@@ -29,9 +29,12 @@ dependencies {
     def applicationDependencies = rootProject.ext.mainApplication
     def unitTestDependencies = rootProject.ext.unitTesting
     def acceptanceTestDependencies = rootProject.ext.acceptanceTesting
+    def developmentDependencies = rootProject.ext.development
 
     // Application dependencies
     implementation applicationDependencies.kotlin
+    implementation applicationDependencies.kotlinCoroutines
+    implementation applicationDependencies.kotlinCoroutinesAndroid
     implementation applicationDependencies.appCompat
     implementation applicationDependencies.coreKtx
     implementation applicationDependencies.constraintLayout
@@ -40,6 +43,11 @@ dependencies {
     implementation applicationDependencies.daggerLegacy
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0'
+
     kapt applicationDependencies.daggerProcessor
     kapt applicationDependencies.daggerCompiler
     implementation applicationDependencies.lifecycleExtensions
@@ -66,4 +74,9 @@ dependencies {
     // Acceptance tests dependencies
     androidTestImplementation acceptanceTestDependencies.testJunit
     androidTestImplementation acceptanceTestDependencies.espressoCore
+
+    //Development dependencies
+    debugImplementation developmentDependencies.leakCanary
+    releaseImplementation developmentDependencies.leakCanaryNoop
+    testImplementation developmentDependencies.leakCanaryNoop
 }

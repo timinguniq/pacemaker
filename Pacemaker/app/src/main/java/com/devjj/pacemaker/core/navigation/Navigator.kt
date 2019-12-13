@@ -13,14 +13,15 @@ class Navigator
 @Inject constructor(private val authenticator: Authenticator){
     fun showLogin(context: Context) = context.startActivity(LoginActivity.callingIntent(context))
 
-    fun showMain(context: Context){
-        when(authenticator.userLoggedIn()){
+    fun showMain(context: Context) {
+        when (authenticator.userLoggedIn()) {
             true -> showPacemaker(context)
             false -> showLogin(context)
         }
     }
 
     fun showPacemaker(context: Context) = context.startActivity(PacemakerActivity.callingIntent(context))
+
 
     class Extras(val transitionSharedElement: View)
 }

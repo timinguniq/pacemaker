@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.devjj.pacemaker">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:name=".AndroidApplication"
         android:allowBackup="true"
@@ -10,6 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CustomAppTheme">
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-9818502417467314~6491082469"/>
+        <!-- 백업 테스트 코드
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3940256099942544~3347511713"/>
+        -->
         <activity
             android:name=".features.pacemaker.PacemakerActivity"
             android:label="@string/title_activity_pacemaker"

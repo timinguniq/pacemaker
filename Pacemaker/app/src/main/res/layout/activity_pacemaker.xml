@@ -35,9 +35,25 @@
         android:layout_height="70dp"
         android:background="@color/bottomColor"
         app:layout_constraintTop_toBottomOf="@+id/ap_container_frame"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ap_adView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:menu="@menu/menu_bottom"/>
 
+    <com.google.android.gms.ads.AdView
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ap_adView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="ca-app-pub-9818502417467314/5178000798"
+        app:layout_constraintTop_toBottomOf="@+id/ap_bottom_navigation_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 백업 테스트 코드
+    ads:adUnitId="ca-app-pub-ca-app-pub-3940256099942544/6300978111"-->
 </androidx.constraintlayout.widget.ConstraintLayout>

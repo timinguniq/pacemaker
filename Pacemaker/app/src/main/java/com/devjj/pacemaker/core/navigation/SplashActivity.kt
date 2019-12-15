@@ -6,6 +6,7 @@ import android.os.Handler
 import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.ApplicationComponent
+import com.google.android.gms.ads.MobileAds
 import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity() {
@@ -25,5 +26,8 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             navigator.showMain(this)
         },2000)
+
+        // 테스트 광고
+        MobileAds.initialize(this) {}
     }
 }

@@ -8,12 +8,18 @@ import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import com.devjj.pacemaker.R
+import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.history.HistoryFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.devjj.pacemaker.features.pacemaker.option.OptionFragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 
 import kotlinx.android.synthetic.main.activity_pacemaker.*
+import java.util.*
+import javax.inject.Inject
 
 class PacemakerActivity : BaseActivity() {
 
@@ -23,42 +29,27 @@ class PacemakerActivity : BaseActivity() {
 
     override fun fragment() = HomeFragment()
 
-    // TODO : 임시 변수 나중에 지워라
-    private var isCheckedSettingImv: Boolean = false
+    @Inject lateinit var navigator: Navigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        appComponent.inject(this)
         initializeView()
     }
 
     // PacemakerActivity 초기화 하는 함수
     private fun initializeView() {
-        ap_bottom_navigation_view.setOnNavigationItemSelectedListener {
-            it.isChecked = true
-            when(it.itemId){
-                R.id.navigation_home ->
-                    supportFragmentManager.beginTransaction().replace(R.id.ap_container_frame, HomeFragment()).commit() == 0
-                R.id.navigation_play ->
-                    Log.d("test", "play checked") == 0
-                R.id.navigation_history ->
-                    supportFragmentManager.beginTransaction().replace(R.id.ap_container_frame, HistoryFragment()).commit() == 0
-                else -> Log.d("test", "else") == 0
-            }
-        }
-
-        ap_setting_imv.setOnClickListener {
-            if(!isCheckedSettingImv) {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.ap_container_frame, OptionFragment()).commit()
-                ap_bottom_navigation_view.visibility = View.GONE
-                isCheckedSettingImv = true
-            }else{
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.ap_container_frame, HomeFragment()).commit()
-                ap_bottom_navigation_view.visibility = View.VISIBLE
-                isCheckedSettingImv = false
-            }
-        }
+        // NavigationBottomView setting
+        navigator.transitonNavigationBottomView(ap_bottom_navigation_view, supportFragmentManager)
+        // settingImv clickListener
+        navigator.showSettingFragment(ap_setting_imv, ap_bottom_navigation_view, supportFragmentManager)
+/*
+        val testDeviceIds = Arrays.asList("33BE2250B43518CCDA7DE426D04EE231")
+        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
+        MobileAds.setRequestConfiguration(configuration)
+        */
+        val adRequest = AdRequest.Builder().build()
+        ap_adView.loadAd(adRequest)
 
     }
 

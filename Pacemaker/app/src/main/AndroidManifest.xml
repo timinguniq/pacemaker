@@ -19,7 +19,7 @@
         <!-- 백업 테스트 코드
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+            android:value="ca-app-pub-3940256099942544~6300978111"/>
         -->
         <activity
             android:name=".features.pacemaker.PacemakerActivity"

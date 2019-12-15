@@ -55,6 +55,6 @@
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- 백업 테스트 코드
-    ads:adUnitId="ca-app-pub-ca-app-pub-3940256099942544/6300978111"-->
+    ads:adUnitId="	ca-app-pub-3940256099942544/6300978111"-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

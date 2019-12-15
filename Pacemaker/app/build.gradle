@@ -42,6 +42,7 @@ dependencies {
     implementation applicationDependencies.daggerSupport
     implementation applicationDependencies.daggerLegacy
     implementation applicationDependencies.material
+    implementation applicationDependencies.admob
     kapt applicationDependencies.daggerProcessor
     kapt applicationDependencies.daggerCompiler
     implementation applicationDependencies.lifecycleExtensions

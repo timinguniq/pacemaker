@@ -13,8 +13,12 @@ import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.history.HistoryFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.devjj.pacemaker.features.pacemaker.option.OptionFragment
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.MobileAds
+import com.google.android.gms.ads.RequestConfiguration
 
 import kotlinx.android.synthetic.main.activity_pacemaker.*
+import java.util.*
 import javax.inject.Inject
 
 class PacemakerActivity : BaseActivity() {
@@ -39,6 +43,14 @@ class PacemakerActivity : BaseActivity() {
         navigator.transitonNavigationBottomView(ap_bottom_navigation_view, supportFragmentManager)
         // settingImv clickListener
         navigator.showSettingFragment(ap_setting_imv, ap_bottom_navigation_view, supportFragmentManager)
+/*
+        val testDeviceIds = Arrays.asList("33BE2250B43518CCDA7DE426D04EE231")
+        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
+        MobileAds.setRequestConfiguration(configuration)
+        */
+        val adRequest = AdRequest.Builder().build()
+        ap_adView.loadAd(adRequest)
+
     }
 
 }

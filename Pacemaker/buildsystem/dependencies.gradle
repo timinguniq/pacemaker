@@ -22,6 +22,7 @@ ext {
     lifecycle_version = '2.1.0'
     room_version = '2.2.1'
     material_version = '1.0.0'
+    admob_version = '18.3.0'
     //archComponents_version = '1.1.1'
     //glide_version = '4.0.0'
 
@@ -58,6 +59,7 @@ ext {
             //design:                     "com.android.support:design:$appCompat_version",
             constraintLayout:            "androidx.constraintlayout:constraintlayout:$constraintLayout_version",
             material:                    "com.google.android.material:material:$material_version",
+            admob:                       "com.google.android.gms:play-services-ads:$admob_version",
             //androidAnnotations:         "com.android.support:support-annotations:$appCompat_version",
             //archComponents:             "android.arch.lifecycle:extensions:$archComponents_version",
             //archComponentsCompiler:     "android.arch.lifecycle:compiler:$archComponents_version",

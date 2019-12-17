@@ -31,6 +31,9 @@ class PacemakerActivity : BaseActivity() {
 
     @Inject lateinit var navigator: Navigator
 
+    override var layout = R.layout.activity_pacemaker
+    override var fragmentId = R.id.ap_container_frame
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)

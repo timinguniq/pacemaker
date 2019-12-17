@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.features.login.Authenticator
 import com.devjj.pacemaker.features.login.LoginActivity
+import com.devjj.pacemaker.features.pacemaker.AdditionActivity
 import com.devjj.pacemaker.features.pacemaker.PacemakerActivity
 import com.devjj.pacemaker.features.pacemaker.history.HistoryFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
@@ -30,6 +31,8 @@ class Navigator
     }
 
     fun showPacemaker(context: Context) = context.startActivity(PacemakerActivity.callingIntent(context))
+
+    fun showAddition(context: Context) = context.startActivity(AdditionActivity.callingIntent(context))
 
     // NavigationBottomView 화면 전환하는 함수.
     fun transitonNavigationBottomView(bottomView: BottomNavigationView, fragmentManger: FragmentManager){

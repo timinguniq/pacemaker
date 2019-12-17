@@ -19,23 +19,25 @@ abstract class BaseActivity : AppCompatActivity() {
         (application as AndroidApplication).appComponent
     }
 
+    abstract var layout: Int
+    abstract var fragmentId: Int
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pacemaker)
+        setContentView(layout)
 
         addFragment(savedInstanceState)
     }
 
     override fun onBackPressed() {
         (supportFragmentManager.findFragmentById(
-            R.id.ap_container_frame) as BaseFragment).onBackPressed()
+            fragmentId) as BaseFragment).onBackPressed()
         super.onBackPressed()
     }
 
     private fun addFragment(savedInstanceState: Bundle?) =
         savedInstanceState ?: supportFragmentManager.inTransaction { add(
-            R.id.ap_container_frame, fragment()) }
+            fragmentId, fragment()) }
 
 
     abstract fun fragment(): BaseFragment

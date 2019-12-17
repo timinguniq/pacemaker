@@ -13,7 +13,7 @@ import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
 
 class OptionFragment : BaseFragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var optionViewModel: OptionViewModel
 
     override fun layoutId() = R.layout.fragment_option
 

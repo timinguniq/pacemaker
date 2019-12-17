@@ -13,7 +13,7 @@ import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
 
 class HistoryFragment : BaseFragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
+    private lateinit var historyViewModel: HistoryViewModel
 
     override fun layoutId() = R.layout.fragment_history
 

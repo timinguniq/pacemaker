@@ -11,7 +11,6 @@ import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity() {
 
-
     private val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE){
         (application as AndroidApplication).appComponent
     }

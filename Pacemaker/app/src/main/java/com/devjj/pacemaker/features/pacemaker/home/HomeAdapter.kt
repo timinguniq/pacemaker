@@ -30,14 +30,14 @@ class HomeAdapter
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(homeView: HomeView, context: Context, clickListener: (HomeView) -> Unit) {
-            itemView.rvHomeItem_part_iv.setImageResource(homeView.part_img)
-            itemView.rvHomeItem_name_tv.text = homeView.name
-            itemView.rvHomeItem_mass_tv.text = context.getString(R.string.rh_mass, homeView.mass)
-            itemView.rvHomeItem_set_tv.text = context.getString(R.string.rh_set, homeView.set)
-            itemView.rvHomeItem_interval_tv.text = context.getString(R.string.rh_interval, homeView.interval)
+            itemView.rvHomeItem_iv_part.setImageResource(homeView.part_img)
+            itemView.rvHomeItem_tv_name.text = homeView.name
+            itemView.rvHomeItem_tv_mass.text = context.getString(R.string.rh_mass, homeView.mass)
+            itemView.rvHomeItem_tv_set.text = context.getString(R.string.rh_set, homeView.set)
+            itemView.rvHomeItem_tv_interval.text = context.getString(R.string.rh_interval, homeView.interval)
 
             // 메인 레이아웃 클릭시 이벤트 함수.
-            itemView.rvHomeItem_main_clo.setOnClickListener { clickListener(homeView) }
+            itemView.rvHomeItem_clo_main.setOnClickListener { clickListener(homeView) }
         }
     }
 }

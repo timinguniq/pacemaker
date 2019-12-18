@@ -32,7 +32,7 @@ class PacemakerActivity : BaseActivity() {
     @Inject lateinit var navigator: Navigator
 
     override var layout = R.layout.activity_pacemaker
-    override var fragmentId = R.id.aPacemaker_container_flo
+    override var fragmentId = R.id.aPacemaker_flo_container
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +45,7 @@ class PacemakerActivity : BaseActivity() {
         // NavigationBottomView setting
         navigator.transitonNavigationBottomView(aPacemaker_bottom_navigation_view, supportFragmentManager)
         // settingImv clickListener
-        navigator.showSettingFragment(aPacemaker_setting_iv, aPacemaker_bottom_navigation_view, supportFragmentManager)
+        navigator.showSettingFragment(aPacemaker_iv_setting, aPacemaker_bottom_navigation_view, supportFragmentManager)
 /*
         val testDeviceIds = Arrays.asList("33BE2250B43518CCDA7DE426D04EE231")
         val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()

@@ -7,7 +7,7 @@
     tools:context=".features.pacemaker.PacemakerActivity">
 
     <ImageView
-        android:id="@+id/aPacemaker_setting_iv"
+        android:id="@+id/aPacemaker_iv_setting"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:contentDescription="@string/image_not_found"
@@ -15,26 +15,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/aPacemaker_container_flo"
+        app:layout_constraintBottom_toTopOf="@+id/aPacemaker_flo_container"
         app:layout_constraintVertical_bias="0"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintHorizontal_chainStyle="spread_inside"/>
 
     <FrameLayout
-        android:id="@+id/aPacemaker_container_flo"
+        android:id="@+id/aPacemaker_flo_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/aPacemaker_bottom_navigation_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/aPacemaker_setting_iv" />
+        app:layout_constraintTop_toBottomOf="@+id/aPacemaker_iv_setting" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/aPacemaker_bottom_navigation_view"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/bottomColor"
-        app:layout_constraintTop_toBottomOf="@+id/aPacemaker_container_flo"
+        app:layout_constraintTop_toBottomOf="@+id/aPacemaker_flo_container"
         app:layout_constraintBottom_toTopOf="@+id/aPacemaker_adView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -33,7 +33,7 @@ class HomeFragment : BaseFragment() {
     // PacemakerActivity 초기화 하는 함수
     private fun initializeView() {
         // 플로팅 버튼 클릭 이벤트
-        fHome_fabtn?.setOnClickListener {
+        fHome_floating_action_btn?.setOnClickListener {
             navigator.showAddition(context!!)
         }
     }

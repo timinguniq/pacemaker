@@ -24,6 +24,6 @@ inline fun <reified T : ViewModel> Fragment.viewModel(factory: Factory, body: T.
 
 fun BaseFragment.close() = fragmentManager?.popBackStack()
 
-val BaseFragment.viewContainer: View get() = (activity as BaseActivity).fragmentContainer
+val BaseFragment.viewContainer: View get() = (activity as BaseActivity).aLayout_fragmentContainer
 
 val BaseFragment.appContext: Context get() = activity?.applicationContext!!

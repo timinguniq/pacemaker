@@ -6,7 +6,7 @@
     android:layout_height="65dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/rh_main_constraint"
+        android:id="@+id/rvHomeItem_main_clo"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:background="#80dddddd"
@@ -15,18 +15,18 @@
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
-            android:id="@+id/rh_part_img_imv"
+            android:id="@+id/rvHomeItem_part_iv"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:contentDescription="@string/image_not_found"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/rh_name_txv"
+            app:layout_constraintEnd_toStartOf="@+id/rvHomeItem_name_tv"
             app:layout_constraintHorizontal_chainStyle="spread_inside"/>
 
         <TextView
-            android:id="@+id/rh_name_txv"
+            android:id="@+id/rvHomeItem_name_tv"
             android:layout_width="0dp"
             android:layout_height="55dp"
             android:gravity="center"
@@ -34,12 +34,12 @@
             android:textColor="#ff000000"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rh_part_img_imv"
-            app:layout_constraintEnd_toStartOf="@+id/rh_mass_txv"/>
+            app:layout_constraintStart_toEndOf="@+id/rvHomeItem_part_iv"
+            app:layout_constraintEnd_toStartOf="@+id/rvHomeItem_mass_tv"/>
 
 
         <TextView
-            android:id="@+id/rh_mass_txv"
+            android:id="@+id/rvHomeItem_mass_tv"
             android:layout_width="60dp"
             android:layout_height="55dp"
             android:gravity="center"
@@ -48,12 +48,12 @@
             android:textColor="#ff000000"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rh_name_txv"
-            app:layout_constraintEnd_toStartOf="@+id/rh_set_txv"/>
+            app:layout_constraintStart_toEndOf="@+id/rvHomeItem_name_tv"
+            app:layout_constraintEnd_toStartOf="@+id/rvHomeItem_set_tv"/>
 
 
         <TextView
-            android:id="@+id/rh_set_txv"
+            android:id="@+id/rvHomeItem_set_tv"
             android:layout_width="60dp"
             android:layout_height="55dp"
             android:gravity="center"
@@ -62,12 +62,12 @@
             android:textColor="#ff000000"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rh_mass_txv"
-            app:layout_constraintEnd_toStartOf="@+id/rh_interval_txv"/>
+            app:layout_constraintStart_toEndOf="@+id/rvHomeItem_mass_tv"
+            app:layout_constraintEnd_toStartOf="@+id/rvHomeItem_interval_tv"/>
 
 
         <TextView
-            android:id="@+id/rh_interval_txv"
+            android:id="@+id/rvHomeItem_interval_tv"
             android:layout_width="60dp"
             android:layout_height="55dp"
             android:gravity="center"
@@ -76,7 +76,7 @@
             android:textColor="#ff000000"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rh_set_txv"
+            app:layout_constraintStart_toEndOf="@+id/rvHomeItem_set_tv"
             app:layout_constraintEnd_toEndOf="parent"/>
 
 

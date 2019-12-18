@@ -24,7 +24,7 @@ class AdditionActivity : BaseActivity() {
     @Inject lateinit var navigator: Navigator
 
     override var layout = R.layout.activity_layout
-    override var fragmentId = R.id.fragmentContainer
+    override var fragmentId = R.id.aLayout_fragmentContainer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

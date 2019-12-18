@@ -40,11 +40,11 @@ class Navigator
             it.isChecked = true
             when(it.itemId){
                 R.id.navigation_home ->
-                    fragmentManger.beginTransaction().replace(R.id.ap_container_frame, HomeFragment()).commit() == 0
+                    fragmentManger.beginTransaction().replace(R.id.aPacemaker_container_flo, HomeFragment()).commit() == 0
                 R.id.navigation_play ->
                     Log.d("test", "play checked") == 0
                 R.id.navigation_history ->
-                    fragmentManger.beginTransaction().replace(R.id.ap_container_frame, HistoryFragment()).commit() == 0
+                    fragmentManger.beginTransaction().replace(R.id.aPacemaker_container_flo, HistoryFragment()).commit() == 0
                 else -> Log.d("test", "else") == 0
             }
         }
@@ -56,12 +56,12 @@ class Navigator
         settingImv.setOnClickListener {
             if(!isChecked) {
                 fragmentManger.beginTransaction()
-                    .replace(R.id.ap_container_frame, OptionFragment()).commit()
+                    .replace(R.id.aPacemaker_container_flo, OptionFragment()).commit()
                 bottomView.visibility = View.GONE
                 isChecked = true
             }else{
                 fragmentManger.beginTransaction()
-                    .replace(R.id.ap_container_frame, HomeFragment()).commit()
+                    .replace(R.id.aPacemaker_container_flo, HomeFragment()).commit()
                 bottomView.visibility = View.VISIBLE
                 isChecked = false
             }

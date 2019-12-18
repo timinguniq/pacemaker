@@ -1,15 +1,12 @@
 package com.devjj.pacemaker.features.pacemaker.home
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.content.res.ComplexColorCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.extension.inflate
-import kotlinx.android.synthetic.main.recyclerview_home.view.*
+import kotlinx.android.synthetic.main.recyclerview_home_item.view.*
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -24,7 +21,7 @@ class HomeAdapter
     internal var clickListener: (HomeView) -> Unit = { _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(parent.inflate(R.layout.recyclerview_home))
+        ViewHolder(parent.inflate(R.layout.recyclerview_home_item))
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) =
         viewHolder.bind(collection[position], context, clickListener)
@@ -33,14 +30,14 @@ class HomeAdapter
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(homeView: HomeView, context: Context, clickListener: (HomeView) -> Unit) {
-            itemView.rh_part_img_imv.setImageResource(homeView.part_img)
-            itemView.rh_name_txv.text = homeView.name
-            itemView.rh_mass_txv.text = context.getString(R.string.rh_mass, homeView.mass)
-            itemView.rh_set_txv.text = context.getString(R.string.rh_set, homeView.set)
-            itemView.rh_interval_txv.text = context.getString(R.string.rh_interval, homeView.interval)
+            itemView.rvHomeItem_part_iv.setImageResource(homeView.part_img)
+            itemView.rvHomeItem_name_tv.text = homeView.name
+            itemView.rvHomeItem_mass_tv.text = context.getString(R.string.rh_mass, homeView.mass)
+            itemView.rvHomeItem_set_tv.text = context.getString(R.string.rh_set, homeView.set)
+            itemView.rvHomeItem_interval_tv.text = context.getString(R.string.rh_interval, homeView.interval)
 
             // 메인 레이아웃 클릭시 이벤트 함수.
-            itemView.rh_main_constraint.setOnClickListener { clickListener(homeView) }
+            itemView.rvHomeItem_main_clo.setOnClickListener { clickListener(homeView) }
         }
     }
 }

@@ -8,7 +8,7 @@ import com.devjj.pacemaker.core.platform.BaseActivity
 class LoginActivity : BaseActivity() {
 
     override var layout = R.layout.activity_layout
-    override var fragmentId = R.id.fragmentContainer
+    override var fragmentId = R.id.aLayout_fragmentContainer
 
     companion object {
         fun callingIntent(context: Context) = Intent(context, LoginActivity::class.java)

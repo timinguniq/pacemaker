@@ -7,7 +7,7 @@
     tools:context=".features.pacemaker.home.HomeFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fh_recyclerview"
+        android:id="@+id/fHome_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,13 +16,13 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fh_floatingactionbtn"
+        android:id="@+id/fHome_fabtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="25dp"
         android:backgroundTint="#ffff00e6"
-        android:src="@drawable/fh_floatingbtn_imv"
+        android:src="@drawable/fhome_fabtn_img"
         app:fabCustomSize="55dp"
         app:maxImageSize="50dp"
         app:elevation="9dp"

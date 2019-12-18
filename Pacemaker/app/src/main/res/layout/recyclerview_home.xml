@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="65dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rh_main_constraint"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="#80dddddd"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/rh_part_img_imv"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:contentDescription="@string/image_not_found"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/rh_name_txv"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+        <TextView
+            android:id="@+id/rh_name_txv"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:textColor="#ff000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rh_part_img_imv"
+            app:layout_constraintEnd_toStartOf="@+id/rh_mass_txv"/>
+
+
+        <TextView
+            android:id="@+id/rh_mass_txv"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:text="100kg"
+            android:textSize="15sp"
+            android:textColor="#ff000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rh_name_txv"
+            app:layout_constraintEnd_toStartOf="@+id/rh_set_txv"/>
+
+
+        <TextView
+            android:id="@+id/rh_set_txv"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:text="10set"
+            android:textSize="15sp"
+            android:textColor="#ff000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rh_mass_txv"
+            app:layout_constraintEnd_toStartOf="@+id/rh_interval_txv"/>
+
+
+        <TextView
+            android:id="@+id/rh_interval_txv"
+            android:layout_width="60dp"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:text="100s"
+            android:textSize="15sp"
+            android:textColor="#ff000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rh_set_txv"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

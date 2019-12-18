@@ -7,7 +7,7 @@
     tools:context=".core.navigation.SplashActivity">
 
     <FrameLayout
-        android:id="@+id/fragmentContainer"
+        android:id="@+id/aLayout_fragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent"

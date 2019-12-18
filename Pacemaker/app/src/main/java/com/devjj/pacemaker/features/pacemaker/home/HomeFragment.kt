@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.devjj.pacemaker.R
+import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -16,6 +17,7 @@ class HomeFragment : BaseFragment() {
     override fun layoutId() = R.layout.fragment_home
 
     @Inject lateinit var navigator: Navigator
+    @Inject lateinit var db: ExerciseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

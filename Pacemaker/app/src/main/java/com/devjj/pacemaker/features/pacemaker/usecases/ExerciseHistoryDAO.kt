@@ -1,4 +1,4 @@
-package com.devjj.pacemaker.core.di.database
+package com.devjj.pacemaker.features.pacemaker.usecases
 
 import androidx.room.Dao
 import androidx.room.Delete

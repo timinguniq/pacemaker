@@ -8,8 +8,10 @@
     <string name="navigation_history_txv">History</string>
 
     <!-- 임시 단위 -->
-    <string name="rh_mass">%dkg</string>
-    <string name="rh_set">%dset</string>
-    <string name="rh_interval">%ds</string>
+    <string name="rvExerciseItem_mass">%dkg</string>
+    <string name="rvExerciseItem_set">%dset</string>
+    <string name="rvExerciseItem_interval">%ds</string>
+
+    <string name="fHome_list_unavailable">데이터가 없습니다.</string>
 
 </resources>

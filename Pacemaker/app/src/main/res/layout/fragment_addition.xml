@@ -6,6 +6,7 @@
     tools:context=".features.pacemaker.addition.AdditionFragment">
 
     <TextView
+        android:id="@+id/fAddition_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"

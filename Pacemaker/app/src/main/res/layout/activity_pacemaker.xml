@@ -6,6 +6,41 @@
     android:layout_height="match_parent"
     tools:context=".features.pacemaker.PacemakerActivity">
 
+    <!-- TODO : 테스트 코드 나중에 삭제   -->
+    <TextView
+        android:id="@+id/aPacemaker_tv_add"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="추가"
+        android:textSize="35sp"
+        android:textColor="#ff000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/aPacemaker_flo_container"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+    <TextView
+        android:id="@+id/aPacemaker_tv_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text="삭제"
+        android:textSize="35sp"
+        android:textColor="#ff000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/aPacemaker_flo_container"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+    <!-- 여기까지 -->
+
     <ImageView
         android:id="@+id/aPacemaker_iv_setting"
         android:layout_width="wrap_content"
@@ -45,8 +80,6 @@
         android:id="@+id/aPacemaker_adView"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         ads:adSize="BANNER"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
         app:layout_constraintTop_toBottomOf="@+id/aPacemaker_bottom_navigation_view"

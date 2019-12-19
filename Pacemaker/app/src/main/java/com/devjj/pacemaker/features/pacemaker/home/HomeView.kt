@@ -28,7 +28,6 @@ data class HomeView(val id: Int, val part_img: Int, val name: String, val mass: 
 
     override fun describeContents() = 0
 
-
     constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readInt(), parcel.readString()!!, parcel.readInt(),
                             parcel.readInt(), parcel.readInt())
 

@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
+import com.devjj.pacemaker.features.pacemaker.home.HomeRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -17,7 +18,7 @@ class ApplicationModule(private val application: AndroidApplication) {
 
     @Provides
     @Singleton
-    fun provideExerciseDatabase(): ExerciseDatabase{
+    fun provideExerciseDatabase(): ExerciseDatabase {
         val db = Room.databaseBuilder(
             application,
             ExerciseDatabase::class.java,
@@ -29,7 +30,7 @@ class ApplicationModule(private val application: AndroidApplication) {
 
     @Provides
     @Singleton
-    fun provideExerciseHistoryDatabase(): ExerciseHistoryDatabase{
+    fun provideExerciseHistoryDatabase(): ExerciseHistoryDatabase {
         val db = Room.databaseBuilder(
             application,
             ExerciseHistoryDatabase::class.java,
@@ -38,4 +39,8 @@ class ApplicationModule(private val application: AndroidApplication) {
 
         return db
     }
+
+    @Provides
+    @Singleton
+    fun provideHomeRepository(dataSource: HomeRepository.DbRepository): HomeRepository = dataSource
 }

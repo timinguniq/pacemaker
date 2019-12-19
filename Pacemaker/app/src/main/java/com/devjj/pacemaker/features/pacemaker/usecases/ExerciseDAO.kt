@@ -11,11 +11,15 @@ import io.reactivex.Flowable
 @Dao
 interface ExerciseDAO {
     @Query("SELECT * FROM exercises")
-    fun getAll(): Flowable<List<ExerciseEntity>>
+    fun getAll(): List<ExerciseEntity>
 
     @Insert(onConflict = REPLACE)
     fun insert(vararg exerciseEntity: ExerciseEntity)
 
     @Delete
     fun delete(exerciseEntity: ExerciseEntity)
+
+    @Query("DELETE FROM exercises")
+    fun deleteAll()
+
 }

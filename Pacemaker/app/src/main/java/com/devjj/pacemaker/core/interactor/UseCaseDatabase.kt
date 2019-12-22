@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 
 abstract class UseCaseDatabase<out Type, in Params> where Type : Any {
 
-    abstract suspend fun run(paramas: Params): Type
+    abstract suspend fun run(params: Params): Type
 
     operator fun invoke(params: Params, onResult: (Type) -> Unit = {}) {
         val job = GlobalScope.async{run(params)}

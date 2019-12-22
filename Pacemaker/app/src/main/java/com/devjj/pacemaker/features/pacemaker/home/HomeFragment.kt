@@ -35,14 +35,20 @@ class HomeFragment : BaseFragment() {
         appComponent.inject(this)
 
         homeViewModel = viewModel(viewModelFactory){
-            observe(exerciseList, ::renderExerciseList)
+            observe(homeList, ::renderHomeList)
             failure(failure, ::handleFailure)
         }
 
     }
 
+    // 한번만 소환되는거 같다.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         initializeView()
     }
 
@@ -59,15 +65,15 @@ class HomeFragment : BaseFragment() {
             navigator.showAddition(activity!!, additionView)}
 
         // DB에 있는 데이터 로드
-        homeViewModel.loadExerciseList()
+        homeViewModel.loadHomeList()
     }
 
-    // Exercise 데이터들 갱신하는 함수.
-    private fun renderExerciseList(homeView: List<HomeView>?) {
+    // Home 데이터들 갱신하는 함수.
+    private fun renderHomeList(homeView: List<HomeView>?) {
         homeAdapter.collection = homeView.orEmpty()
     }
 
-    // Exercise 데이터 갱신 실패시 핸들링하는 함수.
+    // Home 데이터 갱신 실패시 핸들링하는 함수.
     private fun handleFailure(failure: Failure?) {
         when (failure) {
             //is Failure.NetworkConnection -> renderFailure(R.string.failure_network_connection)

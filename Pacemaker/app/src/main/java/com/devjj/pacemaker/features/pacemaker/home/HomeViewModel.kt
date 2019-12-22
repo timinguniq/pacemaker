@@ -1,21 +1,20 @@
 package com.devjj.pacemaker.features.pacemaker.home
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.devjj.pacemaker.core.interactor.UseCase
 import com.devjj.pacemaker.core.platform.BaseViewModel
-import com.devjj.pacemaker.features.pacemaker.usecases.GetExerciseData
+import com.devjj.pacemaker.features.pacemaker.usecases.GetHomeData
 import javax.inject.Inject
 
 class HomeViewModel
-@Inject constructor(private val getExerciseData: GetExerciseData) : BaseViewModel() {
+@Inject constructor(private val gethomeData: GetHomeData) : BaseViewModel() {
 
-    var exerciseList: MutableLiveData<List<HomeView>> = MutableLiveData()
+    var homeList: MutableLiveData<List<HomeView>> = MutableLiveData()
 
-    fun loadExerciseList() = getExerciseData(UseCase.None(), ::handleExerciseData)
+    fun loadHomeList() = gethomeData(UseCase.None(), ::handleHomeData)
 
-    private fun handleExerciseData(exerciseData: List<ExerciseData>){
-        this.exerciseList.value = exerciseData.map{ HomeView(it.id, it.part_img, it.name, it.mass, it.set, it.interval) }
+    private fun handleHomeData(homeData: List<HomeData>){
+        this.homeList.value = homeData.map{ HomeView(it.id, it.part_img, it.name, it.mass, it.set, it.interval) }
     }
 
 }

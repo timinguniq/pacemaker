@@ -15,6 +15,7 @@ import com.devjj.pacemaker.features.pacemaker.entities.ExerciseEntity
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeView
 import com.google.android.gms.ads.AdRequest
+import kotlinx.android.synthetic.main.activity_addition.*
 import kotlinx.android.synthetic.main.activity_pacemaker.*
 import javax.inject.Inject
 
@@ -42,10 +43,8 @@ class AdditionActivity : BaseActivity() {
 
     // PacemakerActivity 초기화 하는 함수
     private fun initializeView() {
-/*
         val adRequest = AdRequest.Builder().build()
-        ap_adView.loadAd(adRequest)
-*/
+        aAddition_adView.loadAd(adRequest)
     }
 
 

@@ -3,10 +3,11 @@ package com.devjj.pacemaker.features.pacemaker.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.devjj.pacemaker.core.extension.empty
-import com.devjj.pacemaker.features.pacemaker.home.ExerciseData
+import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
+import com.devjj.pacemaker.features.pacemaker.home.HomeData
 
 @Entity(tableName = "exercises")
-data class ExerciseEntity(@PrimaryKey var id: Int,
+data class ExerciseEntity(@PrimaryKey(autoGenerate = true) var id: Int,
                           var part:Int,
                           var name:String,
                           var mass:Int,
@@ -18,5 +19,10 @@ data class ExerciseEntity(@PrimaryKey var id: Int,
         fun empty() = ExerciseEntity(0, 0, String.empty(), 0, 0, 0, false)
     }
 
-    fun toExerciseData() = ExerciseData(id, part, name, mass, set, interval, achivement)
+    // ExerciseEntity를 HomeData로 변환하는 함수.
+    fun toHomeData() = HomeData(id, part, name, mass, set, interval)
+
+    // ExerciseEntity를 AdditionData로 변환하는 함수.
+    fun toAdditionData() = AdditionData(id, part, name, mass, set, interval)
+
 }

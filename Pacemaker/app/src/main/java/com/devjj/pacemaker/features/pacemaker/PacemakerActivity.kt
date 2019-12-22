@@ -67,12 +67,9 @@ class PacemakerActivity : BaseActivity() {
         aPacemaker_tv_delete.setOnClickListener {
             deleteExerciseData()
         }
-        // 여기까지.
-/*
-        val testDeviceIds = Arrays.asList("33BE2250B43518CCDA7DE426D04EE231")
-        val configuration = RequestConfiguration.Builder().setTestDeviceIds(testDeviceIds).build()
-        MobileAds.setRequestConfiguration(configuration)
-        */
+        // 여기까지
+
+        // 광고 테스트 코드
         val adRequest = AdRequest.Builder().build()
         aPacemaker_adView.loadAd(adRequest)
 

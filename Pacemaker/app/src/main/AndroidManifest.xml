@@ -32,6 +32,10 @@
         </activity>
 
         <activity
+            android:name=".features.login.LoginActivity"
+            android:theme="@style/CustomAppTheme"/>
+
+        <activity
             android:name=".features.pacemaker.PacemakerActivity"
             android:label="@string/title_activity_pacemaker"
             android:theme="@style/CustomAppTheme"/>

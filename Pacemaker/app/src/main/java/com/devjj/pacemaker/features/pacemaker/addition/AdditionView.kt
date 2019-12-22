@@ -16,7 +16,7 @@ data class AdditionView(val id: Int, val part_img: Int, val name: String, val ma
             return arrayOfNulls(size)
         }
 
-        fun empty() = AdditionView(0, 0, String.empty(), 0, 0, 0)
+        fun empty() = AdditionView(-1, 0, String.empty(), 0, 0, 0)
     }
 
     override fun describeContents() = 0

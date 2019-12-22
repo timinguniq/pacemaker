@@ -40,6 +40,7 @@ class HomeAdapter
             itemView.rvExerciseItem_tv_interval.text = context.getString(R.string.rvExerciseItem_interval, homeView.interval)
 
             // 메인 레이아웃 클릭시 이벤트 함수.
+
             itemView.rvExerciseItem_clo_main.setOnClickListener {
                 // HomeView에서 AdditionView로 컨버팅하는 함수 필요.
                 clickListener(AdditionView(homeView.id, homeView.part_img, homeView.name,

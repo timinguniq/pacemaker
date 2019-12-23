@@ -74,4 +74,5 @@ dependencies {
     debugImplementation developmentDependencies.leakCanary
     releaseImplementation developmentDependencies.leakCanaryNoop
     testImplementation developmentDependencies.leakCanaryNoop
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.1.0'
 }

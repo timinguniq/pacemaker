@@ -22,7 +22,6 @@ class HomeFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

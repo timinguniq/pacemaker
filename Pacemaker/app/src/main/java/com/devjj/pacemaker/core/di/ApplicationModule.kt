@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
+import com.devjj.pacemaker.features.pacemaker.history.HistoriesRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -38,4 +39,6 @@ class ApplicationModule(private val application: AndroidApplication) {
 
         return db
     }
+
+    @Provides @Singleton fun provideHistoryRepository(dataSource : HistoriesRepository.HistoryDatabase): HistoriesRepository =dataSource
 }

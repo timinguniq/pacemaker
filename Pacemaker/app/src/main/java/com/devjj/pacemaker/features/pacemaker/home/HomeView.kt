@@ -8,7 +8,14 @@ import android.os.Parcelable
 // mass는 중량 없을시 0
 // set는 횟수 ex) 3
 // interval는 운동간 휴식시간 단위는 초 ex) 40
-data class HomeView(val id: Int, val part_img: Int, val name: String, val mass: Int, val set: Int, val interval: Int) :
+data class HomeView(
+    val id: Int,
+    val part_img: Int,
+    val name: String,
+    val mass: Int,
+    val set: Int,
+    val interval: Int
+) :
     Parcelable {
     /*
     companion object{
@@ -29,8 +36,10 @@ data class HomeView(val id: Int, val part_img: Int, val name: String, val mass: 
     override fun describeContents() = 0
 
 
-    constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readInt(), parcel.readString()!!, parcel.readInt(),
-                            parcel.readInt(), parcel.readInt())
+    constructor(parcel: Parcel) : this(
+        parcel.readInt(), parcel.readInt(), parcel.readString()!!, parcel.readInt(),
+        parcel.readInt(), parcel.readInt()
+    )
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         with(dest) {
@@ -42,5 +51,4 @@ data class HomeView(val id: Int, val part_img: Int, val name: String, val mass: 
             writeInt(interval)
         }
     }
-
 }

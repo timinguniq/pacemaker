@@ -6,7 +6,7 @@
     android:layout_height="50dp">
 
     <ProgressBar
-        android:id="@+id/fHistory_pb_rate"
+        android:id="@+id/rvExerciseHistoryItem_pb_rate"
         style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
         android:layout_width="0dp"
         android:layout_height="20dp"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/fHistory_gl_center"
+        android:id="@+id/rvExerciseHistoryItem_gl_center"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:orientation="vertical"
@@ -29,24 +29,24 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/fHistory_tv_date"
+        android:id="@+id/rvExerciseHistoryItem_tv_date"
         android:layout_width="0dp"
         android:layout_height="20dp"
         android:text="Date"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/fHistory_gl_center"
+        app:layout_constraintEnd_toStartOf="@id/rvExerciseHistoryItem_gl_center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/fHistory_tv_rate"
+        android:id="@+id/rvExerciseHistoryItem_tv_rate"
         android:layout_width="0dp"
         android:layout_height="20dp"
         android:gravity="end"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/fHistory_gl_center"
+        app:layout_constraintStart_toEndOf="@id/rvExerciseHistoryItem_gl_center"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

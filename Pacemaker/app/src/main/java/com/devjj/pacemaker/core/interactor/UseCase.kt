@@ -14,5 +14,6 @@ abstract class UseCase<out Type, in Params> where Type : Any{
         val job = GlobalScope.async {run (params)}
         GlobalScope.launch(Dispatchers.Main) { onResult(job.await())}
     }
+
     class None
 }

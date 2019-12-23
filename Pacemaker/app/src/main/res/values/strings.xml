@@ -11,5 +11,6 @@
     <string name="rh_mass">%dkg</string>
     <string name="rh_set">%dset</string>
     <string name="rh_interval">%ds</string>
+    <string name="rh_rate">%d%%</string>
 
 </resources>

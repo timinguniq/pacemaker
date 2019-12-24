@@ -43,7 +43,7 @@ class PacemakerActivity : BaseActivity() {
     // PacemakerActivity 초기화 하는 함수
     private fun initializeView() {
         // NavigationBottomView setting
-        navigator.transitonNavigationBottomView(aPacemaker_bottom_navigation_view, supportFragmentManager)
+        navigator.transitonNavigationBottomView(aPacemaker_bottom_navigation_view, supportFragmentManager,this)
         // settingImv clickListener
         navigator.showSettingFragment(aPacemaker_iv_setting, aPacemaker_bottom_navigation_view, supportFragmentManager)
 /*

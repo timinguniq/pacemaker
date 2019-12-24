@@ -51,6 +51,7 @@ class HistoryFragment : BaseFragment() {
         fHistory_recyclerview.layoutManager = LinearLayoutManager(activity)
         fHistory_recyclerview.adapter = historyAdapter
 
+
         val date = Calendar.getInstance()
         date.time = Date()
         //Log.d("dddd",SimpleDateFormat("yyyy-MM-dd").format(date.time))

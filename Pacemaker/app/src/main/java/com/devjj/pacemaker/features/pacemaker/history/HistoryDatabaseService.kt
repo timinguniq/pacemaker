@@ -8,6 +8,5 @@ import javax.inject.Singleton
 class HistoryDatabaseService
 @Inject constructor(){
     @Inject lateinit var db : ExerciseHistoryDatabase
-
     fun histories() = db.ExerciseHistoryDAO().getAll()
 }

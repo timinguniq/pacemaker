@@ -4,10 +4,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "exercises")
-data class ExerciseEntity(@PrimaryKey var id: Int,
-                          var part:Int,
-                          var name:String,
-                          var mass:Int,
-                          var set:Int,
-                          var interval:Int,
-                          var achivement: Boolean)
+data class ExerciseEntity(@PrimaryKey val id: Int,
+                          val part:Int,
+                          val name:String,
+                          val mass:Int,
+                          val set:Int,
+                          val interval:Int,
+                          val achivement: Boolean)

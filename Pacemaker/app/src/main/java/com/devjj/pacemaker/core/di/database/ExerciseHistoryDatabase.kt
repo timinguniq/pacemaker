@@ -4,7 +4,9 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import com.devjj.pacemaker.features.pacemaker.entities.ExerciseHistoryEntity
 import com.devjj.pacemaker.features.pacemaker.usecases.ExerciseHistoryDAO
+import javax.inject.Singleton
 
+@Singleton
 @Database(entities = [ExerciseHistoryEntity::class],version = 1)
 abstract class ExerciseHistoryDatabase :RoomDatabase(){
     abstract fun ExerciseHistoryDAO() : ExerciseHistoryDAO

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.devjj.pacemaker">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".AndroidApplication"
@@ -15,13 +15,13 @@
         <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
-        <!-- 본 광고 ID 값
+            android:value="ca-app-pub-3940256099942544~3347511713" />
+        <!--
+ 본 광고 ID 값
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9818502417467314~6491082469"/>
         -->
-
         <activity android:name=".core.navigation.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,7 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".features.login.LoginActivity"
             android:theme="@style/CustomAppTheme"/>
@@ -38,11 +37,15 @@
         <activity
             android:name=".features.pacemaker.PacemakerActivity"
             android:label="@string/title_activity_pacemaker"
-            android:theme="@style/CustomAppTheme"/>
-
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".features.pacemaker.AdditionActivity"
-            android:theme="@style/CustomAppTheme"/>
+            android:theme="@style/CustomAppTheme" />
+
+        <activity
+            android:name=".features.pacemaker.PlayPopupActivity"
+            android:theme="@style/CustomAppTheme.Popup  "
+          /> <!-- android:theme="@style/CustomAppTheme.Popup" /> -->
 
     </application>
 

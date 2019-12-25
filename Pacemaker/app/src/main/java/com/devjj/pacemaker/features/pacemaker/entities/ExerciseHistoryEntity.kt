@@ -2,13 +2,20 @@ package com.devjj.pacemaker.features.pacemaker.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.devjj.pacemaker.features.pacemaker.history.History
 
 @Entity(tableName = "exerciseHistories")
-class ExerciseHistoryEntity(@PrimaryKey var id: Int,
-                            var date:String,
-                            var part:Int,
-                            var name:String,
-                            var mass:Int,
-                            var set:Int,
-                            var interval:Int,
-                            var achivement: Boolean)
+data class ExerciseHistoryEntity(
+    @PrimaryKey val id: Int,
+    val date: String,
+    val part: Int,
+    val name: String,
+    val mass: Int,
+    val rep: Int,
+    val set: Int,
+    val interval: Int,
+    val achivement: Boolean,
+    val achivementRate: Int
+){
+    fun toHistory() = History(id, date, achivementRate)
+}

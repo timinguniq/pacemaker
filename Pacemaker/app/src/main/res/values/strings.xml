@@ -26,4 +26,9 @@
     <string name="fAddition_interval_txv">휴식:</string>
     <string name="fAddition_interval_hint_txv">운동간 휴식 시간을 입력하세요</string>
 
+    <string name="rh_mass">%dkg</string>
+    <string name="rh_set">%dset</string>
+    <string name="rh_interval">%ds</string>
+    <string name="rh_rate">%d%%</string>
+
 </resources>

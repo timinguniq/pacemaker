@@ -7,6 +7,7 @@ import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionRepository
 import com.devjj.pacemaker.features.pacemaker.home.HomeRepository
+import com.devjj.pacemaker.features.pacemaker.history.HistoriesRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -48,4 +49,8 @@ class ApplicationModule(private val application: AndroidApplication) {
     @Provides
     @Singleton
     fun provideAdditionRepository(dataSource: AdditionRepository.DbRepository): AdditionRepository = dataSource
+
+    @Provides @Singleton
+    fun provideHistoryRepository(dataSource : HistoriesRepository.HistoryDatabase): HistoriesRepository =dataSource
+
 }

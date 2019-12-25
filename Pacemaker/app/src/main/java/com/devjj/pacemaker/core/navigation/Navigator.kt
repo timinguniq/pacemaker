@@ -11,6 +11,7 @@ import com.devjj.pacemaker.features.login.LoginActivity
 import com.devjj.pacemaker.features.pacemaker.AdditionActivity
 import com.devjj.pacemaker.features.pacemaker.PacemakerActivity
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
+import com.devjj.pacemaker.features.pacemaker.PlayPopupActivity
 import com.devjj.pacemaker.features.pacemaker.history.HistoryFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeView
@@ -38,15 +39,21 @@ class Navigator
     fun showAddition(context: Context, additionView: AdditionView) = context.startActivity(AdditionActivity.callingIntent(context, additionView))
 
 
+    fun showPlayPopup(context: Context) : Boolean{
+        context.startActivity(PlayPopupActivity.callingIntent(context))
+        return true
+    }
+
     // NavigationBottomView 화면 전환하는 함수.
-    fun transitonNavigationBottomView(bottomView: BottomNavigationView, fragmentManger: FragmentManager){
+    fun transitonNavigationBottomView(bottomView: BottomNavigationView, fragmentManger: FragmentManager,context: Context){
         bottomView.setOnNavigationItemSelectedListener {
             it.isChecked = true
             when(it.itemId){
                 R.id.navigation_home ->
                     fragmentManger.beginTransaction().replace(R.id.aPacemaker_flo_container, HomeFragment()).commit() == 0
                 R.id.navigation_play ->
-                    Log.d("test", "play checked") == 0
+                    showPlayPopup(context)
+                    //Log.d("test", "play checked") == 0
                 R.id.navigation_history ->
                     fragmentManger.beginTransaction().replace(R.id.aPacemaker_flo_container, HistoryFragment()).commit() == 0
                 else -> Log.d("test", "else") == 0

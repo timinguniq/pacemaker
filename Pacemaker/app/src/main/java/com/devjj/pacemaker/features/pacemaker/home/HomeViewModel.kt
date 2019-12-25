@@ -11,10 +11,10 @@ class HomeViewModel
 
     var homeList: MutableLiveData<List<HomeView>> = MutableLiveData()
 
-    fun loadHomeList() = gethomeData(UseCase.None(), ::handleHomeData)
+    fun loadHomeList() = gethomeData(UseCase.None()) {it.fold(::handleFailure, ::handleHomeData)}
 
     private fun handleHomeData(homeData: List<HomeData>){
-        this.homeList.value = homeData.map{ HomeView(it.id, it.part_img, it.name, it.mass, it.set, it.interval) }
+        this.homeList.value = homeData.map{ HomeView(it.id, it.part_img, it.name, it.mass, it.rep, it.set, it.interval) }
     }
 
 }

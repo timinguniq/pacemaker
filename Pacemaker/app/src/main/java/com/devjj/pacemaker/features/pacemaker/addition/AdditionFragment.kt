@@ -46,6 +46,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
     private var additionData_part_img = 0
     private var additionData_name = String.empty()
     private var additionData_mass = 0
+    private var additionData_rep = 0
     private var additionData_set = 0
     private var additionData_interval = 0
     //
@@ -112,7 +113,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
                     if(additionData_name != String.empty()) {
                         val additionData =
                             AdditionData(0, additionData_part_img, additionData_name, additionData_mass,
-                                additionData_set, additionData_interval)
+                                additionData_rep, additionData_set, additionData_interval)
                         additionViewModel.saveExerciseData(additionData)
                         activity?.finish()
                     }else{
@@ -124,7 +125,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
                     if(additionData_name != String.empty()) {
                         val additionData =
                             AdditionData(additionData_id, additionData_part_img, additionData_name, additionData_mass,
-                                additionData_set, additionData_interval)
+                                additionData_rep, additionData_set, additionData_interval)
                         additionViewModel.updateExerciseData(additionData)
                         activity?.finish()
                     }else{
@@ -144,14 +145,6 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
     private fun renderExerciseData(additionView: AdditionView?) {
         val tempAdditionView = additionView?:AdditionView.empty()
 
-        // 테스트 로그
-        Log.d("addition", "tempAdditionView id : " + tempAdditionView.id)
-        Log.d("addition", "tempAdditionView part_img : " + tempAdditionView.part_img)
-        Log.d("addition", "tempAdditionView name : " + tempAdditionView.name)
-        Log.d("addition", "tempAdditionView mass : " + tempAdditionView.mass)
-        Log.d("addition", "tempAdditionView set : " + tempAdditionView.set)
-        Log.d("addition", "tempAdditionView interval : " + tempAdditionView.interval)
-        //
 
         // Part Img를 초기화해주는 함수.
         initPartImg()
@@ -161,6 +154,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             ADDITION_MODE -> {
                 fAddition_ev_name.text = String.editText(String.empty())
                 fAddition_ev_mass.text = String.editText(String.empty())
+                fAddition_ev_rep.text = String.editText(String.empty())
                 fAddition_ev_set.text = String.editText(String.empty())
                 fAddition_ev_interval.text = String.editText(String.empty())
             }
@@ -171,6 +165,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
                 fAdditionIvPartList[tempAdditionView.part_img].setImageResource(fAdditionIvPartClickResource[tempAdditionView.part_img])
                 fAddition_ev_name.text = String.editText(tempAdditionView.name)
                 fAddition_ev_mass.text = String.editText(tempAdditionView.mass.toString())
+                fAddition_ev_rep.text = String.editText(tempAdditionView.rep.toString())
                 fAddition_ev_set.text = String.editText(tempAdditionView.set.toString())
                 fAddition_ev_interval.text = String.editText(tempAdditionView.interval.toString())
             }
@@ -209,6 +204,9 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         additionData_name = fAddition_ev_name.text.toString()
         if(fAddition_ev_mass.text.toString() != String.empty()){
             additionData_mass = fAddition_ev_mass.text.toString().toInt()
+        }
+        if(fAddition_ev_rep.text.toString() != String.empty()){
+            additionData_rep = fAddition_ev_rep.text.toString().toInt()
         }
         if(fAddition_ev_set.text.toString() != String.empty()){
             additionData_set = fAddition_ev_set.text.toString().toInt()

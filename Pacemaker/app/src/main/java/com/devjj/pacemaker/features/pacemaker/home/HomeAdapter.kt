@@ -44,7 +44,7 @@ class HomeAdapter
             itemView.rvExerciseItem_clo_main.setOnClickListener {
                 // HomeView에서 AdditionView로 컨버팅하는 함수 필요.
                 clickListener(AdditionView(homeView.id, homeView.part_img, homeView.name,
-                    homeView.mass, homeView.set, homeView.interval))
+                    homeView.mass, homeView.rep, homeView.set, homeView.interval))
             }
         }
     }

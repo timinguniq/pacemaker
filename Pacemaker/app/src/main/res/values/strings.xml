@@ -19,6 +19,8 @@
     <string name="fAddition_name_hint_txv">운동 이름을 입력하세요.</string>
     <string name="fAddition_mass_txv">중량:</string>
     <string name="fAddition_mass_hint_txv">중량을 입력하세요(맨몸 운동은 0)</string>
+    <string name="fAddition_rep_txv">횟수:</string>
+    <string name="fAddition_rep_hint_txv">횟수를 입력하세요</string>
     <string name="fAddition_set_txv">세트:</string>
     <string name="fAddition_set_hint_txv">운동 세트 수를 입력하세요</string>
     <string name="fAddition_interval_txv">휴식:</string>

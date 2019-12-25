@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.devjj.pacemaker.core.extension.empty
 
-data class AdditionView(val id: Int, val part_img: Int, val name: String, val mass: Int, val set: Int, val interval: Int) :
+data class AdditionView(val id: Int, val part_img: Int, val name: String, val mass: Int, val rep: Int, val set: Int, val interval: Int) :
     Parcelable {
 
     companion object CREATOR : Parcelable.Creator<AdditionView> {
@@ -16,13 +16,13 @@ data class AdditionView(val id: Int, val part_img: Int, val name: String, val ma
             return arrayOfNulls(size)
         }
 
-        fun empty() = AdditionView(-1, 0, String.empty(), 0, 0, 0)
+        fun empty() = AdditionView(-1, 0, String.empty(), 0, 0, 0, 0)
     }
 
     override fun describeContents() = 0
 
     constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readInt(), parcel.readString()!!, parcel.readInt(),
-        parcel.readInt(), parcel.readInt())
+        parcel.readInt(), parcel.readInt(), parcel.readInt())
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         with(dest) {
@@ -30,6 +30,7 @@ data class AdditionView(val id: Int, val part_img: Int, val name: String, val ma
             writeInt(part_img)
             writeString(name)
             writeInt(mass)
+            writeInt(rep)
             writeInt(set)
             writeInt(interval)
         }

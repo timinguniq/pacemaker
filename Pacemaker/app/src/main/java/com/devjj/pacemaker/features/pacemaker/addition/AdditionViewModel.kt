@@ -17,19 +17,19 @@ class AdditionViewModel
 
     // AdditionData를 불러오는 함수.
     fun loadTheAdditionData(id: Int) =
-        getTheAdditionData(GetTheAdditionData.Params(id), ::handleTheExerciseData)
+        getTheAdditionData(GetTheAdditionData.Params(id)) {it.fold(::handleFailure, ::handleTheExerciseData)}
 
     // AdditionData를 ExerciseEntity로 변환해서 저장하는 함수.
     fun saveExerciseData(additionData: AdditionData) =
-        saveExerciseData(SaveExerciseData.Params(additionData), ::handleTheExerciseData)
+        saveExerciseData(SaveExerciseData.Params(additionData)) {it.fold(::handleFailure, ::handleTheExerciseData)}
 
     // AdditionData를 이용하여 ExerciseEntity를 수정하는 함수
     fun updateExerciseData(additionData: AdditionData) =
-        updateExerciseData(UpdateExerciseData.Params(additionData), ::handleTheExerciseData)
+        updateExerciseData(UpdateExerciseData.Params(additionData)) {it.fold(::handleFailure, ::handleTheExerciseData)}
 
     private fun handleTheExerciseData(additionData: AdditionData?){
         val tempAdditionData = additionData?:AdditionData.empty()
         this.additionData.value = AdditionView(tempAdditionData.id, tempAdditionData.part_img, tempAdditionData.name,
-                tempAdditionData.mass, tempAdditionData.set, tempAdditionData.interval)
+                tempAdditionData.mass, tempAdditionData.rep, tempAdditionData.set, tempAdditionData.interval)
     }
 }

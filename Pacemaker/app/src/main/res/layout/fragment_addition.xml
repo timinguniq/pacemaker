@@ -177,7 +177,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_name"
-        app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_set">
+        app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_rep">
 
         <TextView
             android:id="@+id/fAddition_tv_mass"
@@ -209,6 +209,47 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- 횟수 레이아웃 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fAddition_clo_rep"
+        android:layout_width="340dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_mass"
+        app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_set">
+
+        <TextView
+            android:id="@+id/fAddition_tv_rep"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/fAddition_rep_txv"
+            android:textSize="20sp"
+            android:textColor="#ff000000"
+            app:layout_constraintEnd_toStartOf="@+id/fAddition_ev_rep"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+        <EditText
+            android:id="@+id/fAddition_ev_rep"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="number"
+            android:importantForAutofill="no"
+            android:textSize="16sp"
+            android:hint="@string/fAddition_rep_hint_txv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fAddition_tv_rep"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!-- 세트 레이아웃 -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fAddition_clo_set"
@@ -217,7 +258,7 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_mass"
+        app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_rep"
         app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_interval">
 
         <TextView

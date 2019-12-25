@@ -1,40 +1,66 @@
 package com.devjj.pacemaker.features.pacemaker.addition
 
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
+import com.devjj.pacemaker.core.exception.Failure
+import com.devjj.pacemaker.core.exception.Failure.DatabaseError
+import com.devjj.pacemaker.core.functional.Either.Right
+import com.devjj.pacemaker.core.functional.Either.Left
+import com.devjj.pacemaker.core.functional.Either
 import com.devjj.pacemaker.features.pacemaker.entities.ExerciseEntity
 import com.devjj.pacemaker.features.pacemaker.home.HomeData
 import javax.inject.Inject
 
 interface AdditionRepository {
     // 추가화면의 데이터를 불러오는 함수.
-    fun theAdditionData(id: Int) : AdditionData
+    fun theAdditionData(id: Int): Either<Failure, AdditionData>
+
     // DB에 ExerciseData를 추가하는 함수.
-    fun insertExerciseData(additionData: AdditionData) : AdditionData
+    fun insertExerciseData(additionData: AdditionData): Either<Failure, AdditionData>
+
     // DB에 ExerciseData를 업데이트(수정)하는 함수.
-    fun updateExerciseData(additionData: AdditionData) : AdditionData
+    fun updateExerciseData(additionData: AdditionData): Either<Failure, AdditionData>
 
     class DbRepository
-    @Inject constructor(private val db: ExerciseDatabase) :
-        AdditionRepository {
-        override fun theAdditionData(id: Int): AdditionData {
-            var tempExerciseEntity: ExerciseEntity? = db.ExerciseDAO().searchData(id)
+    @Inject constructor(private val db: ExerciseDatabase, private val service: AdditionDatabaseService) : AdditionRepository {
+
+        override fun theAdditionData(id: Int): Either<Failure, AdditionData> {
+            val tempExerciseEntity: ExerciseEntity? = service.theAdditionData(id)
             var tempAdditionData = AdditionData.empty()
-            if(tempExerciseEntity != null){
+            if (tempExerciseEntity != null) {
                 tempAdditionData = tempExerciseEntity.toAdditionData()
             }
-            return tempAdditionData
+            return try {
+                when (db.isOpen) {
+                    true -> Right(tempAdditionData)
+                    false -> Left(DatabaseError)
+                }
+            } catch (exception: Throwable) {
+                Left(DatabaseError)
+            }
         }
 
-        override fun insertExerciseData(additionData: AdditionData): AdditionData {
-            db.ExerciseDAO().insert(ExerciseEntity(0, additionData.part_img, additionData.name,
-                    additionData.mass, additionData.set, additionData.interval, false))
-            return AdditionData.empty()
+        override fun insertExerciseData(additionData: AdditionData): Either<Failure, AdditionData> {
+            service.insertExerciseData(additionData)
+            return try {
+                when (db.isOpen) {
+                    true -> Right(AdditionData.empty())
+                    false -> Left(DatabaseError)
+                }
+            } catch (exception: Throwable) {
+                Left(DatabaseError)
+            }
         }
 
-        override fun updateExerciseData(additionData: AdditionData): AdditionData {
-            db.ExerciseDAO().update(ExerciseEntity(additionData.id, additionData.part_img, additionData.name,
-                additionData.mass, additionData.set, additionData.interval, false))
-            return additionData
+        override fun updateExerciseData(additionData: AdditionData): Either<Failure, AdditionData> {
+            service.updateExerciseData(additionData)
+            return try {
+                when (db.isOpen) {
+                    true -> Right(additionData)
+                    false -> Left(DatabaseError)
+                }
+            } catch (exception: Throwable) {
+                Left(DatabaseError)
+            }
         }
     }
 }

@@ -40,7 +40,7 @@
 
         <activity
             android:name=".features.pacemaker.PlayPopupActivity"
-            android:theme="@style/CustomAppTheme.Popup"
+            android:theme="@style/CustomAppTheme.Popup  "
           /> <!-- android:theme="@style/CustomAppTheme.Popup" /> -->
 
     </application>

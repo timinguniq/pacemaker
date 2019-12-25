@@ -58,22 +58,24 @@ class HistoryFragment : BaseFragment() {
 
 
         val a = ExerciseHistoryEntity(0,
-            SimpleDateFormat("yyyy-MM-dd").format(date.time),
+            SimpleDateFormat("yy-MM-dd").format(date.time),
             1,
             "벤치프레스",
             20,
             3,
+            4,
             40,
             true,
             30
             )
 
         val b = ExerciseHistoryEntity(1,
-            SimpleDateFormat("yyyy-MM-dd").format(date.time),
+            SimpleDateFormat("yy-MM-dd").format(date.time),
             2,
             "레그레이즈",
             50,
             3,
+            6,
             40,
             false,
             50

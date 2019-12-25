@@ -11,6 +11,7 @@ data class ExerciseHistoryEntity(
     val part: Int,
     val name: String,
     val mass: Int,
+    val rep: Int,
     val set: Int,
     val interval: Int,
     val achivement: Boolean,

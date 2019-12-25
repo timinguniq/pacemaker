@@ -18,7 +18,7 @@ interface HistoriesRepository {
             return try {
                 when (db.isOpen) {
                     true -> Right(service.histories().map { it.toHistory() })
-                    false, null -> Left(DatabaseError)
+                    false -> Left(DatabaseError)
                 }
             }catch(exception: Throwable){
                 Left(DatabaseError)

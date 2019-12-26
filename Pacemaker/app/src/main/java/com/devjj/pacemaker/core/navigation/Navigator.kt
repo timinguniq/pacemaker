@@ -10,9 +10,11 @@ import com.devjj.pacemaker.features.login.Authenticator
 import com.devjj.pacemaker.features.login.LoginActivity
 import com.devjj.pacemaker.features.pacemaker.AdditionActivity
 import com.devjj.pacemaker.features.pacemaker.PacemakerActivity
+import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
 import com.devjj.pacemaker.features.pacemaker.PlayPopupActivity
 import com.devjj.pacemaker.features.pacemaker.history.HistoryFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
+import com.devjj.pacemaker.features.pacemaker.home.HomeView
 import com.devjj.pacemaker.features.pacemaker.option.OptionFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_pacemaker.*
@@ -33,7 +35,9 @@ class Navigator
 
     fun showPacemaker(context: Context) = context.startActivity(PacemakerActivity.callingIntent(context))
 
-    fun showAddition(context: Context) = context.startActivity(AdditionActivity.callingIntent(context))
+    // 추가 화면과 편집 화면으로 이동하는 함수.
+    fun showAddition(context: Context, additionView: AdditionView) = context.startActivity(AdditionActivity.callingIntent(context, additionView))
+
 
     fun showPlayPopup(context: Context) : Boolean{
         context.startActivity(PlayPopupActivity.callingIntent(context))

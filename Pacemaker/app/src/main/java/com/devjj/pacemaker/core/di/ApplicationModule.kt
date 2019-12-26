@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
+import com.devjj.pacemaker.features.pacemaker.addition.AdditionRepository
+import com.devjj.pacemaker.features.pacemaker.home.HomeRepository
 import com.devjj.pacemaker.features.pacemaker.history.HistoriesRepository
 import dagger.Module
 import dagger.Provides
@@ -18,7 +20,7 @@ class ApplicationModule(private val application: AndroidApplication) {
 
     @Provides
     @Singleton
-    fun provideExerciseDatabase(): ExerciseDatabase{
+    fun provideExerciseDatabase(): ExerciseDatabase {
         val db = Room.databaseBuilder(
             application,
             ExerciseDatabase::class.java,
@@ -30,7 +32,7 @@ class ApplicationModule(private val application: AndroidApplication) {
 
     @Provides
     @Singleton
-    fun provideExerciseHistoryDatabase(): ExerciseHistoryDatabase{
+    fun provideExerciseHistoryDatabase(): ExerciseHistoryDatabase {
         val db = Room.databaseBuilder(
             application,
             ExerciseHistoryDatabase::class.java,
@@ -40,5 +42,15 @@ class ApplicationModule(private val application: AndroidApplication) {
         return db
     }
 
-    @Provides @Singleton fun provideHistoryRepository(dataSource : HistoriesRepository.HistoryDatabase): HistoriesRepository =dataSource
+    @Provides
+    @Singleton
+    fun provideHomeRepository(dataSource: HomeRepository.DbRepository): HomeRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun provideAdditionRepository(dataSource: AdditionRepository.DbRepository): AdditionRepository = dataSource
+
+    @Provides @Singleton
+    fun provideHistoryRepository(dataSource : HistoriesRepository.HistoryDatabase): HistoriesRepository =dataSource
+
 }

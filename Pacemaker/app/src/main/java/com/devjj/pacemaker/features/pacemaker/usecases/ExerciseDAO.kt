@@ -1,21 +1,27 @@
 package com.devjj.pacemaker.features.pacemaker.usecases
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
+import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import androidx.room.Query
 import com.devjj.pacemaker.features.pacemaker.entities.ExerciseEntity
 import io.reactivex.Flowable
 
 @Dao
 interface ExerciseDAO {
     @Query("SELECT * FROM exercises")
-    fun getAll(): Flowable<List<ExerciseEntity>>
+    fun getAll(): List<ExerciseEntity>
 
     @Insert(onConflict = REPLACE)
     fun insert(vararg exerciseEntity: ExerciseEntity)
 
+    @Update
+    fun update(vararg exerciseEntitiy: ExerciseEntity)
+
     @Delete
     fun delete(exerciseEntity: ExerciseEntity)
+
+    @Query("DELETE FROM exercises")
+    fun deleteAll()
+
+    @Query("SELECT * FROM exercises WHERE id=:id")
+    fun searchData(id: Int): ExerciseEntity
 }

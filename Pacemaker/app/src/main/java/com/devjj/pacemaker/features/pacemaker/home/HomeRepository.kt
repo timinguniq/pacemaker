@@ -1,5 +1,6 @@
 package com.devjj.pacemaker.features.pacemaker.home
 
+import android.util.Log
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.exception.Failure.DatabaseError
@@ -16,6 +17,7 @@ interface HomeRepository {
         HomeRepository {
         override fun homeData(): Either<Failure, List<HomeData>> {
             return try{
+                Log.d("test", "HomeRepository : ${db.isOpen}")
                 when(db.isOpen){
                     true -> Right(service.home().map { it.toHomeData() })
                     false -> Left(DatabaseError)

@@ -9,5 +9,5 @@ import javax.inject.Inject
 
 class GetExerciseHistories
 @Inject constructor(private val historiesRepository: HistoriesRepository) : UseCase<List<History>,None>(){
-    override suspend fun run(params: None) = historiesRepository.histories()
+    override suspend fun run(paramas: None) = historiesRepository.histories()
 }

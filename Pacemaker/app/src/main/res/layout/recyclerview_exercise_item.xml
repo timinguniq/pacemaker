@@ -16,7 +16,7 @@
 
         <ImageView
             android:id="@+id/rvExerciseItem_iv_part"
-            android:layout_width="55dp"
+            android:layout_width="50dp"
             android:layout_height="55dp"
             android:contentDescription="@string/image_not_found"
             app:layout_constraintTop_toTopOf="parent"
@@ -40,7 +40,7 @@
 
         <TextView
             android:id="@+id/rvExerciseItem_tv_mass"
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="55dp"
             android:gravity="center"
             android:text="100kg"
@@ -49,12 +49,24 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_tv_name"
-            app:layout_constraintEnd_toStartOf="@+id/rvExerciseItem_tv_set"/>
+            app:layout_constraintEnd_toStartOf="@+id/rvExerciseItem_tv_rep"/>
 
+        <TextView
+            android:id="@+id/rvExerciseItem_tv_rep"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:text="100rep"
+            android:textSize="15sp"
+            android:textColor="#ff000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_tv_mass"
+            app:layout_constraintEnd_toStartOf="@+id/rvExerciseItem_tv_set"/>
 
         <TextView
             android:id="@+id/rvExerciseItem_tv_set"
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="55dp"
             android:gravity="center"
             android:text="10set"
@@ -62,12 +74,12 @@
             android:textColor="#ff000000"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_tv_mass"
+            app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_tv_rep"
             app:layout_constraintEnd_toStartOf="@+id/rvExerciseItem_tv_interval"/>
 
         <TextView
             android:id="@+id/rvExerciseItem_tv_interval"
-            android:layout_width="60dp"
+            android:layout_width="50dp"
             android:layout_height="55dp"
             android:gravity="center"
             android:text="100s"

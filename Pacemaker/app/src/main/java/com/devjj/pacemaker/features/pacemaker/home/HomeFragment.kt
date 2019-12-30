@@ -61,7 +61,7 @@ class HomeFragment : BaseFragment() {
 
         fHome_recyclerview.layoutManager = LinearLayoutManager(this.context)
         fHome_recyclerview.adapter = homeAdapter
-        homeAdapter.clickListener = { additionView ->
+        homeAdapter.clickListener = {additionView  ->
             navigator.showAddition(activity!!, additionView)}
 
         // DB에 있는 데이터 로드

@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.extension.inflate
+import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailView
 import kotlinx.android.synthetic.main.recyclerview_exercise_history_item.view.*
+import kotlinx.android.synthetic.main.recyclerview_exercise_item.view.*
 import javax.inject.Inject
 import kotlin.math.roundToInt
 import kotlin.properties.Delegates
@@ -19,7 +21,7 @@ class HistoryAdapter
             _, _, _ -> notifyDataSetChanged()
     }
 
-    internal var clickListener: (HistoryView) -> Unit = { _-> }
+    internal var clickListener: (String) -> Unit = { _-> }
 
     override fun getItemCount() = collection.size
 
@@ -32,10 +34,14 @@ class HistoryAdapter
 
 
     class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-        fun bind(historyView: HistoryView , context: Context, clickListener: (HistoryView) -> Unit ){
+        fun bind(historyView: HistoryView , context: Context, clickListener: (String) -> Unit ){
             itemView.rvExerciseHistoryItem_tv_date.text = historyView.date
             itemView.rvExerciseHistoryItem_tv_rate.text = context.getString(R.string.rh_rate,historyView.achivementRate)
             itemView.rvExerciseHistoryItem_pb_rate.setProgress(historyView.achivementRate)
+
+            itemView.rvExerciseHistoryItem_clo_main.setOnClickListener{
+                clickListener(historyView.date)
+            }
         }
     }
 }

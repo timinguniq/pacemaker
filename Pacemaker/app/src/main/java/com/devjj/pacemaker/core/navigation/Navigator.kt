@@ -9,10 +9,13 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.features.login.Authenticator
 import com.devjj.pacemaker.features.login.LoginActivity
 import com.devjj.pacemaker.features.pacemaker.AdditionActivity
+import com.devjj.pacemaker.features.pacemaker.HistoryDetailActivity
 import com.devjj.pacemaker.features.pacemaker.PacemakerActivity
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
 import com.devjj.pacemaker.features.pacemaker.PlayPopupActivity
 import com.devjj.pacemaker.features.pacemaker.history.HistoryFragment
+import com.devjj.pacemaker.features.pacemaker.history.HistoryView
+import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailView
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeView
 import com.devjj.pacemaker.features.pacemaker.option.OptionFragment
@@ -38,6 +41,7 @@ class Navigator
     // 추가 화면과 편집 화면으로 이동하는 함수.
     fun showAddition(context: Context, additionView: AdditionView) = context.startActivity(AdditionActivity.callingIntent(context, additionView))
 
+    fun showHistoryDetail(context : Context, date : String) = context.startActivity(HistoryDetailActivity.callingIntent(context,date))
 
     fun showPlayPopup(context: Context) : Boolean{
         context.startActivity(PlayPopupActivity.callingIntent(context))
@@ -51,8 +55,10 @@ class Navigator
             when(it.itemId){
                 R.id.navigation_home ->
                     fragmentManger.beginTransaction().replace(R.id.aPacemaker_flo_container, HomeFragment()).commit() == 0
-                R.id.navigation_play ->
+                R.id.navigation_play -> {
+                    fragmentManger.beginTransaction().replace(R.id.aPacemaker_flo_container, HomeFragment()).commit() == 0
                     showPlayPopup(context)
+                }
                     //Log.d("test", "play checked") == 0
                 R.id.navigation_history ->
                     fragmentManger.beginTransaction().replace(R.id.aPacemaker_flo_container, HistoryFragment()).commit() == 0

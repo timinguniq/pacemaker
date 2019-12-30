@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CustomAppTheme">
+        <activity android:name=".features.pacemaker.HistoryDetailActivity"></activity>
         <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -32,8 +33,7 @@
         </activity>
         <activity
             android:name=".features.login.LoginActivity"
-            android:theme="@style/CustomAppTheme"/>
-
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".features.pacemaker.PacemakerActivity"
             android:label="@string/title_activity_pacemaker"
@@ -41,12 +41,9 @@
         <activity
             android:name=".features.pacemaker.AdditionActivity"
             android:theme="@style/CustomAppTheme" />
-
         <activity
             android:name=".features.pacemaker.PlayPopupActivity"
-            android:theme="@style/CustomAppTheme.Popup"
-          /> <!-- android:theme="@style/CustomAppTheme.Popup" /> -->
-
+            android:theme="@style/CustomAppTheme.Popup" />
     </application>
 
 </manifest>

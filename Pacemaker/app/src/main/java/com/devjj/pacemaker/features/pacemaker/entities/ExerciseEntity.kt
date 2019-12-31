@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 import com.devjj.pacemaker.core.extension.empty
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
 import com.devjj.pacemaker.features.pacemaker.home.HomeData
+import com.devjj.pacemaker.features.pacemaker.play.PlayPopupData
 
 @Entity(tableName = "exercises")
 data class ExerciseEntity(@PrimaryKey(autoGenerate = true) var id: Int,
@@ -25,5 +26,8 @@ data class ExerciseEntity(@PrimaryKey(autoGenerate = true) var id: Int,
 
     // ExerciseEntity를 AdditionData로 변환하는 함수.
     fun toAdditionData() = AdditionData(id, part, name, mass, rep, set, interval)
+
+    // ExerciseEntity를 playPopupData로 변환하는 함수.
+    fun toPlayPopup() = PlayPopupData(id, part, name, mass, rep, set, interval, achivement)
 
 }

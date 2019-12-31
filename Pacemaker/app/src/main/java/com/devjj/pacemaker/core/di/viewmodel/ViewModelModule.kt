@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionViewModel
 import com.devjj.pacemaker.features.pacemaker.history.HistoryViewModel
+import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailViewModel
 import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
 import com.devjj.pacemaker.features.pacemaker.option.OptionViewModel
 import com.devjj.pacemaker.features.pacemaker.play.PlayPopupViewModel
@@ -38,6 +39,9 @@ abstract class ViewModelModule{
 
     @Binds
     @IntoMap
+    @ViewModelKey(HistoryDetailViewModel::class)
+    abstract fun bindsHistoryDetailViewModel(historyDetailViewModel : HistoryDetailViewModel) :ViewModel
+  
     @ViewModelKey(PlayPopupViewModel::class)
     abstract fun bindsPlayPopupViewModel(playPopupViewModel: PlayPopupViewModel) : ViewModel
 

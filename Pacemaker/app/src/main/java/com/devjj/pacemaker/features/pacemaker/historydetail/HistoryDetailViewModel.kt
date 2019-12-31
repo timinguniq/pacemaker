@@ -17,11 +17,8 @@ class HistoryDetailViewModel
 
     var historyDetails: MutableLiveData<List<HistoryDetailView>> = MutableLiveData()
 
-    @Synchronized
     fun switchAchievementById(id: Int) = switchHistoryDetailAchievement(id)
-    @Synchronized
     fun updateAchievementRateByDate(date: String) = updateAchievementRate(date)
-    @Synchronized
     fun loadHistoryDetails(date: String) =
         getHistoryDetails(date) { it.fold(::handleFailure, ::handleHistoryDetailList) }
 

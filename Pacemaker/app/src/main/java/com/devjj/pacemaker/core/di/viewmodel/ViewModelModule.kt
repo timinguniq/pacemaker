@@ -41,7 +41,9 @@ abstract class ViewModelModule{
     @IntoMap
     @ViewModelKey(HistoryDetailViewModel::class)
     abstract fun bindsHistoryDetailViewModel(historyDetailViewModel : HistoryDetailViewModel) :ViewModel
-  
+
+    @Binds
+    @IntoMap
     @ViewModelKey(PlayPopupViewModel::class)
     abstract fun bindsPlayPopupViewModel(playPopupViewModel: PlayPopupViewModel) : ViewModel
 

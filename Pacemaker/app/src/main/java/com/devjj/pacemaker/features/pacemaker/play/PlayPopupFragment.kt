@@ -18,8 +18,6 @@ import com.devjj.pacemaker.core.platform.BaseFragment
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_play_popup.*
-import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
 import java.util.*
 import javax.inject.Inject
 import kotlin.concurrent.schedule
@@ -164,16 +162,8 @@ class PlayPopupFragment : BaseFragment() {
         }else{
             // maxSet <= currentSet
             currentPlayPopupData.achivement = true
-            runBlocking {
-                async {
-                    playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
-                }.join()
-                async {
-                    playPopupViewModel.loadPlayPopupList()
-                }.join()
-            }
-
-
+            playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
+            playPopupViewModel.loadPlayPopupList()
 
             //playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
             //Thread.sleep(100)

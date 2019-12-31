@@ -24,7 +24,6 @@ class HomeFragment : BaseFragment() {
 
     @Inject lateinit var navigator: Navigator
     @Inject lateinit var homeAdapter: HomeAdapter
-    @Inject lateinit var db: ExerciseDatabase
 
     private lateinit var homeViewModel: HomeViewModel
 

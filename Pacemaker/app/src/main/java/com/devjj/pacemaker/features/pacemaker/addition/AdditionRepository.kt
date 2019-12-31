@@ -21,7 +21,7 @@ interface AdditionRepository {
     fun updateExerciseData(additionData: AdditionData): Either<Failure, AdditionData>
 
     class DbRepository
-    @Inject constructor(private val db: ExerciseDatabase, private val service: AdditionDatabaseService) : AdditionRepository {
+    @Inject constructor(private val service: AdditionDatabaseService) : AdditionRepository {
 
         override fun theAdditionData(id: Int): Either<Failure, AdditionData> {
             val tempExerciseEntity: ExerciseEntity? = service.theAdditionData(id)
@@ -30,10 +30,7 @@ interface AdditionRepository {
                 tempAdditionData = tempExerciseEntity.toAdditionData()
             }
             return try {
-                when (db.isOpen) {
-                    true -> Right(tempAdditionData)
-                    false -> Left(DatabaseError)
-                }
+                Right(tempAdditionData)
             } catch (exception: Throwable) {
                 Left(DatabaseError)
             }
@@ -42,10 +39,7 @@ interface AdditionRepository {
         override fun insertExerciseData(additionData: AdditionData): Either<Failure, AdditionData> {
             service.insertExerciseData(additionData)
             return try {
-                when (db.isOpen) {
-                    true -> Right(AdditionData.empty())
-                    false -> Left(DatabaseError)
-                }
+                Right(AdditionData.empty())
             } catch (exception: Throwable) {
                 Left(DatabaseError)
             }
@@ -54,10 +48,7 @@ interface AdditionRepository {
         override fun updateExerciseData(additionData: AdditionData): Either<Failure, AdditionData> {
             service.updateExerciseData(additionData)
             return try {
-                when (db.isOpen) {
-                    true -> Right(additionData)
-                    false -> Left(DatabaseError)
-                }
+                Right(additionData)
             } catch (exception: Throwable) {
                 Left(DatabaseError)
             }

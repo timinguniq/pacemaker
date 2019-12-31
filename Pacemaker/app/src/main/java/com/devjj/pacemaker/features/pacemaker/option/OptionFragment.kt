@@ -28,6 +28,5 @@ class OptionFragment : BaseFragment() {
         //initializeView()
 
     }
-
 }
 

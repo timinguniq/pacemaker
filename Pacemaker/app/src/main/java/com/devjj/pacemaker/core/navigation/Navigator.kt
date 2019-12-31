@@ -45,17 +45,27 @@ class Navigator
     }
 
     // NavigationBottomView 화면 전환하는 함수.
-    fun transitonNavigationBottomView(bottomView: BottomNavigationView, fragmentManger: FragmentManager,context: Context){
+    fun transitonNavigationBottomView(bottomView: BottomNavigationView, fragmentManager: FragmentManager,context: Context){
         bottomView.setOnNavigationItemSelectedListener {
             it.isChecked = true
             when(it.itemId){
                 R.id.navigation_home ->
-                    fragmentManger.beginTransaction().replace(R.id.aPacemaker_flo_container, HomeFragment()).commit() == 0
-                R.id.navigation_play ->
+                    fragmentManager.beginTransaction().replace(R.id.aPacemaker_flo_container, HomeFragment()).commit() == 0
+                R.id.navigation_play -> {
+                    // 현재 컨테이너에 있는 fragment 구하는 코드.
+                    val fragment = fragmentManager.findFragmentById(R.id.aPacemaker_flo_container)
+                    // homeFragment 이름 가져오는 함수.
+                    val homeFragmentName = context.resources.getString(R.string.fHome_fragment_name)
+                    // 지금 보여지는 화면이 home이 아닐경우 home으로 이동하는 코드
+                    if(!fragment.toString().contains(homeFragmentName)){
+                        fragmentManager.beginTransaction().replace(R.id.aPacemaker_flo_container, HomeFragment()).commit() == 0
+                    }
+
                     showPlayPopup(context)
                     //Log.d("test", "play checked") == 0
+                }
                 R.id.navigation_history ->
-                    fragmentManger.beginTransaction().replace(R.id.aPacemaker_flo_container, HistoryFragment()).commit() == 0
+                    fragmentManager.beginTransaction().replace(R.id.aPacemaker_flo_container, HistoryFragment()).commit() == 0
                 else -> Log.d("test", "else") == 0
             }
         }

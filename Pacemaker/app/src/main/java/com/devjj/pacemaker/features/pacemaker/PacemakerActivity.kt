@@ -47,7 +47,6 @@ class PacemakerActivity : BaseActivity() {
         appComponent.inject(this)
         initializeView()
 
-
     }
 
     // PacemakerActivity 초기화 하는 함수
@@ -56,7 +55,6 @@ class PacemakerActivity : BaseActivity() {
         navigator.transitonNavigationBottomView(aPacemaker_bottom_navigation_view, supportFragmentManager,this)
         // settingImv clickListener
         navigator.showSettingFragment(aPacemaker_iv_setting, aPacemaker_bottom_navigation_view, supportFragmentManager)
-
 
         // TODO : 나중에 삭제해야 되는 코드
         aPacemaker_tv_add.setOnClickListener {

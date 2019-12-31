@@ -10,6 +10,7 @@ import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionRepository
 import com.devjj.pacemaker.features.pacemaker.home.HomeRepository
 import com.devjj.pacemaker.features.pacemaker.history.HistoriesRepository
+import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailsRepository
 import com.devjj.pacemaker.features.pacemaker.play.PlayPopupRepository
 import dagger.Module
 import dagger.Provides
@@ -68,5 +69,8 @@ class ApplicationModule(private val application: AndroidApplication) {
     @Provides
     @Singleton
     fun providePlayPopupRepository(dataSource: PlayPopupRepository.DbRepository): PlayPopupRepository = dataSource
+
+    @Provides @Singleton
+    fun provideHistoryDetailRepository(dataSource: HistoryDetailsRepository.HistoryDetailDatabase) : HistoryDetailsRepository = dataSource
 
 }

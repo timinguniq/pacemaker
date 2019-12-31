@@ -11,7 +11,7 @@ import com.devjj.pacemaker.core.functional.Either.Right
 import javax.inject.Inject
 
 interface HomeRepository {
-    fun homeData() : Either<Failure, List<HomeData>>
+    fun homeData(): Either<Failure, List<HomeData>>
 
     class DbRepository
     @Inject constructor(private val service: HomeDatabaseService) :

@@ -24,4 +24,5 @@ interface ExerciseDAO {
 
     @Query("SELECT * FROM exercises WHERE id=:id")
     fun searchData(id: Int): ExerciseEntity
+
 }

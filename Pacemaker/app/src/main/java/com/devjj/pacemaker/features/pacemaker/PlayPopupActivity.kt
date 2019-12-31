@@ -6,8 +6,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.view.Window
-import androidx.recyclerview.widget.RecyclerView
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
@@ -35,14 +33,14 @@ class PlayPopupActivity : BaseActivity() {
     private fun initLayout(){
 
         var dm = DisplayMetrics()
-        getWindowManager().getDefaultDisplay().getMetrics(dm)
+        windowManager.defaultDisplay.getMetrics(dm)
 
         var width = dm.widthPixels
         var height = dm.heightPixels
 
-        getWindow().setLayout((width *0.8).roundToInt(), (height *0.6).roundToInt())
+        window.setLayout((width *0.8).roundToInt(), (height *0.5).roundToInt())
 
-        getWindow().setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))	// 배경화면 투명하게 하는 코드
+        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))	// 배경화면 투명하게 하는 코드
 
     }
     override fun fragment() = PlayPopupFragment()

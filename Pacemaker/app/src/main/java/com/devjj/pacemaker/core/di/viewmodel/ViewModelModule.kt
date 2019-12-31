@@ -7,6 +7,7 @@ import com.devjj.pacemaker.features.pacemaker.history.HistoryViewModel
 import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailViewModel
 import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
 import com.devjj.pacemaker.features.pacemaker.option.OptionViewModel
+import com.devjj.pacemaker.features.pacemaker.play.PlayPopupViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -40,5 +41,8 @@ abstract class ViewModelModule{
     @IntoMap
     @ViewModelKey(HistoryDetailViewModel::class)
     abstract fun bindsHistoryDetailViewModel(historyDetailViewModel : HistoryDetailViewModel) :ViewModel
+  
+    @ViewModelKey(PlayPopupViewModel::class)
+    abstract fun bindsPlayPopupViewModel(playPopupViewModel: PlayPopupViewModel) : ViewModel
 
 }

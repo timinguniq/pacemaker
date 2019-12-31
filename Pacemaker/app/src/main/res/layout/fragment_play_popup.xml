@@ -4,88 +4,163 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fplaypopup_background"
     tools:context=".features.pacemaker.play.PlayPopupFragment">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ic_launcher_background"
-        android:backgroundTint="@color/colorAccent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fPlayPopup_clo_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="#80999999"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fPlayPopup_rv">
+
+        <TextView
+            android:id="@+id/fPlayPopup_tv_part"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/fPlayPopup_title_checkbox_txv"
+            android:textSize="13sp"
+            android:textColor="#ff000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fPlayPopup_tv_name"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+        <TextView
+            android:id="@+id/fPlayPopup_tv_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/fHome_title_name_txv"
+            android:textSize="15sp"
+            android:textColor="#ff000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fPlayPopup_tv_part"
+            app:layout_constraintEnd_toStartOf="@+id/fPlayPopup_tv_mass"/>
+
+
+        <TextView
+            android:id="@+id/fPlayPopup_tv_mass"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/fHome_title_mass_txv"
+            android:textSize="13sp"
+            android:textColor="#ff000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fPlayPopup_tv_name"
+            app:layout_constraintEnd_toStartOf="@+id/fPlayPopup_tv_rep"/>
+
+        <TextView
+            android:id="@+id/fPlayPopup_tv_rep"
+            android:layout_width="45dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/fHome_title_rep_txv"
+            android:textSize="13sp"
+            android:textColor="#ff000000"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fPlayPopup_tv_mass"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fPlayPopup_rv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="#ffffffff"
+        app:layout_constraintBottom_toTopOf="@+id/fPlayPopup_clo_controller"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fPlayPopup_clo_title"
+        tools:itemCount="3" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fPlayPopup_clo_controller"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/fPlayPopup_rv">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="5dp"
-        android:text="Button"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@id/guideline2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/fPlayPopup_tv_set"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/playPopupTv"
+            android:gravity="center"
+            android:text="set"
+            android:textSize="17sp"
+            android:textColor="#ff000000"
+            app:layout_constraintBottom_toTopOf="@+id/fPlayPopup_btn_continue"
+            app:layout_constraintEnd_toStartOf="@+id/fPlayPopup_tv_timer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_weight="4"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginBottom="5dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/editText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:itemCount="3">
+        <Button
+            android:id="@+id/fPlayPopup_btn_continue"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/playPopupBtnContinue"
+            android:gravity="center"
+            android:textAllCaps="false"
+            android:text="@string/fPlayPopup_continue_btn_txv"
+            android:textSize="17sp"
+            android:textColor="#ff000000"
+            app:elevation="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fPlayPopup_tv_timer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fPlayPopup_tv_set"
+            app:layout_constraintHorizontal_weight="4"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:id="@+id/fPlayPopup_tv_timer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@color/playPopupTv"
+            android:gravity="center"
+            android:text="@string/fPlayPopup_timer_txv"
+            android:textSize="30sp"
+            android:textColor="#ff000000"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fPlayPopup_tv_set"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_weight="6"/>
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:inputType="time"
-        android:text="Time Test"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@id/guideline2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/recyclerView" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="2dp"
-        android:text="TextView test"
-        android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toStartOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="165dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20109439" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="bottomColor">#cccccc</color>
+    <color name="playPopupBtnContinue">#FFC107</color>
+    <color name="playPopupTv">#CDDC39</color>
 </resources>

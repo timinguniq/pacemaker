@@ -7,6 +7,8 @@
     <string name="navigation_play_txv">Play</string>
     <string name="navigation_history_txv">History</string>
 
+    <string name="aPacemaker_title_txv">내 트레이닝</string>
+
     <!-- 임시 단위 -->
     <string name="rvExerciseItem_mass">%dkg</string>
     <string name="rvExerciseItem_set">%dset</string>

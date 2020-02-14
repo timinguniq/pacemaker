@@ -1,11 +1,13 @@
-package com.devjj.pacemaker.features.pacemaker.play
+package com.devjj.pacemaker.features.pacemaker.playpopup
 
 import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.exception.Failure
@@ -15,9 +17,10 @@ import com.devjj.pacemaker.core.extension.observe
 import com.devjj.pacemaker.core.extension.viewModel
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
-import io.reactivex.Flowable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_play_popup.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.*
 import javax.inject.Inject
 import kotlin.concurrent.schedule
@@ -50,22 +53,36 @@ class PlayPopupFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
 
+        Log.d("test", "onCreate PlayPopupFragment")
         playPopupViewModel = viewModel(viewModelFactory){
             observe(playPopupList, ::renderPlayPopupList)
             failure(failure, ::handleFailure)
         }
+
+        if(playPopupViewModel.getCurrentSet().value == null) {
+            Log.d("test", "currentSet null")
+            playPopupViewModel.initCurrentSet()
+        }
+
+        playPopupViewModel.getCurrentSet().observe(this, Observer<Int>{ currentSet->
+            // update UI
+            Log.d("test", "observer currentSet : ${currentSet}")
+            this.currentSet = currentSet
+        })
 
     }
 
     // 한번만 소환되는거 같다.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("test", "onViewCreated")
 
     }
 
     override fun onResume() {
         super.onResume()
         initializeView()
+
     }
 
     // playPopupFragment 초기화 하는 함수
@@ -75,7 +92,6 @@ class PlayPopupFragment : BaseFragment() {
 
         // DB에 있는 데이터 로드
         playPopupViewModel.loadPlayPopupList()
-
         // Timer 연습코드
         var timer: TimerTask = Timer().schedule(100, 1000){}
 
@@ -87,10 +103,16 @@ class PlayPopupFragment : BaseFragment() {
 
                 timer = Timer("TimerDown", false).schedule(100, 1000){
                     interval -= 1
-                    progressTimer()
+                    runBlocking {
+                        launch(Dispatchers.Main){
+                            progressTimer()
+                        }
+                    }
                     if(interval == 0){
                         interval = 0
                         timer.cancel()
+                        // playPopupView 데이터를 업데이트 하는 함수.
+                        updatePlayPopupView()
 
                         showSet()
                     }
@@ -101,10 +123,14 @@ class PlayPopupFragment : BaseFragment() {
 
                 timer.cancel()
 
+                // playPopupView 데이터를 업데이트 하는 함수.
+                updatePlayPopupView()
+
                 showSet()
             }
         }
     }
+
 
     // playPopup 데이터들 갱신하는 함수.
     private fun renderPlayPopupList(playPopupView: List<PlayPopupView>?) {
@@ -127,6 +153,8 @@ class PlayPopupFragment : BaseFragment() {
                 currentPlayPopupData = PlayPopupData(popupView.id, popupView.part, popupView.name, popupView.mass,
                     popupView.rep, popupView.set, popupView.interval, bAchivement)
                 showBoardSetting(popupView)
+                // 스크롤 자동이동.
+                scrollRecyclerview(achivementCount)
                 break
             }else{
                 achivementCount++
@@ -151,9 +179,35 @@ class PlayPopupFragment : BaseFragment() {
 
     }
 
+    // 스크롤 자동 이동하는 함수
+    private fun scrollRecyclerview(position: Int){
+        Log.d("test", "scroll achivementCount position : ${position}")
+        //fPlayPopup_rv.layoutManager?.scrollToPosition(position)
+        fPlayPopup_rv.layoutManager?.scrollToPosition(0)
+
+        Handler().post {
+            when(position){
+                0 -> fPlayPopup_rv.layoutManager?.scrollToPosition(position)
+                in 1..(playPopupAdapter.itemCount-3) -> fPlayPopup_rv.layoutManager?.scrollToPosition(position + 2)
+                in (playPopupAdapter.itemCount-2)..(playPopupAdapter.itemCount) -> fPlayPopup_rv.layoutManager?.scrollToPosition(playPopupAdapter.itemCount - 1)
+            }
+        }
+
+    }
+
+    // playPopupView 데이터 업데이트하는 함수
+    private fun updatePlayPopupView(){
+        val playPopupViewList = playPopupViewModel.playPopupList.value
+
+        for(a in playPopupViewList.orEmpty()){
+            Log.d("test", "playPopupList a : ${a.set}")
+        }
+    }
+
     // 보드에 세트화면 셋팅하는 함수.
     private fun showSet(){
         if(maxSet > currentSet){
+            // 현재 세트에 1을 더하는 함수.
             currentSet++
             val currentPlayPopupView = PlayPopupView(currentPlayPopupData.id, currentPlayPopupData.part_img, currentPlayPopupData.name,
                 currentPlayPopupData.mass, currentPlayPopupData.rep, currentPlayPopupData.set, currentPlayPopupData.interval,
@@ -165,22 +219,21 @@ class PlayPopupFragment : BaseFragment() {
             playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
             playPopupViewModel.loadPlayPopupList()
 
-            //playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
-            //Thread.sleep(100)
-            //playPopupViewModel.loadPlayPopupList()
         }
     }
 
     // 아래쪽 보드 셋팅하는 함수
     private fun showBoardSetting(currentPlayPopupView: PlayPopupView){
         mode = STOP_MODE
-        fPlayPopup_tv_timer.setTextColor(Color.argb(255, 0, 0, 0))
+        fPlayPopup_tv_timer?.setTextColor(Color.argb(255, 0, 0, 0))
 
+        playPopupViewModel.setCurrentSet(currentSet)
+        Log.d("test", "playPopupViewModel showBoardSetting currentSet : ${currentSet}")
         maxSet = currentPlayPopupView.set
         interval = currentPlayPopupView.interval
         val maxTime = settingFormatForTimer(interval)
-        fPlayPopup_tv_set.text = "$currentSet/${maxSet} Set"
-        fPlayPopup_tv_timer.text = maxTime
+        fPlayPopup_tv_set?.text = "$currentSet/${maxSet} Set"
+        fPlayPopup_tv_timer?.text = maxTime
 
     }
 

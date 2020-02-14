@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.core.view.get
 
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.exception.Failure
@@ -83,7 +85,8 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         // 클릭 리스터들 모아둔 함수.
         clickListener()
 
-
+        // TODO: 테스트 코드
+        textNumberPicker()
     }
 
     // additionFragment에 클릭 이벤트 리스너들
@@ -139,6 +142,27 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             }
         }
 
+    }
+
+    // TODO: 테스트 함수
+    private fun textNumberPicker(){
+        val data = 1..100
+        val data2 = mutableListOf<String>()
+
+        for(a in data){
+            data2.add(a.toString())
+        }
+
+        fAddition_np_test.wrapSelectorWheel = true
+        fAddition_np_test.minValue = 1
+        fAddition_np_test.maxValue = data2[data2.size- 1].toInt()
+        data2.reverse()
+        fAddition_np_test.displayedValues = data2.toTypedArray()
+        fAddition_np_test.value = 100
+
+        fAddition_np_test.setOnValueChangedListener { picker, oldVal, newVal ->
+            Log.d("test", "oldVal : ${oldVal}, newVal : $newVal")
+        }
     }
 
     // Exercise 데이터들 갱신하는 함수.

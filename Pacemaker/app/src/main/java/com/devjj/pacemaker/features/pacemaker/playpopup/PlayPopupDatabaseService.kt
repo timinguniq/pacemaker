@@ -1,7 +1,6 @@
-package com.devjj.pacemaker.features.pacemaker.play
+package com.devjj.pacemaker.features.pacemaker.playpopup
 
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
 import com.devjj.pacemaker.features.pacemaker.entities.ExerciseEntity
 import javax.inject.Inject
 

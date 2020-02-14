@@ -1,14 +1,10 @@
-package com.devjj.pacemaker.features.pacemaker.play
+package com.devjj.pacemaker.features.pacemaker.playpopup
 
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.exception.Failure.DatabaseError
 import com.devjj.pacemaker.core.functional.Either
 import com.devjj.pacemaker.core.functional.Either.Right
 import com.devjj.pacemaker.core.functional.Either.Left
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
-import com.devjj.pacemaker.features.pacemaker.home.HomeData
-import com.devjj.pacemaker.features.pacemaker.home.HomeDatabaseService
-import com.devjj.pacemaker.features.pacemaker.home.HomeRepository
 import javax.inject.Inject
 
 interface PlayPopupRepository {

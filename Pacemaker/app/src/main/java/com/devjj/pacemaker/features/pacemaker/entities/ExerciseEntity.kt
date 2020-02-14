@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 import com.devjj.pacemaker.core.extension.empty
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
 import com.devjj.pacemaker.features.pacemaker.home.HomeData
-import com.devjj.pacemaker.features.pacemaker.play.PlayPopupData
+import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupData
 
 @Entity(tableName = "exercises")
 data class ExerciseEntity(@PrimaryKey(autoGenerate = true) var id: Int,

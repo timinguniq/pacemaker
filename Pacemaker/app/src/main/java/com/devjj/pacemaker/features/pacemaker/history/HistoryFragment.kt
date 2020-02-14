@@ -1,6 +1,7 @@
 package com.devjj.pacemaker.features.pacemaker.history
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 
@@ -14,7 +15,9 @@ import com.devjj.pacemaker.features.pacemaker.entities.ExerciseHistoryEntity
 import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailView
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.fragment_history.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.SimpleDateFormat
 
 import java.util.*
@@ -46,7 +49,6 @@ class HistoryFragment : BaseFragment() {
     private fun renderHistoryList(histories : List<HistoryView>?){
         historyAdapter.collection = histories.orEmpty()
     }
-
 
     private fun initializeView(){
         fHistory_recyclerview.layoutManager = LinearLayoutManager(activity)

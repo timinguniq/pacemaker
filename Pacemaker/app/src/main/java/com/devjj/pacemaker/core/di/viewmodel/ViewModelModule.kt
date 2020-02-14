@@ -7,7 +7,7 @@ import com.devjj.pacemaker.features.pacemaker.history.HistoryViewModel
 import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailViewModel
 import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
 import com.devjj.pacemaker.features.pacemaker.option.OptionViewModel
-import com.devjj.pacemaker.features.pacemaker.play.PlayPopupViewModel
+import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

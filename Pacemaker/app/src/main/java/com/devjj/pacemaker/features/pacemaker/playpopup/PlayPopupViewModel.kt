@@ -1,5 +1,6 @@
-package com.devjj.pacemaker.features.pacemaker.play
+package com.devjj.pacemaker.features.pacemaker.playpopup
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.devjj.pacemaker.core.interactor.UseCase
 import com.devjj.pacemaker.core.platform.BaseViewModel
@@ -13,10 +14,34 @@ class PlayPopupViewModel
 
     var playPopupList: MutableLiveData<List<PlayPopupView>> = MutableLiveData()
 
+    var currentSet: MutableLiveData<Int> = MutableLiveData()
+
+    fun getCurrentSet(): LiveData<Int> {
+        return currentSet
+    }
+
+    fun initCurrentSet(){
+        this.currentSet.value = 1
+    }
+
+    fun setCurrentSet(currentSet: Int) {
+        this.currentSet.value = currentSet
+    }
+
+    fun onePlusCurrentSet(){
+        this.currentSet.value = currentSet.value?.plus(1)
+    }
+
+
     fun loadPlayPopupList() = getPlayPopupData(UseCase.None()) {it.fold(::handleFailure, ::handlePlayPopupData)}
 
     fun updateExercisePlayPopupData(playPopupData: PlayPopupData) =
         updateExercisePlayPopupData(UpdateExercisePlayPopupData.Params(playPopupData))
+
+    // 현재 세트 로드하는 함수
+    private fun loadCurrentSet(){
+        // Do an asynchronous operation to fetch users.
+    }
 
     private fun handlePlayPopupData(playPopupData: List<PlayPopupData>){
         this.playPopupList.value = playPopupData.map{

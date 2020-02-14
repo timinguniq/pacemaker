@@ -1,8 +1,8 @@
 package com.devjj.pacemaker.features.pacemaker.usecases
 
 import com.devjj.pacemaker.core.interactor.UseCase
-import com.devjj.pacemaker.features.pacemaker.play.PlayPopupData
-import com.devjj.pacemaker.features.pacemaker.play.PlayPopupRepository
+import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupData
+import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupRepository
 import javax.inject.Inject
 
 class UpdateExercisePlayPopupData

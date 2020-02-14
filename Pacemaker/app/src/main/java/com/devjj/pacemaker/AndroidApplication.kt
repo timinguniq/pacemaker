@@ -6,7 +6,6 @@ import com.devjj.pacemaker.core.di.ApplicationModule
 import com.devjj.pacemaker.core.di.DaggerApplicationComponent
 import com.squareup.leakcanary.LeakCanary
 
-
 class AndroidApplication : Application() {
 
     val appComponent: ApplicationComponent by lazy(mode = LazyThreadSafetyMode.NONE) {

@@ -27,6 +27,7 @@ abstract class BaseActivity : AppCompatActivity() {
         setContentView(layout)
 
         addFragment(savedInstanceState)
+
     }
 
     override fun onBackPressed() {
@@ -38,7 +39,6 @@ abstract class BaseActivity : AppCompatActivity() {
     private fun addFragment(savedInstanceState: Bundle?) =
         savedInstanceState ?: supportFragmentManager.inTransaction { add(
             fragmentId, fragment()) }
-
 
     abstract fun fragment(): BaseFragment
 }

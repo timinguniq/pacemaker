@@ -15,8 +15,6 @@ import com.devjj.pacemaker.core.extension.observe
 import com.devjj.pacemaker.core.extension.viewModel
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
-import io.reactivex.Flowable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_play_popup.*
 import java.util.*
 import javax.inject.Inject
@@ -163,10 +161,14 @@ class PlayPopupFragment : BaseFragment() {
             // maxSet <= currentSet
             currentPlayPopupData.achivement = true
 
+            playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
+            playPopupViewModel.loadPlayPopupList()
+            /*
             Flowable.just(playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
             ).observeOn(Schedulers.io()).subscribe {
                 playPopupViewModel.loadPlayPopupList()
             }.isDisposed
+            */
             //playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
             //Thread.sleep(100)
             //playPopupViewModel.loadPlayPopupList()

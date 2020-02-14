@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.fragment.app.FragmentManager
 import com.devjj.pacemaker.R
+import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.features.login.Authenticator
 import com.devjj.pacemaker.features.login.LoginActivity
 import com.devjj.pacemaker.features.pacemaker.AdditionActivity

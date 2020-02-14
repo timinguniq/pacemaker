@@ -4,7 +4,6 @@ import com.devjj.pacemaker.core.interactor.UseCase
 import com.devjj.pacemaker.core.interactor.UseCase.None
 import com.devjj.pacemaker.features.pacemaker.history.HistoriesRepository
 import com.devjj.pacemaker.features.pacemaker.history.History
-import io.reactivex.Flowable
 import javax.inject.Inject
 
 class GetExerciseHistories

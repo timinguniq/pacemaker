@@ -27,3 +27,7 @@ fun BaseFragment.close() = fragmentManager?.popBackStack()
 val BaseFragment.viewContainer: View get() = (activity as BaseActivity).aLayout_fragmentContainer
 
 val BaseFragment.appContext: Context get() = activity?.applicationContext!!
+
+interface OnBackPressedListener{
+    fun onBackPressed()
+}

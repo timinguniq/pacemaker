@@ -9,8 +9,10 @@ abstract class UseCase<out Type, in Params> where Type : Any{
 
     operator fun invoke(params: Params, onResult: (Either<Failure,Type>) -> Unit = {}){
         val job = GlobalScope.async {run (params)}
-        runBlocking { job.join() }
-        GlobalScope.launch(Dispatchers.Main) {onResult(job.await()) }
+        runBlocking {
+            job.join()
+        }
+        GlobalScope.launch(Dispatchers.Main) { onResult(job.await())}
     }
 
     class None

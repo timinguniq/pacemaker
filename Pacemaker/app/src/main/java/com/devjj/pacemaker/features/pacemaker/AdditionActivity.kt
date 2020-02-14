@@ -39,9 +39,10 @@ class AdditionActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         initializeView()
+        Log.d("test", "onCreate addition")
     }
 
-    // PacemakerActivity 초기화 하는 함수
+    // AdditionActivity 초기화 하는 함수
     private fun initializeView() {
         val adRequest = AdRequest.Builder().build()
         aAddition_adView.loadAd(adRequest)

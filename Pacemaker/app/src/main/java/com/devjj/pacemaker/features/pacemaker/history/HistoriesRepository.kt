@@ -1,6 +1,5 @@
 package com.devjj.pacemaker.features.pacemaker.history
 
-import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.exception.Failure.DatabaseError
 import com.devjj.pacemaker.core.functional.Either
@@ -10,17 +9,16 @@ import javax.inject.Inject
 
 interface HistoriesRepository {
 
-    fun histories() : Either<Failure, List<History>>
+    fun histories(): Either<Failure, List<History>>
 
     class HistoryDatabase
-    @Inject constructor(private val db: ExerciseHistoryDatabase, private val service: HistoryDatabaseService) : HistoriesRepository{
+    @Inject constructor(
+        private val service: HistoryDatabaseService
+    ) : HistoriesRepository {
         override fun histories(): Either<Failure, List<History>> {
             return try {
-                when (db.isOpen) {
-                    true -> Right(service.histories().map { it.toHistory() })
-                    false -> Left(DatabaseError)
-                }
-            }catch(exception: Throwable){
+                Right(service.histories().map { it.toHistory() })
+            } catch (exception: Throwable) {
                 Left(DatabaseError)
             }
         }

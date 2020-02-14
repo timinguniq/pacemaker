@@ -7,10 +7,13 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
+import com.devjj.pacemaker.core.di.sharedpreferences.PlayViewSharedPreferences
+import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionRepository
 import com.devjj.pacemaker.features.pacemaker.home.HomeRepository
 import com.devjj.pacemaker.features.pacemaker.history.HistoriesRepository
-import com.devjj.pacemaker.features.pacemaker.play.PlayPopupRepository
+import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailsRepository
+import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -55,6 +58,18 @@ class ApplicationModule(private val application: AndroidApplication) {
 
     @Provides
     @Singleton
+    fun providePlayViewSharedPreferences(): PlayViewSharedPreferences{
+        return PlayViewSharedPreferences(application)
+    }
+
+    @Provides
+    @Singleton
+    fun provideSettingSharedPreferences(): SettingSharedPreferences {
+        return SettingSharedPreferences(application)
+    }
+
+    @Provides
+    @Singleton
     fun provideHomeRepository(dataSource: HomeRepository.DbRepository): HomeRepository = dataSource
 
     @Provides
@@ -68,5 +83,9 @@ class ApplicationModule(private val application: AndroidApplication) {
     @Provides
     @Singleton
     fun providePlayPopupRepository(dataSource: PlayPopupRepository.DbRepository): PlayPopupRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun provideHistoryDetailRepository(dataSource: HistoryDetailsRepository.HistoryDetailDatabase) : HistoryDetailsRepository = dataSource
 
 }

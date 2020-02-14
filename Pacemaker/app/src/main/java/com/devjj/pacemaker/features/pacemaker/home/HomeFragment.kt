@@ -1,49 +1,57 @@
 package com.devjj.pacemaker.features.pacemaker.home
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.StringRes
+import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
+import com.devjj.pacemaker.core.di.sharedpreferences.PlayViewSharedPreferences
 import com.devjj.pacemaker.core.exception.Failure
-import com.devjj.pacemaker.core.extension.observe
-import com.devjj.pacemaker.core.extension.failure
-import com.devjj.pacemaker.core.extension.invisible
-import com.devjj.pacemaker.core.extension.viewModel
+import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
+import com.devjj.pacemaker.features.pacemaker.PacemakerActivity
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
+import com.google.android.gms.dynamic.SupportFragmentWrapper
+import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), OnBackPressedListener{
 
     @Inject lateinit var navigator: Navigator
     @Inject lateinit var homeAdapter: HomeAdapter
+    @Inject lateinit var playViewSharedPreferences: PlayViewSharedPreferences
 
-    private lateinit var homeViewModel: HomeViewModel
+    lateinit var homeViewModel: HomeViewModel
 
     override fun layoutId() = R.layout.fragment_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
+        Log.d("test", "onCreate HomeFragment")
 
         homeViewModel = viewModel(viewModelFactory){
             observe(homeList, ::renderHomeList)
+            observe(playViewIsClicked, ::renderPlayView)
             failure(failure, ::handleFailure)
         }
-
     }
 
     // 한번만 소환되는거 같다.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
 
     override fun onResume() {
@@ -60,17 +68,34 @@ class HomeFragment : BaseFragment() {
 
         fHome_recyclerview.layoutManager = LinearLayoutManager(this.context)
         fHome_recyclerview.adapter = homeAdapter
-        homeAdapter.clickListener = { additionView ->
+        homeAdapter.clickListener = {additionView  ->
             navigator.showAddition(activity!!, additionView)}
 
         // DB에 있는 데이터 로드
         homeViewModel.loadHomeList()
+
+        // SharedPreferences에 있는 playView 변수 로드
+        homeViewModel.getPlayViewIsClicked()
     }
 
     // Home 데이터들 갱신하는 함수.
     private fun renderHomeList(homeView: List<HomeView>?) {
         homeAdapter.collection = homeView.orEmpty()
     }
+
+    // playViewIsClicked
+    private fun renderPlayView(playView: Boolean?){
+        Log.d("test","renderPlayView : $playView")
+        val isClicked = playView?:false
+        if(isClicked){
+            fHome_clo_play.visible()
+            fHome_floating_action_btn.invisible()
+        }else{
+            fHome_clo_play.invisible()
+            fHome_floating_action_btn.visible()
+        }
+    }
+
 
     // Home 데이터 갱신 실패시 핸들링하는 함수.
     private fun handleFailure(failure: Failure?) {
@@ -82,6 +107,16 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+    // 테스트 코드
+    override fun onBackPressed() {
+        if(fHome_clo_play.isVisible){
+            fHome_clo_play.invisible()
+            fHome_floating_action_btn.visible()
+            homeViewModel.setPlayViewIsClicked(false)
+        }else{
+            super.onBackPressed()
+        }
+    }
 
     private fun renderFailure(@StringRes message: Int) {
         fHome_recyclerview.invisible()

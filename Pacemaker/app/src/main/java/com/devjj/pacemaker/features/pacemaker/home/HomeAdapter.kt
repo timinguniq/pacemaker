@@ -35,10 +35,8 @@ class HomeAdapter
             val partImgResource = convertPartImgToResource(homeView.part_img)
             itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
             itemView.rvExerciseItem_tv_name.text = homeView.name
-            itemView.rvExerciseItem_tv_mass.text = homeView.mass.toString()
-            itemView.rvExerciseItem_tv_rep.text = homeView.rep.toString()
-            itemView.rvExerciseItem_tv_set.text = homeView.set.toString()
-            itemView.rvExerciseItem_tv_interval.text = homeView.interval.toString()
+            itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.rvExerciseItem_mass, homeView.mass)
+            itemView.rvExerciseItem_tv_set.text = context.getString(R.string.rvExerciseItem_set, homeView.set)
 
             // 메인 레이아웃 클릭시 이벤트 함수.
             itemView.rvExerciseItem_clo_main.setOnClickListener {

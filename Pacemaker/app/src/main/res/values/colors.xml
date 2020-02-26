@@ -7,4 +7,9 @@
     <color name="playPopupBtnContinue">#FFC107</color>
     <color name="playPopupTv">#CDDC39</color>
 
+    <color name="fhome_wm_fabtn_color">#FF5C83CF</color>
+    <color name="fhome_dm_fabtn_color">#FFF74938</color>
+
+    <color name="rv_exercise_item_wm_bg_clor">#FFF8F8F8</color>
+    <color name="rv_exercise_item_dm_bg_clor">#FF88898A</color>
 </resources>

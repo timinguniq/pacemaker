@@ -61,6 +61,27 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
 
     // homeFragment 초기화 하는 함수
     private fun initializeView() {
+        /*
+        if(!setting.isDarkMode){
+            // TODO : 여기로 들어오면 다크모드가 아니다.
+            window.statusBarColor = wmStatusBarColor
+            aPacemaker_clo_title.setBackgroundResource(R.drawable.apacemaker_wm_title_background)
+            aPacemaker_flo_container.setBackgroundColor(wmContainerColor)
+            aPacemaker_bottom_navigation_view.setBackgroundColor(wmBottomBgColor)
+            //aPacemaker_bottom_navigation_view.background = resources.getDrawable(R.drawable.apacemaker_wm_bottom_background, null)
+            aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_wm_bottom_icon_bg_color
+            aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_wm_bottom_icon_color,null)
+        }else{
+            // TODO : 여기로 들어오면 다크모드
+            window.statusBarColor = dmStatusBarColor
+            aPacemaker_clo_title.setBackgroundResource(R.drawable.apacemaker_dm_title_background)
+            aPacemaker_flo_container.setBackgroundColor(dmContainerColor)
+            aPacemaker_bottom_navigation_view.background = resources.getDrawable(R.drawable.apacemaker_dm_bottom_background, null)
+            aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_dm_bottom_icon_bg_color
+            aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_dm_bottom_icon_color,null)
+
+        }
+*/
         // 플로팅 버튼 클릭 이벤트
         fHome_floating_action_btn?.setOnClickListener {
             navigator.showAddition(context!!, AdditionView.empty())

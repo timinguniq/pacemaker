@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="65dp">
+    android:layout_height="70dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/rvExerciseItem_clo_main"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="60dp"
         android:background="#80dddddd"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,8 +16,9 @@
 
         <ImageView
             android:id="@+id/rvExerciseItem_iv_part"
-            android:layout_width="50dp"
+            android:layout_width="55dp"
             android:layout_height="55dp"
+            android:layout_marginStart="25dp"
             android:contentDescription="@string/image_not_found"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -29,9 +30,10 @@
             android:id="@+id/rvExerciseItem_tv_name"
             android:layout_width="0dp"
             android:layout_height="55dp"
-            android:gravity="center"
-            android:textSize="15sp"
-            android:textColor="#ff000000"
+            android:layout_marginStart="15dp"
+            android:gravity="center_vertical"
+            android:textSize="17sp"
+            android:textColor="#ff3b4046"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_iv_part"
@@ -44,21 +46,21 @@
             android:layout_height="55dp"
             android:gravity="center"
             android:text="100kg"
-            android:textSize="15sp"
-            android:textColor="#ff000000"
+            android:textSize="17sp"
+            android:textColor="#ff88898a"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_tv_name"
-            app:layout_constraintEnd_toStartOf="@+id/rvExerciseItem_tv_rep"/>
+            app:layout_constraintEnd_toStartOf="@+id/rvExerciseItem_tv_slash"/>
 
         <TextView
-            android:id="@+id/rvExerciseItem_tv_rep"
-            android:layout_width="50dp"
+            android:id="@+id/rvExerciseItem_tv_slash"
+            android:layout_width="10dp"
             android:layout_height="55dp"
             android:gravity="center"
-            android:text="100rep"
-            android:textSize="15sp"
-            android:textColor="#ff000000"
+            android:text="@string/rvExerciseItem_slash"
+            android:textSize="17sp"
+            android:textColor="#ff88898a"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_tv_mass"
@@ -70,25 +72,13 @@
             android:layout_height="55dp"
             android:gravity="center"
             android:text="10set"
-            android:textSize="15sp"
-            android:textColor="#ff000000"
+            android:textSize="17sp"
+            android:textColor="#ff88898a"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_tv_rep"
-            app:layout_constraintEnd_toStartOf="@+id/rvExerciseItem_tv_interval"/>
-
-        <TextView
-            android:id="@+id/rvExerciseItem_tv_interval"
-            android:layout_width="50dp"
-            android:layout_height="55dp"
-            android:gravity="center"
-            android:text="100s"
-            android:textSize="15sp"
-            android:textColor="#ff000000"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_tv_set"
+            app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_tv_slash"
             app:layout_constraintEnd_toEndOf="parent"/>
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

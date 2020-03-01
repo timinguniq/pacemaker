@@ -64,66 +64,11 @@
             android:text="@string/fAddition_part_txv"
             android:textSize="20sp"
             android:textColor="#ff000000"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_part_one"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread_inside"/>
 
-        <ImageView
-            android:id="@+id/fAddition_iv_part_one"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/part_one_unclicked_img"
-            android:contentDescription="@string/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_part_two"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_tv_part"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <ImageView
-            android:id="@+id/fAddition_iv_part_two"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/part_two_unclicked_img"
-            android:contentDescription="@string/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_part_three"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_iv_part_one"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <ImageView
-            android:id="@+id/fAddition_iv_part_three"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/part_three_unclicked_img"
-            android:contentDescription="@string/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_part_four"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_iv_part_two"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <ImageView
-            android:id="@+id/fAddition_iv_part_four"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/part_four_unclicked_img"
-            android:contentDescription="@string/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_part_five"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_iv_part_three"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-        <ImageView
-            android:id="@+id/fAddition_iv_part_five"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/part_five_unclicked_img"
-            android:contentDescription="@string/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_iv_part_four"
-            app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

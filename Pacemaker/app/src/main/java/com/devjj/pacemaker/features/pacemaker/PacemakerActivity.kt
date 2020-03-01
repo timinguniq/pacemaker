@@ -2,27 +2,20 @@ package com.devjj.pacemaker.features.pacemaker
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import androidx.fragment.app.Fragment
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
-import com.devjj.pacemaker.core.di.sharedpreferences.PlayViewSharedPreferences
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
-import com.devjj.pacemaker.core.interactor.UseCase
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.entities.ExerciseEntity
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
-import com.devjj.pacemaker.features.pacemaker.usecases.GetPlayViewIsClicked
 import com.google.android.gms.ads.AdRequest
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_pacemaker.*
-import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
 
@@ -72,7 +65,6 @@ class PacemakerActivity : BaseActivity() {
             aPacemaker_clo_title.setBackgroundResource(R.drawable.apacemaker_wm_title_background)
             aPacemaker_flo_container.setBackgroundColor(wmContainerColor)
             aPacemaker_bottom_navigation_view.setBackgroundColor(wmBottomBgColor)
-            //aPacemaker_bottom_navigation_view.background = resources.getDrawable(R.drawable.apacemaker_wm_bottom_background, null)
             aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_wm_bottom_icon_bg_color
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_wm_bottom_icon_color,null)
         }else{
@@ -80,23 +72,11 @@ class PacemakerActivity : BaseActivity() {
             window.statusBarColor = dmStatusBarColor
             aPacemaker_clo_title.setBackgroundResource(R.drawable.apacemaker_dm_title_background)
             aPacemaker_flo_container.setBackgroundColor(dmContainerColor)
-            aPacemaker_bottom_navigation_view.background = resources.getDrawable(R.drawable.apacemaker_dm_bottom_background, null)
+            aPacemaker_bottom_navigation_view.setBackgroundColor(dmBottomBgColor)
             aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_dm_bottom_icon_bg_color
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_dm_bottom_icon_color,null)
 
         }
-/*
-
-        window.statusBarColor = dmStatusBarColor
-        aPacemaker_clo_title.setBackgroundResource(R.drawable.apacemaker_dm_title_background)
-        aPacemaker_flo_container.setBackgroundColor(dmContainerColor)
-        aPacemaker_bottom_navigation_view.setBackgroundColor(dmBottomBgColor)
-        //aPacemaker_bottom_navigation_view.background = resources.getDrawable(R.drawable.apacemaker_dm_bottom_background, null)
-        aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_dm_bottom_icon_bg_color
-        aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_dm_bottom_icon_color,null)
-
-*/
-
 
 
         // 광고 테스트 코드

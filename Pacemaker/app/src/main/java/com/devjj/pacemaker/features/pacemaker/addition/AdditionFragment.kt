@@ -29,6 +29,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
     // part_img뷰들을 List로 선언한 변수.
     private lateinit var fAdditionIvPartList: List<ImageView>
 
+/*
     // part_img UnClick되어 있을때 이미지 자원들을 넣어놓은 리스트
     private val fAdditionIvPartUnClickResource = listOf(R.drawable.part_one_unclicked_img,
         R.drawable.part_two_unclicked_img,
@@ -42,6 +43,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         R.drawable.part_three_clicked_img,
         R.drawable.part_four_clicked_img,
         R.drawable.part_five_clicked_img)
+*/
 
     // 저장 버튼을 눌렀을 때 additionData의 데이터 변수들
     private var additionData_id = 0
@@ -73,8 +75,8 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         val additionView: AdditionView = intent.getParcelableExtra("view")?:AdditionView.empty()
 
         // part_img list init
-        fAdditionIvPartList = listOf(fAddition_iv_part_one, fAddition_iv_part_two, fAddition_iv_part_three,
-                            fAddition_iv_part_four, fAddition_iv_part_five)
+        //fAdditionIvPartList = listOf(fAddition_iv_part_one, fAddition_iv_part_two, fAddition_iv_part_three,
+        //                    fAddition_iv_part_four, fAddition_iv_part_five)
 
         // additionData를 DB에서 찾아오는 함수.
         additionViewModel.loadTheAdditionData(additionView.id)
@@ -96,17 +98,18 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             activity?.finish()
         }
 
+        /*
         // part img 클릭 리스너들
         for(i in fAdditionIvPartList.indices) {
             fAdditionIvPartList[i].setOnClickListener {
                 // part_img 초기화하는 함수.
-                initPartImg()
+                //initPartImg()
 
-                fAdditionIvPartList[i].setImageResource(fAdditionIvPartClickResource[i])
+                //fAdditionIvPartList[i].setImageResource(fAdditionIvPartClickResource[i])
                 additionData_part_img = i
             }
         }
-
+*/
         // 저장 이미지를 클릭했을때 리스너
         fAddition_iv_save.setOnClickListener {
             inputData()
@@ -146,7 +149,8 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
 
     // TODO: 테스트 함수
     private fun textNumberPicker(){
-        val data = 1..100
+        val data = 0..100
+        data.reversed()
         val data2 = mutableListOf<String>()
 
         for(a in data){
@@ -154,11 +158,12 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         }
 
         fAddition_np_test.wrapSelectorWheel = true
-        fAddition_np_test.minValue = 1
+        fAddition_np_test.minValue = 0
         fAddition_np_test.maxValue = data2[data2.size- 1].toInt()
+        fAddition_np_test.wrapSelectorWheel = false
         data2.reverse()
         fAddition_np_test.displayedValues = data2.toTypedArray()
-        fAddition_np_test.value = 100
+        fAddition_np_test.value = 101
 
         fAddition_np_test.setOnValueChangedListener { picker, oldVal, newVal ->
             Log.d("test", "oldVal : ${oldVal}, newVal : $newVal")
@@ -169,9 +174,8 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
     private fun renderExerciseData(additionView: AdditionView?) {
         val tempAdditionView = additionView?:AdditionView.empty()
 
-
         // Part Img를 초기화해주는 함수.
-        initPartImg()
+        //initPartImg()
 
         // 모드에 따라 추가모드일때는 뷰를 비어있게 나타내고 편집모드일때는 관련 데이터를 표시해준다.
         when (mode) {
@@ -186,7 +190,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
                 additionData_id = tempAdditionView.id
                 additionData_part_img = tempAdditionView.part_img
 
-                fAdditionIvPartList[tempAdditionView.part_img].setImageResource(fAdditionIvPartClickResource[tempAdditionView.part_img])
+                //fAdditionIvPartList[tempAdditionView.part_img].setImageResource(fAdditionIvPartClickResource[tempAdditionView.part_img])
                 fAddition_ev_name.text = String.editText(tempAdditionView.name)
                 fAddition_ev_mass.text = String.editText(tempAdditionView.mass.toString())
                 fAddition_ev_rep.text = String.editText(tempAdditionView.rep.toString())
@@ -216,12 +220,14 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         // TODO : 나중에 메세지에 따른 구현 해야 될듯.
     }
 
+/*
     // part_img 초기화하는 함수.
     private fun initPartImg(){
         for(i in fAdditionIvPartList.indices){
             fAdditionIvPartList[i].setImageResource(fAdditionIvPartUnClickResource[i])
         }
     }
+*/
 
     // editText에 입력한 데이터들을 넣는 함수.
     private fun inputData(){

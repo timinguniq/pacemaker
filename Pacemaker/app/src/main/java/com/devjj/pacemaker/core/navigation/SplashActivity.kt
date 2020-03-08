@@ -52,6 +52,6 @@ class SplashActivity : AppCompatActivity() {
         MobileAds.initialize(this) {}
 
         // TODO : 테스트 코드 나중에 삭제
-        setting.isDarkMode = true
+        setting.isDarkMode = false
     }
 }

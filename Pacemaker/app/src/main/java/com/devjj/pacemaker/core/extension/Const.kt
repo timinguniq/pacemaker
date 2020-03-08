@@ -13,3 +13,19 @@ val dmContainerColor = Color.argb(255, 96, 96, 96)
 // bottom background color
 val wmBottomBgColor = Color.argb(255, 248, 248, 248)
 val dmBottomBgColor = Color.argb(255, 68, 70, 71)
+
+
+// 운동 이름 색깔 // 중량, 횟수, 세트, 휴식 컨테이너안 글자 색깔
+val wmExerciseNameColor = Color.argb(255, 59, 64, 70)
+val dmExerciseNameColor = Color.argb(255, 255, 255, 255)
+
+// 중량, 횟수, 세트, 휴식 타이틀 색깔
+val wmAdditionMRSITitleColor = Color.argb(255, 136, 137, 138)
+val dmAdditionMRSITitleColor = Color.argb(255, 178, 179, 179)
+
+
+// 중량, 횟수, 세트, 휴식 컨테이너 색깔
+val wmAdditionInContainerColor = Color.argb(255, 241, 241, 241)
+val dmAdditionInContainerColor = Color.argb(255, 68, 70, 70)
+
+

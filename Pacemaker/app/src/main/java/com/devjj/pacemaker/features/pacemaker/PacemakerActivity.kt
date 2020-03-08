@@ -78,7 +78,6 @@ class PacemakerActivity : BaseActivity() {
 
         }
 
-
         // 광고 테스트 코드
         val adRequest = AdRequest.Builder().build()
         aPacemaker_adView.loadAd(adRequest)

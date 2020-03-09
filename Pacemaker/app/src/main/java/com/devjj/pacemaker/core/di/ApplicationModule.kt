@@ -7,7 +7,6 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
-import com.devjj.pacemaker.core.di.sharedpreferences.PlayViewSharedPreferences
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionRepository
 import com.devjj.pacemaker.features.pacemaker.home.HomeRepository
@@ -54,12 +53,6 @@ class ApplicationModule(private val application: AndroidApplication) {
         ).build()
 
         return db
-    }
-
-    @Provides
-    @Singleton
-    fun providePlayViewSharedPreferences(): PlayViewSharedPreferences{
-        return PlayViewSharedPreferences(application)
     }
 
     @Provides

@@ -9,15 +9,15 @@
         android:id="@+id/rvExerciseItem_clo_main"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="#80dddddd"
+        android:background="#fff8f8f8"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
         <ImageView
             android:id="@+id/rvExerciseItem_iv_part"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginStart="25dp"
             android:contentDescription="@string/image_not_found"
             app:layout_constraintTop_toTopOf="parent"

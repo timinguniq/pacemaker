@@ -39,8 +39,8 @@
 
             <ImageView
                 android:id="@+id/aPacemaker_iv_setting"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:layout_marginEnd="17dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/image_not_found"
@@ -66,8 +66,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         app:itemBackground="@drawable/apacemaker_wm_bottom_icon_bg_color"
-        app:itemIconTint="@drawable/apacemaker_wm_bottom_icon_color"
-        app:itemTextColor="@drawable/apacemaker_wm_bottom_icon_color"
+        app:itemIconTint="@color/apacemaker_wm_bottom_icon_color"
         app:itemIconSize="30dp"
         app:layout_constraintTop_toBottomOf="@+id/aPacemaker_flo_container"
         app:layout_constraintBottom_toTopOf="@+id/aPacemaker_adView"

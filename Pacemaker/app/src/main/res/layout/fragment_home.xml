@@ -6,106 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.pacemaker.home.HomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fHome_clo_title"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#80999999"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/fHome_recyclerview">
-
-        <TextView
-            android:id="@+id/fHome_tv_part"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_part_txv"
-            android:textSize="15sp"
-            android:textColor="#ff000000"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fHome_tv_name"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
-
-        <TextView
-            android:id="@+id/fHome_tv_name"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_name_txv"
-            android:textSize="15sp"
-            android:textColor="#ff000000"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fHome_tv_part"
-            app:layout_constraintEnd_toStartOf="@+id/fHome_tv_mass"/>
-
-
-        <TextView
-            android:id="@+id/fHome_tv_mass"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_mass_txv"
-            android:textSize="15sp"
-            android:textColor="#ff000000"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fHome_tv_name"
-            app:layout_constraintEnd_toStartOf="@+id/fHome_tv_rep"/>
-
-        <TextView
-            android:id="@+id/fHome_tv_rep"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_rep_txv"
-            android:textSize="15sp"
-            android:textColor="#ff000000"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fHome_tv_mass"
-            app:layout_constraintEnd_toStartOf="@+id/fHome_tv_set"/>
-
-        <TextView
-            android:id="@+id/fHome_tv_set"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_set_txv"
-            android:textSize="15sp"
-            android:textColor="#ff000000"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fHome_tv_rep"
-            app:layout_constraintEnd_toStartOf="@+id/fHome_tv_interval"/>
-
-        <TextView
-            android:id="@+id/fHome_tv_interval"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_interval_txv"
-            android:textSize="15sp"
-            android:textColor="#ff000000"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fHome_tv_set"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fHome_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fHome_clo_title"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/fHome_clo_play"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -114,12 +22,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_marginEnd="25dp"
-        android:backgroundTint="#ffff00e6"
-        android:src="@drawable/fhome_fabtn_img"
+        app:elevation="9dp"
         app:fabCustomSize="55dp"
         app:maxImageSize="50dp"
-        app:elevation="9dp"
-        app:borderWidth="0dp"
+        app:borderWidth="4dp"
+        app:backgroundTintMode="screen"
+        app:backgroundTint="@color/fhome_wm_fabtn_color"
+        app:srcCompat="@drawable/fhome_wm_fabtn_img"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

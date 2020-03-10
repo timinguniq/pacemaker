@@ -1,355 +1,449 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fAddition_clo_main"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".features.pacemaker.addition.AdditionFragment">
 
-    <!-- 상태 레이아웃(백키랑 저장키가 들어간다.) -->
+    <!-- 상태 레이아웃(백키랑 셋팅 이미지가 들어간다.) -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fAddition_clo_status"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_part_img"
+        app:layout_constraintBottom_toTopOf="@+id/fAddition_scroll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/fAddition_iv_back"
+        <FrameLayout
+            android:id="@+id/fAddition_flo_back"
             android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/image_not_found"
-            android:src="@drawable/back_key_img"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_save"
+            app:layout_constraintEnd_toStartOf="@+id/fAddition_tv_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.85"
-            app:layout_constraintHorizontal_chainStyle="packed"/>
+            app:layout_constraintTop_toTopOf="parent">
 
+            <ImageView
+                android:id="@+id/fAddition_iv_back"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/image_not_found"
+                android:src="@drawable/faddition_back_img"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/fAddition_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:gravity="center"
+            android:text="@string/fAddition_title_txv"
+            android:textSize="20sp"
+            android:textColor="#fff7fafd"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fAddition_flo_back"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+
+        <!-- 나중에 넣을지 말지 결정하고 넣게 되면 frameLayout에 넣어서 만들기  -->
         <ImageView
-            android:id="@+id/fAddition_iv_save"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/save_img"
-            android:layout_marginStart="20dp"
+            android:id="@+id/fAddition_iv_setting"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/apacemaker_setting"
             android:contentDescription="@string/image_not_found"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_iv_back"
             app:layout_constraintTop_toTopOf="parent"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 부위 이미지 레이아웃(부위 이미지들이 들어간다.) -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fAddition_clo_part_img"
-        android:layout_width="340dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="20dp"
+    <ScrollView
+        android:id="@+id/fAddition_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_status"
-        app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_name">
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/fAddition_tv_part"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/fAddition_part_txv"
-            android:textSize="20sp"
-            android:textColor="#ff000000"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_part_one"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/fAddition_iv_part_one"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/part_one_unclicked_img"
-            android:contentDescription="@string/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_part_two"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_tv_part"
-            app:layout_constraintTop_toTopOf="parent"/>
+            <!-- 부위 이미지 레이아웃(부위 이미지들이 들어간다.) -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fAddition_clo_part_img"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_name">
 
-        <ImageView
-            android:id="@+id/fAddition_iv_part_two"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/part_two_unclicked_img"
-            android:contentDescription="@string/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_part_three"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_iv_part_one"
-            app:layout_constraintTop_toTopOf="parent"/>
+                <ImageView
+                    android:id="@+id/fAddition_iv_part_main"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/part_wm_upper_body_img"
+                    android:contentDescription="@string/image_not_found"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <ImageView
-            android:id="@+id/fAddition_iv_part_three"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/part_three_unclicked_img"
-            android:contentDescription="@string/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_part_four"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_iv_part_two"
-            app:layout_constraintTop_toTopOf="parent"/>
+                <FrameLayout
+                    android:id="@+id/fAddition_flo_part_left_arrow"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_part_main"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageView
-            android:id="@+id/fAddition_iv_part_four"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/part_four_unclicked_img"
-            android:contentDescription="@string/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_iv_part_five"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_iv_part_three"
-            app:layout_constraintTop_toTopOf="parent"/>
+                    <ImageView
+                        android:id="@+id/fAddition_iv_part_left_arrow"
+                        android:layout_width="25dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/faddition_part_left_arrow_img"
+                        android:contentDescription="@string/image_not_found"/>
 
-        <ImageView
-            android:id="@+id/fAddition_iv_part_five"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:src="@drawable/part_five_unclicked_img"
-            android:contentDescription="@string/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_iv_part_four"
-            app:layout_constraintTop_toTopOf="parent"/>
+                </FrameLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <FrameLayout
+                    android:id="@+id/fAddition_flo_part_right_arrow"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    app:layout_constraintStart_toEndOf="@+id/fAddition_iv_part_main"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
-    <!-- 운동 이름 레이아웃 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fAddition_clo_name"
-        android:layout_width="340dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_part_img"
-        app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_mass">
+                    <ImageView
+                        android:id="@+id/fAddition_iv_part_right_arrow"
+                        android:layout_width="25dp"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/faddition_part_right_arrow_img"
+                        android:contentDescription="@string/image_not_found"/>
 
-        <TextView
-            android:id="@+id/fAddition_tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/fAddition_name_txv"
-            android:textSize="20sp"
-            android:textColor="#ff000000"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_ev_name"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+                </FrameLayout>
 
-        <EditText
-            android:id="@+id/fAddition_ev_name"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:importantForAutofill="no"
-            android:textSize="16sp"
-            android:hint="@string/fAddition_name_hint_txv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_tv_name"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 중량 레이아웃 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fAddition_clo_mass"
-        android:layout_width="340dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_name"
-        app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_rep">
+            <!-- 운동 이름 레이아웃 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fAddition_clo_name"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="40dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_part_img"
+                app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_m_r_s">
 
-        <TextView
-            android:id="@+id/fAddition_tv_mass"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/fAddition_mass_txv"
-            android:textSize="20sp"
-            android:textColor="#ff000000"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_ev_mass"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+                <EditText
+                    android:id="@+id/fAddition_ev_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="center"
+                    android:inputType="text"
+                    android:importantForAutofill="no"
+                    android:textSize="20sp"
+                    android:textColorHint="#ff3b4046"
+                    android:hint="@string/fAddition_name_hint_txv"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/fAddition_iv_name_line"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside" />
 
-        <EditText
-            android:id="@+id/fAddition_ev_mass"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:inputType="number"
-            android:importantForAutofill="no"
-            android:textSize="16sp"
-            android:hint="@string/fAddition_mass_hint_txv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_tv_mass"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside" />
+                <ImageView
+                    android:id="@+id/fAddition_iv_name_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:src="@drawable/faddition_wm_name_line_img"
+                    android:contentDescription="@string/image_not_found"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fAddition_ev_name"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 횟수 레이아웃 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fAddition_clo_rep"
-        android:layout_width="340dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_mass"
-        app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_set">
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/fAddition_tv_rep"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/fAddition_rep_txv"
-            android:textSize="20sp"
-            android:textColor="#ff000000"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_ev_rep"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
 
-        <EditText
-            android:id="@+id/fAddition_ev_rep"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:inputType="number"
-            android:importantForAutofill="no"
-            android:textSize="16sp"
-            android:hint="@string/fAddition_rep_hint_txv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_tv_rep"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside" />
+            <!-- 중량, 횟수, 세트 레이아웃 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fAddition_clo_m_r_s"
+                android:layout_width="280dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_name"
+                app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_interval">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 세트 레이아웃 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fAddition_clo_set"
-        android:layout_width="340dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_rep"
-        app:layout_constraintBottom_toTopOf="@+id/fAddition_clo_interval">
+                <!-- 중량 레이아웃 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fAddition_clo_mass"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toStartOf="@+id/fAddition_clo_rep"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside">
 
-        <TextView
-            android:id="@+id/fAddition_tv_set"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/fAddition_set_txv"
-            android:textSize="20sp"
-            android:textColor="#ff000000"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_ev_set"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+                    <TextView
+                        android:id="@+id/fAddition_tv_mass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:gravity="center"
+                        android:text="@string/fAddition_mass_txv"
+                        android:textSize="18sp"
+                        android:textColor="#ff88898a"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/fAddition_np_mass"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
 
-        <EditText
-            android:id="@+id/fAddition_ev_set"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:inputType="number"
-            android:importantForAutofill="no"
-            android:textSize="16sp"
-            android:hint="@string/fAddition_set_hint_txv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_tv_set"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside" />
+                    <NumberPicker
+                        android:id="@+id/fAddition_np_mass"
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:layout_marginTop="10dp"
+                        android:theme="@style/AppTheme.NumberPicker"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fAddition_tv_mass"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 인터벌(휴식시간) 레이아웃 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fAddition_clo_interval"
-        android:layout_width="340dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_set">
+                <!-- 횟수 레이아웃 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fAddition_clo_rep"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toStartOf="@+id/fAddition_clo_set"
+                    app:layout_constraintStart_toEndOf="@+id/fAddition_clo_mass"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/fAddition_tv_interval"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/fAddition_interval_txv"
-            android:textSize="20sp"
-            android:textColor="#ff000000"
-            app:layout_constraintEnd_toStartOf="@+id/fAddition_ev_interval"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+                    <TextView
+                        android:id="@+id/fAddition_tv_rep"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:gravity="center"
+                        android:text="@string/fAddition_rep_txv"
+                        android:textSize="18sp"
+                        android:textColor="#ff88898a"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/fAddition_np_rep"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
 
-        <EditText
-            android:id="@+id/fAddition_ev_interval"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:inputType="number"
-            android:importantForAutofill="no"
-            android:textSize="16sp"
-            android:hint="@string/fAddition_interval_hint_txv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fAddition_tv_interval"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside" />
+                    <NumberPicker
+                        android:id="@+id/fAddition_np_rep"
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:layout_marginTop="10dp"
+                        android:theme="@style/AppTheme.NumberPicker"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fAddition_tv_rep"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- 테스트 레이아웃 -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fAddition_clo_test"
-        android:layout_width="340dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_interval">
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <NumberPicker
-            android:id="@+id/fAddition_np_test"
-            android:layout_width="120dp"
-            android:layout_height="match_parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+                <!-- 세트 레이아웃 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fAddition_clo_set"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/fAddition_clo_rep"
+                    app:layout_constraintTop_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/fAddition_tv_set"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:gravity="center"
+                        android:text="@string/fAddition_set_txv"
+                        android:textSize="18sp"
+                        android:textColor="#ff88898a"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/fAddition_np_set"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+                    <NumberPicker
+                        android:id="@+id/fAddition_np_set"
+                        android:layout_width="match_parent"
+                        android:layout_height="110dp"
+                        android:layout_marginTop="10dp"
+                        android:theme="@style/AppTheme.NumberPicker"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/fAddition_tv_set"
+                        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- 인터벌(휴식시간) 레이아웃 -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fAddition_clo_interval"
+                android:layout_width="280dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_m_r_s">
+
+                <TextView
+                    android:id="@+id/fAddition_tv_interval"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center"
+                    android:text="@string/fAddition_interval_txv"
+                    android:textSize="18sp"
+                    android:textColor="#ff88898a"
+                    app:layout_constraintEnd_toStartOf="@+id/fAddition_clo_interval_time"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fAddition_clo_interval_time"
+                    android:layout_width="170dp"
+                    android:layout_height="match_parent"
+                    android:background="#fff1f1f1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/fAddition_tv_interval"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside">
+
+                    <FrameLayout
+                        android:id="@+id/fAddition_flo_interval_minus"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        app:layout_constraintEnd_toStartOf="@+id/fAddition_tv_interval_time"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside">
+
+                        <ImageView
+                            android:id="@+id/fAddition_iv_interval_minus"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/faddition_wm_rest_minus_img"
+                            android:contentDescription="@string/image_not_found"/>
+
+                    </FrameLayout>
+
+
+                    <TextView
+                        android:id="@+id/fAddition_tv_interval_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="00:30"
+                        android:textSize="20sp"
+                        android:textColor="#ff3b4046"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/fAddition_flo_interval_plus"
+                        app:layout_constraintStart_toEndOf="@+id/fAddition_flo_interval_minus"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+                    <FrameLayout
+                        android:id="@+id/fAddition_flo_interval_plus"
+                        android:layout_width="40dp"
+                        android:layout_height="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/fAddition_tv_interval_time"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" >
+
+                        <ImageView
+                            android:id="@+id/fAddition_iv_interval_plus"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/faddition_wm_rest_plus_img"
+                            android:contentDescription="@string/image_not_found"/>
+
+                    </FrameLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <FrameLayout
+                android:id="@+id/fAddition_flo_save"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_interval">
+
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/faddition_wm_save_img"
+                    android:contentDescription="@string/image_not_found"/>
+
+            </FrameLayout>
+
+
+            <!-- 빈 공간을 만들기 위한 View -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_interval"/>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

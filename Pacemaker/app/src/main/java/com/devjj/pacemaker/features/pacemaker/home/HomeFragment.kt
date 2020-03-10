@@ -1,37 +1,27 @@
 package com.devjj.pacemaker.features.pacemaker.home
 
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.activity.OnBackPressedCallback
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
-import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devjj.pacemaker.R
-import com.devjj.pacemaker.core.di.database.ExerciseDatabase
-import com.devjj.pacemaker.core.di.sharedpreferences.PlayViewSharedPreferences
+import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
-import com.devjj.pacemaker.features.pacemaker.PacemakerActivity
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
-import com.google.android.gms.dynamic.SupportFragmentWrapper
-import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class HomeFragment : BaseFragment(), OnBackPressedListener{
 
     @Inject lateinit var navigator: Navigator
     @Inject lateinit var homeAdapter: HomeAdapter
-    @Inject lateinit var playViewSharedPreferences: PlayViewSharedPreferences
+    @Inject lateinit var setting: SettingSharedPreferences
 
     lateinit var homeViewModel: HomeViewModel
 
@@ -44,7 +34,6 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
 
         homeViewModel = viewModel(viewModelFactory){
             observe(homeList, ::renderHomeList)
-            observe(playViewIsClicked, ::renderPlayView)
             failure(failure, ::handleFailure)
         }
     }
@@ -61,6 +50,19 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
 
     // homeFragment 초기화 하는 함수
     private fun initializeView() {
+
+        if(!setting.isDarkMode){
+            // TODO : 화이트모드
+            fHome_floating_action_btn.setImageResource(R.drawable.fhome_wm_fabtn_img)
+            fHome_floating_action_btn.supportBackgroundTintList =
+                ContextCompat.getColorStateList(activity!!, R.color.fhome_wm_fabtn_color)
+        }else{
+            // TODO : 다크모드
+            fHome_floating_action_btn.setImageResource(R.drawable.fhome_dm_fabtn_img)
+            fHome_floating_action_btn.supportBackgroundTintList =
+                ContextCompat.getColorStateList(activity!!, R.color.fhome_dm_fabtn_color)
+        }
+
         // 플로팅 버튼 클릭 이벤트
         fHome_floating_action_btn?.setOnClickListener {
             navigator.showAddition(context!!, AdditionView.empty())
@@ -73,27 +75,11 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
 
         // DB에 있는 데이터 로드
         homeViewModel.loadHomeList()
-
-        // SharedPreferences에 있는 playView 변수 로드
-        homeViewModel.getPlayViewIsClicked()
     }
 
     // Home 데이터들 갱신하는 함수.
     private fun renderHomeList(homeView: List<HomeView>?) {
         homeAdapter.collection = homeView.orEmpty()
-    }
-
-    // playViewIsClicked
-    private fun renderPlayView(playView: Boolean?){
-        Log.d("test","renderPlayView : $playView")
-        val isClicked = playView?:false
-        if(isClicked){
-            fHome_clo_play.visible()
-            fHome_floating_action_btn.invisible()
-        }else{
-            fHome_clo_play.invisible()
-            fHome_floating_action_btn.visible()
-        }
     }
 
 
@@ -104,17 +90,6 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
             //is Failure.ServerError -> renderFailure(R.string.failure_server_error)
             is HomeFailure.ListNotAvailable -> renderFailure(R.string.fHome_list_unavailable)
             else -> Log.d("homeFragment", "error")
-        }
-    }
-
-    // 테스트 코드
-    override fun onBackPressed() {
-        if(fHome_clo_play.isVisible){
-            fHome_clo_play.invisible()
-            fHome_floating_action_btn.visible()
-            homeViewModel.setPlayViewIsClicked(false)
-        }else{
-            super.onBackPressed()
         }
     }
 

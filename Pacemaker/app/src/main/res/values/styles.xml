@@ -11,6 +11,7 @@
     <!-- 타이틀 없애게 할려고 만든 코드 -->
     <style name="CustomAppTheme" parent="AppTheme">
         <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
     <style name="CustomAppTheme.NoActionBar">
@@ -37,6 +38,11 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme.NumberPicker" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 <!---
     <style name = "CustomAppTheme.Popup" parent="Theme.AppCompat.Dialog">

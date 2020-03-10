@@ -13,6 +13,7 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
+import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.features.pacemaker.PacemakerActivity
 import com.google.android.gms.ads.MobileAds
 import io.reactivex.Single
@@ -25,12 +26,11 @@ class SplashActivity : AppCompatActivity() {
         (application as AndroidApplication).appComponent
     }
 
-    @Inject
-    internal lateinit var navigator: Navigator
-    @Inject
-    internal lateinit var dbEx: ExerciseDatabase
-    @Inject
-    internal lateinit var dbExHi: ExerciseHistoryDatabase
+    @Inject internal lateinit var navigator: Navigator
+    @Inject internal lateinit var dbEx: ExerciseDatabase
+    @Inject internal lateinit var dbExHi: ExerciseHistoryDatabase
+    // TODO : 테스트 코드 나중에 삭제
+    @Inject lateinit var setting: SettingSharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,5 +50,8 @@ class SplashActivity : AppCompatActivity() {
 
         // 테스트 광고
         MobileAds.initialize(this) {}
+
+        // TODO : 테스트 코드 나중에 삭제
+        setting.isDarkMode = false
     }
 }

@@ -1,5 +1,6 @@
 package com.devjj.pacemaker.core.di
 
+import android.app.PendingIntent.getActivity
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -8,7 +9,11 @@ import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.features.pacemaker.AdditionActivity
+import com.devjj.pacemaker.features.pacemaker.addition.AdditionFragment
+import com.devjj.pacemaker.features.pacemaker.addition.AdditionListener
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionRepository
+import com.devjj.pacemaker.features.pacemaker.addition.AdditionViewModel
 import com.devjj.pacemaker.features.pacemaker.home.HomeRepository
 import com.devjj.pacemaker.features.pacemaker.history.HistoriesRepository
 import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailsRepository
@@ -37,7 +42,6 @@ class ApplicationModule(private val application: AndroidApplication) {
                     db.beginTransactionNonExclusive()
                 }
             }
-
         }).build()
 
         return db

@@ -43,24 +43,11 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:gravity="center"
-            android:text="@string/fAddition_title_txv"
+            android:text="@string/fAddition_title_addition_txv"
             android:textSize="20sp"
             android:textColor="#fff7fafd"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/fAddition_flo_back"
-            app:layout_constraintTop_toTopOf="parent"/>
-
-
-        <!-- 나중에 넣을지 말지 결정하고 넣게 되면 frameLayout에 넣어서 만들기  -->
-        <ImageView
-            android:id="@+id/fAddition_iv_setting"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginEnd="20dp"
-            android:src="@drawable/apacemaker_setting"
-            android:contentDescription="@string/image_not_found"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
 

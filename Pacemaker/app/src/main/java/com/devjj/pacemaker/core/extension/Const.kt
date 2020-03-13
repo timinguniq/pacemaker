@@ -28,4 +28,15 @@ val dmAdditionMRSITitleColor = Color.argb(255, 178, 179, 179)
 val wmAdditionInContainerColor = Color.argb(255, 241, 241, 241)
 val dmAdditionInContainerColor = Color.argb(255, 68, 70, 70)
 
+// deleteDialog Colors
+val wmDialogMainBackgroundColor = wmContainerColor
+val dmDialogMainBackgroundColor = dmContainerColor
+
+val wmDialogMainTextColor = dmStatusBarColor
+val dmDialogMainTextColor = wmContainerColor
+
+val wmDialogBtnTextColor = wmStatusBarColor
+val dmDialogBtnTextColor = Color.argb(255, 247, 73, 56)
+//
+
 

@@ -84,20 +84,24 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
     // 넘버 픽커 초기화
     private fun initNumberPicker(){
         val data1: Array<String> = Array(201){
-                i ->
-                when(i){
-                    in 0..9 -> "00$i"
-                    in 10..99 -> "0$i"
-                    in 100..200 -> i.toString()
-                    else -> {
-                        Log.d("test", "initNumberPicker error")
-                        i.toString()
-                    }
+            i ->
+            when(i){
+                in 0..9 -> "00$i"
+                in 10..99 -> "0$i"
+                in 100..200 -> i.toString()
+                else -> {
+                   Log.d("test", "initNumberPicker error")
+                   i.toString()
                 }
+            }
         }
 
         val data2: Array<String> = Array(20) {
-                i -> if((i+1)<10) "0" + (i+1).toString() else (i+1).toString()
+            i -> if((i+1)<10) "0" + (i+1).toString() else (i+1).toString()
+        }
+
+        val data3: Array<String> = Array(10){
+            i -> if((i+1)<10) "0" + (i+1).toString() else (i+1).toString()
         }
 
         // 테스트 코드
@@ -122,11 +126,11 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         //setNumberPickerTextColor(fAddition_np_set, Color.argb(255, 0, 0, 0))
         //fAddition_np_set.setBackgroundColor(Color.argb(255, 241, 241, 241))
         fAddition_np_set.minValue = 1
-        fAddition_np_set.maxValue = data2.size
+        fAddition_np_set.maxValue = data3.size
         fAddition_np_set.wrapSelectorWheel = false
-        //data2.reverse()
-        fAddition_np_set.displayedValues = data2
-        fAddition_np_set.value = 20
+        data3.reverse()
+        fAddition_np_set.displayedValues = data3
+        fAddition_np_set.value = 10
         //
     }
 
@@ -147,6 +151,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             listResource.add(wmAdditionInContainerColor)
             listResource.add(R.drawable.faddition_wm_rest_minus_img)
             listResource.add(R.drawable.faddition_wm_rest_plus_img)
+            listResource.add(R.drawable.faddition_wm_save_img)
         }else{
             // 다크모드
             listResource.add(dmStatusBarColor)
@@ -160,6 +165,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             listResource.add(dmAdditionInContainerColor)
             listResource.add(R.drawable.faddition_dm_rest_minus_img)
             listResource.add(R.drawable.faddition_dm_rest_plus_img)
+            listResource.add(R.drawable.faddition_dm_save_img)
         }
 
         activity?.window?.statusBarColor = listResource[0]
@@ -186,6 +192,8 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         fAddition_iv_interval_minus.setImageResource(listResource[8])
         fAddition_iv_interval_plus.setImageResource(listResource[9])
         fAddition_tv_interval_time.setTextColor(listResource[5])
+
+        fAddition_iv_save.setImageResource(listResource[10])
     }
 
     // Exercise 데이터들 갱신하는 함수.

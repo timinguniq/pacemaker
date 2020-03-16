@@ -31,7 +31,7 @@ class HistoryDetailAdapter
 
     class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
         fun bind(historyDetailView: HistoryDetailView, context: Context,clickListener :(Int,String)->Unit={_,_->}){
-            val partImgResource = convertPartImgToResource(historyDetailView.part_img)
+            val partImgResource = convertPartImgToResource(historyDetailView.part_img, false)
             itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
             itemView.rvExerciseItem_tv_name.text = historyDetailView.name
             itemView.rvExerciseItem_tv_mass.text = historyDetailView.mass.toString()

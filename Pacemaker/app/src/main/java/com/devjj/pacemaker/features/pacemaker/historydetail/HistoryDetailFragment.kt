@@ -101,6 +101,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
         fHistoryDetail_charts_pieChart.highlightValues(null)
         fHistoryDetail_charts_pieChart.invalidate()
         fHistoryDetail_charts_pieChart.setHoleColor(Color.TRANSPARENT)
+        fHistoryDetail_charts_pieChart.setBackgroundColor(Color.BLACK)
         fHistoryDetail_charts_pieChart.animateXY(3000,3000)
 
 

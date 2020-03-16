@@ -1,57 +1,32 @@
 package com.devjj.pacemaker.features.pacemaker.addition
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.Paint
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
+import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.annotation.StringRes
-import androidx.core.view.get
 
 import com.devjj.pacemaker.R
+import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.platform.BaseFragment
-import com.devjj.pacemaker.features.pacemaker.AdditionActivity
-import com.devjj.pacemaker.features.pacemaker.home.HomeData
 import kotlinx.android.synthetic.main.fragment_addition.*
+import javax.inject.Inject
 
 class AdditionFragment(private val intent: Intent) : BaseFragment() {
 
-    private var mode = 0
-    private val ADDITION_MODE = 0
-    private val EDITING_MODE = 1
+    @Inject lateinit var setting: SettingSharedPreferences
 
     private lateinit var additionViewModel: AdditionViewModel
 
-    // part_img뷰들을 List로 선언한 변수.
-    private lateinit var fAdditionIvPartList: List<ImageView>
-
-    // part_img UnClick되어 있을때 이미지 자원들을 넣어놓은 리스트
-    private val fAdditionIvPartUnClickResource = listOf(R.drawable.part_one_unclicked_img,
-        R.drawable.part_two_unclicked_img,
-        R.drawable.part_three_unclicked_img,
-        R.drawable.part_four_unclicked_img,
-        R.drawable.part_five_unclicked_img)
-
-    // part_img Click되어 있을때 이미지 자원들을 넣어놓은 리스트
-    private val fAdditionIvPartClickResource = listOf(R.drawable.part_one_clicked_img,
-        R.drawable.part_two_clicked_img,
-        R.drawable.part_three_clicked_img,
-        R.drawable.part_four_clicked_img,
-        R.drawable.part_five_clicked_img)
-
-    // 저장 버튼을 눌렀을 때 additionData의 데이터 변수들
-    private var additionData_id = 0
-    private var additionData_part_img = 0
-    private var additionData_name = String.empty()
-    private var additionData_mass = 0
-    private var additionData_rep = 0
-    private var additionData_set = 0
-    private var additionData_interval = 0
-    //
+    private lateinit var additionListener: AdditionListener
 
     override fun layoutId() = R.layout.fragment_addition
 
@@ -63,7 +38,6 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             observe(additionData, ::renderExerciseData)
             failure(failure, ::handleFailure)
         }
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -72,126 +46,177 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         // homeFragment에서 받아온 intent로부터 데이터 가져오는 코드
         val additionView: AdditionView = intent.getParcelableExtra("view")?:AdditionView.empty()
 
-        // part_img list init
-        fAdditionIvPartList = listOf(fAddition_iv_part_one, fAddition_iv_part_two, fAddition_iv_part_three,
-                            fAddition_iv_part_four, fAddition_iv_part_five)
-
         // additionData를 DB에서 찾아오는 함수.
         additionViewModel.loadTheAdditionData(additionView.id)
 
         // additionView의 name데이터를 이용하여 모드를 설정
         mode = if(additionView.name.isEmpty()) ADDITION_MODE else EDITING_MODE
+        // 다크모드 설정
+        isDarkMode = setting.isDarkMode
 
-        // 클릭 리스터들 모아둔 함수.
-        clickListener()
+        // 뷰 초기화
+        initializeView()
 
-        // TODO: 테스트 코드
-        textNumberPicker()
+        // additionListener 초기화
+        additionListener = AdditionListener(activity!!, additionViewModel)
+
+        // 클릭 리스너들 모아둔 함수.
+        additionListener.clickListener()
+
+        // 넘버 픽커 초기화
+        initNumberPicker()
+
+        // 넘버 픽커 리스너
+        additionListener.numberPickerListener()
     }
 
-    // additionFragment에 클릭 이벤트 리스너들
-    private fun clickListener() {
-        // 백키를 눌렀을 떄 리스너
-        fAddition_iv_back.setOnClickListener {
-            activity?.finish()
-        }
+    // AdditionFragment 초기화 하는 함수
+    private fun initializeView() {
+        initSettingMode(isDarkMode)
 
-        // part img 클릭 리스너들
-        for(i in fAdditionIvPartList.indices) {
-            fAdditionIvPartList[i].setOnClickListener {
-                // part_img 초기화하는 함수.
-                initPartImg()
+        // 초기화
+        additionData_mass = 0
+        additionData_rep = 1
+        additionData_set = 1
+        additionData_interval = 30
+    }
 
-                fAdditionIvPartList[i].setImageResource(fAdditionIvPartClickResource[i])
-                additionData_part_img = i
-            }
-        }
-
-        // 저장 이미지를 클릭했을때 리스너
-        fAddition_iv_save.setOnClickListener {
-            inputData()
-
-            when(mode){
-                ADDITION_MODE -> {
-                    if(additionData_name != String.empty()) {
-                        val additionData =
-                            AdditionData(0, additionData_part_img, additionData_name, additionData_mass,
-                                additionData_rep, additionData_set, additionData_interval)
-                        additionViewModel.saveExerciseData(additionData)
-                        activity?.finish()
-                    }else{
-                        // TODO : 임시코드
-                        Toast.makeText(context!!, "운동 이름을 입력해주세요", Toast.LENGTH_SHORT).show()
-                    }
-                }
-                EDITING_MODE -> {
-                    if(additionData_name != String.empty()) {
-                        val additionData =
-                            AdditionData(additionData_id, additionData_part_img, additionData_name, additionData_mass,
-                                additionData_rep, additionData_set, additionData_interval)
-                        additionViewModel.updateExerciseData(additionData)
-                        activity?.finish()
-                    }else{
-                        // TODO: 임시코드
-                        Toast.makeText(context!!, "운동 이름을 입력해주세요", Toast.LENGTH_SHORT).show()
-                    }
-                }
+    // 넘버 픽커 초기화
+    private fun initNumberPicker(){
+        val data1: Array<String> = Array(201){
+            i ->
+            when(i){
+                in 0..9 -> "00$i"
+                in 10..99 -> "0$i"
+                in 100..200 -> i.toString()
                 else -> {
-                    Log.d("addition", "fAddition_iv_save.setOnClickListener error")
+                   Log.d("test", "initNumberPicker error")
+                   i.toString()
                 }
             }
         }
 
+        val data2: Array<String> = Array(20) {
+            i -> if((i+1)<10) "0" + (i+1).toString() else (i+1).toString()
+        }
+
+        val data3: Array<String> = Array(10){
+            i -> if((i+1)<10) "0" + (i+1).toString() else (i+1).toString()
+        }
+
+        // 테스트 코드
+        //setNumberPickerTextColor(fAddition_np_mass, Color.argb(255, 0, 0, 0))
+        //fAddition_np_mass.setBackgroundColor(Color.argb(255, 241, 241, 241))
+        fAddition_np_mass.minValue = 0
+        fAddition_np_mass.maxValue = data1.size-1
+        fAddition_np_mass.wrapSelectorWheel = false
+        data1.reverse()
+        fAddition_np_mass.displayedValues = data1
+        fAddition_np_mass.value = 200
+
+        //setNumberPickerTextColor(fAddition_np_rep, Color.argb(255, 0, 0, 0))
+        //fAddition_np_rep.setBackgroundColor(Color.argb(255, 241, 241, 241))
+        fAddition_np_rep.minValue = 1
+        fAddition_np_rep.maxValue = data2.size
+        fAddition_np_rep.wrapSelectorWheel = false
+        data2.reverse()
+        fAddition_np_rep.displayedValues = data2
+        fAddition_np_rep.value = 20
+
+        //setNumberPickerTextColor(fAddition_np_set, Color.argb(255, 0, 0, 0))
+        //fAddition_np_set.setBackgroundColor(Color.argb(255, 241, 241, 241))
+        fAddition_np_set.minValue = 1
+        fAddition_np_set.maxValue = data3.size
+        fAddition_np_set.wrapSelectorWheel = false
+        data3.reverse()
+        fAddition_np_set.displayedValues = data3
+        fAddition_np_set.value = 10
+        //
     }
 
-    // TODO: 테스트 함수
-    private fun textNumberPicker(){
-        val data = 1..100
-        val data2 = mutableListOf<String>()
 
-        for(a in data){
-            data2.add(a.toString())
+    // 뷰 모드에 대한 셋팅
+    private fun initSettingMode(isDarkMode: Boolean){
+        val listResource = mutableListOf<Int>()
+        if(!isDarkMode){
+            // 화이트모드
+            listResource.add(wmStatusBarColor)
+            listResource.add(R.drawable.apacemaker_wm_title_background)
+            listResource.add(wmContainerColor)
+            val partMainImage = convertPartImgToResource(additionData_part_img, false)
+            listResource.add(partMainImage)
+            listResource.add(R.drawable.faddition_wm_name_line_img)
+            listResource.add(wmExerciseNameColor)
+            listResource.add(wmAdditionMRSITitleColor)
+            listResource.add(wmAdditionInContainerColor)
+            listResource.add(R.drawable.faddition_wm_rest_minus_img)
+            listResource.add(R.drawable.faddition_wm_rest_plus_img)
+            listResource.add(R.drawable.faddition_wm_save_img)
+        }else{
+            // 다크모드
+            listResource.add(dmStatusBarColor)
+            listResource.add(R.drawable.apacemaker_dm_title_background)
+            listResource.add(dmContainerColor)
+            val partMainImage = convertPartImgToResource(additionData_part_img, true)
+            listResource.add(partMainImage)
+            listResource.add(R.drawable.faddition_dm_name_line_img)
+            listResource.add(dmExerciseNameColor)
+            listResource.add(dmAdditionMRSITitleColor)
+            listResource.add(dmAdditionInContainerColor)
+            listResource.add(R.drawable.faddition_dm_rest_minus_img)
+            listResource.add(R.drawable.faddition_dm_rest_plus_img)
+            listResource.add(R.drawable.faddition_dm_save_img)
         }
 
-        fAddition_np_test.wrapSelectorWheel = true
-        fAddition_np_test.minValue = 1
-        fAddition_np_test.maxValue = data2[data2.size- 1].toInt()
-        data2.reverse()
-        fAddition_np_test.displayedValues = data2.toTypedArray()
-        fAddition_np_test.value = 100
+        activity?.window?.statusBarColor = listResource[0]
+        fAddition_clo_status.setBackgroundResource(listResource[1])
+        fAddition_clo_main.setBackgroundColor(listResource[2])
+        fAddition_iv_part_main.setImageResource(listResource[3])
+        fAddition_iv_name_line.setImageResource(listResource[4])
+        fAddition_ev_name.setTextColor(listResource[5])
+        fAddition_ev_name.setHintTextColor(listResource[5])
 
-        fAddition_np_test.setOnValueChangedListener { picker, oldVal, newVal ->
-            Log.d("test", "oldVal : ${oldVal}, newVal : $newVal")
-        }
+        fAddition_tv_mass.setTextColor(listResource[6])
+        fAddition_tv_rep.setTextColor(listResource[6])
+        fAddition_tv_set.setTextColor(listResource[6])
+        fAddition_tv_interval.setTextColor(listResource[6])
+
+        setNumberPickerTextColor(fAddition_np_mass, listResource[5])
+        fAddition_np_mass.setBackgroundColor(listResource[7])
+        setNumberPickerTextColor(fAddition_np_rep, listResource[5])
+        fAddition_np_rep.setBackgroundColor(listResource[7])
+        setNumberPickerTextColor(fAddition_np_set, listResource[5])
+        fAddition_np_set.setBackgroundColor(listResource[7])
+
+        fAddition_clo_interval_time.setBackgroundColor(listResource[7])
+        fAddition_iv_interval_minus.setImageResource(listResource[8])
+        fAddition_iv_interval_plus.setImageResource(listResource[9])
+        fAddition_tv_interval_time.setTextColor(listResource[5])
+
+        fAddition_iv_save.setImageResource(listResource[10])
     }
 
     // Exercise 데이터들 갱신하는 함수.
     private fun renderExerciseData(additionView: AdditionView?) {
         val tempAdditionView = additionView?:AdditionView.empty()
 
-
-        // Part Img를 초기화해주는 함수.
-        initPartImg()
-
         // 모드에 따라 추가모드일때는 뷰를 비어있게 나타내고 편집모드일때는 관련 데이터를 표시해준다.
         when (mode) {
             ADDITION_MODE -> {
+                fAddition_tv_title.text = resources.getString(R.string.fAddition_title_addition_txv)
                 fAddition_ev_name.text = String.editText(String.empty())
-                fAddition_ev_mass.text = String.editText(String.empty())
-                fAddition_ev_rep.text = String.editText(String.empty())
-                fAddition_ev_set.text = String.editText(String.empty())
-                fAddition_ev_interval.text = String.editText(String.empty())
             }
             EDITING_MODE -> {
                 additionData_id = tempAdditionView.id
                 additionData_part_img = tempAdditionView.part_img
 
-                fAdditionIvPartList[tempAdditionView.part_img].setImageResource(fAdditionIvPartClickResource[tempAdditionView.part_img])
+                fAddition_tv_title.text = resources.getString(R.string.fAddition_title_edit_txv)
                 fAddition_ev_name.text = String.editText(tempAdditionView.name)
-                fAddition_ev_mass.text = String.editText(tempAdditionView.mass.toString())
-                fAddition_ev_rep.text = String.editText(tempAdditionView.rep.toString())
-                fAddition_ev_set.text = String.editText(tempAdditionView.set.toString())
-                fAddition_ev_interval.text = String.editText(tempAdditionView.interval.toString())
+                fAddition_np_mass.value = 200 - tempAdditionView.mass
+                fAddition_np_rep.value = 21 - tempAdditionView.rep
+                fAddition_np_set.value = 21 - tempAdditionView.set
+                additionData_interval = tempAdditionView.interval
+                settingIntervalTime(fAddition_tv_interval_time)
             }
             else -> {
                 Log.d("addition", "renderExerciseData error")
@@ -214,29 +239,5 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         //fHome_recyclerview.invisible()
 
         // TODO : 나중에 메세지에 따른 구현 해야 될듯.
-    }
-
-    // part_img 초기화하는 함수.
-    private fun initPartImg(){
-        for(i in fAdditionIvPartList.indices){
-            fAdditionIvPartList[i].setImageResource(fAdditionIvPartUnClickResource[i])
-        }
-    }
-
-    // editText에 입력한 데이터들을 넣는 함수.
-    private fun inputData(){
-        additionData_name = fAddition_ev_name.text.toString()
-        if(fAddition_ev_mass.text.toString() != String.empty()){
-            additionData_mass = fAddition_ev_mass.text.toString().toInt()
-        }
-        if(fAddition_ev_rep.text.toString() != String.empty()){
-            additionData_rep = fAddition_ev_rep.text.toString().toInt()
-        }
-        if(fAddition_ev_set.text.toString() != String.empty()){
-            additionData_set = fAddition_ev_set.text.toString().toInt()
-        }
-        if(fAddition_ev_interval.text.toString() != String.empty()){
-            additionData_interval = fAddition_ev_interval.text.toString().toInt()
-        }
     }
 }

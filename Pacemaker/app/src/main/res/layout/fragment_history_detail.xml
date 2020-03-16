@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".pacemaker.historydetail.HistoryDetailFragment">
 
+    <FrameLayout
+        android:id="@+id/fHistoryDetail_container_pieChart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_clo_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/fHistoryDetail_charts_pieChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fHistoryDetail_clo_title"
         android:layout_width="match_parent"
@@ -14,7 +29,8 @@
         app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_recyclerview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/fHistoryDetail_container_pieChart">
+
 
         <TextView
             android:id="@+id/fHistoryDetail_tv_part"
@@ -129,11 +145,12 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:focusable="false"
+        android:gravity="center"
         android:text="TextView"
         android:textSize="22sp"
-        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/fHistoryDetail_floating_action_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fHistoryDetail_recyclerview" />
+        app:layout_constraintTop_toBottomOf="@id/fHistoryDetail_recyclerview"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

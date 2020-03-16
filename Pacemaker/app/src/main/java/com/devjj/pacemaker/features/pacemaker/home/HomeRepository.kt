@@ -9,10 +9,14 @@ import com.devjj.pacemaker.core.exception.Failure.SharedPreferencesError
 import com.devjj.pacemaker.core.functional.Either
 import com.devjj.pacemaker.core.functional.Either.Left
 import com.devjj.pacemaker.core.functional.Either.Right
+import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
 import javax.inject.Inject
 
 interface HomeRepository {
     fun homeData(): Either<Failure, List<HomeData>>
+
+    // DB에 ExerciseData를 삭제하는 함수.
+    fun deleteExerciseData(homeData: HomeData): Either<Failure, HomeData>
 
     class DbRepository
     @Inject constructor(private val service: HomeDatabaseService) :
@@ -21,6 +25,15 @@ interface HomeRepository {
             return try{
                 Right(service.home().map { it.toHomeData() })
             }catch(exception: Throwable){
+                Left(DatabaseError)
+            }
+        }
+
+        override fun deleteExerciseData(homeData: HomeData): Either<Failure, HomeData> {
+            service.deleteExerciseData(homeData)
+            return try {
+                Right(HomeData.empty())
+            } catch (exception: Throwable) {
                 Left(DatabaseError)
             }
         }

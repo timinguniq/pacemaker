@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import javax.inject.Inject
 
-class PlayViewSharedPreferences(context: Context) {
+class   PlayViewSharedPreferences(context: Context) {
     val PREFS_FILENAME = "playView"
     val PREF_KEY = "btnClicked"
     val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, 0)

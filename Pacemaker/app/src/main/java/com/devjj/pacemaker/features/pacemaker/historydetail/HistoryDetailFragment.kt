@@ -2,6 +2,7 @@ package com.devjj.pacemaker.features.pacemaker.historydetail
 
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +13,13 @@ import com.devjj.pacemaker.core.extension.observe
 import com.devjj.pacemaker.core.extension.viewModel
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
+import com.github.mikephil.charting.animation.Easing
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.utils.MPPointF
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_history_detail.*
@@ -38,6 +46,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
         historyDetailViewModel = viewModel(viewModelFactory) {
             observe(historyDetails, ::renderHistoryDetails)
         }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,13 +59,57 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
         fHistoryDetail_tv_achievementRate.text =
             getString(R.string.rh_rate, historyDetailView.orEmpty()[0].achievementRate)
 
+        fHistoryDetail_charts_pieChart.centerText = getString(R.string.rh_rate, historyDetailView.orEmpty()[0].achievementRate)
+        Log.d("Rate check", "${fHistoryDetail_charts_pieChart.data.dataSet.getEntryForIndex(0).value}")
+
+        fHistoryDetail_charts_pieChart.data = getDataSet(historyDetailView.orEmpty()[0].achievementRate.toFloat())
+        fHistoryDetail_charts_pieChart.animateXY(3000,3000)
         Log.d("Rate check", "begin")
         for (text in historyDetailView!!) {
             Log.d("Rate check", " ${text.achievementRate}")
         }
     }
 
+    private fun getDataSet(rate :Float) : PieData{
+        val dataSet = PieDataSet(listOf(PieEntry(rate,"test1"),PieEntry(100-rate,"test2")),"test3")
+        dataSet.setDrawIcons(false)
+        dataSet.sliceSpace = 0f
+        dataSet.iconsOffset = MPPointF(0F,0F)
+        dataSet.selectionShift = 0f
+        dataSet.setColors(Color.argb(0xFF,0xFF,0x76,0x5b),Color.argb(0xCF,0xFF,0x76,0x5b))
+        val data = PieData(dataSet)
+        data.setDrawValues(false)
+        //data.setValueTextSize(0f)
+        //data.setValueTextColor(Color.RED)
+
+        return data
+    }
+
     private fun initializeView() {
+
+        fHistoryDetail_charts_pieChart.setCenterTextColor(Color.argb(0xFF,0xFF,0x76,0x5b))
+        fHistoryDetail_charts_pieChart.setDrawEntryLabels(false)
+        fHistoryDetail_charts_pieChart.setCenterTextSize(30f)
+        fHistoryDetail_charts_pieChart.description.isEnabled = false
+        fHistoryDetail_charts_pieChart.legend.isEnabled = false
+        fHistoryDetail_charts_pieChart.scrollBarSize = 10
+
+        var rate = 75f
+
+        fHistoryDetail_charts_pieChart.data = getDataSet(rate)
+        fHistoryDetail_charts_pieChart.setDrawEntryLabels(false)
+        fHistoryDetail_charts_pieChart.highlightValues(null)
+        fHistoryDetail_charts_pieChart.invalidate()
+        fHistoryDetail_charts_pieChart.setHoleColor(Color.TRANSPARENT)
+        fHistoryDetail_charts_pieChart.setBackgroundColor(Color.BLACK)
+        fHistoryDetail_charts_pieChart.animateXY(3000,3000)
+
+
+
+        //PieDataSet(listOf(PieEntry(0.5f,"no1"),PieEntry(0.2f,"no2")),"label")
+        // fHistoryDetail_charts_pieChart.animateY(1400, Easing.EaseInOutQuad)
+
+
 
         historyDetailAdapter.clickListener = { id, date ->
             when (fHistoryDetail_floating_action_btn.isSelected) {

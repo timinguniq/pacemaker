@@ -23,7 +23,9 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
     @Inject lateinit var homeAdapter: HomeAdapter
     @Inject lateinit var setting: SettingSharedPreferences
 
-    lateinit var homeViewModel: HomeViewModel
+    private lateinit var homeViewModel: HomeViewModel
+
+    private lateinit var homeListener: HomeListener
 
     override fun layoutId() = R.layout.fragment_home
 
@@ -52,29 +54,21 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
     private fun initializeView() {
 
         if(!setting.isDarkMode){
-            // TODO : 화이트모드
+            // 화이트모드
             fHome_floating_action_btn.setImageResource(R.drawable.fhome_wm_fabtn_img)
             fHome_floating_action_btn.supportBackgroundTintList =
                 ContextCompat.getColorStateList(activity!!, R.color.fhome_wm_fabtn_color)
         }else{
-            // TODO : 다크모드
+            // 다크모드
             fHome_floating_action_btn.setImageResource(R.drawable.fhome_dm_fabtn_img)
             fHome_floating_action_btn.supportBackgroundTintList =
                 ContextCompat.getColorStateList(activity!!, R.color.fhome_dm_fabtn_color)
         }
 
-        // 플로팅 버튼 클릭 이벤트
-        fHome_floating_action_btn?.setOnClickListener {
-            navigator.showAddition(context!!, AdditionView.empty())
-        }
-
-        fHome_recyclerview.layoutManager = LinearLayoutManager(this.context)
-        fHome_recyclerview.adapter = homeAdapter
-        homeAdapter.clickListener = {additionView  ->
-            navigator.showAddition(activity!!, additionView)}
-
-        // DB에 있는 데이터 로드
-        homeViewModel.loadHomeList()
+        // homeListener 초기화
+        homeListener = HomeListener(activity!!, context!!, navigator, homeAdapter, homeViewModel, setting.isDarkMode)
+        // 클릭 리스너
+        homeListener.clickListener()
     }
 
     // Home 데이터들 갱신하는 함수.

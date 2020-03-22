@@ -12,6 +12,9 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupFragment
+import com.google.android.gms.ads.AdRequest
+import kotlinx.android.synthetic.main.activity_addition.*
+import kotlinx.android.synthetic.main.activity_play_popup.*
 import javax.inject.Inject
 import kotlin.math.roundToInt
 
@@ -31,7 +34,8 @@ class PlayPopupActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
-        initLayout()
+        //initLayout()
+        initAd()
         Log.d("test", "onCreate PlayPopupActivity")
     }
 
@@ -47,6 +51,12 @@ class PlayPopupActivity : BaseActivity() {
 
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))	// 배경화면 투명하게 하는 코드
 
+    }
+
+    // 광고 초기화 하는 함수
+    private fun initAd() {
+        val adRequest = AdRequest.Builder().build()
+        aPlayPopup_adView.loadAd(adRequest)
     }
 
     override fun fragment() = PlayPopupFragment()

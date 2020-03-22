@@ -48,6 +48,14 @@
     <string name="fPlayPopup_timer_txv">Timer</string>
     <string name="fPlayPopup_set_txv">%d\/%dset</string>
 
+    <string name="fPlayPopup_exercise_name_txv">운동이름</string>
+    <string name="fPlayPopup_mass_unit">Kg</string>
+    <string name="fPlayPopup_slash">/</string>
+    <string name="fPlayPopup_set_unit">Set</string>
+    <string name="fPlayPopup_btn_plus_txv">+10초</string>
+    <string name="fPlayPopup_sec_unit">초</string>
+    <string name="fPlayPopup_plus_unit">+</string>
+
     <string name="rh_mass">%dkg</string>
     <string name="rh_set">%dset</string>
     <string name="rh_interval">%ds</string>

@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/fPlayPopup_tv_name"
             app:layout_constraintHorizontal_chainStyle="spread_inside"/>
-
+<!--
         <TextView
             android:id="@+id/fPlayPopup_tv_name"
             android:layout_width="0dp"
@@ -46,7 +46,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/fPlayPopup_tv_part"
             app:layout_constraintEnd_toStartOf="@+id/fPlayPopup_tv_mass"/>
-
 
         <TextView
             android:id="@+id/fPlayPopup_tv_mass"
@@ -74,6 +73,7 @@
             app:layout_constraintStart_toEndOf="@+id/fPlayPopup_tv_mass"
             app:layout_constraintEnd_toEndOf="parent"/>
 
+-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     

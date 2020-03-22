@@ -214,7 +214,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
                 fAddition_ev_name.text = String.editText(tempAdditionView.name)
                 fAddition_np_mass.value = 200 - tempAdditionView.mass
                 fAddition_np_rep.value = 21 - tempAdditionView.rep
-                fAddition_np_set.value = 21 - tempAdditionView.set
+                fAddition_np_set.value = 11 - tempAdditionView.set
                 additionData_interval = tempAdditionView.interval
                 settingIntervalTime(fAddition_tv_interval_time)
             }

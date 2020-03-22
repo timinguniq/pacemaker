@@ -39,4 +39,16 @@ val wmDialogBtnTextColor = wmStatusBarColor
 val dmDialogBtnTextColor = Color.argb(255, 247, 73, 56)
 //
 
+// playpopup Colors
+// 운동이름 색깔
+val wmExerciseNameTextColor = wmExerciseNameColor
+val dmExerciseNameTextColor = dmExerciseNameColor
 
+// 무게, 세트 색깔
+val wmMassSetTextColor = wmAdditionMRSITitleColor
+val dmMassSetTextColor = dmAdditionMRSITitleColor
+
+// 아래 시간 추가 하는 텍스트 색깔
+val wmUnderNextTextColor = wmStatusBarColor
+val dmUnderNextTextColor = dmDialogBtnTextColor
+//

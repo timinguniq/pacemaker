@@ -14,6 +14,7 @@ import com.devjj.pacemaker.features.pacemaker.entities.ExerciseHistoryEntity
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.fragment_history.*
 import org.threeten.bp.LocalDate
 import javax.inject.Inject
@@ -37,6 +38,7 @@ class HistoryFragment : BaseFragment() {
             observe(histories, ::renderHistoryList)
             //    failure(failure, ::handleFailure)
         }
+
     }
 
     override fun onResume() {
@@ -65,6 +67,7 @@ class HistoryFragment : BaseFragment() {
     }
 
     private fun initializeView() {
+        this.activity!!.aPacemaker_tv_title.text="기록"
         fHistory_recyclerview.layoutManager = LinearLayoutManager(activity)
         fHistory_recyclerview.adapter = historyAdapter
 

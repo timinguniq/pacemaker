@@ -20,6 +20,7 @@ import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeView
 import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.dialog_remove.view.*
 import javax.inject.Inject
 import javax.inject.Singleton

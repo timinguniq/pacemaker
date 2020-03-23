@@ -8,6 +8,7 @@
     <string name="navigation_history_txv">History</string>
 
     <string name="aPacemaker_title_txv">내 트레이닝</string>
+    <string name="aHistoryDetail_title_txv">일자별 기록</string>
 
     <!-- 임시 단위 -->
     <string name="rvExerciseItem_mass">%dkg</string>

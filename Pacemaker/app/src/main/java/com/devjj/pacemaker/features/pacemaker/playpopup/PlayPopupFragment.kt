@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.annotation.MainThread
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.marginBottom
@@ -103,7 +104,6 @@ class PlayPopupFragment : BaseFragment() {
 
         // DB에 있는 데이터 로드
         playPopupViewModel.loadPlayPopupList()
-
 
         // 테스트 코드
         marginPartImg(25)
@@ -440,7 +440,7 @@ class PlayPopupFragment : BaseFragment() {
         val resourcesUnSelect = if(!isDarkMode) R.drawable.fplaypopup_wm_progress_unselect_bar
                         else R.drawable.fplaypopup_dm_progress_unselect_bar
 
-        val handler = Handler(Looper.getMainLooper())
+       val handler = Handler(Looper.getMainLooper())
 
         for(index in 0..9){
             handler.post{

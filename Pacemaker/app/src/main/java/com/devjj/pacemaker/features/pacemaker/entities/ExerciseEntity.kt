@@ -13,21 +13,21 @@ data class ExerciseEntity(@PrimaryKey(autoGenerate = true) var id: Int,
                           var name:String,
                           var mass:Int,
                           var rep:Int,
-                          var set:Int,
-                          var interval:Int,
-                          var achivement: Boolean){
+                          var setGoal:Int,
+                          var setDone: Int,
+                          var interval:Int){
 
     companion object{
-        fun empty() = ExerciseEntity(0, 0, String.empty(), 0, 0, 0, 0, false)
+        fun empty() = ExerciseEntity(0, 0, String.empty(), 0, 0, 0, 0, 0)
     }
 
     // ExerciseEntity를 HomeData로 변환하는 함수.
-    fun toHomeData() = HomeData(id, part, name, mass, rep, set, interval)
+    fun toHomeData() = HomeData(id, part, name, mass, rep, setGoal, interval)
 
     // ExerciseEntity를 AdditionData로 변환하는 함수.
-    fun toAdditionData() = AdditionData(id, part, name, mass, rep, set, interval)
+    fun toAdditionData() = AdditionData(id, part, name, mass, rep, setGoal, interval)
 
     // ExerciseEntity를 playPopupData로 변환하는 함수.
-    fun toPlayPopup() = PlayPopupData(id, part, name, mass, rep, set, interval, achivement)
+    fun toPlayPopup() = PlayPopupData(id, part, name, mass, rep, setGoal, setDone, interval)
 
 }

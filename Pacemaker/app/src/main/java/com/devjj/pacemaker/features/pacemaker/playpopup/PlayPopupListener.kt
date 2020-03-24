@@ -34,14 +34,8 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
             mode = PROGRESS_MODE
 
             // margin
-            val params = ConstraintLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-            params.setMargins(0, 0, 0, 0)
-            activity.fPlayPopup_iv_part_img.layoutParams = params
+            playPopupFragment.marginPartImg(0)
             //
-
 
             mode = PROGRESS_MODE
 
@@ -53,6 +47,7 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
                         activity.fPlayPopup_tv_rest_time.text = settingFormatForTimer(interval)
                     }
                 }
+
                 if(interval == 0){
                     interval = 0
                     timer.cancel()
@@ -77,8 +72,6 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
             }
 
             playPopupFragment.marginPartImg(25)
-
-
         }
 /*
         if(mode == STOP_MODE){
@@ -113,7 +106,6 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
             showSet()
         }
 */
-
     }
 
 

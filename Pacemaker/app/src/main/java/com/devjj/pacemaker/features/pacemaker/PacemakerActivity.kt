@@ -58,7 +58,6 @@ class PacemakerActivity : BaseActivity() {
             navigator.showOption(this)
         }
 
-
         if(!setting.isDarkMode){
             // TODO : 여기로 들어오면 다크모드가 아니다.
             window.statusBarColor = wmStatusBarColor
@@ -75,7 +74,6 @@ class PacemakerActivity : BaseActivity() {
             aPacemaker_bottom_navigation_view.setBackgroundColor(dmBottomBgColor)
             aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_dm_bottom_icon_bg_color
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_dm_bottom_icon_color,null)
-
         }
 
         // 광고 테스트 코드

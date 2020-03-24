@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:CircleProgressView="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".pacemaker.historydetail.HistoryDetailFragment">
@@ -10,147 +11,70 @@
         android:id="@+id/fHistoryDetail_container_pieChart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_clo_title"
+        app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_tv_totalSets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/fHistoryDetail_charts_pieChart"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+        <at.grabner.circleprogress.CircleProgressView
+            android:id="@+id/fHistoryDetail_circleView_rate"
+            android:layout_width="166dp"
+            android:layout_height="166dp"
+            android:layout_gravity="center"
+            CircleProgressView:cpv_autoTextSize="false"
+            app:cpv_barColor="#FFFF765B"
+            app:cpv_barWidth="25dp"
+            app:cpv_innerContourSize="0dp"
+            app:cpv_outerContourSize="0dp"
+            app:cpv_rimColor="#B3FF765B"
+            app:cpv_rimWidth="25dp"
+            app:cpv_showUnit="true"
+            app:cpv_textColor="#FF765B"
+            app:cpv_textScale="1"
+            app:cpv_textSize="40sp"
+            app:cpv_textTypeface="DEFAULT_BOLD"
+            app:cpv_unit="%"
+            app:cpv_unitColor="#FF765B"
+            app:cpv_unitPosition="right_bottom"
+            app:cpv_unitScale="1"
+            app:cpv_unitSize="20sp"
+            app:cpv_unitTypeface="DEFAULT_BOLD" />
+
     </FrameLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fHistoryDetail_clo_title"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#80999999"
+    <TextView
+        android:id="@+id/fHistoryDetail_tv_totalSets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="totalSets"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_tv_totalReps"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fHistoryDetail_container_pieChart" />
+
+    <TextView
+        android:id="@+id/fHistoryDetail_tv_totalReps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="totalReps"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_recyclerview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fHistoryDetail_container_pieChart">
-
-
-        <TextView
-            android:id="@+id/fHistoryDetail_tv_part"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_part_txv"
-            android:textColor="#ff000000"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fHistoryDetail_tv_name"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/fHistoryDetail_tv_name"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_name_txv"
-            android:textColor="#ff000000"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fHistoryDetail_tv_mass"
-            app:layout_constraintStart_toEndOf="@+id/fHistoryDetail_tv_part"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <TextView
-            android:id="@+id/fHistoryDetail_tv_mass"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_mass_txv"
-            android:textColor="#ff000000"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fHistoryDetail_tv_rep"
-            app:layout_constraintStart_toEndOf="@+id/fHistoryDetail_tv_name"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/fHistoryDetail_tv_rep"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_rep_txv"
-            android:textColor="#ff000000"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fHistoryDetail_tv_set"
-            app:layout_constraintStart_toEndOf="@+id/fHistoryDetail_tv_mass"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/fHistoryDetail_tv_set"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_set_txv"
-            android:textColor="#ff000000"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fHistoryDetail_tv_interval"
-            app:layout_constraintStart_toEndOf="@+id/fHistoryDetail_tv_rep"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/fHistoryDetail_tv_interval"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/fHome_title_interval_txv"
-            android:textColor="#ff000000"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fHistoryDetail_tv_set"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@id/fHistoryDetail_tv_totalSets" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fHistoryDetail_recyclerview"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_floating_action_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fHistoryDetail_clo_title">
+        app:layout_constraintTop_toBottomOf="@+id/fHistoryDetail_tv_totalReps">
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fHistoryDetail_floating_action_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:clickable="true"
-        android:src="@android:drawable/ic_menu_edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@id/fHistoryDetail_tv_achievementRate"
-        app:layout_constraintTop_toBottomOf="@+id/fHistoryDetail_recyclerview" />
-
-    <TextView
-        android:id="@+id/fHistoryDetail_tv_achievementRate"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:focusable="false"
-        android:gravity="center"
-        android:text="TextView"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/fHistoryDetail_floating_action_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fHistoryDetail_recyclerview"
-        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

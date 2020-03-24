@@ -58,6 +58,7 @@ class PacemakerActivity : BaseActivity() {
             navigator.showOption(this)
         }
 
+        // TODO : 여기서부터 그거 함수로 extension에 빼면 됨.
         if(!setting.isDarkMode){
             // TODO : 여기로 들어오면 다크모드가 아니다.
             window.statusBarColor = wmStatusBarColor
@@ -79,7 +80,7 @@ class PacemakerActivity : BaseActivity() {
         // 광고 테스트 코드
         val adRequest = AdRequest.Builder().build()
         aPacemaker_adView.loadAd(adRequest)
-
+        // TODO : 여기까지 인데. 광고 때문에 view로 매개변수 받아야 될 것 같음.
     }
 
 }

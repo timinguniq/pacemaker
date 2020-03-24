@@ -6,7 +6,9 @@ import android.util.Log
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.Toast
+import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.R
+import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.extension.convertPartImgToResource
 import com.devjj.pacemaker.core.extension.empty
 import kotlinx.android.synthetic.main.fragment_addition.*

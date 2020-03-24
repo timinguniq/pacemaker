@@ -31,8 +31,8 @@
 
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/fHistory_calendarView"
-                android:layout_width="432dp"
-                android:layout_height="233dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:clipToPadding="true"
                 app:mcv_selectionColor="#FF765B"
                 app:mcv_selectionMode="multiple"
@@ -43,7 +43,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fHistory_recyclerview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="409dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 

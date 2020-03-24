@@ -13,7 +13,7 @@ data class ExerciseEntity(@PrimaryKey(autoGenerate = true) var id: Int,
                           var name:String,
                           var mass:Int,
                           var rep:Int,
-                          var set:Int,
+                          var set :Int,
                           var interval:Int,
                           var achivement: Boolean){
 

@@ -37,7 +37,7 @@
             app:cpv_unitColor="#FF765B"
             app:cpv_unitPosition="right_bottom"
             app:cpv_unitScale="1"
-            app:cpv_unitSize="40sp"
+            app:cpv_unitSize="20sp"
             app:cpv_unitTypeface="DEFAULT_BOLD" />
 
     </FrameLayout>

@@ -20,7 +20,7 @@ interface ExerciseHistoryDAO {
     @Query("UPDATE exerciseHistories SET achievement = NOT achievement WHERE id = :id")
     fun switchAchievement(id: Int): Int
 
-    @Query("UPDATE exerciseHistories SET achievementRate = ( (SELECT COUNT(*) FROM exerciseHistories WHERE achievement = 1 AND date = :date)*100/(SELECT COUNT(*) FROM exerciseHistories WHERE date = :date) ) WHERE date = :date")
+    @Query("UPDATE exerciseHistories SET achievementRate = ( (SELECT SUM(setDone) FROM exerciseHistories WHERE achievement = 1 AND date = :date)*100/(SELECT SUM(setGoal) FROM exerciseHistories WHERE date = :date) ) WHERE date = :date")
     fun updateAchievementRate(date: String) : Int
 
     @Insert(onConflict = REPLACE)

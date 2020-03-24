@@ -8,7 +8,7 @@ data class PlayPopupData(val id: Int,
                          val mass: Int,
                          val rep: Int,
                          val setGoal: Int,
-                         val setDone: Int,
+                         var setDone: Int,
                          val interval: Int) {
 
     companion object{

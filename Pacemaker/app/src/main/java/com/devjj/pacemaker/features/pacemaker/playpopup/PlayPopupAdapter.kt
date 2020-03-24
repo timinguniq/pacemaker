@@ -28,8 +28,7 @@ class PlayPopupAdapter
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(playPopupView: PlayPopupView, clickListener: (PlayPopupView) -> Unit) {
-            val isCheck = playPopupView.achivement != 0
-            itemView.rvPlayPopupItem_cb_achivement.isChecked = isCheck
+            //itemView.rvPlayPopupItem_cb_achivement.isChecked = isCheck
             itemView.rvPlayPopupItem_tv_name.text = playPopupView.name
             itemView.rvPlayPopupItem_tv_mass.text = playPopupView.mass.toString()
             itemView.rvPlayPopupItem_tv_rep.text = playPopupView.rep.toString()

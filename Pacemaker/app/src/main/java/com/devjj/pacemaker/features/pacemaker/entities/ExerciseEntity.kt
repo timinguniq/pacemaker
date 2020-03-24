@@ -7,6 +7,8 @@ import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
 import com.devjj.pacemaker.features.pacemaker.home.HomeData
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupData
 
+// part 는 부위 이미지, name은 운동 이름, mass은 운동 무게
+// rep는 횟수, setGoal 목표 세트, setDone은 실제로 한 세트수, interval은 하나의 운동에서 쉬는 시간
 @Entity(tableName = "exercises")
 data class ExerciseEntity(@PrimaryKey(autoGenerate = true) var id: Int,
                           var part:Int,

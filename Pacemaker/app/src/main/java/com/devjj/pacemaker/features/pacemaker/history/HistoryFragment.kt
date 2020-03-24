@@ -72,7 +72,7 @@ class HistoryFragment : BaseFragment() {
             navigator.showHistoryDetail(activity!!, date)
         }
 
-
+/*
         val a = ExerciseHistoryEntity(0, "2019-12-30", 0, "벤치프레스", 5, 10, 2, 30, true, 30)
         val b = ExerciseHistoryEntity(1, "2020-01-01", 1, "데드리프트", 10, 10, 3, 40, false, 40)
         val c = ExerciseHistoryEntity(2, "2020-01-01", 2, "스쿼드", 15, 10, 4, 50, true, 40)
@@ -86,12 +86,13 @@ class HistoryFragment : BaseFragment() {
         val k = ExerciseHistoryEntity(10, "2020-01-13", 3, "팔굽혀펴기", 0, 10, 4, 20, false, 80)
         val l = ExerciseHistoryEntity(11, "2020-01-15", 4, "벤치프레스", 30, 10, 6, 30, true, 100)
 
+
         Flowable.just("abc")
             .subscribeOn(Schedulers.io())
             .subscribe {
                 db.ExerciseHistoryDAO().insert(a, b, c, d, e, f, g, h, i, j, k, l)
             }
-
+*/
         historyViewModel.loadHistories()
 /*
         for(history in historyViewModel.histories.value!!.toList()){

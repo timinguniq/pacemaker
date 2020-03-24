@@ -30,6 +30,6 @@ class AdditionViewModel
     private fun handleTheExerciseData(additionData: AdditionData?){
         val tempAdditionData = additionData?:AdditionData.empty()
         this.additionData.value = AdditionView(tempAdditionData.id, tempAdditionData.part_img, tempAdditionData.name,
-                tempAdditionData.mass, tempAdditionData.rep, tempAdditionData.set, tempAdditionData.interval)
+                tempAdditionData.mass, tempAdditionData.rep, tempAdditionData.setGoal, tempAdditionData.interval)
     }
 }

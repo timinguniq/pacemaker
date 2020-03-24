@@ -24,13 +24,13 @@ class HomeViewModel
         deleteExerciseData(DeleteExerciseData.Params(HomeData)) {it.fold(::handleFailure, ::handleTheExerciseData)}
 
     private fun handleHomeData(homeData: List<HomeData>){
-        this.homeList.value = homeData.map{ HomeView(it.id, it.part_img, it.name, it.mass, it.rep, it.set, it.interval) }
+        this.homeList.value = homeData.map{ HomeView(it.id, it.part_img, it.name, it.mass, it.rep, it.setGoal, it.interval) }
     }
 
     private fun handleTheExerciseData(homeData: HomeData?){
         val tempHomeData = homeData?:HomeData.empty()
         this.homeData.value = HomeView(tempHomeData.id, tempHomeData.part_img, tempHomeData.name,
-            tempHomeData.mass, tempHomeData.rep, tempHomeData.set, tempHomeData.interval)
+            tempHomeData.mass, tempHomeData.rep, tempHomeData.setGoal, tempHomeData.interval)
     }
 
 }

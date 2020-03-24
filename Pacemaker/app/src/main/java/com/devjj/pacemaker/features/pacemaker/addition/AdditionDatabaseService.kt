@@ -13,11 +13,11 @@ class AdditionDatabaseService
     // DB에 ExerciseData를 추가하는 함수.
     fun insertExerciseData(additionData: AdditionData) = db.ExerciseDAO().insert(
         ExerciseEntity(0, additionData.part_img, additionData.name, additionData.mass, additionData.rep,
-            additionData.set, additionData.interval,false))
+            additionData.setGoal, 0, additionData.interval))
 
     // DB에 ExerciseData를 업데이트(수정)하는 함수.
     fun updateExerciseData(additionData: AdditionData) = db.ExerciseDAO().update(
         ExerciseEntity(additionData.id, additionData.part_img, additionData.name, additionData.mass,
-            additionData.rep, additionData.set, additionData.interval,false))
+            additionData.rep, additionData.setGoal, 0, additionData.interval))
 
 }

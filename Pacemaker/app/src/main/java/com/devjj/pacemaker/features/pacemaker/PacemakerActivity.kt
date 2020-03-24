@@ -82,31 +82,4 @@ class PacemakerActivity : BaseActivity() {
 
     }
 
-    // TODO: 임시로 ExerciseData만드는 코드 나중에 삭제해야 됨.
-    private fun addExerciseData(){
-        val a = ExerciseEntity(0, 0, "벤치프레스", 5, 10, 2, 30, false)
-        val b = ExerciseEntity(1, 1, "데드리프트", 10, 10, 3, 40, false)
-        val c = ExerciseEntity(2, 2, "스쿼드", 15, 10, 4, 50, false)
-        val d = ExerciseEntity(3, 3, "레그레이즈", 20, 10, 3, 60, false)
-        val e = ExerciseEntity(4, 4, "크런치(맛있다)", 25,10,  2, 70, false)
-        val f = ExerciseEntity(5, 3, "이두컬", 30, 10, 3, 30, false)
-        val g = ExerciseEntity(6, 2, "아놀드프레스", 35, 10, 3, 40, false)
-
-        Flowable.just("abc")
-            .subscribeOn(Schedulers.io())
-            .subscribe {
-                db.ExerciseDAO().insert(a, b, c, d, e, f, g)
-            }.isDisposed
-    }
-
-    private fun deleteExerciseData(){
-        Flowable.just("abc")
-            .subscribeOn(Schedulers.io())
-            .subscribe {
-                db.ExerciseDAO().deleteAll()
-            }.isDisposed
-    }
-
-    // 여기까지
-
 }

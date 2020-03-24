@@ -7,7 +7,7 @@ data class AdditionData(val id: Int,
                     val name: String,
                     val mass: Int,
                     val rep: Int,
-                    val set: Int,
+                    val setGoal: Int,
                     val interval: Int) {
 
     companion object{

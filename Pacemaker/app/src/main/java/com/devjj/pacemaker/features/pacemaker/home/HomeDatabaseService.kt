@@ -12,6 +12,6 @@ class HomeDatabaseService
     // DB에 ExerciseData를 삭제하는 함수.
     fun deleteExerciseData(homeData: HomeData) = db.ExerciseDAO().delete(
         ExerciseEntity(homeData.id, homeData.part_img, homeData.name, homeData.mass, homeData.rep,
-            homeData.set, homeData.interval,false)
+            homeData.setGoal, 0, homeData.interval)
     )
 }

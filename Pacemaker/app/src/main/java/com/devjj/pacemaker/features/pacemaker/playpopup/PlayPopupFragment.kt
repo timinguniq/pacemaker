@@ -278,10 +278,10 @@ class PlayPopupFragment : BaseFragment() {
         var achivementCount = 0
         val playPopupDataList = mutableListOf<PlayPopupData>()
         for(popupView in playPopupView.orEmpty()){
-            if(popupView.achivement == 0){
-                val bAchivement = popupView.achivement != 0
+            val achivement = popupView.setGoal == popupView.setDone
+            if(!achivement){
                 currentPlayPopupData = PlayPopupData(popupView.id, popupView.part, popupView.name, popupView.mass,
-                    popupView.rep, popupView.set, popupView.interval, bAchivement)
+                    popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval)
                 showInitSetting(popupView)
 
                 break
@@ -291,7 +291,7 @@ class PlayPopupFragment : BaseFragment() {
                 Log.d("test", "playPopupView : ${playPopupView?.size}")
 
                 val initPlayPopupData = PlayPopupData(popupView.id, popupView.part, popupView.name, popupView.mass,
-                    popupView.rep, popupView.set, popupView.interval, false)
+                    popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval)
                 playPopupDataList.add(initPlayPopupData)
 
                 if(achivementCount == playPopupView?.size){
@@ -307,27 +307,12 @@ class PlayPopupFragment : BaseFragment() {
         }
     }
 
-    // 스크롤 자동 이동하는 함수
-    private fun scrollRecyclerview(position: Int){
-        Log.d("test", "scroll achivementCount position : ${position}")
-        //fPlayPopup_rv.layoutManager?.scrollToPosition(position)
-        fPlayPopup_rv.layoutManager?.scrollToPosition(0)
-
-        Handler().post {
-            when(position){
-                0 -> fPlayPopup_rv.layoutManager?.scrollToPosition(position)
-                in 1..(playPopupAdapter.itemCount-3) -> fPlayPopup_rv.layoutManager?.scrollToPosition(position + 2)
-                in (playPopupAdapter.itemCount-2)..(playPopupAdapter.itemCount) -> fPlayPopup_rv.layoutManager?.scrollToPosition(playPopupAdapter.itemCount - 1)
-            }
-        }
-    }
-
     // playPopupView 데이터 업데이트하는 함수
     private fun updatePlayPopupView(){
         val playPopupViewList = playPopupViewModel.playPopupList.value
 
         for(a in playPopupViewList.orEmpty()){
-            Log.d("test", "playPopupList a : ${a.set}")
+            Log.d("test", "playPopupList a : ${a.setGoal}")
         }
     }
 
@@ -337,12 +322,12 @@ class PlayPopupFragment : BaseFragment() {
             // 현재 세트에 1을 더하는 함수.
             currentSet++
             val currentPlayPopupView = PlayPopupView(currentPlayPopupData.id, currentPlayPopupData.part_img, currentPlayPopupData.name,
-                currentPlayPopupData.mass, currentPlayPopupData.rep, currentPlayPopupData.set, currentPlayPopupData.interval,
-                if(currentPlayPopupData.achivement) 1 else 0)
+                currentPlayPopupData.mass, currentPlayPopupData.rep, currentPlayPopupData.setGoal,
+                currentPlayPopupData.setDone, currentPlayPopupData.interval)
             showInitSetting(currentPlayPopupView)
         }else{
             // maxSet <= currentSet
-            currentPlayPopupData.achivement = true
+            currentPlayPopupData.setDone = currentSet
             playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
             playPopupViewModel.loadPlayPopupList()
         }
@@ -353,7 +338,7 @@ class PlayPopupFragment : BaseFragment() {
         mode = STOP_MODE
         Log.d("test", "showBoardSetting")
         // 최대 셋 설정하는 코드
-        var playPopupViewSet = currentPlayPopupView.set
+        var playPopupViewSet = currentPlayPopupView.setGoal
         maxSet = playPopupViewSet
         //
 
@@ -374,7 +359,7 @@ class PlayPopupFragment : BaseFragment() {
         var massUnit = getString(R.string.fPlayPopup_mass_unit)
         var setUnit = getString(R.string.fPlayPopup_set_unit)
         var mstxv = currentPlayPopupView.mass.toString() + massUnit + " $slash " +
-                currentPlayPopupView.set.toString() + setUnit
+                currentPlayPopupView.setGoal.toString() + setUnit
         fPlayPopup_tv_m_s.text = mstxv
 
         interval = currentPlayPopupView.interval

@@ -45,8 +45,7 @@ class PlayPopupViewModel
 
     private fun handlePlayPopupData(playPopupData: List<PlayPopupData>){
         this.playPopupList.value = playPopupData.map{
-            val iAchivement = if(it.achivement) 1 else 0
-            PlayPopupView(it.id, it.part_img, it.name, it.mass, it.rep, it.set, it.interval, iAchivement)
+            PlayPopupView(it.id, it.part_img, it.name, it.mass, it.rep, it.setGoal, it.setDone, it.interval)
         }
     }
 

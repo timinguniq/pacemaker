@@ -43,7 +43,7 @@ class HistoryDetailAdapter
                 clickListener(historyDetailView.id ,historyDetailView.date)
             }
 
-            if(historyDetailView.achievement == 1) itemView.rvExerciseItem_clo_main.setBackgroundColor(Color.GREEN) else itemView.rvExerciseItem_clo_main.setBackgroundColor(Color.RED)
+            //if(historyDetailView.achievement == 1) itemView.rvExerciseItem_clo_main.setBackgroundColor(Color.GREEN) else itemView.rvExerciseItem_clo_main.setBackgroundColor(Color.RED)
         }
     }
 }

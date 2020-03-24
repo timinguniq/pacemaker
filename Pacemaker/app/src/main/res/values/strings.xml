@@ -8,6 +8,8 @@
     <string name="navigation_history_txv">History</string>
 
     <string name="aPacemaker_title_txv">내 트레이닝</string>
+    <string name="fHistory_title_txv">기록</string>
+    <string name="aHistoryDetail_title_txv">%s월 %s일</string>
 
     <!-- 임시 단위 -->
     <string name="rvExerciseItem_mass">%dkg</string>
@@ -48,9 +50,13 @@
     <string name="fPlayPopup_timer_txv">Timer</string>
     <string name="fPlayPopup_set_txv">%d\/%dset</string>
 
+
+
     <string name="rh_mass">%dkg</string>
     <string name="rh_set">%dset</string>
     <string name="rh_interval">%ds</string>
     <string name="rh_rate">%d%%</string>
+    <string name="fHistory_detail_set">%d 세트</string>
+    <string name="fHistory_detail_rep">%d 회</string>
 
 </resources>

@@ -14,6 +14,7 @@ import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
+import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
@@ -52,7 +53,7 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
 
     // homeFragment 초기화 하는 함수
     private fun initializeView() {
-
+        this.activity!!.aPacemaker_tv_title.text="내 트레이닝"
         if(!setting.isDarkMode){
             // 화이트모드
             fHome_floating_action_btn.setImageResource(R.drawable.fhome_wm_fabtn_img)

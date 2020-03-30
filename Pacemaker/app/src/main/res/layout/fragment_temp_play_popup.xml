@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:CircleProgressView="http://schemas.android.com/tools"
     android:id="@+id/fPlayPopup_clo_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -167,11 +168,22 @@
         app:layout_constraintBottom_toTopOf="@+id/fPlayPopup_clo_exercise_content">
 
         <!-- TODO : 나중에 circle progress를 사용해야 될 것 같다. -->
-        <ImageView
+        <at.grabner.circleprogress.CircleProgressView
+            android:id="@+id/fPlayPopup_cv_rate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/faddition_wm_rest_plus_img"
-            android:contentDescription="@string/image_not_found"
+            android:layout_gravity="center"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            CircleProgressView:cpv_autoTextSize="false"
+            app:cpv_barColor="#ff5c84d0"
+            app:cpv_barWidth="25dp"
+            app:cpv_innerContourSize="0dp"
+            app:cpv_outerContourSize="0dp"
+            app:cpv_rimColor="#ff9cb3e1"
+            app:cpv_rimWidth="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -361,18 +373,18 @@
         <FrameLayout
             android:id="@+id/fPlayPopup_flo_plus"
             android:layout_width="100dp"
-            android:layout_height="45dp"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/fPlayPopup_clo_next_under"
-            app:layout_constraintVertical_chainStyle="spread_inside">
+            app:layout_constraintBottom_toTopOf="@+id/fPlayPopup_clo_next_under">
 
-            <Button
-                android:id="@+id/fPlayPopup_btn_plus"
+            <TextView
+                android:id="@+id/fPlayPopup_tv_plus"
                 android:layout_width="75dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:text="@string/fPlayPopup_btn_plus_txv"
                 android:textSize="13sp"
                 android:background="@drawable/fplaypopup_wm_plus_bg"/>

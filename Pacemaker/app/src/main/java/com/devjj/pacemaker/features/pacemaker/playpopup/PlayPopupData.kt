@@ -9,9 +9,10 @@ data class PlayPopupData(val id: Int,
                          val rep: Int,
                          val setGoal: Int,
                          var setDone: Int,
-                         val interval: Int) {
+                         val interval: Int,
+                         var achievement: Boolean) {
 
     companion object{
-        fun empty() = PlayPopupData(-1, 0, String.empty(), 0, 0, 0, 0, 0)
+        fun empty() = PlayPopupData(-1, 0, String.empty(), 0, 0, 0, 0, 0, false)
     }
 }

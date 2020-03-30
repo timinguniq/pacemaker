@@ -421,10 +421,10 @@
             <!-- 빈 공간을 만들기 위한 View -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="80dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fAddition_clo_interval"/>
+                app:layout_constraintTop_toBottomOf="@+id/fAddition_flo_save"/>
 
 
 

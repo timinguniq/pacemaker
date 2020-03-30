@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dProfile_clo_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dProfile_clo_height"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/dProfile_clo_weight"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dProfile_tv_height"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="@string/dProfile_height_txv"
+            android:textSize="23sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/dProfile_ev_height"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/dProfile_ev_height"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:background="@null"
+            android:inputType="number"
+            android:importantForAutofill="no"
+            android:textSize="23sp"
+            android:hint="@string/dProfile_height_hint_txv"
+            android:textColorHint="#ffcccccc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dProfile_tv_height"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/dProfile_clo_weight"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/dProfile_tv_confirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dProfile_clo_height">
+
+        <TextView
+            android:id="@+id/dProfile_tv_weight"
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:text="@string/dProfile_weight_txv"
+            android:textSize="23sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/dProfile_ev_weight"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <EditText
+            android:id="@+id/dProfile_ev_weight"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:background="@null"
+            android:inputType="number"
+            android:importantForAutofill="no"
+            android:textSize="23sp"
+            android:hint="@string/dProfile_weight_hint_txv"
+            android:textColorHint="#ffcccccc"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/dProfile_tv_weight"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <TextView
+        android:id="@+id/dProfile_tv_confirm"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:text="@string/dRemove_confirm_txv"
+        android:textSize="17sp"
+        android:textColor="#ff000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dProfile_clo_weight"/>
+
+    <!--
+    <TextView
+        android:id="@+id/dProfile_tv_cancel"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:text="@string/dRemove_cancel_txv"
+        android:textSize="17sp"
+        android:textColor="#ff000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dProfile_tv_confirm"
+        app:layout_constraintTop_toBottomOf="@+id/dProfile_clo_height"/>
+-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

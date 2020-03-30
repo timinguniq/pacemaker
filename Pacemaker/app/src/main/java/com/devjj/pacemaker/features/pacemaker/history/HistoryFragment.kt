@@ -56,6 +56,7 @@ class HistoryFragment : BaseFragment() {
 
             else ->
                 for (history in histories!!) {
+                    Log.d("test", "datess ${history.date}")
                     var dates = history.date.split("-")
                     Log.d("calendarcheck", "${dates[0]} , ${dates[1]} , ${dates[2]}")
                     fHistory_calendarView.setDateSelected(

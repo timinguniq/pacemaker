@@ -44,6 +44,16 @@
     <string name="dRemove_confirm_txv">확인</string>
     <string name="dRemove_cancel_txv">취소</string>
 
+    <string name="dProfile_height_txv">키</string>
+    <string name="dProfile_height_hint_txv">키(cm)</string>
+    <string name="dProfile_weight_txv">몸무게</string>
+    <string name="dProfile_weight_hint_txv">몸무게(kg)</string>
+    <string name="dProfile_confirm_txv">확인</string>
+
+    <string name="dGiveUp_give_up_txv">이 운동을 포기하시겠습니까?</string>
+    <string name="dGiveUp_confirm_txv">확인</string>
+    <string name="dGiveUp_cancel_txv">취소</string>
+
     <string name="fPlayPopup_continue_btn_txv">Continue</string>
     <string name="fPlayPopup_title_checkbox_txv">여부</string>
     <string name="fPlayPopup_list_unavailable">데이터가 없습니다.</string>

@@ -5,7 +5,8 @@ import android.os.Parcelable
 
 // achivement 원래 boolean으로 가야 되긴하는데 readBoolean이 안돼서 Int로 가고 0이면 false, 1이면 true로 하는 걸로
 data class PlayPopupView(val id: Int, val part: Int, val name: String, val mass: Int,
-                         val rep: Int, val setGoal: Int, var setDone: Int, val interval: Int) :
+                         val rep: Int, val setGoal: Int, var setDone: Int,
+                         val interval: Int, val achievement: Int) :
     Parcelable {
     /*
     companion object{
@@ -26,7 +27,7 @@ data class PlayPopupView(val id: Int, val part: Int, val name: String, val mass:
     override fun describeContents() = 0
 
     constructor(parcel: Parcel) : this(parcel.readInt(), parcel.readInt(), parcel.readString()!!, parcel.readInt(),
-        parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt())
+        parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt())
 
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
@@ -39,6 +40,7 @@ data class PlayPopupView(val id: Int, val part: Int, val name: String, val mass:
             writeInt(setGoal)
             writeInt(setDone)
             writeInt(interval)
+            writeInt(achievement)
         }
     }
 }

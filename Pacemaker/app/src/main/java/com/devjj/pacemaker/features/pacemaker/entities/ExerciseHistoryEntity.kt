@@ -18,8 +18,8 @@ data class ExerciseHistoryEntity(
     val interval: Int,
     val achievement: Boolean,
     val achievementRate: Int,
-    val weight : Int,
     val height : Int,
+    val weight : Int,
     val totalTime: Int
 ){
     fun toHistory() = History(id, date, achievementRate)

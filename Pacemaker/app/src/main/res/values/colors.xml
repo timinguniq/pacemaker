@@ -12,4 +12,37 @@
 
     <color name="rv_exercise_item_wm_bg_clor">#FFF8F8F8</color>
     <color name="rv_exercise_item_dm_bg_clor">#FF88898A</color>
+
+    <color name="fOption_color_wm_txv_menu">#FF88898A</color>
+    <color name="fOption_color_wm_txv_item">#FF3B4046</color>
+
+    <color name="base_orange">#FFFF765B</color>
+    <color name="sub_orange">#B3FF765B</color>
+    <color name="base_blue">#FF5C83CF</color>
+    <color name="sub_blue">#B35C83CF</color>
+    <color name="base_grey">#FFF9F9F9</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="orange_bg_basic">#FFFF765B</color>
+    <color name="orange_bg_thick">#FFF74938</color>
+    <color name="orange_bg_transparent">#B3FF765B</color>
+
+    <color name="blue_bg_basic">#FF5C83CF</color>
+    <color name="blue_bg_thick">#FF5f87d6</color>
+    <color name="blue_bg_transparent">#B35C83CF</color>
+
+    <color name="grey_bg_basic">#FFF9F9F9</color>
+    <color name="grey_bg_thick">#FF606060</color>
+    <color name="grey_bg_thickest">#FF444646</color>
+    <color name="grey_bg_light">#B3F9F9F9</color>
+
+
+    <color name="white_txt_thick">#FFF7FAFD</color>
+    <color name="white_txt_light"></color>
+    <color name="black_txt_thick">#FF3b4046</color>
+    <color name="black_txt_light"></color>
+    <color name="grey_txt_thick">#FFb2b2b2</color>
+    <color name="grey_txt_light">#FF87888A</color>
+
+
 </resources>

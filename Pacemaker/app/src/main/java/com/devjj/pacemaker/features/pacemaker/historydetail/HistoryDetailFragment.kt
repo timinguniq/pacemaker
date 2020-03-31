@@ -66,7 +66,8 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
     }
 
     private fun initializeView() {
-
+        fHistoryDetail_circleView_rate.setTextTypeface(Typeface.DEFAULT_BOLD)
+        fHistoryDetail_circleView_rate.setUnitTextTypeface(Typeface.DEFAULT_BOLD)
         historyDetailAdapter.clickListener = { id, date ->
             historyDetailViewModel.switchAchievementById(id)
             historyDetailViewModel.updateAchievementRateByDate(date)
@@ -84,7 +85,5 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
             date.split("-")[1],
             date.split("-")[2]
         )
-        //  "${date.split("-")[1]}월 ${date.split("-")[2]}일"
     }
 }
-

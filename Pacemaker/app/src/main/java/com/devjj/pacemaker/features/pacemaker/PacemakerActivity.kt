@@ -10,6 +10,7 @@ import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
+import com.devjj.pacemaker.features.pacemaker.addition.isDarkMode
 import com.devjj.pacemaker.features.pacemaker.entities.ExerciseEntity
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.google.android.gms.ads.AdRequest
@@ -82,5 +83,4 @@ class PacemakerActivity : BaseActivity() {
         aPacemaker_adView.loadAd(adRequest)
         // TODO : 여기까지 인데. 광고 때문에 view로 매개변수 받아야 될 것 같음.
     }
-
 }

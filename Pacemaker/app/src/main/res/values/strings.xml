@@ -10,6 +10,7 @@
     <string name="aPacemaker_title_txv">내 트레이닝</string>
     <string name="fHistory_title_txv">기록</string>
     <string name="aHistoryDetail_title_txv">%s월 %s일</string>
+    <string name="aOption_title_txv">옵션</string>
 
     <!-- 임시 단위 -->
     <string name="rvExerciseItem_mass">%dkg</string>
@@ -59,10 +60,24 @@
     <string name="fPlayPopup_plus_unit">+</string>
 
     <string name="rh_mass">%dkg</string>
+    <string name="rh_height">%.1fcm</string>
     <string name="rh_set">%dset</string>
     <string name="rh_interval">%ds</string>
     <string name="rh_rate">%d%%</string>
     <string name="fHistory_detail_set">%d 세트</string>
     <string name="fHistory_detail_rep">%d 회</string>
+
+    <string name="fOption_txv_profile">프로필</string>
+    <string name="fOption_txv_mode">야간 모드</string>
+    <string name="fOption_txv_weight">몸무게</string>
+    <string name="fOption_txv_height">키</string>
+    <string name="fOption_txv_interval">휴식 시간</string>
+    <string name="fOption_txv_language">언어</string>
+    <string name="fOption_txv_korean">한국어</string>
+    <string name="fOption_txv_english">영어</string>
+    <string name="fOption_txv_supportUs">SUPPORT US</string>
+    <string name="fOption_txv_rateUs">평점주기</string>
+    <string name="fOption_txv_feedback">피드백</string>
+    <string name="fOption_txv_share">공유</string>
 
 </resources>

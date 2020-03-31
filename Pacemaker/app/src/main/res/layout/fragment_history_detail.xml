@@ -7,11 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".pacemaker.historydetail.HistoryDetailFragment">
 
-    <FrameLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fHistoryDetail_container_pieChart"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_tv_totalSets"
+        app:layout_constraintBottom_toTopOf="@id/fHistoryDetail_recyclerview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -20,7 +20,7 @@
             android:id="@+id/fHistoryDetail_circleView_rate"
             android:layout_width="166dp"
             android:layout_height="166dp"
-            android:layout_gravity="center"
+            android:layout_marginTop="65dp"
             CircleProgressView:cpv_autoTextSize="false"
             app:cpv_barColor="#FFFF765B"
             app:cpv_barWidth="25dp"
@@ -38,33 +38,38 @@
             app:cpv_unitPosition="right_bottom"
             app:cpv_unitScale="1"
             app:cpv_unitSize="20sp"
-            app:cpv_unitTypeface="DEFAULT_BOLD" />
+            app:cpv_unitTypeface="DEFAULT_BOLD"
+            app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_tv_totalSets"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </FrameLayout>
+        <TextView
+            android:id="@+id/fHistoryDetail_tv_totalSets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="totalSets"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_tv_totalReps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fHistoryDetail_circleView_rate"
+            app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/fHistoryDetail_tv_totalSets"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="totalSets"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_tv_totalReps"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fHistoryDetail_container_pieChart" />
+        <TextView
+            android:id="@+id/fHistoryDetail_tv_totalReps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="totalReps"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fHistoryDetail_tv_totalSets" />
 
-    <TextView
-        android:id="@+id/fHistoryDetail_tv_totalReps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="totalReps"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/fHistoryDetail_recyclerview"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/fHistoryDetail_tv_totalSets" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fHistoryDetail_recyclerview"
@@ -73,7 +78,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fHistoryDetail_tv_totalReps">
+        app:layout_constraintTop_toBottomOf="@id/fHistoryDetail_container_pieChart">
 
     </androidx.recyclerview.widget.RecyclerView>
 

@@ -35,6 +35,9 @@ val dmDialogMainBackgroundColor = dmContainerColor
 val wmDialogMainTextColor = dmStatusBarColor
 val dmDialogMainTextColor = wmContainerColor
 
+val wmDialogMainHintTextColor = Color.argb(120, 68, 70, 71)
+val dmDialogMainHintTextColor = Color.argb(120, 255, 255, 255)
+
 val wmDialogBtnTextColor = wmStatusBarColor
 val dmDialogBtnTextColor = Color.argb(255, 247, 73, 56)
 //

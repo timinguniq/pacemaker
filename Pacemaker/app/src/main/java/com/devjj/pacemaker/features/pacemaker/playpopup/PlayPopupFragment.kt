@@ -11,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.annotation.MainThread
 import androidx.annotation.StringRes
+import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.marginBottom
 import androidx.core.view.marginEnd
@@ -25,6 +26,7 @@ import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionListener
+import kotlinx.android.synthetic.main.dialog_profile_input.view.*
 import kotlinx.android.synthetic.main.fragment_play_popup.*
 import kotlinx.android.synthetic.main.fragment_temp_play_popup.*
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +37,6 @@ import javax.inject.Inject
 import kotlin.concurrent.schedule
 
 class PlayPopupFragment : BaseFragment() {
-
     @Inject lateinit var setting: SettingSharedPreferences
     @Inject lateinit var navigator: Navigator
     @Inject lateinit var playPopupAdapter: PlayPopupAdapter
@@ -43,6 +44,8 @@ class PlayPopupFragment : BaseFragment() {
     private lateinit var playPopupListener: PlayPopupListener
 
     private lateinit var playPopupViewModel: PlayPopupViewModel
+
+    private var totalTimer: TimerTask = Timer().schedule(100, 1000){}
 
     // 진행바들 변수 리스트
     private val progressBars: List<View> by lazy{
@@ -96,18 +99,31 @@ class PlayPopupFragment : BaseFragment() {
         initSettingMode(isDarkMode)
 
         // playPopupListener 초기화
-        playPopupListener = PlayPopupListener(activity!!, this, playPopupViewModel)
+        playPopupListener = PlayPopupListener(activity!!, this, playPopupViewModel, navigator)
 
         // 클릭 리스너들 모아둔 함수.
         playPopupListener.clickListener()
 
-
         // DB에 있는 데이터 로드
         playPopupViewModel.loadPlayPopupList()
 
-        // 테스트 코드
+        // 초기 마진 셋팅
         marginPartImg(25)
+
+        totalTime = 0
+
+        // totalTimer 시작시키는 함수.
+        totalTimer()
+
+        // 테스트 코드
+        fPlayPopup_cv_rate.setValue(0f)
         //
+
+    }
+
+    override fun onStop() {
+        super.onStop()
+        totalTimer.cancel()
     }
 
     // playPopupFragment 초기화 하는 함수
@@ -163,13 +179,15 @@ class PlayPopupFragment : BaseFragment() {
         0 -> 상태바 색깔
         1 -> 배경이미지
         2 -> 진행바 진행 안됐을 때 배경 이미지
-        3 -> 운동 이름 색깔
-        4 -> 무게랑 세트 색깔
-        5 -> 저장 버튼 이미지
-        6 -> 추가 시간 글자 색깔지
-        7 -> 추가 시간 글자 배경 이미지
-        8 -> 아래 배경 이미지
-        9 -> 아래 다음 배경 이미
+        3 -> 부위 나오는 바깥원 rim 색깔
+        4 -> 부위 나오는 바깥원 bar 색깔
+        5 -> 운동 이름 색깔
+        6 -> 무게랑 세트 색깔
+        7 -> 저장 버튼 이미지
+        8 -> 추가 시간 글자 색깔지
+        9 -> 추가 시간 글자 배경 이미지
+        10 -> 아래 배경 이미지
+        11 -> 아래 다음 배경 이미지
         */
         val listResource = mutableListOf<Int>()
 
@@ -178,6 +196,8 @@ class PlayPopupFragment : BaseFragment() {
             listResource.add(wmStatusBarColor)
             listResource.add(R.drawable.fplaypopup_wm_bg)
             listResource.add(R.drawable.fplaypopup_wm_progress_unselect_bar)
+            listResource.add(wmCircleRimColor)
+            listResource.add(wmCircleBarColor)
             listResource.add(wmExerciseNameTextColor)
             listResource.add(wmMassSetTextColor)
             listResource.add(R.drawable.faddition_wm_save_img)
@@ -190,6 +210,8 @@ class PlayPopupFragment : BaseFragment() {
             listResource.add(dmStatusBarColor)
             listResource.add(R.drawable.fplaypopup_dm_bg)
             listResource.add(R.drawable.fplaypopup_dm_progress_unselect_bar)
+            listResource.add(dmCircleRimColor)
+            listResource.add(dmCircleBarColor)
             listResource.add(dmExerciseNameTextColor)
             listResource.add(dmMassSetTextColor)
             listResource.add(R.drawable.faddition_dm_save_img)
@@ -204,14 +226,15 @@ class PlayPopupFragment : BaseFragment() {
         for(view in progressBars){
             view.setBackgroundResource(listResource[2])
         }
-
-        fPlayPopup_tv_name.setTextColor(listResource[3])
-        fPlayPopup_tv_m_s.setTextColor(listResource[4])
-        fPlayPopup_iv_confirm.setImageResource(listResource[5])
-        fPlayPopup_btn_plus.setTextColor(listResource[6])
-        fPlayPopup_btn_plus.setBackgroundResource(listResource[7])
-        fPlayPopup_vi_under.setBackgroundResource(listResource[8])
-        fPlayPopup_flo_next.setBackgroundResource(listResource[9])
+        fPlayPopup_cv_rate.rimColor = listResource[3]
+        fPlayPopup_cv_rate.setBarColor(listResource[4])
+        fPlayPopup_tv_name.setTextColor(listResource[5])
+        fPlayPopup_tv_m_s.setTextColor(listResource[6])
+        fPlayPopup_iv_confirm.setImageResource(listResource[7])
+        fPlayPopup_tv_plus.setTextColor(listResource[8])
+        fPlayPopup_tv_plus.setBackgroundResource(listResource[9])
+        fPlayPopup_vi_under.setBackgroundResource(listResource[10])
+        fPlayPopup_flo_next.setBackgroundResource(listResource[11])
 
         fPlayPopup_clo_next.visibility = View.GONE
     }
@@ -278,10 +301,10 @@ class PlayPopupFragment : BaseFragment() {
         var achivementCount = 0
         val playPopupDataList = mutableListOf<PlayPopupData>()
         for(popupView in playPopupView.orEmpty()){
-            val achivement = popupView.setGoal == popupView.setDone
+            val achivement = popupView.achievement == 1
             if(!achivement){
                 currentPlayPopupData = PlayPopupData(popupView.id, popupView.part, popupView.name, popupView.mass,
-                    popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval)
+                    popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval, popupView.achievement == 1)
                 showInitSetting(popupView)
 
                 break
@@ -291,17 +314,27 @@ class PlayPopupFragment : BaseFragment() {
                 Log.d("test", "playPopupView : ${playPopupView?.size}")
 
                 val initPlayPopupData = PlayPopupData(popupView.id, popupView.part, popupView.name, popupView.mass,
-                    popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval)
+                    popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval,
+                    popupView.achievement == 1
+                )
                 playPopupDataList.add(initPlayPopupData)
 
                 if(achivementCount == playPopupView?.size){
                     // TODO: view 종료 되고 historyDB로 저장되게 해야 될 것 같다.
+                    totalTimer.cancel()
+
+                    navigator.showProfileDialog(activity!!, isDarkMode, playPopupViewModel, playPopupDataList)
+                    //showDialogProfile()
+
+                    Log.d("test", "totalTimer : $totalTime")
+
                     for(a in playPopupDataList){
+                        a.achievement = false
                         playPopupViewModel.updateExercisePlayPopupData(a)
                     }
 
                     Toast.makeText(context, "운동이 완료 되었습니다.", Toast.LENGTH_LONG).show()
-                    activity?.finish()
+                    //activity?.finish()
                 }
             }
         }
@@ -323,11 +356,16 @@ class PlayPopupFragment : BaseFragment() {
             currentSet++
             val currentPlayPopupView = PlayPopupView(currentPlayPopupData.id, currentPlayPopupData.part_img, currentPlayPopupData.name,
                 currentPlayPopupData.mass, currentPlayPopupData.rep, currentPlayPopupData.setGoal,
-                currentPlayPopupData.setDone, currentPlayPopupData.interval)
+                currentPlayPopupData.setDone, currentPlayPopupData.interval,
+                if(currentPlayPopupData.achievement) 1 else 0)
             showInitSetting(currentPlayPopupView)
+
+            // setDone 업데이트 해주는 코드
+            currentPlayPopupData.setDone = currentSet
+            playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
         }else{
             // maxSet <= currentSet
-            currentPlayPopupData.setDone = currentSet
+            currentPlayPopupData.achievement = true
             playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
             playPopupViewModel.loadPlayPopupList()
         }
@@ -349,6 +387,11 @@ class PlayPopupFragment : BaseFragment() {
         settingNextProgressBars(currentSet)
         //
 
+        // Circle 화면에 표시하는 코드
+        val circleProgress = (100 * currentSet / maxSet).toFloat()
+        fPlayPopup_cv_rate.setValue(circleProgress)
+        //
+
         // 근육 부위 화면에 셋팅하는 코드
         var partImgResources = convertPartImgToResource(currentPlayPopupView.part ,isDarkMode)
         fPlayPopup_iv_part_img.setImageResource(partImgResources)
@@ -366,6 +409,11 @@ class PlayPopupFragment : BaseFragment() {
         val timerText = settingFormatForTimer(interval)
         fPlayPopup_tv_rest_time.text = timerText
 
+        if(currentSet == maxSet){
+            interval = setting.restTime
+            val restTimeText = settingFormatForTimer(interval)
+            fPlayPopup_tv_rest_time.text = restTimeText
+        }
 
         /*
         fPlayPopup_tv_timer?.setTextColor(Color.argb(255, 0, 0, 0))
@@ -381,7 +429,16 @@ class PlayPopupFragment : BaseFragment() {
 
     }
 
-    //
+    // totalTime 시간 늘리는 Timer
+    private fun totalTimer(){
+        totalTimer = Timer("TotalTimer", false).schedule(60000, 60000){
+            runBlocking {
+                launch(Dispatchers.Main){
+                    totalTime++
+                }
+            }
+        }
+    }
 
     // 부위 이미지 마진주는 함수
     fun marginPartImg(margin: Int){
@@ -446,6 +503,65 @@ class PlayPopupFragment : BaseFragment() {
     }
 */
 
+   /*
+    // Dialog 띄우는 함수
+    private fun showDialogProfile(){
+        val builder = AlertDialog.Builder(activity!!)
+        val dialogView = activity!!.layoutInflater.inflate(R.layout.dialog_profile_input, null)
+
+        if(!isDarkMode){
+            // 화이트모드
+            dialogView.dProfile_clo_main.setBackgroundColor(wmDialogMainBackgroundColor)
+
+            dialogView.dProfile_tv_height.setTextColor(wmDialogMainTextColor)
+            dialogView.dProfile_ev_height.setTextColor(wmDialogMainTextColor)
+            dialogView.dProfile_ev_height.setHintTextColor(wmDialogMainHintTextColor)
+
+            dialogView.dProfile_tv_weight.setTextColor(wmDialogMainTextColor)
+            dialogView.dProfile_ev_weight.setTextColor(wmDialogMainTextColor)
+            dialogView.dProfile_ev_weight.setHintTextColor(wmDialogMainHintTextColor)
+
+            dialogView.dProfile_tv_confirm.setTextColor(wmDialogBtnTextColor)
+
+        }else{
+            // 다크모드
+            dialogView.dProfile_clo_main.setBackgroundColor(dmDialogMainBackgroundColor)
+
+            dialogView.dProfile_tv_height.setTextColor(dmDialogMainTextColor)
+            dialogView.dProfile_ev_height.setTextColor(dmDialogMainTextColor)
+            dialogView.dProfile_ev_height.setHintTextColor(dmDialogMainHintTextColor)
+
+            dialogView.dProfile_tv_weight.setTextColor(dmDialogMainTextColor)
+            dialogView.dProfile_ev_weight.setTextColor(dmDialogMainTextColor)
+            dialogView.dProfile_ev_weight.setHintTextColor(dmDialogMainHintTextColor)
+
+            dialogView.dProfile_tv_confirm.setTextColor(dmDialogBtnTextColor)
+        }
+
+        val dialog = builder.setView(dialogView).show()
+
+        dialogView.dProfile_tv_confirm.setOnClickListener {
+            Log.d("test", "showDeleteDialog confirm")
+            *//*
+            val homeData =
+                HomeData(
+                    homeView.id, homeView.part_img, homeView.name, homeView.mass,
+                    homeView.rep, homeView.set, homeView.interval
+                )
+            // ExerciseData 삭제하는 코드
+            homeViewModel.deleteExerciseData(homeData)
+            // homeData 갱신하는 코드
+            homeViewModel.loadHomeList()
+            *//*
+            // dialog 없애는 코드
+            dialog.dismiss()
+        }
+        dialog.setOnDismissListener {
+            Log.d("Test", "dialog onDismiss")
+            activity?.finish()
+        }
+    }
+*/
     // playPopup 데이터 갱신 실패시 핸들링하는 함수.
     private fun handleFailure(failure: Failure?) {
         when (failure) {

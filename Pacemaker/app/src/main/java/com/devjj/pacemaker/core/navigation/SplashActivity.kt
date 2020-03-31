@@ -51,7 +51,10 @@ class SplashActivity : AppCompatActivity() {
         // 테스트 광고
         MobileAds.initialize(this) {}
 
-        // TODO : 테스트 코드 나중에 삭제
+        // TODO : 테스트 코드 나중에 ß삭제
         setting.isDarkMode = false
+
+        setting.restTime = 70
+        //
     }
 }

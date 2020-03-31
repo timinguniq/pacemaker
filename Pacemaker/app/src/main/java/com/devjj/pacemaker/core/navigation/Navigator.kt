@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import com.devjj.pacemaker.R
+import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.features.login.Authenticator
 import com.devjj.pacemaker.features.login.LoginActivity
@@ -19,15 +20,23 @@ import com.devjj.pacemaker.features.pacemaker.home.HomeData
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeView
 import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
+import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupData
+import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupView
+import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_pacemaker.*
+import kotlinx.android.synthetic.main.dialog_give_up_exercise.view.*
+import kotlinx.android.synthetic.main.dialog_profile_input.view.*
 import kotlinx.android.synthetic.main.dialog_remove.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class Navigator
-@Inject constructor(private val authenticator: Authenticator){
+@Inject constructor(private val authenticator: Authenticator, private val setting: SettingSharedPreferences){
+
     fun showLogin(context: Context) = context.startActivity(LoginActivity.callingIntent(context))
 
     fun showMain(context: Context) {
@@ -52,21 +61,21 @@ class Navigator
 
         if(!isDarkMode){
             // 화이트모드
-            dialogView.dremove_clo_main.setBackgroundColor(wmDialogMainBackgroundColor)
-            dialogView.dremove_tv_main.setTextColor(wmDialogMainTextColor)
-            dialogView.dremove_tv_confirm.setTextColor(wmDialogBtnTextColor)
-            dialogView.dremove_tv_cancel.setTextColor(wmDialogBtnTextColor)
+            dialogView.dRemove_clo_main.setBackgroundColor(wmDialogMainBackgroundColor)
+            dialogView.dRemove_tv_main.setTextColor(wmDialogMainTextColor)
+            dialogView.dRemove_tv_confirm.setTextColor(wmDialogBtnTextColor)
+            dialogView.dRemove_tv_cancel.setTextColor(wmDialogBtnTextColor)
         }else{
             // 다크모드
-            dialogView.dremove_clo_main.setBackgroundColor(dmDialogMainBackgroundColor)
-            dialogView.dremove_tv_main.setTextColor(dmDialogMainTextColor)
-            dialogView.dremove_tv_confirm.setTextColor(dmDialogBtnTextColor)
-            dialogView.dremove_tv_cancel.setTextColor(dmDialogBtnTextColor)
+            dialogView.dRemove_clo_main.setBackgroundColor(dmDialogMainBackgroundColor)
+            dialogView.dRemove_tv_main.setTextColor(dmDialogMainTextColor)
+            dialogView.dRemove_tv_confirm.setTextColor(dmDialogBtnTextColor)
+            dialogView.dRemove_tv_cancel.setTextColor(dmDialogBtnTextColor)
         }
 
         val dialog = builder.setView(dialogView).show()
 
-        dialogView.dremove_tv_confirm.setOnClickListener {
+        dialogView.dRemove_tv_confirm.setOnClickListener {
             Log.d("test", "showDeleteDialog confirm")
             val homeData =
                 HomeData(
@@ -81,8 +90,139 @@ class Navigator
             dialog.dismiss()
         }
 
-        dialogView.dremove_tv_cancel.setOnClickListener {
+        dialogView.dRemove_tv_cancel.setOnClickListener {
             Log.d("test", "showDeletedialog cancel")
+            dialog.dismiss()
+        }
+    }
+
+    // 삭제 다이얼 로그를 보여주는 함수.
+    fun showProfileDialog(activity: Activity, isDarkMode: Boolean, playPopupViewModel: PlayPopupViewModel, playPopupDataList: List<PlayPopupData>){
+        val builder = AlertDialog.Builder(activity)
+        val dialogView = activity.layoutInflater.inflate(R.layout.dialog_profile_input, null)
+
+        if(!isDarkMode){
+            // 화이트모드
+            dialogView.dProfile_clo_main.setBackgroundColor(wmDialogMainBackgroundColor)
+
+            dialogView.dProfile_tv_height.setTextColor(wmDialogMainTextColor)
+            dialogView.dProfile_ev_height.setTextColor(wmDialogMainTextColor)
+            dialogView.dProfile_ev_height.setHintTextColor(wmDialogMainHintTextColor)
+
+            dialogView.dProfile_tv_weight.setTextColor(wmDialogMainTextColor)
+            dialogView.dProfile_ev_weight.setTextColor(wmDialogMainTextColor)
+            dialogView.dProfile_ev_weight.setHintTextColor(wmDialogMainHintTextColor)
+
+            dialogView.dProfile_tv_confirm.setTextColor(wmDialogBtnTextColor)
+
+        }else{
+            // 다크모드
+            dialogView.dProfile_clo_main.setBackgroundColor(dmDialogMainBackgroundColor)
+
+            dialogView.dProfile_tv_height.setTextColor(dmDialogMainTextColor)
+            dialogView.dProfile_ev_height.setTextColor(dmDialogMainTextColor)
+            dialogView.dProfile_ev_height.setHintTextColor(dmDialogMainHintTextColor)
+
+            dialogView.dProfile_tv_weight.setTextColor(dmDialogMainTextColor)
+            dialogView.dProfile_ev_weight.setTextColor(dmDialogMainTextColor)
+            dialogView.dProfile_ev_weight.setHintTextColor(dmDialogMainHintTextColor)
+
+            dialogView.dProfile_tv_confirm.setTextColor(dmDialogBtnTextColor)
+        }
+
+        val dialog = builder.setView(dialogView).show()
+
+        dialogView.dProfile_tv_confirm.setOnClickListener {
+            Log.d("test", "showDeleteDialog confirm")
+            /*
+            val homeData =
+                HomeData(
+                    homeView.id, homeView.part_img, homeView.name, homeView.mass,
+                    homeView.rep, homeView.set, homeView.interval
+                )
+            // ExerciseData 삭제하는 코드
+            homeViewModel.deleteExerciseData(homeData)
+            // homeData 갱신하는 코드
+            homeViewModel.loadHomeList()
+            */
+            // dialog 없애는 코드
+            dialog.dismiss()
+        }
+
+        dialog.setOnDismissListener {
+            Log.d("test", "dialog onDismiss")
+            val sSaveHeight = dialogView.dProfile_ev_height.text.toString()
+            val sSaveWeight = dialogView.dProfile_ev_weight.text.toString()
+            val sSaveDate = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(Date())
+
+            // 키와 몸무게 입력 칸을 빈칸으로 넘겼을 시 SharedPreferences에 저장된 값 가져오기!
+            var iSaveHeight = 0
+            var iSaveWeight = 0
+            iSaveHeight = if(sSaveHeight == String.empty()) setting.height else sSaveHeight.toInt()
+            iSaveWeight = if(sSaveHeight == String.empty()) setting.weight else sSaveWeight.toInt()
+            //
+
+            for(playPopupData in playPopupDataList) {
+
+                Log.d("test", "id : ${playPopupData.id}, part_img : ${playPopupData.part_img}, name : ${playPopupData.name},\n"
+                                  + "mass : ${playPopupData.mass}, rep : ${playPopupData.rep}, setGoal : ${playPopupData.setGoal},\n"
+                                  + "setDone : ${playPopupData.setDone}, interval : ${playPopupData.interval}, achievement : ${playPopupData.achievement}")
+
+                val insertPlayPopupData =
+                    PlayPopupData(
+                        playPopupData.id, playPopupData.part_img, playPopupData.name,
+                        playPopupData.mass, playPopupData.rep, playPopupData.setGoal,
+                        playPopupData.setDone, playPopupData.interval, playPopupData.achievement
+                    )
+
+                playPopupViewModel.saveExerciseHistoryData(insertPlayPopupData, sSaveDate, iSaveHeight, iSaveWeight)
+            }
+
+
+            activity.finish()
+        }
+    }
+
+    // 운동 포기 다이얼 로그를 보여주는 함수.
+    fun showGiveUpExerciseDialog(activity: Activity, isDarkMode: Boolean, playPopupViewModel: PlayPopupViewModel, playPopupData: PlayPopupData){
+        val builder = AlertDialog.Builder(activity)
+        val dialogView = activity.layoutInflater.inflate(R.layout.dialog_give_up_exercise, null)
+
+        if(!isDarkMode){
+            // 화이트모드
+            dialogView.dGiveUp_clo_main.setBackgroundColor(wmDialogMainBackgroundColor)
+            dialogView.dGiveUp_tv_main.setTextColor(wmDialogMainTextColor)
+            dialogView.dGiveUp_tv_confirm.setTextColor(wmDialogBtnTextColor)
+            dialogView.dGiveUp_tv_cancel.setTextColor(wmDialogBtnTextColor)
+        }else{
+            // 다크모드
+            dialogView.dGiveUp_clo_main.setBackgroundColor(dmDialogMainBackgroundColor)
+            dialogView.dGiveUp_tv_main.setTextColor(dmDialogMainTextColor)
+            dialogView.dGiveUp_tv_confirm.setTextColor(dmDialogBtnTextColor)
+            dialogView.dGiveUp_tv_cancel.setTextColor(dmDialogBtnTextColor)
+        }
+
+        val dialog = builder.setView(dialogView).show()
+
+        dialogView.dGiveUp_tv_confirm.setOnClickListener {
+            Log.d("test", "showGiveUpExerciseDialog confirm")
+            /*
+            val homeData =
+                HomeData(
+                    homeView.id, homeView.part_img, homeView.name, homeView.mass,
+                    homeView.rep, homeView.set, homeView.interval
+                )
+            // ExerciseData 삭제하는 코드
+            homeViewModel.deleteExerciseData(homeData)
+            // homeData 갱신하는 코드
+            homeViewModel.loadHomeList()
+            */
+            // dialog 없애는 코드
+            dialog.dismiss()
+        }
+
+        dialogView.dGiveUp_tv_cancel.setOnClickListener {
+            Log.d("test", "showGiveUpExerciseDialog cancel")
             dialog.dismiss()
         }
     }

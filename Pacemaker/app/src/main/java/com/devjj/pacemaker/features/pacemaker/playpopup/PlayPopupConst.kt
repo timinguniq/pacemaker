@@ -32,10 +32,12 @@ var weight = 0
 // 운동 총 시간(휴식시간 다 포함)
 var totalTime = 0
 
+// height, weight 범위
+val minHeight = 0
+val maxHeight = 250
+val minWeight = 0
+val maxWeight = 300
+//
+
 var currentPlayPopupData: PlayPopupData = PlayPopupData.empty()
-
-val wmCircleRimColor = Color.argb(255, 156, 179, 225)
-val wmCircleBarColor = Color.argb(255, 92, 132, 208)
-
-val dmCircleRimColor = Color.argb(255, 176, 70, 60)
-val dmCircleBarColor = Color.argb(255, 247, 71, 35)
+var allPlayPopupDataList: MutableList<PlayPopupData> = mutableListOf<PlayPopupData>()

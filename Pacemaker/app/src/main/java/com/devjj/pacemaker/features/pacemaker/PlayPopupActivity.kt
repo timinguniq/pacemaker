@@ -34,23 +34,8 @@ class PlayPopupActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
-        //initLayout()
         initAd()
         Log.d("test", "onCreate PlayPopupActivity")
-    }
-
-    private fun initLayout(){
-
-        var dm = DisplayMetrics()
-        windowManager.defaultDisplay.getMetrics(dm)
-
-        var width = dm.widthPixels
-        var height = dm.heightPixels
-
-        window.setLayout((width *0.8).roundToInt(), (height *0.55).roundToInt())
-
-        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))	// 배경화면 투명하게 하는 코드
-
     }
 
     // 광고 초기화 하는 함수
@@ -60,6 +45,5 @@ class PlayPopupActivity : BaseActivity() {
     }
 
     override fun fragment() = PlayPopupFragment()
-
 
 }

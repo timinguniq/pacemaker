@@ -1,5 +1,7 @@
 package com.devjj.pacemaker.core.extension
 
+import android.app.Activity
+import androidx.core.content.res.ResourcesCompat
 import com.devjj.pacemaker.R
 
 // TODO : 나중에 상의
@@ -28,3 +30,6 @@ fun convertPartImgToResource(part_img: Int, isDarkMode: Boolean) =
                         else -> R.drawable.part_dm_upper_body_img
                 }
         }
+
+// color resource 불러오기
+fun loadColor(activity: Activity, resource: Int) = ResourcesCompat.getColor(activity.resources, resource, null)

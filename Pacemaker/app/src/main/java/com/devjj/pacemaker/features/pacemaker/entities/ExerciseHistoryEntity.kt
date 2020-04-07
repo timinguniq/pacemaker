@@ -7,7 +7,7 @@ import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetail
 
 @Entity(tableName = "exerciseHistories")
 data class ExerciseHistoryEntity(
-    @PrimaryKey val id: Int,
+    @PrimaryKey(autoGenerate = true) val id: Int,
     val date: String,
     val part: Int,
     val name: String,

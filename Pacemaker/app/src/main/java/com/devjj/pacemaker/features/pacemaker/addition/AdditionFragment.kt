@@ -105,8 +105,6 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         }
 
         // 테스트 코드
-        //setNumberPickerTextColor(fAddition_np_mass, Color.argb(255, 0, 0, 0))
-        //fAddition_np_mass.setBackgroundColor(Color.argb(255, 241, 241, 241))
         fAddition_np_mass.minValue = 0
         fAddition_np_mass.maxValue = data1.size-1
         fAddition_np_mass.wrapSelectorWheel = false
@@ -114,8 +112,6 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         fAddition_np_mass.displayedValues = data1
         fAddition_np_mass.value = 200
 
-        //setNumberPickerTextColor(fAddition_np_rep, Color.argb(255, 0, 0, 0))
-        //fAddition_np_rep.setBackgroundColor(Color.argb(255, 241, 241, 241))
         fAddition_np_rep.minValue = 1
         fAddition_np_rep.maxValue = data2.size
         fAddition_np_rep.wrapSelectorWheel = false
@@ -123,8 +119,6 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         fAddition_np_rep.displayedValues = data2
         fAddition_np_rep.value = 20
 
-        //setNumberPickerTextColor(fAddition_np_set, Color.argb(255, 0, 0, 0))
-        //fAddition_np_set.setBackgroundColor(Color.argb(255, 241, 241, 241))
         fAddition_np_set.minValue = 1
         fAddition_np_set.maxValue = data3.size
         fAddition_np_set.wrapSelectorWheel = false
@@ -140,29 +134,29 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         val listResource = mutableListOf<Int>()
         if(!isDarkMode){
             // 화이트모드
-            listResource.add(wmStatusBarColor)
+            listResource.add(loadColor(activity!!, R.color.blue_bg_thick))
             listResource.add(R.drawable.apacemaker_wm_title_background)
-            listResource.add(wmContainerColor)
+            listResource.add(loadColor(activity!!, R.color.white))
             val partMainImage = convertPartImgToResource(additionData_part_img, false)
             listResource.add(partMainImage)
             listResource.add(R.drawable.faddition_wm_name_line_img)
-            listResource.add(wmExerciseNameColor)
-            listResource.add(wmAdditionMRSITitleColor)
-            listResource.add(wmAdditionInContainerColor)
+            listResource.add(loadColor(activity!!, R.color.black_txt_thick))
+            listResource.add(loadColor(activity!!, R.color.grey_txt_light))
+            listResource.add(loadColor(activity!!, R.color.grey_bg_light))
             listResource.add(R.drawable.faddition_wm_rest_minus_img)
             listResource.add(R.drawable.faddition_wm_rest_plus_img)
             listResource.add(R.drawable.faddition_wm_save_img)
         }else{
             // 다크모드
-            listResource.add(dmStatusBarColor)
+            listResource.add(loadColor(activity!!, R.color.grey_bg_thickest))
             listResource.add(R.drawable.apacemaker_dm_title_background)
-            listResource.add(dmContainerColor)
+            listResource.add(loadColor(activity!!, R.color.grey_bg_thick))
             val partMainImage = convertPartImgToResource(additionData_part_img, true)
             listResource.add(partMainImage)
             listResource.add(R.drawable.faddition_dm_name_line_img)
-            listResource.add(dmExerciseNameColor)
-            listResource.add(dmAdditionMRSITitleColor)
-            listResource.add(dmAdditionInContainerColor)
+            listResource.add(loadColor(activity!!, R.color.white))
+            listResource.add(loadColor(activity!!, R.color.grey_txt_thick))
+            listResource.add(loadColor(activity!!, R.color.grey_bg_thickest))
             listResource.add(R.drawable.faddition_dm_rest_minus_img)
             listResource.add(R.drawable.faddition_dm_rest_plus_img)
             listResource.add(R.drawable.faddition_dm_save_img)

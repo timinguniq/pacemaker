@@ -48,7 +48,6 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
                 interval -= 1
                 runBlocking {
                     launch(Dispatchers.Main){
-                        //progressTimer()
                         activity.fPlayPopup_tv_rest_time?.text = settingFormatForTimer(interval)
                     }
                 }
@@ -85,10 +84,16 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
             if(plusClickNumber <= maxPlusClickNumber) interval+=plusInterval
         }
 
-        // 이미지 옆에 눌렀을 때 이벤트 함수
+        // 오른쪽 화살 이미지 눌렀을 때 이벤트 함수
         activity.fPlayPopup_flo_right_arrow.setOnClickListener {
             navigator.showGiveUpExerciseDialog(activity, isDarkMode, playPopupViewModel, currentPlayPopupData)
         }
+
+        // 왼쪽 화살 이미지 눌렀을 때 이벤트 함수
+        activity.fPlayPopup_flo_left_arrow.setOnClickListener {
+            navigator.showGiveUpAllExerciseDialog(activity, isDarkMode, playPopupViewModel, allPlayPopupDataList)
+        }
+
 /*
         if(mode == STOP_MODE){
             // stop_mode일 떄 이 코드를 수행한다.

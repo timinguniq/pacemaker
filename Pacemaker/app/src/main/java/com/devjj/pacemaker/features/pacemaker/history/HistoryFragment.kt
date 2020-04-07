@@ -76,25 +76,6 @@ class HistoryFragment : BaseFragment() {
             navigator.showHistoryDetail(activity!!, date)
         }
 
-        val a = ExerciseHistoryEntity(0, "2019-12-30", 0, "벤치프레스", 5, 10, 2,2, 30, true, 30,60,170,60)
-        val b = ExerciseHistoryEntity(1, "2020-01-01", 1, "데드리프트", 10, 10, 3, 1,40, false, 40,60,170,60)
-        val c = ExerciseHistoryEntity(2, "2020-01-01", 2, "스쿼드", 15, 10, 4,4, 50, true, 40,60,170,60)
-        val d = ExerciseHistoryEntity(3, "2020-01-03", 3, "레그레이즈", 20, 10, 5,0, 60, false, 50,60,170,60)
-        val e = ExerciseHistoryEntity(4, "2020-01-03", 4, "크런치", 25, 10, 6,6, 70, true, 50,60,170,60)
-        val f = ExerciseHistoryEntity(5, "2020-01-03", 3, "이두컬", 30, 10, 7,3, 30, false, 50,60,170,60)
-        val g = ExerciseHistoryEntity(6, "2020-01-05", 2, "아놀드프레스", 35, 10, 8, 3,40, false, 60,60,170,60)
-        val h = ExerciseHistoryEntity(7, "2020-01-05", 1, "숄더프레스", 40, 10, 7,7, 50, true, 60,60,170,60)
-        val i = ExerciseHistoryEntity(8, "2020-01-09", 2, "플랭크", 0, 10, 6, 1,60, false, 70,60,170,60)
-        val j = ExerciseHistoryEntity(9, "2020-01-13", 3, "풀업", 0, 10, 5, 5,70, true, 80,60,170,60)
-        val k = ExerciseHistoryEntity(10, "2020-01-13", 3, "팔굽혀펴기", 0, 10, 4, 0,20, false, 80,60,170,60)
-        val l = ExerciseHistoryEntity(11, "2020-01-15", 4, "벤치프레스", 30, 10, 6,6, 30, true, 100,60,170,60)
-
-        Flowable.just("abc")
-            .subscribeOn(Schedulers.io())
-            .subscribe {
-                db.ExerciseHistoryDAO().insert(a, b, c, d, e, f, g, h, i, j, k, l)
-            }
-
         historyViewModel.loadHistories()
 /*
         for(history in historyViewModel.histories.value!!.toList()){

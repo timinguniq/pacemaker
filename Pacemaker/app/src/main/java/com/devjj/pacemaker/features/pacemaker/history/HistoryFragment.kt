@@ -117,7 +117,6 @@ class HistoryFragment : BaseFragment() {
 
 
     private fun initializeView() {
-
         setColors()
         this.activity!!.aPacemaker_tv_title.text = this.getString(R.string.fHistory_title_txv)
         fHistory_recyclerview.layoutManager = LinearLayoutManager(activity)
@@ -329,6 +328,7 @@ class HistoryFragment : BaseFragment() {
         }
 
         historyViewModel.loadHistories()
+
 /*
         for(history in historyViewModel.histories.value!!.toList()){
             Log.d("calendar", "date : ${history.date}")

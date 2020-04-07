@@ -75,7 +75,6 @@ class OptionFragment : BaseFragment() {
         }
 
 
-
         fOption_txv_height_item.setOnClickListener { v ->
             Log.d("jayOption","height on click")
             v.isFocusable=true
@@ -95,7 +94,6 @@ class OptionFragment : BaseFragment() {
     }
 
     private fun setColors() {
-
         when (setting.isNightMode) {
             true -> {
                 Log.d("color", "Dark Mode = ${setting.isNightMode}")

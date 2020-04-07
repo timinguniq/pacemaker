@@ -50,16 +50,20 @@
     <string name="dProfile_weight_txv">몸무게</string>
     <string name="dProfile_weight_hint_txv">몸무게(kg)</string>
     <string name="dProfile_confirm_txv">확인</string>
+    <string name="dProfile_tv_regex">키랑 몸무게를 다시 입력해주세요</string>
 
     <string name="dGiveUp_give_up_txv">이 운동을 포기하시겠습니까?</string>
     <string name="dGiveUp_confirm_txv">확인</string>
     <string name="dGiveUp_cancel_txv">취소</string>
+    <string name="dGiveUpAll_tv_give_up">모든 운동을 포기하시겠습니까?</string>
 
     <string name="fPlayPopup_continue_btn_txv">Continue</string>
     <string name="fPlayPopup_title_checkbox_txv">여부</string>
     <string name="fPlayPopup_list_unavailable">데이터가 없습니다.</string>
     <string name="fPlayPopup_timer_txv">Timer</string>
     <string name="fPlayPopup_set_txv">%d\/%dset</string>
+    <string name="fPlayPopup_ts_playlist_not_exist">재생 목록이 없습니다.</string>
+    <string name="fPlayPopup_ts_exercise_finish">운동이 완료 되었습니다.</string>
 
     <string name="fPlayPopup_exercise_name_txv">운동이름</string>
     <string name="fPlayPopup_mass_unit">Kg</string>

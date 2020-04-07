@@ -14,10 +14,8 @@ import at.grabner.circleprogress.UnitPosition
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
-import com.devjj.pacemaker.core.extension.dmStatusBarColor
 import com.devjj.pacemaker.core.extension.observe
 import com.devjj.pacemaker.core.extension.viewModel
-import com.devjj.pacemaker.core.extension.wmStatusBarColor
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import io.reactivex.Flowable
@@ -104,7 +102,6 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
                 fHistoryDetail_circleView_rate.setTextColor(activity!!.getColor(R.color.orange_bg_thick))
                 fHistoryDetail_tv_totalReps.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fHistoryDetail_tv_totalSets.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-
             }
             false->{
                 fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_bg_basic))

@@ -2,6 +2,7 @@ package com.devjj.pacemaker.features.pacemaker
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import com.devjj.pacemaker.R
@@ -62,18 +63,18 @@ class PacemakerActivity : BaseActivity() {
         // TODO : 여기서부터 그거 함수로 extension에 빼면 됨.
         if(!setting.isNightMode){
             // TODO : 여기로 들어오면 다크모드가 아니다.
-            window.statusBarColor = wmStatusBarColor
+            window.statusBarColor = getColor(R.color.blue_bg_thick)
             aPacemaker_clo_title.setBackgroundResource(R.drawable.apacemaker_wm_title_background)
-            aPacemaker_flo_container.setBackgroundColor(wmContainerColor)
-            aPacemaker_bottom_navigation_view.setBackgroundColor(wmBottomBgColor)
+            aPacemaker_flo_container.setBackgroundColor(getColor(R.color.white))
+            aPacemaker_bottom_navigation_view.setBackgroundColor(getColor(R.color.grey_bg_basic))
             aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_wm_bottom_icon_bg_color
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_wm_bottom_icon_color,null)
         }else{
             // TODO : 여기로 들어오면 다크모드
-            window.statusBarColor = dmStatusBarColor
+            window.statusBarColor = getColor(R.color.grey_bg_thickest)
             aPacemaker_clo_title.setBackgroundResource(R.drawable.apacemaker_dm_title_background)
-            aPacemaker_flo_container.setBackgroundColor(dmContainerColor)
-            aPacemaker_bottom_navigation_view.setBackgroundColor(dmBottomBgColor)
+            aPacemaker_flo_container.setBackgroundColor(getColor(R.color.grey_bg_thick))
+            aPacemaker_bottom_navigation_view.setBackgroundColor(getColor(R.color.grey_bg_thickest))
             aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_dm_bottom_icon_bg_color
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_dm_bottom_icon_color,null)
         }

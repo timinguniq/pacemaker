@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class HomeListener(val activity: Activity, val context: Context,
                    val navigator: Navigator, val homeAdapter: HomeAdapter, val homeViewModel: HomeViewModel,
-                   val isDarkMode: Boolean) {
+                   val isNightMode: Boolean) {
 
     fun clickListener(){
         // 플로팅 버튼 클릭 이벤트
@@ -26,7 +26,7 @@ class HomeListener(val activity: Activity, val context: Context,
 
         homeAdapter.longClickListener = {homeView ->
             Log.d("test", "longClickListener")
-            navigator.showDeleteDialog(activity, isDarkMode, homeViewModel, homeView)
+            navigator.showDeleteDialog(activity, isNightMode, homeViewModel, homeView)
         }
 
         // DB에 있는 데이터 로드

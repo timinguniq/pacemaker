@@ -42,7 +42,7 @@ class HomeAdapter
             itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.rvExerciseItem_mass, homeView.mass)
             itemView.rvExerciseItem_tv_set.text = context.getString(R.string.rvExerciseItem_set, homeView.set)
 
-            if(!setting.isDarkMode) {
+            if(!setting.isNightMode) {
                 // 화이트 모드
                 val partImgResource = convertPartImgToResource(homeView.part_img, false)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)

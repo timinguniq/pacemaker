@@ -75,7 +75,7 @@ class HistoryFragment : BaseFragment() {
         historyAdapter.clickListener = { date ->
             navigator.showHistoryDetail(activity!!, date)
         }
-
+/*
         val a = ExerciseHistoryEntity(0, "2019-12-30", 0, "벤치프레스", 5, 10, 2,2, 30, true, 30,60,170,60)
         val b = ExerciseHistoryEntity(1, "2020-01-01", 1, "데드리프트", 10, 10, 3, 1,40, false, 40,60,170,60)
         val c = ExerciseHistoryEntity(2, "2020-01-01", 2, "스쿼드", 15, 10, 4,4, 50, true, 40,60,170,60)
@@ -94,8 +94,10 @@ class HistoryFragment : BaseFragment() {
             .subscribe {
                 db.ExerciseHistoryDAO().insert(a, b, c, d, e, f, g, h, i, j, k, l)
             }
+*/
 
         historyViewModel.loadHistories()
+
 /*
         for(history in historyViewModel.histories.value!!.toList()){
             Log.d("calendar", "date : ${history.date}")

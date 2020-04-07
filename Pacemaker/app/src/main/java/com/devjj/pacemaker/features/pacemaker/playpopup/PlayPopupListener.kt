@@ -87,7 +87,7 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
         // 이미지 옆에 눌렀을 때 이벤트 함수
         activity.fPlayPopup_flo_right_arrow.setOnClickListener {
-            navigator.showGiveUpExerciseDialog(activity, isDarkMode, playPopupViewModel, currentPlayPopupData)
+            navigator.showGiveUpExerciseDialog(activity, isNightMode, playPopupViewModel, currentPlayPopupData)
         }
 /*
         if(mode == STOP_MODE){

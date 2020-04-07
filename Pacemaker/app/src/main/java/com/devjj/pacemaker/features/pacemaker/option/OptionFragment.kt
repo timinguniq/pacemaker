@@ -13,7 +13,7 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.close
 import com.devjj.pacemaker.core.platform.BaseFragment
-import com.devjj.pacemaker.features.pacemaker.addition.isDarkMode
+import com.devjj.pacemaker.features.pacemaker.addition.isNightMode
 import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
 import kotlinx.android.synthetic.main.activity_option.*
 import kotlinx.android.synthetic.main.fragment_option.*
@@ -45,15 +45,15 @@ class OptionFragment : BaseFragment() {
     private fun initializeView(){
         fOption_txv_weight_item.text=getString(R.string.rh_mass,50)
         fOption_txv_height_item.text = getString(R.string.rh_height,160.3)
-        fOption_swc_mode_item.isChecked=setting.isDarkMode
+        fOption_swc_mode_item.isChecked=setting.isNightMode
         activity!!.window.statusBarColor = activity!!.getColor(R.color.blue_bg_basic)
 
         fOption_swc_mode_item.setOnCheckedChangeListener { buttonView, isChecked ->
-            setting.isDarkMode=isChecked
+            setting.isNightMode=isChecked
             Log.d("color","${activity!!.getColor(R.color.base_grey)}")
-            when(setting.isDarkMode){
+            when(setting.isNightMode){
                 true->{
-                    Log.d("color","Dark Mode = ${setting.isDarkMode}")
+                    Log.d("color","Dark Mode = ${setting.isNightMode}")
                     activity!!.window.statusBarColor = activity!!.getColor(R.color.grey_bg_thick)
                     activity!!.aOption_clo_title.setBackgroundResource(R.drawable.apacemaker_dm_title_background)
                 }

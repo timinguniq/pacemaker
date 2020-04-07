@@ -55,11 +55,11 @@ class Navigator
     fun showAddition(context: Context, additionView: AdditionView) = context.startActivity(AdditionActivity.callingIntent(context, additionView))
 
     // 삭제 다이얼 로그를 보여주는 함수.
-    fun showDeleteDialog(activity: Activity, isDarkMode: Boolean, homeViewModel: HomeViewModel, homeView: HomeView){
+    fun showDeleteDialog(activity: Activity, isNightMode: Boolean, homeViewModel: HomeViewModel, homeView: HomeView){
         val builder = AlertDialog.Builder(activity)
         val dialogView = activity.layoutInflater.inflate(R.layout.dialog_remove, null)
 
-        if(!isDarkMode){
+        if(!isNightMode){
             // 화이트모드
             dialogView.dRemove_clo_main.setBackgroundColor(wmDialogMainBackgroundColor)
             dialogView.dRemove_tv_main.setTextColor(wmDialogMainTextColor)
@@ -97,11 +97,11 @@ class Navigator
     }
 
     // 삭제 다이얼 로그를 보여주는 함수.
-    fun showProfileDialog(activity: Activity, isDarkMode: Boolean, playPopupViewModel: PlayPopupViewModel, playPopupDataList: List<PlayPopupData>){
+    fun showProfileDialog(activity: Activity, isNightMode: Boolean, playPopupViewModel: PlayPopupViewModel, playPopupDataList: List<PlayPopupData>){
         val builder = AlertDialog.Builder(activity)
         val dialogView = activity.layoutInflater.inflate(R.layout.dialog_profile_input, null)
 
-        if(!isDarkMode){
+        if(!isNightMode){
             // 화이트모드
             dialogView.dProfile_clo_main.setBackgroundColor(wmDialogMainBackgroundColor)
 
@@ -170,7 +170,7 @@ class Navigator
 
                 val insertPlayPopupData =
                     PlayPopupData(
-                        playPopupData.id, playPopupData.part_img, playPopupData.name,
+                        0, playPopupData.part_img, playPopupData.name,
                         playPopupData.mass, playPopupData.rep, playPopupData.setGoal,
                         playPopupData.setDone, playPopupData.interval, playPopupData.achievement
                     )
@@ -184,11 +184,11 @@ class Navigator
     }
 
     // 운동 포기 다이얼 로그를 보여주는 함수.
-    fun showGiveUpExerciseDialog(activity: Activity, isDarkMode: Boolean, playPopupViewModel: PlayPopupViewModel, playPopupData: PlayPopupData){
+    fun showGiveUpExerciseDialog(activity: Activity, isNightMode: Boolean, playPopupViewModel: PlayPopupViewModel, playPopupData: PlayPopupData){
         val builder = AlertDialog.Builder(activity)
         val dialogView = activity.layoutInflater.inflate(R.layout.dialog_give_up_exercise, null)
 
-        if(!isDarkMode){
+        if(!isNightMode){
             // 화이트모드
             dialogView.dGiveUp_clo_main.setBackgroundColor(wmDialogMainBackgroundColor)
             dialogView.dGiveUp_tv_main.setTextColor(wmDialogMainTextColor)

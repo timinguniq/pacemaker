@@ -23,7 +23,6 @@ class PlayPopupActivity : BaseActivity() {
 
     companion object {
         fun callingIntent(context: Context) = Intent(context, PlayPopupActivity::class.java)
-
     }
 
     override var layout = R.layout.activity_play_popup

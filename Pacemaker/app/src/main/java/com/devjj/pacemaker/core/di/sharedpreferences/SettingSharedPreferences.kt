@@ -6,7 +6,7 @@ import android.content.SharedPreferences
 class SettingSharedPreferences(context: Context) {
     val PREFS_FILENAME = "setting"
 
-    val PREF_KEY_DARK_MODE = "darkMode"
+    val PREF_KEY_DARK_MODE = "nightMode"
     val PREF_KEY_HEIGHT = "height"
     val PREF_KEY_WEIGHT = "weight"
     val PREF_KEY_REST_TIME = "restTime"
@@ -15,7 +15,7 @@ class SettingSharedPreferences(context: Context) {
     val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
     /* 파일 이름과 데이터를 저장할 Key 값을 만들고 prefs 인스턴스 초기화 */
 
-    var isDarkMode: Boolean
+    var isNightMode: Boolean
         get() = prefs.getBoolean(PREF_KEY_DARK_MODE, false)
         set(value) = prefs.edit().putBoolean(PREF_KEY_DARK_MODE, value).apply()
     /* get/set 함수 임의 설정. get 실행 시 저장된 값을 반환하며 default 값은 false

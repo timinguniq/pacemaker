@@ -2,6 +2,7 @@ package com.devjj.pacemaker.features.pacemaker.historydetail
 
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -12,8 +13,11 @@ import at.grabner.circleprogress.TextMode
 import at.grabner.circleprogress.UnitPosition
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
+import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.extension.dmStatusBarColor
 import com.devjj.pacemaker.core.extension.observe
 import com.devjj.pacemaker.core.extension.viewModel
+import com.devjj.pacemaker.core.extension.wmStatusBarColor
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import io.reactivex.Flowable
@@ -33,6 +37,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
     lateinit var db: ExerciseHistoryDatabase
     @Inject
     lateinit var historyDetailAdapter: HistoryDetailAdapter
+    @Inject lateinit var setting: SettingSharedPreferences
 
     private lateinit var historyDetailViewModel: HistoryDetailViewModel
 
@@ -53,6 +58,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
 
     private fun renderHistoryDetails(historyDetailViews: List<HistoryDetailView>?) {
         historyDetailAdapter.collection = historyDetailViews.orEmpty()
+
         fHistoryDetail_circleView_rate.setValue(historyDetailViews.orEmpty()[0].achievementRate.toFloat())
 
         var sets = 0
@@ -66,6 +72,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
     }
 
     private fun initializeView() {
+        setColors()
         fHistoryDetail_circleView_rate.setTextTypeface(Typeface.DEFAULT_BOLD)
         fHistoryDetail_circleView_rate.setUnitTextTypeface(Typeface.DEFAULT_BOLD)
         historyDetailAdapter.clickListener = { id, date ->
@@ -73,6 +80,8 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
             historyDetailViewModel.updateAchievementRateByDate(date)
             historyDetailViewModel.loadHistoryDetails(date)
         }
+
+
 
         fHistoryDetail_recyclerview.layoutManager = LinearLayoutManager(activity)
         fHistoryDetail_recyclerview.adapter = historyDetailAdapter
@@ -85,5 +94,24 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
             date.split("-")[1],
             date.split("-")[2]
         )
+    }
+
+    private fun setColors(){
+        fHistoryDetail_circleView_rate.rimColor = activity!!.getColor(R.color.orange_bg_transparent)
+        when(setting.isNightMode){
+            true->{
+               fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_bg_thick))
+                fHistoryDetail_circleView_rate.setTextColor(activity!!.getColor(R.color.orange_bg_thick))
+                fHistoryDetail_tv_totalReps.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fHistoryDetail_tv_totalSets.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+
+            }
+            false->{
+                fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_bg_basic))
+                fHistoryDetail_circleView_rate.setTextColor(activity!!.getColor(R.color.orange_bg_basic))
+                fHistoryDetail_tv_totalReps.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistoryDetail_tv_totalSets.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+            }
+        }
     }
 }

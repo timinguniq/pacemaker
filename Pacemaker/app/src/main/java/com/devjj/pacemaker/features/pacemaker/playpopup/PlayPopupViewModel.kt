@@ -53,6 +53,7 @@ class PlayPopupViewModel
         Log.d("test", "date : ${date}, height : ${height}, weight : ${weight}")
 
         Log.d("test", "achievement rate : ${100 * playPopupData.setDone / playPopupData.setGoal}")
+        Log.d("savingtest","date : ${date}, name : ${playPopupData.name}, height : ${height}, weight : ${weight}")
         saveExerciseHistoryData(SaveExerciseHistoryData.Params(playPopupData)) {
             it.fold(
                 ::handleFailure,

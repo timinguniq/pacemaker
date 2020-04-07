@@ -93,10 +93,10 @@ class PlayPopupFragment : BaseFragment() {
         super.onResume()
         //initializeView()
 
-        isDarkMode = setting.isDarkMode
+        isNightMode = setting.isNightMode
 
         // 모드에 따른 셋팅(ex 화이트모드, 다크모드)
-        initSettingMode(isDarkMode)
+        initSettingMode(isNightMode)
 
         // playPopupListener 초기화
         playPopupListener = PlayPopupListener(activity!!, this, playPopupViewModel, navigator)
@@ -173,7 +173,7 @@ class PlayPopupFragment : BaseFragment() {
     }
 
     // 뷰 모드에 대한 초기 셋팅
-    private fun initSettingMode(isDarkMode: Boolean){
+    private fun initSettingMode(isNightMode: Boolean){
         /*
         listResource 목록
         0 -> 상태바 색깔
@@ -191,7 +191,7 @@ class PlayPopupFragment : BaseFragment() {
         */
         val listResource = mutableListOf<Int>()
 
-        if(!isDarkMode){
+        if(!isNightMode){
             // 화이트모드
             listResource.add(wmStatusBarColor)
             listResource.add(R.drawable.fplaypopup_wm_bg)
@@ -323,7 +323,7 @@ class PlayPopupFragment : BaseFragment() {
                     // TODO: view 종료 되고 historyDB로 저장되게 해야 될 것 같다.
                     totalTimer.cancel()
 
-                    navigator.showProfileDialog(activity!!, isDarkMode, playPopupViewModel, playPopupDataList)
+                    navigator.showProfileDialog(activity!!, isNightMode, playPopupViewModel, playPopupDataList)
                     //showDialogProfile()
 
                     Log.d("test", "totalTimer : $totalTime")
@@ -393,7 +393,7 @@ class PlayPopupFragment : BaseFragment() {
         //
 
         // 근육 부위 화면에 셋팅하는 코드
-        var partImgResources = convertPartImgToResource(currentPlayPopupView.part ,isDarkMode)
+        var partImgResources = convertPartImgToResource(currentPlayPopupView.part ,isNightMode)
         fPlayPopup_iv_part_img.setImageResource(partImgResources)
         //
 
@@ -476,10 +476,10 @@ class PlayPopupFragment : BaseFragment() {
     // input은 현재 set
     private fun settingNextProgressBars(currentCount: Int){
         val range = 9 downTo (10-currentCount)
-        val resourcesSelect = if(!isDarkMode) R.drawable.fplaypopup_wm_progress_select_bar
+        val resourcesSelect = if(!isNightMode) R.drawable.fplaypopup_wm_progress_select_bar
                          else R.drawable.fplaypopup_dm_progress_select_bar
 
-        val resourcesUnSelect = if(!isDarkMode) R.drawable.fplaypopup_wm_progress_unselect_bar
+        val resourcesUnSelect = if(!isNightMode) R.drawable.fplaypopup_wm_progress_unselect_bar
                         else R.drawable.fplaypopup_dm_progress_unselect_bar
 
        val handler = Handler(Looper.getMainLooper())
@@ -509,7 +509,7 @@ class PlayPopupFragment : BaseFragment() {
         val builder = AlertDialog.Builder(activity!!)
         val dialogView = activity!!.layoutInflater.inflate(R.layout.dialog_profile_input, null)
 
-        if(!isDarkMode){
+        if(!isNightMode){
             // 화이트모드
             dialogView.dProfile_clo_main.setBackgroundColor(wmDialogMainBackgroundColor)
 

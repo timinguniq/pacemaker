@@ -1,6 +1,5 @@
 package com.devjj.pacemaker.features.pacemaker.usecases
 
-import android.util.Log
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.functional.Either
 import com.devjj.pacemaker.core.interactor.UseCase

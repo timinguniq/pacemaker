@@ -6,7 +6,7 @@ var mode = 0
 val ADDITION_MODE = 0
 val EDITING_MODE = 1
 
-var isDarkMode: Boolean = false
+var isNightMode: Boolean = false
 
 val DIRECTION_LEFT = 0
 val DIRECTION_RIGHT = 1

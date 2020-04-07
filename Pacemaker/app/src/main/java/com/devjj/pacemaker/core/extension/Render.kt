@@ -4,8 +4,8 @@ import com.devjj.pacemaker.R
 
 // TODO : 나중에 상의
 // part_img를 resource로 변경해주는 함수.
-fun convertPartImgToResource(part_img: Int, isDarkMode: Boolean) =
-        if(!isDarkMode) {
+fun convertPartImgToResource(part_img: Int, isNightMode: Boolean) =
+        if(!isNightMode) {
                 // 화이트 모드
                 when (part_img) {
                         0 -> R.drawable.part_wm_upper_body_img

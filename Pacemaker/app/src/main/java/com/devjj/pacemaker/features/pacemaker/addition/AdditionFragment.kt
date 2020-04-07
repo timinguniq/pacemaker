@@ -52,7 +52,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         // additionView의 name데이터를 이용하여 모드를 설정
         mode = if(additionView.name.isEmpty()) ADDITION_MODE else EDITING_MODE
         // 다크모드 설정
-        isDarkMode = setting.isDarkMode
+        isNightMode = setting.isNightMode
 
         // 뷰 초기화
         initializeView()
@@ -72,7 +72,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
 
     // AdditionFragment 초기화 하는 함수
     private fun initializeView() {
-        initSettingMode(isDarkMode)
+        initSettingMode(isNightMode)
 
         // 초기화
         additionData_mass = 0
@@ -136,9 +136,9 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
 
 
     // 뷰 모드에 대한 셋팅
-    private fun initSettingMode(isDarkMode: Boolean){
+    private fun initSettingMode(isNightMode: Boolean){
         val listResource = mutableListOf<Int>()
-        if(!isDarkMode){
+        if(!isNightMode){
             // 화이트모드
             listResource.add(wmStatusBarColor)
             listResource.add(R.drawable.apacemaker_wm_title_background)

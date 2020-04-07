@@ -29,14 +29,14 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
         // 부위에서 왼쪽 화살 이미지 클릭 리스너
         activity.fAddition_flo_part_left_arrow.setOnClickListener {
             rotationPartId(DIRECTION_LEFT)
-            val tempPartImg = convertPartImgToResource(additionData_part_img, isDarkMode)
+            val tempPartImg = convertPartImgToResource(additionData_part_img, isNightMode)
             activity.fAddition_iv_part_main.setImageResource(tempPartImg)
         }
 
         // 부위에서 오른쪽 화살 이미지 클릭 리스너
         activity.fAddition_flo_part_right_arrow.setOnClickListener {
             rotationPartId(DIRECTION_RIGHT)
-            val tempPartImg = convertPartImgToResource(additionData_part_img, isDarkMode)
+            val tempPartImg = convertPartImgToResource(additionData_part_img, isNightMode)
             activity.fAddition_iv_part_main.setImageResource(tempPartImg)
         }
 

@@ -54,7 +54,7 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
     // homeFragment 초기화 하는 함수
     private fun initializeView() {
         this.activity!!.aPacemaker_tv_title.text="내 트레이닝"
-        if(!setting.isDarkMode){
+        if(!setting.isNightMode){
             // 화이트모드
             fHome_floating_action_btn.setImageResource(R.drawable.fhome_wm_fabtn_img)
             fHome_floating_action_btn.supportBackgroundTintList =
@@ -67,7 +67,7 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
         }
 
         // homeListener 초기화
-        homeListener = HomeListener(activity!!, context!!, navigator, homeAdapter, homeViewModel, setting.isDarkMode)
+        homeListener = HomeListener(activity!!, context!!, navigator, homeAdapter, homeViewModel, setting.isNightMode)
         // 클릭 리스너
         homeListener.clickListener()
     }

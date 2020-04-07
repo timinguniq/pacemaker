@@ -34,9 +34,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="true"
+                app:mcv_dateTextAppearance="@style/CalendarDateTextAppearanceDayTime"
                 app:mcv_selectionColor="#FF765B"
                 app:mcv_selectionMode="multiple"
-                app:mcv_showOtherDates="all">
+                app:mcv_showOtherDates="none">
 
             </com.prolificinteractive.materialcalendarview.MaterialCalendarView>
 

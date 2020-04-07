@@ -7,7 +7,7 @@ import android.graphics.Color
 var currentSet: Int = 1
 var maxSet: Int = 0
 
-var isDarkMode: Boolean = false
+var isNightMode: Boolean = false
 
 // Timer 동작 모드
 var mode = 0

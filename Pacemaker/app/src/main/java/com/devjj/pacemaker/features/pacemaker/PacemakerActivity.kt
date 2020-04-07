@@ -10,7 +10,7 @@ import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
-import com.devjj.pacemaker.features.pacemaker.addition.isDarkMode
+import com.devjj.pacemaker.features.pacemaker.addition.isNightMode
 import com.devjj.pacemaker.features.pacemaker.entities.ExerciseEntity
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.google.android.gms.ads.AdRequest
@@ -60,7 +60,7 @@ class PacemakerActivity : BaseActivity() {
         }
 
         // TODO : 여기서부터 그거 함수로 extension에 빼면 됨.
-        if(!setting.isDarkMode){
+        if(!setting.isNightMode){
             // TODO : 여기로 들어오면 다크모드가 아니다.
             window.statusBarColor = wmStatusBarColor
             aPacemaker_clo_title.setBackgroundResource(R.drawable.apacemaker_wm_title_background)

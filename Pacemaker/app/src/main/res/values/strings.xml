@@ -74,7 +74,8 @@
     <string name="fPlayPopup_plus_unit">+</string>
 
     <string name="rh_mass">%dkg</string>
-    <string name="rh_height">%.1fcm</string>
+    <string name="rh_height">%dcm</string>
+    <string name="rh_heightfloat">%.1fcm</string>
     <string name="rh_set">%dset</string>
     <string name="rh_interval">%ds</string>
     <string name="rh_rate">%d%%</string>

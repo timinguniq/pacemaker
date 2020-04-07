@@ -9,6 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -16,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_profile"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/base_grey">
@@ -37,6 +39,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_mode"
             android:layout_width="match_parent"
             android:layout_height="40dp">
 
@@ -60,8 +63,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
                 android:shadowColor="@color/sub_blue"
-                android:thumbTint="@color/base_blue"
-                android:trackTint="@color/sub_blue"
+                android:thumbTint="@color/blue_bg_basic"
+                android:trackTint="@color/blue_bg_transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/fOption_txv_mode_title"
@@ -69,6 +72,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_weight"
             android:layout_width="match_parent"
             android:layout_height="40dp">
 
@@ -86,11 +90,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <EditText
                 android:id="@+id/fOption_txv_weight_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
+                android:background="@android:color/transparent"
+                android:focusable="auto"
                 android:text="@string/rh_mass"
                 android:textColor="@color/fOption_color_wm_txv_menu"
                 android:textSize="18sp"
@@ -98,9 +104,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/fOption_txv_weight_title"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_height"
             android:layout_width="match_parent"
             android:layout_height="40dp">
 
@@ -118,11 +126,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <EditText
                 android:id="@+id/fOption_txv_height_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
+                android:background="@android:color/transparent"
+                android:focusable="auto"
                 android:text="TextView"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -130,14 +140,16 @@
                 app:layout_constraintStart_toEndOf="@+id/fOption_txv_height_title"
                 app:layout_constraintTop_toTopOf="parent" />
 
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_interver"
             android:layout_width="match_parent"
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/fOption_tv_interval_title"
+                android:id="@+id/fOption_txv_interval_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
@@ -158,7 +170,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toEndOf="@+id/fOption_tv_interval_title"
+                app:layout_constraintStart_toEndOf="@+id/fOption_txv_interval_title"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <FrameLayout
@@ -166,7 +178,7 @@
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/fOption_tv_interval_time"
+                    app:layout_constraintEnd_toStartOf="@+id/fOption_txv_interval_time"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -183,7 +195,7 @@
 
 
                 <TextView
-                    android:id="@+id/fOption_tv_interval_time"
+                    android:id="@+id/fOption_txv_interval_time"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -203,11 +215,11 @@
                     android:layout_height="match_parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/fOption_tv_interval_time"
+                    app:layout_constraintStart_toEndOf="@+id/fOption_txv_interval_time"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:id="@+id/fAddition_iv_interval_plus"
+                        android:id="@+id/fOption_iv_interval_plus"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_gravity="center"
@@ -222,12 +234,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_language"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/base_grey">
 
             <TextView
-                android:id="@+id/fOption_tv_language"
+                android:id="@+id/fOption_txv_language"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
@@ -265,7 +278,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/fOption_tv_korean"
+                        android:id="@+id/fOption_txv_korean"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
@@ -289,7 +302,7 @@
                     app:layout_constraintTop_toBottomOf="@id/fOption_clo_korean">
 
                     <TextView
-                        android:id="@+id/fOption_tv_english"
+                        android:id="@+id/fOption_txv_english"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
@@ -317,14 +330,14 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/fOption_rg_korean"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:buttonTint="@color/sub_blue"
                     android:checked="true" />
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
+                    android:id="@+id/fOption_rg_english"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:buttonTint="@color/sub_blue" />
@@ -334,12 +347,13 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_supportUs"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/base_grey">
 
             <TextView
-                android:id="@+id/fOption_tv_supportUs"
+                android:id="@+id/fOption_txv_supportUs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
@@ -359,7 +373,7 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/fOption_tv_rateUs"
+                android:id="@+id/fOption_txv_rateUs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
@@ -379,7 +393,7 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/fOption_tv_feedback"
+                android:id="@+id/fOption_txv_feedback"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
@@ -399,7 +413,7 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/fOption_tv_share"
+                android:id="@+id/fOption_txv_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"

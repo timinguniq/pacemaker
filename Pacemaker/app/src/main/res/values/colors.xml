@@ -25,6 +25,7 @@
 
     <color name="orange_bg_basic">#FFFF765B</color>
     <color name="orange_bg_thick">#FFF74938</color>
+    <color name="orange_bg_light">#FFB0463C</color>
     <color name="orange_bg_transparent">#B3FF765B</color>
 
     <color name="blue_bg_basic">#FF5C83CF</color>
@@ -35,10 +36,10 @@
     <color name="grey_bg_thick">#FF606060</color>
     <color name="grey_bg_thickest">#FF444646</color>
     <color name="grey_bg_light">#B3F9F9F9</color>
-
+    <color name="grey_bg_lightest">#78444646</color>
 
     <color name="white_txt_thick">#FFF7FAFD</color>
-    <color name="white_txt_light"></color>
+    <color name="white_txt_light">#78F7FAFD</color>
     <color name="black_txt_thick">#FF3b4046</color>
     <color name="black_txt_light"></color>
     <color name="grey_txt_thick">#FFb2b2b2</color>

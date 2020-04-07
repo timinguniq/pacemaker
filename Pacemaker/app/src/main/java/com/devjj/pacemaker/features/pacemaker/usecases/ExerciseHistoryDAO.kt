@@ -23,6 +23,10 @@ interface ExerciseHistoryDAO {
     @Query("UPDATE exerciseHistories SET achievementRate = ( (SELECT SUM(setDone) FROM exerciseHistories WHERE achievement = 1 AND date = :date)*100/(SELECT SUM(setGoal) FROM exerciseHistories WHERE date = :date) ) WHERE date = :date")
     fun updateAchievementRate(date: String) : Int
 
+    // date 검색 후 데이터 삭제하는 함수
+    @Query("DELETE FROM exerciseHistories WHERE date = :date")
+    fun deleteForDate(date: String)
+
     @Insert(onConflict = REPLACE)
     fun insert(vararg exerciseHistoryEntity: ExerciseHistoryEntity)
 

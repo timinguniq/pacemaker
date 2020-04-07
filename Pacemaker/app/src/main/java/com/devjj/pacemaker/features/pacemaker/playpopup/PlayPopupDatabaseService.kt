@@ -24,4 +24,8 @@ class PlayPopupDatabaseService
             playPopupData.achievement, (100 * playPopupData.setDone/playPopupData.setGoal),
             height, weight, totalTime)
     )
+
+    // DB에 날짜로 ExerciseHistoryData를 삭제하는 함수
+    fun deleteExerciseHistoryData() = dbHistroy.ExerciseHistoryDAO().deleteForDate(date)
+
 }

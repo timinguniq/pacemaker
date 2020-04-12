@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".core.navigation.SplashActivity"
-    android:background="@drawable/asplash_background">
+    android:background="@drawable/asplash_img_background">
 
     <ImageView
         android:layout_width="170dp"
         android:layout_height="195dp"
-        app:srcCompat="@drawable/asplash_symbol"
+        app:srcCompat="@drawable/asplash_img_symbol"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -22,7 +22,7 @@
         android:layout_width="65dp"
         android:layout_height="20dp"
         android:layout_marginBottom="35dp"
-        app:srcCompat="@drawable/asplash_devjj"
+        app:srcCompat="@drawable/asplash_img_devjj"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

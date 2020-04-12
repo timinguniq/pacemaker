@@ -5,15 +5,12 @@ import android.util.Log
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
 import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
@@ -56,14 +53,14 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
         this.activity!!.aPacemaker_tv_title.text="내 트레이닝"
         if(!setting.isNightMode){
             // 화이트모드
-            fHome_floating_action_btn.setImageResource(R.drawable.fhome_wm_fabtn_img)
+            fHome_floating_action_btn.setImageResource(R.drawable.fhome_img_fabtn_daytime)
             fHome_floating_action_btn.supportBackgroundTintList =
-                ContextCompat.getColorStateList(activity!!, R.color.fhome_wm_fabtn_color)
+                ContextCompat.getColorStateList(activity!!, R.color.base_blue)
         }else{
             // 다크모드
-            fHome_floating_action_btn.setImageResource(R.drawable.fhome_dm_fabtn_img)
+            fHome_floating_action_btn.setImageResource(R.drawable.fhome_img_fabtn_nighttime)
             fHome_floating_action_btn.supportBackgroundTintList =
-                ContextCompat.getColorStateList(activity!!, R.color.fhome_dm_fabtn_color)
+                ContextCompat.getColorStateList(activity!!, R.color.orange_bg_thick)
         }
 
         // homeListener 초기화
@@ -83,7 +80,7 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
         when (failure) {
             //is Failure.NetworkConnection -> renderFailure(R.string.failure_network_connection)
             //is Failure.ServerError -> renderFailure(R.string.failure_server_error)
-            is HomeFailure.ListNotAvailable -> renderFailure(R.string.fHome_list_unavailable)
+            is HomeFailure.ListNotAvailable -> renderFailure(R.string.fhome_tv_list_unavailable_str)
             else -> Log.d("homeFragment", "error")
         }
     }

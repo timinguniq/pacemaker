@@ -3,6 +3,8 @@
     package="com.devjj.pacemaker">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:name=".AndroidApplication"
@@ -12,16 +14,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CustomSplashAppTheme">
+
         <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
-        <!-- 본 광고 ID 값
+        <!--
+ 본 광고 ID 값
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-9818502417467314~6491082469"/>
         -->
-        <activity android:name=".core.navigation.SplashActivity"
+        <activity
+            android:name=".core.navigation.SplashActivity"
             android:launchMode="standard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,30 +35,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".features.login.LoginActivity"
-            android:theme="@style/CustomAppTheme"/>
-
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".features.pacemaker.PacemakerActivity"
-            android:theme="@style/CustomAppTheme">
-        </activity>
-
+            android:theme="@style/CustomAppTheme"/>
         <activity
             android:name=".features.pacemaker.AdditionActivity"
-            android:theme="@style/CustomAppTheme"/>
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".features.pacemaker.PlayPopupActivity"
-            android:theme="@style/CustomAppTheme"/>
-
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".features.pacemaker.OptionActivity"
-            android:theme="@style/CustomAppTheme"/>
+            android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".features.pacemaker.HistoryDetailActivity"
-            android:theme="@style/CustomAppTheme"/>
+            android:theme="@style/CustomAppTheme" />
 
+        <service
+            android:name=".features.pacemaker.service.TimerService"
+            android:enabled="true"
+            android:exported="true"
+            android:stopWithTask="false"/>
     </application>
 
 </manifest>

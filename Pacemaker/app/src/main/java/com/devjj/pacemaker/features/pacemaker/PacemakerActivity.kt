@@ -2,21 +2,15 @@ package com.devjj.pacemaker.features.pacemaker
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
-import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
-import com.devjj.pacemaker.features.pacemaker.addition.isNightMode
-import com.devjj.pacemaker.features.pacemaker.entities.ExerciseEntity
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.google.android.gms.ads.AdRequest
-import io.reactivex.Flowable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_pacemaker.*
 import javax.inject.Inject
 
@@ -64,18 +58,18 @@ class PacemakerActivity : BaseActivity() {
         if(!setting.isNightMode){
             // TODO : 여기로 들어오면 다크모드가 아니다.
             window.statusBarColor = getColor(R.color.blue_bg_thick)
-            aPacemaker_clo_title.setBackgroundResource(R.drawable.apacemaker_wm_title_background)
+            aPacemaker_clo_title.setBackgroundResource(R.drawable.img_title_background_daytime)
             aPacemaker_flo_container.setBackgroundColor(getColor(R.color.white))
             aPacemaker_bottom_navigation_view.setBackgroundColor(getColor(R.color.grey_bg_basic))
-            aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_wm_bottom_icon_bg_color
+            aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_bottom_icon_bg_color_daytime
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_wm_bottom_icon_color,null)
         }else{
             // TODO : 여기로 들어오면 다크모드
             window.statusBarColor = getColor(R.color.grey_bg_thickest)
-            aPacemaker_clo_title.setBackgroundResource(R.drawable.apacemaker_dm_title_background)
+            aPacemaker_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)
             aPacemaker_flo_container.setBackgroundColor(getColor(R.color.grey_bg_thick))
             aPacemaker_bottom_navigation_view.setBackgroundColor(getColor(R.color.grey_bg_thickest))
-            aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_dm_bottom_icon_bg_color
+            aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_bottom_icon_bg_color_nighttime
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_dm_bottom_icon_color,null)
         }
 

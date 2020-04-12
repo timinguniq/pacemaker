@@ -1,15 +1,9 @@
 package com.devjj.pacemaker.features.pacemaker.addition
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.Paint
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
-import android.widget.NumberPicker
-import android.widget.Toast
 import androidx.annotation.StringRes
 
 import com.devjj.pacemaker.R
@@ -135,31 +129,31 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         if(!isNightMode){
             // 화이트모드
             listResource.add(loadColor(activity!!, R.color.blue_bg_thick))
-            listResource.add(R.drawable.apacemaker_wm_title_background)
+            listResource.add(R.drawable.img_title_background_daytime)
             listResource.add(loadColor(activity!!, R.color.white))
             val partMainImage = convertPartImgToResource(additionData_part_img, false)
             listResource.add(partMainImage)
-            listResource.add(R.drawable.faddition_wm_name_line_img)
+            listResource.add(R.drawable.faddition_img_name_line_daytime)
             listResource.add(loadColor(activity!!, R.color.black_txt_thick))
             listResource.add(loadColor(activity!!, R.color.grey_txt_light))
             listResource.add(loadColor(activity!!, R.color.grey_bg_light))
-            listResource.add(R.drawable.faddition_wm_rest_minus_img)
-            listResource.add(R.drawable.faddition_wm_rest_plus_img)
-            listResource.add(R.drawable.faddition_wm_save_img)
+            listResource.add(R.drawable.img_rest_minus_daytime)
+            listResource.add(R.drawable.img_rest_plus_daytime)
+            listResource.add(R.drawable.img_save_daytime)
         }else{
             // 다크모드
             listResource.add(loadColor(activity!!, R.color.grey_bg_thickest))
-            listResource.add(R.drawable.apacemaker_dm_title_background)
+            listResource.add(R.drawable.img_title_background_nighttime)
             listResource.add(loadColor(activity!!, R.color.grey_bg_thick))
             val partMainImage = convertPartImgToResource(additionData_part_img, true)
             listResource.add(partMainImage)
-            listResource.add(R.drawable.faddition_dm_name_line_img)
+            listResource.add(R.drawable.faddition_img_name_line_nighttime)
             listResource.add(loadColor(activity!!, R.color.white))
             listResource.add(loadColor(activity!!, R.color.grey_txt_thick))
             listResource.add(loadColor(activity!!, R.color.grey_bg_thickest))
-            listResource.add(R.drawable.faddition_dm_rest_minus_img)
-            listResource.add(R.drawable.faddition_dm_rest_plus_img)
-            listResource.add(R.drawable.faddition_dm_save_img)
+            listResource.add(R.drawable.img_rest_minus_nighttime)
+            listResource.add(R.drawable.img_rest_plus_nighttime)
+            listResource.add(R.drawable.img_save_nighttime)
         }
 
         activity?.window?.statusBarColor = listResource[0]
@@ -197,14 +191,14 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         // 모드에 따라 추가모드일때는 뷰를 비어있게 나타내고 편집모드일때는 관련 데이터를 표시해준다.
         when (mode) {
             ADDITION_MODE -> {
-                fAddition_tv_title.text = resources.getString(R.string.fAddition_title_addition_txv)
+                fAddition_tv_title.text = resources.getString(R.string.faddition_tv_title_addition_str)
                 fAddition_ev_name.text = String.editText(String.empty())
             }
             EDITING_MODE -> {
                 additionData_id = tempAdditionView.id
                 additionData_part_img = tempAdditionView.part_img
 
-                fAddition_tv_title.text = resources.getString(R.string.fAddition_title_edit_txv)
+                fAddition_tv_title.text = resources.getString(R.string.faddition_tv_title_edit_str)
                 fAddition_ev_name.text = String.editText(tempAdditionView.name)
                 fAddition_np_mass.value = 200 - tempAdditionView.mass
                 fAddition_np_rep.value = 21 - tempAdditionView.rep
@@ -223,7 +217,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         when (failure) {
             //is Failure.NetworkConnection -> renderFailure(R.string.failure_network_connection)
             //is Failure.ServerError -> renderFailure(R.string.failure_server_error)
-            is AdditionFailure.ListNotAvailable -> renderFailure(R.string.fHome_list_unavailable)
+            is AdditionFailure.ListNotAvailable -> renderFailure(R.string.fhome_tv_list_unavailable_str)
             else -> Log.d("AdditionFragment", "error")
         }
     }

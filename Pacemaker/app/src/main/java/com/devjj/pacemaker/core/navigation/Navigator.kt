@@ -3,7 +3,6 @@ package com.devjj.pacemaker.core.navigation
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
-import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -22,11 +21,9 @@ import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeView
 import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupData
-import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupView
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupViewModel
-import com.devjj.pacemaker.features.pacemaker.playpopup.currentPlayPopupData
+import com.devjj.pacemaker.features.pacemaker.service.TimerService
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.dialog_give_up_exercise.view.*
 import kotlinx.android.synthetic.main.dialog_profile_input.view.*
 import kotlinx.android.synthetic.main.dialog_remove.view.*
@@ -34,6 +31,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlin.math.roundToInt
 
 @Singleton
 class Navigator
@@ -64,15 +62,15 @@ class Navigator
         if(!isNightMode){
             // 화이트모드
             dialogView.dRemove_clo_main.background =
-                ResourcesCompat.getDrawable(activity.resources, R.drawable.fplaypopup_wm_bg, null)
+                ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_daytime, null)
             dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
             dialogView.dRemove_tv_confirm.setTextColor(loadColor(activity, R.color.blue_bg_thick))
             dialogView.dRemove_tv_cancel.setTextColor(loadColor(activity, R.color.blue_bg_thick))
         }else{
             // 다크모드
             dialogView.dRemove_clo_main.background =
-                ResourcesCompat.getDrawable(activity.resources, R.drawable.fplaypopup_dm_bg, null)
-            dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.blue_bg_thick))
+                ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_nighttime, null)
+            dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_basic))
             dialogView.dRemove_tv_confirm.setTextColor(loadColor(activity, R.color.orange_bg_thick))
             dialogView.dRemove_tv_cancel.setTextColor(loadColor(activity, R.color.orange_bg_thick))
         }
@@ -108,7 +106,7 @@ class Navigator
         if(!isNightMode){
             // 화이트모드
             dialogView.dProfile_clo_main.background =
-                    ResourcesCompat.getDrawable(activity.resources, R.drawable.fplaypopup_wm_bg, null)
+                    ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_daytime, null)
             dialogView.dProfile_tv_height.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
             dialogView.dProfile_ev_height.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
             dialogView.dProfile_ev_height.setHintTextColor(loadColor(activity, R.color.grey_bg_lightest))
@@ -122,12 +120,12 @@ class Navigator
         }else{
             // 다크모드
             dialogView.dProfile_clo_main.background =
-                ResourcesCompat.getDrawable(activity.resources, R.drawable.fplaypopup_dm_bg, null)
-            dialogView.dProfile_tv_height.setTextColor(loadColor(activity, R.color.blue_bg_thick))
+                ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_nighttime, null)
+            dialogView.dProfile_tv_height.setTextColor(loadColor(activity, R.color.grey_bg_basic))
             dialogView.dProfile_ev_height.setTextColor(loadColor(activity, R.color.blue_bg_thick))
             dialogView.dProfile_ev_height.setHintTextColor(loadColor(activity, R.color.white_txt_light))
 
-            dialogView.dProfile_tv_weight.setTextColor(loadColor(activity, R.color.blue_bg_thick))
+            dialogView.dProfile_tv_weight.setTextColor(loadColor(activity, R.color.grey_bg_basic))
             dialogView.dProfile_ev_weight.setTextColor(loadColor(activity, R.color.blue_bg_thick))
             dialogView.dProfile_ev_weight.setHintTextColor(loadColor(activity, R.color.white_txt_light))
 
@@ -136,8 +134,8 @@ class Navigator
 
         val dialog = builder.setView(dialogView).show()
 
-        var iSaveHeight = 0
-        var iSaveWeight = 0
+        var fSaveHeight = 0f
+        var fSaveWeight = 0f
 
         dialogView.dProfile_tv_confirm.setOnClickListener {
             Log.d("test", "showDeleteDialog confirm")
@@ -145,16 +143,21 @@ class Navigator
             val sSaveWeight = dialogView.dProfile_ev_weight.text.toString()
 
             // 키와 몸무게 입력 칸을 빈칸으로 넘겼을 시 SharedPreferences에 저장된 값 가져오기!
-            iSaveHeight = if(sSaveHeight == String.empty()) setting.height else sSaveHeight.toInt()
-            iSaveWeight = if(sSaveWeight == String.empty()) setting.weight else sSaveWeight.toInt()
+            fSaveHeight = if(sSaveHeight == String.empty()) setting.height else sSaveHeight.toFloat()
+            fSaveWeight = if(sSaveWeight == String.empty()) setting.weight else sSaveWeight.toFloat()
             //
 
-            setting.height = iSaveHeight
-            setting.weight = iSaveWeight
+            // 소수점 한자리 반올림하는 코드
+            fSaveHeight = (fSaveHeight * 10).roundToInt() / 10f
+            fSaveWeight = (fSaveWeight * 10).roundToInt() / 10f
+            //
 
-            if(!playPopupViewModel.regexHeightAndWeight(iSaveHeight, iSaveWeight)){
+            setting.height = fSaveHeight
+            setting.weight = fSaveWeight
+
+            if(!playPopupViewModel.regexHeightAndWeight(fSaveHeight, fSaveWeight)){
                 // 정상범위가 아니면 여기로 들어온다.
-                val regexText = activity.getString(R.string.dProfile_tv_regex)
+                val regexText = activity.getString(R.string.dprofile_tv_regex_str)
                 Toast.makeText(activity, regexText, Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
@@ -182,15 +185,20 @@ class Navigator
                         playPopupData.setDone, playPopupData.interval, playPopupData.achievement
                     )
 
-                playPopupViewModel.saveExerciseHistoryData(insertPlayPopupData, sSaveDate, iSaveHeight, iSaveWeight)
+                Log.d("test", "fSaveHeight : $fSaveHeight, fSaveWeight : $fSaveWeight")
+                playPopupViewModel.saveExerciseHistoryData(insertPlayPopupData, sSaveDate, fSaveHeight, fSaveWeight)
             }
 
             // 데이터 초기화
             for(playPopupData in playPopupDataList){
                 playPopupData.achievement = false
-                playPopupData.setDone = 0
+                playPopupData.setDone = 1
                 playPopupViewModel.updateExercisePlayPopupData(playPopupData)
             }
+            //
+
+            // TimerService 종료
+            TimerService.stopService(activity)
             //
 
             activity.finish()
@@ -202,19 +210,19 @@ class Navigator
         val builder = AlertDialog.Builder(activity)
         val dialogView = activity.layoutInflater.inflate(R.layout.dialog_give_up_exercise, null)
 
-        dialogView.dGiveUp_tv_main.text = activity.getString(R.string.dGiveUp_give_up_txv)
+        dialogView.dGiveUp_tv_main.text = activity.getString(R.string.dgiveup_tv_main_str)
         if(!isNightMode){
             // 화이트모드
             dialogView.dGiveUp_clo_main.background =
-                ResourcesCompat.getDrawable(activity.resources, R.drawable.fplaypopup_wm_bg, null)
+                ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_daytime, null)
             dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
             dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.blue_bg_thick))
             dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.blue_bg_thick))
         }else{
             // 다크모드
             dialogView.dGiveUp_clo_main.background =
-                ResourcesCompat.getDrawable(activity.resources, R.drawable.fplaypopup_dm_bg, null)
-            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.blue_bg_thick))
+                ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_nighttime, null)
+            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_basic))
             dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.orange_bg_thick))
             dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.orange_bg_thick))
         }
@@ -242,19 +250,19 @@ class Navigator
         val builder = AlertDialog.Builder(activity)
         val dialogView = activity.layoutInflater.inflate(R.layout.dialog_give_up_exercise, null)
 
-        dialogView.dGiveUp_tv_main.text = activity.getString(R.string.dGiveUpAll_tv_give_up)
+        dialogView.dGiveUp_tv_main.text = activity.getString(R.string.dgiveupall_tv_main_str)
         if(!isDarkMode){
             // 화이트모드
             dialogView.dGiveUp_clo_main.background =
-                ResourcesCompat.getDrawable(activity.resources, R.drawable.fplaypopup_wm_bg, null)
+                ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_daytime, null)
             dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
             dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.blue_bg_thick))
             dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.blue_bg_thick))
         }else{
             // 다크모드
             dialogView.dGiveUp_clo_main.background =
-                ResourcesCompat.getDrawable(activity.resources, R.drawable.fplaypopup_dm_bg, null)
-            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.blue_bg_thick))
+                ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_nighttime, null)
+            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_basic))
             dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.orange_bg_thick))
             dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.orange_bg_thick))
         }
@@ -299,7 +307,7 @@ class Navigator
                     // 현재 컨테이너에 있는 fragment 구하는 코드.
                     val fragment = fragmentManager.findFragmentById(R.id.aPacemaker_flo_container)
                     // homeFragment 이름 가져오는 함수.
-                    val homeFragmentName = context.resources.getString(R.string.fHome_fragment_name)
+                    val homeFragmentName = context.resources.getString(R.string.fhome_tv_fragment_name_str)
                     // 지금 보여지는 화면이 home이 아닐경우 home으로 이동하는 코드
                     if(!fragment.toString().contains(homeFragmentName)){
                         fragmentManager.beginTransaction().replace(R.id.aPacemaker_flo_container, HomeFragment()).commit()

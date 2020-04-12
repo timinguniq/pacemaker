@@ -35,9 +35,9 @@ class HistoryDetailAdapter
             val partImgResource = convertPartImgToResource(historyDetailView.part_img, false)
             itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
             itemView.rvExerciseItem_tv_name.text = historyDetailView.name
-            itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.rvExerciseItem_mass, historyDetailView.mass)
+            itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.rvexerciseitem_tv_unit_mass_str, historyDetailView.mass)
             //itemView.rvExerciseItem_tv_rep.text = historyDetailView.rep.toString()
-            itemView.rvExerciseItem_tv_set.text = context.getString(R.string.rvExerciseItem_set, historyDetailView.set)
+            itemView.rvExerciseItem_tv_set.text = context.getString(R.string.rvexerciseitem_tv_unit_set_str, historyDetailView.set)
             //itemView.rvExerciseItem_tv_interval.text = historyDetailView.interval.toString()
 
             itemView.rvExerciseItem_clo_main.setOnClickListener{

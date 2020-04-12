@@ -43,12 +43,12 @@ class OptionActivity : BaseActivity() {
         when(setting.isNightMode){
             true->{
                 window.statusBarColor = getColor(R.color.grey_bg_thickest)
-                aOption_clo_title.setBackgroundResource(R.drawable.apacemaker_dm_title_background)
+                aOption_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)
                 aOption_flo_container.setBackgroundColor(getColor(R.color.grey_bg_thickest))
             }
             false->{
                 window.statusBarColor = getColor(R.color.blue_bg_basic)
-                aOption_clo_title.setBackgroundResource(R.drawable.apacemaker_wm_title_background)
+                aOption_clo_title.setBackgroundResource(R.drawable.img_title_background_daytime)
                 aOption_flo_container.setBackgroundColor(getColor(R.color.white_bg_basic))
             }
         }

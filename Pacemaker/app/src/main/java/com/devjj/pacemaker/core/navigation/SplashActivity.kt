@@ -52,9 +52,9 @@ class SplashActivity : AppCompatActivity() {
         MobileAds.initialize(this) {}
 
         // TODO : 테스트 코드 나중에 ß삭제
-        setting.isNightMode = false
+        //setting.isNightMode = false
 
-        setting.restTime = 70
+        //setting.restTime = 70
         //
     }
 }

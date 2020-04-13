@@ -49,7 +49,7 @@ class OptionFragment : BaseFragment() {
         fOption_txv_height_item.setText(getString(R.string.rh_height, setting.height))
 
         fOption_swc_mode_item.isChecked = setting.isNightMode
-        activity!!.window.statusBarColor = activity!!.getColor(R.color.blue_bg_basic)
+        //activity!!.window.statusBarColor = activity!!.getColor(R.color.blue_bg_basic)
 
         fOption_swc_mode_item.setOnCheckedChangeListener { buttonView, isChecked ->
             setting.isNightMode = isChecked

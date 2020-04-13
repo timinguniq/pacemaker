@@ -13,7 +13,6 @@ import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupFragment
 import dagger.Component
 import javax.inject.Singleton
 
-
 @Singleton
 @Component(modules = [ApplicationModule::class, ViewModelModule::class])
 interface ApplicationComponent {

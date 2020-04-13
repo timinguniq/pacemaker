@@ -4,6 +4,7 @@ import android.app.Application
 import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.di.ApplicationModule
 import com.devjj.pacemaker.core.di.DaggerApplicationComponent
+import com.devjj.pacemaker.features.pacemaker.service.TimerService
 import com.squareup.leakcanary.LeakCanary
 
 class AndroidApplication : Application() {
@@ -21,6 +22,7 @@ class AndroidApplication : Application() {
         this.injectMembers()
         this.initializeLeakDetection()
     }
+
 
     private fun injectMembers() = appComponent.inject(this)
 

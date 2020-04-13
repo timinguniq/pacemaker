@@ -33,7 +33,7 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:contentDescription="@string/image_not_found"
-                android:src="@drawable/faddition_back_img"/>
+                android:src="@drawable/faddition_img_back"/>
 
         </FrameLayout>
 
@@ -43,7 +43,7 @@
             android:layout_height="match_parent"
             android:layout_marginStart="10dp"
             android:gravity="center"
-            android:text="@string/fAddition_title_addition_txv"
+            android:text="@string/faddition_tv_title_addition_str"
             android:textSize="20sp"
             android:textColor="#fff7fafd"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -81,7 +81,7 @@
                     android:id="@+id/fAddition_iv_part_main"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/part_wm_upper_body_img"
+                    android:src="@drawable/img_part_upper_body_daytime"
                     android:contentDescription="@string/image_not_found"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -101,7 +101,7 @@
                         android:layout_width="25dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/faddition_part_left_arrow_img"
+                        android:src="@drawable/img_part_left_arrow"
                         android:contentDescription="@string/image_not_found"/>
 
                 </FrameLayout>
@@ -119,7 +119,7 @@
                         android:layout_width="25dp"
                         android:layout_height="35dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/faddition_part_right_arrow_img"
+                        android:src="@drawable/img_part_right_arrow"
                         android:contentDescription="@string/image_not_found"/>
 
                 </FrameLayout>
@@ -148,7 +148,7 @@
                     android:importantForAutofill="no"
                     android:textSize="20sp"
                     android:textColorHint="#ff3b4046"
-                    android:hint="@string/fAddition_name_hint_txv"
+                    android:hint="@string/faddition_tv_name_hint_str"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -159,7 +159,7 @@
                     android:id="@+id/fAddition_iv_name_line"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
-                    android:src="@drawable/faddition_wm_name_line_img"
+                    android:src="@drawable/faddition_img_name_line_daytime"
                     android:contentDescription="@string/image_not_found"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -198,7 +198,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:gravity="center"
-                        android:text="@string/fAddition_mass_txv"
+                        android:text="@string/faddition_tv_mass_str"
                         android:textSize="18sp"
                         android:textColor="#ff88898a"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -235,7 +235,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:gravity="center"
-                        android:text="@string/fAddition_rep_txv"
+                        android:text="@string/faddition_tv_rep_str"
                         android:textSize="18sp"
                         android:textColor="#ff88898a"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -274,7 +274,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="20dp"
                         android:gravity="center"
-                        android:text="@string/fAddition_set_txv"
+                        android:text="@string/faddition_tv_set_str"
                         android:textSize="18sp"
                         android:textColor="#ff88898a"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -317,7 +317,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:gravity="center"
-                    android:text="@string/fAddition_interval_txv"
+                    android:text="@string/faddition_tv_interval_str"
                     android:textSize="18sp"
                     android:textColor="#ff88898a"
                     app:layout_constraintEnd_toStartOf="@+id/fAddition_clo_interval_time"
@@ -352,7 +352,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/faddition_wm_rest_minus_img"
+                            android:src="@drawable/img_rest_minus_daytime"
                             android:contentDescription="@string/image_not_found"/>
 
                     </FrameLayout>
@@ -387,7 +387,7 @@
                             android:layout_width="20dp"
                             android:layout_height="20dp"
                             android:layout_gravity="center"
-                            android:src="@drawable/faddition_wm_rest_plus_img"
+                            android:src="@drawable/img_rest_plus_daytime"
                             android:contentDescription="@string/image_not_found"/>
 
                     </FrameLayout>
@@ -412,7 +412,7 @@
                     android:layout_width="70dp"
                     android:layout_height="70dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/faddition_wm_save_img"
+                    android:src="@drawable/img_save_daytime"
                     android:contentDescription="@string/image_not_found"/>
 
             </FrameLayout>

@@ -11,7 +11,8 @@ import com.devjj.pacemaker.core.extension.invisible
 import com.devjj.pacemaker.core.extension.visible
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionViewModel
-import kotlinx.android.synthetic.main.fragment_temp_play_popup.*
+import com.devjj.pacemaker.features.pacemaker.service.TimerService
+import kotlinx.android.synthetic.main.fragment_play_popup.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -27,13 +28,19 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
     fun clickListener() {
         // 백키를 눌렀을 떄 리스너
         activity.fPlayPopup_flo_back.setOnClickListener {
+            mode = STOP_MODE
+            TimerService.setProgressTimer(false)
+            TimerService.stopService(activity)
             activity.finish()
         }
 
         // 확인 키를 눌렀을 때 리스너
         activity.fPlayPopup_iv_confirm.setOnClickListener {
-            activity.fPlayPopup_clo_confirm.invisible()
-            activity.fPlayPopup_clo_next.visible()
+            mode = PROGRESS_MODE
+
+            playPopupFragment.settingForMode()
+
+            //playPopupFragment.showSet()
 
             // margin
             playPopupFragment.marginPartImg(0)
@@ -42,8 +49,10 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
             // plus number init
             plusClickNumber = 0
 
-            mode = PROGRESS_MODE
+            // 타이머 시작
+            TimerService.timerStart(activity)
 
+/*
             timer = Timer("TimerDown", false).schedule(100, 1000){
                 interval -= 1
                 runBlocking {
@@ -59,17 +68,19 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
                 }
             }
+*/
 
         }
 
         // Next 버튼 눌렀을 떄. 이벤트 함수
         activity.fPlayPopup_flo_next.setOnClickListener{
-            timer.cancel()
+            mode = STOP_MODE
+            //timer.cancel()
+            TimerService.timerStop()
 
             val handler = Handler(Looper.getMainLooper())
             handler.post{
-                activity.fPlayPopup_clo_confirm.visible()
-                activity.fPlayPopup_clo_next.invisible()
+                playPopupFragment.settingForMode()
 
                 playPopupFragment.showSet()
             }
@@ -79,7 +90,6 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
         // +10초 눌렀을 때수 이벤트 함수
         activity.fPlayPopup_flo_plus.setOnClickListener {
-            Log.d("test", "study cafe")
             if(plusClickNumber <= maxPlusClickNumber) plusClickNumber++
             if(plusClickNumber <= maxPlusClickNumber) interval+=plusInterval
         }
@@ -93,40 +103,6 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
         activity.fPlayPopup_flo_left_arrow.setOnClickListener {
             navigator.showGiveUpAllExerciseDialog(activity, isNightMode, playPopupViewModel, allPlayPopupDataList)
         }
-
-/*
-        if(mode == STOP_MODE){
-            // stop_mode일 떄 이 코드를 수행한다.
-            mode = PROGRESS_MODE
-
-            timer = Timer("TimerDown", false).schedule(100, 1000){
-                interval -= 1
-                runBlocking {
-                    launch(Dispatchers.Main){
-                        progressTimer()
-                    }
-                }
-                if(interval == 0){
-                    interval = 0
-                    timer.cancel()
-                    // playPopupView 데이터를 업데이트 하는 함수.
-                    updatePlayPopupView()
-
-                    showSet()
-                }
-            }
-        }else{
-            // progress_mode일 떄 이 코드를 수행한다.
-            mode = STOP_MODE
-
-            timer.cancel()
-
-            // playPopupView 데이터를 업데이트 하는 함수.
-            updatePlayPopupView()
-
-            showSet()
-        }
-*/
     }
 
 

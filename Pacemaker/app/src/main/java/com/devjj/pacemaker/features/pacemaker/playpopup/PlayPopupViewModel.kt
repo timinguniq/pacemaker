@@ -29,7 +29,7 @@ class PlayPopupViewModel
         updateExercisePlayPopupData(UpdateExercisePlayPopupData.Params(playPopupData))
 
     // AdditionData를 ExerciseEntity로 변환해서 저장하는 함수.
-    fun saveExerciseHistoryData(playPopupData: PlayPopupData, saveDate: String, saveHeight: Int, saveWeight: Int) {
+    fun saveExerciseHistoryData(playPopupData: PlayPopupData, saveDate: String, saveHeight: Float, saveWeight: Float) {
         date = saveDate
         height = saveHeight
         weight = saveWeight
@@ -66,7 +66,7 @@ class PlayPopupViewModel
 
     // 키, 몸무게 regex
     // 출력이 true이면 통과(정상 범위)
-    fun regexHeightAndWeight(height: Int, weight: Int) : Boolean{
+    fun regexHeightAndWeight(height: Float, weight: Float) : Boolean{
         var result = true
         if(height < minHeight || height > maxHeight) result = false
         if(weight < minWeight || weight > maxWeight) result = false

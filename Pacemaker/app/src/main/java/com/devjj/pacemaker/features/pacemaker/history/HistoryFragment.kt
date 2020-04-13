@@ -118,7 +118,7 @@ class HistoryFragment : BaseFragment() {
 
     private fun initializeView() {
         setColors()
-        this.activity!!.aPacemaker_tv_title.text = this.getString(R.string.fHistory_title_txv)
+        this.activity!!.aPacemaker_tv_title.text = this.getString(R.string.fhistory_tv_title_str)
         fHistory_recyclerview.layoutManager = LinearLayoutManager(activity)
         fHistory_recyclerview.adapter = historyAdapter
 
@@ -139,8 +139,8 @@ class HistoryFragment : BaseFragment() {
                 30,
                 true,
                 30,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
             val b = ExerciseHistoryEntity(
@@ -155,8 +155,8 @@ class HistoryFragment : BaseFragment() {
                 40,
                 false,
                 40,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
             val c = ExerciseHistoryEntity(
@@ -171,8 +171,8 @@ class HistoryFragment : BaseFragment() {
                 50,
                 true,
                 40,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
             val d = ExerciseHistoryEntity(
@@ -187,8 +187,8 @@ class HistoryFragment : BaseFragment() {
                 60,
                 false,
                 50,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
             val e = ExerciseHistoryEntity(
@@ -203,8 +203,8 @@ class HistoryFragment : BaseFragment() {
                 70,
                 true,
                 50,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
             val f = ExerciseHistoryEntity(
@@ -219,8 +219,8 @@ class HistoryFragment : BaseFragment() {
                 30,
                 false,
                 50,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
             val g = ExerciseHistoryEntity(
@@ -235,8 +235,8 @@ class HistoryFragment : BaseFragment() {
                 40,
                 false,
                 60,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
             val h = ExerciseHistoryEntity(
@@ -251,8 +251,8 @@ class HistoryFragment : BaseFragment() {
                 50,
                 true,
                 60,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
             val i = ExerciseHistoryEntity(
@@ -267,8 +267,8 @@ class HistoryFragment : BaseFragment() {
                 60,
                 false,
                 70,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
             val j = ExerciseHistoryEntity(
@@ -283,8 +283,8 @@ class HistoryFragment : BaseFragment() {
                 70,
                 true,
                 80,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
             val k = ExerciseHistoryEntity(
@@ -299,8 +299,8 @@ class HistoryFragment : BaseFragment() {
                 20,
                 false,
                 80,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
             val l = ExerciseHistoryEntity(
@@ -315,8 +315,8 @@ class HistoryFragment : BaseFragment() {
                 30,
                 true,
                 100,
-                60,
-                170,
+                60f,
+                170f,
                 60
             )
 

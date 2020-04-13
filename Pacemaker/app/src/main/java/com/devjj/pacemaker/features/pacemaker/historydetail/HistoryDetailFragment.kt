@@ -65,8 +65,8 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
             sets += historyDetailView.set
             reps += historyDetailView.rep
         }
-        fHistoryDetail_tv_totalSets.text = this.getString(R.string.fHistory_detail_set,sets)
-        fHistoryDetail_tv_totalReps.text = this.getString(R.string.fHistory_detail_rep,reps)
+        fHistoryDetail_tv_totalSets.text = this.getString(R.string.fhistorydetail_tv_set_str,sets)
+        fHistoryDetail_tv_totalReps.text = this.getString(R.string.fhistorydetail_tv_rep_str,reps)
     }
 
     private fun initializeView() {
@@ -88,7 +88,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
         historyDetailViewModel.loadHistoryDetails(date)
         Log.d("dateee", "${date.split("-")[0]}")
         activity!!.aHistoryDetail_tv_title.text = this.getString(
-            R.string.aHistoryDetail_title_txv,
+            R.string.ahistorydetail_tv_title_str,
             date.split("-")[1],
             date.split("-")[2]
         )

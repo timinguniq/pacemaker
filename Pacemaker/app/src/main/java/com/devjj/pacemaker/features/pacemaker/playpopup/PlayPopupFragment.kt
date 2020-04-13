@@ -1,41 +1,31 @@
 package com.devjj.pacemaker.features.pacemaker.playpopup
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.annotation.MainThread
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.marginBottom
-import androidx.core.view.marginEnd
-import androidx.core.view.marginStart
-import androidx.core.view.marginTop
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionListener
-import kotlinx.android.synthetic.main.dialog_profile_input.view.*
+import com.devjj.pacemaker.features.pacemaker.service.TimerService
 import kotlinx.android.synthetic.main.fragment_play_popup.*
-import kotlinx.android.synthetic.main.fragment_temp_play_popup.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.concurrent.schedule
 
+@Singleton
 class PlayPopupFragment : BaseFragment() {
     @Inject lateinit var setting: SettingSharedPreferences
     @Inject lateinit var navigator: Navigator
@@ -54,9 +44,7 @@ class PlayPopupFragment : BaseFragment() {
             fPlayPopup_vi_progress_2, fPlayPopup_vi_progress_1)
     }
 
-    override fun layoutId() = R.layout.fragment_temp_play_popup
-
-    //override fun layoutId() = R.layout.fragment_temp_play_popup
+    override fun layoutId() = R.layout.fragment_play_popup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +55,11 @@ class PlayPopupFragment : BaseFragment() {
             observe(playPopupList, ::renderPlayPopupList)
             failure(failure, ::handleFailure)
         }
+
+        // 테스트 코드
+        // 서비스 시작
+        TimerService.startService(context!!)
+        //
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -83,25 +76,38 @@ class PlayPopupFragment : BaseFragment() {
         // 모드에 따른 셋팅(ex 화이트모드, 다크모드)
         initSettingMode(isNightMode)
 
+        // 모드별 셋팅(ex 진행모드, 정지모드)
+        settingForMode()
+
         // playPopupListener 초기화
         playPopupListener = PlayPopupListener(activity!!, this, playPopupViewModel, navigator)
 
         // 클릭 리스너들 모아둔 함수.
         playPopupListener.clickListener()
 
-        // DB에 있는 데이터 로드
-        playPopupViewModel.loadPlayPopupList()
+        if(!TimerService.isProgressTimer()) {
+            // DB에 있는 데이터 로드
+            //playPopupViewModel.loadPlayPopupList()
 
-        // 초기 마진 셋팅
-        marginPartImg(25)
+            playPopupViewModel.loadPlayPopupList()
+            // 초기 마진 셋팅
+            marginPartImg(25)
 
-        totalTime = 0
+            totalTime = 0
 
-        // totalTimer 시작시키는 함수.
-        totalTimer()
+            // totalTimer 시작시키는 함수.
+            totalTimer()
+        }else{
+            val playPopupViewCurrentSet = currentPlayPopupData.setDone
+
+            settingNextProgressBars(playPopupViewCurrentSet)
+
+            //showSet()
+        }
 
         // 테스트 코드
-        fPlayPopup_cv_rate.setValue(0f)
+        // 서비스 시작
+        //TimerService.startService(context!!)
         //
 
     }
@@ -109,6 +115,7 @@ class PlayPopupFragment : BaseFragment() {
     override fun onStop() {
         super.onStop()
         totalTimer.cancel()
+        //TimerService.stopService(context!!)
     }
 
     // 뷰 모드에 대한 초기 셋팅
@@ -133,31 +140,31 @@ class PlayPopupFragment : BaseFragment() {
         if(!isNightMode){
             // 화이트모드
             listResource.add(loadColor(activity!!, R.color.blue_bg_thick))
-            listResource.add(R.drawable.fplaypopup_wm_bg)
-            listResource.add(R.drawable.fplaypopup_wm_progress_unselect_bar)
+            listResource.add(R.drawable.img_popup_background_daytime)
+            listResource.add(R.drawable.fplaypopup_img_progress_unselect_bar_daytime)
             listResource.add(loadColor(activity!!, R.color.blue_bg_transparent))
             listResource.add(loadColor(activity!!, R.color.blue_bg_basic))
             listResource.add(loadColor(activity!!, R.color.black_txt_thick))
             listResource.add(loadColor(activity!!, R.color.grey_txt_light))
-            listResource.add(R.drawable.faddition_wm_save_img)
+            listResource.add(R.drawable.img_save_daytime)
             listResource.add(loadColor(activity!!, R.color.blue_bg_thick))
-            listResource.add(R.drawable.fplaypopup_wm_plus_bg)
-            listResource.add(R.drawable.fplaypopup_wm_under_bg)
-            listResource.add(R.drawable.fplaypopup_wm_under_next_bg)
+            listResource.add(R.drawable.fplaypopup_img_plus_background_daytime)
+            listResource.add(R.drawable.fplaypopup_img_under_background_daytime)
+            listResource.add(R.drawable.fplaypopup_img_under_next_background_daytime)
         }else{
             // 다크모드
             listResource.add(loadColor(activity!!, R.color.grey_bg_thickest))
-            listResource.add(R.drawable.fplaypopup_dm_bg)
-            listResource.add(R.drawable.fplaypopup_dm_progress_unselect_bar)
+            listResource.add(R.drawable.img_popup_background_nighttime)
+            listResource.add(R.drawable.fplaypopup_img_progress_unselect_bar_nighttime)
             listResource.add(loadColor(activity!!, R.color.orange_bg_light))
             listResource.add(loadColor(activity!!, R.color.orange_bg_thick))
             listResource.add(loadColor(activity!!, R.color.white))
             listResource.add(loadColor(activity!!, R.color.grey_txt_thick))
-            listResource.add(R.drawable.faddition_dm_save_img)
+            listResource.add(R.drawable.img_save_nighttime)
             listResource.add(loadColor(activity!!, R.color.orange_bg_thick))
-            listResource.add(R.drawable.fplaypopup_dm_plus_bg)
-            listResource.add(R.drawable.fplaypopup_dm_under_bg)
-            listResource.add(R.drawable.fplaypopup_dm_under_next_bg)
+            listResource.add(R.drawable.fplaypopup_img_plus_background_nighttime)
+            listResource.add(R.drawable.fplaypopup_img_under_background_nighttime)
+            listResource.add(R.drawable.fplaypopup_img_under_next_background_nighttime)
         }
 
         activity?.window?.statusBarColor = listResource[0]
@@ -182,7 +189,7 @@ class PlayPopupFragment : BaseFragment() {
     private fun renderPlayPopupList(playPopupView: List<PlayPopupView>?) {
         // 재생 목록이 없으면 화면 종료
         if(playPopupView!!.isEmpty()){
-            Toast.makeText(context, R.string.fPlayPopup_ts_playlist_not_exist, Toast.LENGTH_LONG).show()
+            Toast.makeText(context, R.string.fplaypopup_tv_playlist_not_exist_str, Toast.LENGTH_LONG).show()
             activity?.finish()
         }
         //
@@ -203,8 +210,11 @@ class PlayPopupFragment : BaseFragment() {
         for(popupView in playPopupView.orEmpty()){
             val achivement = popupView.achievement == 1
             if(!achivement){
+                Log.d("test", "popupView setDone $popupView.setDone")
+                popupView.setDone = currentSet
                 currentPlayPopupData = PlayPopupData(popupView.id, popupView.part, popupView.name, popupView.mass,
                     popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval, popupView.achievement == 1)
+
                 showInitSetting(popupView)
 
                 break
@@ -229,7 +239,7 @@ class PlayPopupFragment : BaseFragment() {
 
                     Log.d("test", "totalTimer : $totalTime")
 
-                    Toast.makeText(context, R.string.fPlayPopup_ts_exercise_finish, Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, R.string.fplaypopup_tv_exercise_finish_str, Toast.LENGTH_LONG).show()
                 }
             }
         }
@@ -240,6 +250,7 @@ class PlayPopupFragment : BaseFragment() {
         if(maxSet > currentSet){
             // 현재 세트에 1을 더하는 함수.
             currentSet++
+            currentPlayPopupData.setDone = currentSet
             val currentPlayPopupView = PlayPopupView(currentPlayPopupData.id, currentPlayPopupData.part_img, currentPlayPopupData.name,
                 currentPlayPopupData.mass, currentPlayPopupData.rep, currentPlayPopupData.setGoal,
                 currentPlayPopupData.setDone, currentPlayPopupData.interval,
@@ -247,7 +258,6 @@ class PlayPopupFragment : BaseFragment() {
             showInitSetting(currentPlayPopupView)
 
             // setDone 업데이트 해주는 코드
-            currentPlayPopupData.setDone = currentSet
             playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
         }else{
             // maxSet <= currentSet
@@ -263,14 +273,16 @@ class PlayPopupFragment : BaseFragment() {
         mode = STOP_MODE
         Log.d("test", "showBoardSetting")
         // 최대 셋 설정하는 코드
-        var playPopupViewSet = currentPlayPopupView.setGoal
-        maxSet = playPopupViewSet
+        var playPopupViewSetMax = currentPlayPopupView.setGoal
+        maxSet = playPopupViewSetMax
+        var playPopupViewSetDone = currentPlayPopupView.setDone
+        currentSet = playPopupViewSetDone
         //
 
         Log.d("test", "showBoardSetting currentSet $currentSet")
         Log.d("test", "showBoardSetting maxSet $maxSet")
         // progressBar 셋팅하는 코드
-        isVisibleProgressBars(playPopupViewSet)
+        isVisibleProgressBars(playPopupViewSetMax)
         settingNextProgressBars(currentSet)
         //
 
@@ -285,9 +297,9 @@ class PlayPopupFragment : BaseFragment() {
         //
 
         fPlayPopup_tv_name.text = currentPlayPopupView.name
-        var slash = getString(R.string.fPlayPopup_slash)
-        var massUnit = getString(R.string.fPlayPopup_mass_unit)
-        var setUnit = getString(R.string.fPlayPopup_set_unit)
+        var slash = getString(R.string.fplaypopup_tv_slash_str)
+        var massUnit = getString(R.string.fplaypopup_tv_unit_mass_str)
+        var setUnit = getString(R.string.fplaypopup_tv_unit_set_str)
         var mstxv = currentPlayPopupView.mass.toString() + massUnit + " $slash " +
                 currentPlayPopupView.setGoal.toString() + setUnit
         fPlayPopup_tv_m_s.text = mstxv
@@ -304,6 +316,23 @@ class PlayPopupFragment : BaseFragment() {
         }
         //
 
+    }
+
+    // 모드별 화면 셋팅
+    fun settingForMode(){
+        when (mode) {
+            STOP_MODE -> {
+                fPlayPopup_clo_confirm.visible()
+                fPlayPopup_clo_next.invisible()
+            }
+            PROGRESS_MODE -> {
+                fPlayPopup_clo_confirm.invisible()
+                fPlayPopup_clo_next.visible()
+            }
+            else -> {
+                Log.d("test", "settingForMode Method error")
+            }
+        }
     }
 
     // totalTime 시간 늘리는 Timer
@@ -353,11 +382,11 @@ class PlayPopupFragment : BaseFragment() {
     // input은 현재 set
     private fun settingNextProgressBars(currentCount: Int){
         val range = 9 downTo (10-currentCount)
-        val resourcesSelect = if(!isNightMode) R.drawable.fplaypopup_wm_progress_select_bar
-                         else R.drawable.fplaypopup_dm_progress_select_bar
+        val resourcesSelect = if(!isNightMode) R.drawable.fplaypopup_img_progress_select_bar_daytime
+                         else R.drawable.fplaypopup_img_progress_select_bar_nighttime
 
-        val resourcesUnSelect = if(!isNightMode) R.drawable.fplaypopup_wm_progress_unselect_bar
-                        else R.drawable.fplaypopup_dm_progress_unselect_bar
+        val resourcesUnSelect = if(!isNightMode) R.drawable.fplaypopup_img_progress_unselect_bar_daytime
+                        else R.drawable.fplaypopup_img_progress_unselect_bar_nighttime
 
        val handler = Handler(Looper.getMainLooper())
 
@@ -379,15 +408,13 @@ class PlayPopupFragment : BaseFragment() {
         when (failure) {
             //is Failure.NetworkConnection -> renderFailure(R.string.failure_network_connection)
             //is Failure.ServerError -> renderFailure(R.string.failure_server_error)
-            is PlayPopupFailure.ListNotAvailable -> renderFailure(R.string.fPlayPopup_list_unavailable)
+            is PlayPopupFailure.ListNotAvailable -> renderFailure(R.string.fplaypopup_tv_list_unavailable_str)
             else -> Log.d("PlayPopupFragment", "error")
         }
     }
 
 
     private fun renderFailure(@StringRes message: Int) {
-        fPlayPopup_rv.invisible()
-
         // TODO : 나중에 메세지에 따른 구현 해야 될듯.
     }
 }

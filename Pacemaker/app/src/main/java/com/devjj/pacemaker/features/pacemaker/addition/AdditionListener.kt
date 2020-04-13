@@ -73,7 +73,7 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
                         activity.finish()
                     } else {
                         activity.fAddition_ev_name.hint =
-                            activity.resources.getString(R.string.fAddition_name_hint_txv)
+                            activity.resources.getString(R.string.faddition_tv_name_hint_str)
                         // TODO : 임시코드
                         Toast.makeText(activity, "운동 이름을 입력해주세요", Toast.LENGTH_SHORT).show()
                     }
@@ -94,7 +94,7 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
                         activity.finish()
                     } else {
                         activity.fAddition_ev_name.hint =
-                            activity.resources.getString(R.string.fAddition_name_hint_txv)
+                            activity.resources.getString(R.string.faddition_tv_name_hint_str)
                         // TODO: 임시코드
                         Toast.makeText(activity, "운동 이름을 입력해주세요", Toast.LENGTH_SHORT).show()
                     }

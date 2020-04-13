@@ -10,24 +10,24 @@ fun convertPartImgToResource(part_img: Int, isNightMode: Boolean) =
         if(!isNightMode) {
                 // 화이트 모드
                 when (part_img) {
-                        0 -> R.drawable.part_wm_upper_body_img
-                        1 -> R.drawable.part_wm_arm_img
-                        2 -> R.drawable.part_wm_chest_img
-                        3 -> R.drawable.part_wm_abdomen_img
-                        4 -> R.drawable.part_wm_lower_body_img
-                        5 -> R.drawable.part_wm_shoulder_img
-                        else -> R.drawable.part_wm_upper_body_img
+                        0 -> R.drawable.img_part_upper_body_daytime
+                        1 -> R.drawable.img_part_arm_daytime
+                        2 -> R.drawable.img_part_chest_daytime
+                        3 -> R.drawable.img_part_abdomen_daytime
+                        4 -> R.drawable.img_part_lower_body_daytime
+                        5 -> R.drawable.img_part_shoulder_daytime
+                        else -> R.drawable.img_part_upper_body_daytime
                 }
         }else {
                 // 다크 모드
                 when (part_img) {
-                        0 -> R.drawable.part_dm_upper_body_img
-                        1 -> R.drawable.part_dm_arm_img
-                        2 -> R.drawable.part_dm_chest_img
-                        3 -> R.drawable.part_dm_abdomen_img
-                        4 -> R.drawable.part_dm_lower_body_img
-                        5 -> R.drawable.part_dm_shoulder_img
-                        else -> R.drawable.part_dm_upper_body_img
+                        0 -> R.drawable.img_part_upper_body_nighttime
+                        1 -> R.drawable.img_part_arm_nighttime
+                        2 -> R.drawable.img_part_chest_nighttime
+                        3 -> R.drawable.img_part_abdomen_nighttime
+                        4 -> R.drawable.img_part_lower_body_nighttime
+                        5 -> R.drawable.img_part_shoulder_nighttime
+                        else -> R.drawable.img_part_upper_body_nighttime
                 }
         }
 

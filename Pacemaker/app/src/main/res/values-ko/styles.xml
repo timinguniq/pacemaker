@@ -1,0 +1,64 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- 타이틀 없애게 할려고 만든 코드 -->
+    <style name="CustomAppTheme" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="CustomAppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="CustomAppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="CustomAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="CustomSplashAppTheme" parent="AppTheme">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+    </style>
+
+    <style name="AppTheme.NumberPicker" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+<!---
+    <style name = "CustomAppTheme.Popup" parent="Theme.AppCompat.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="background"
+    </style>
+-->
+    <style name ="CalendarDateTextAppearanceDayTime" parent="TextAppearance.MaterialCalendarWidget.Date">
+        <item name="android:textColor">@color/selected_date_day_time</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:focusedMonthDateColor">@color/white_txt_thick</item>
+    </style>
+
+    <style name ="CalendarDateTextAppearanceNightTime" parent="TextAppearance.MaterialCalendarWidget.Date">
+        <item name="android:textColor">@color/selected_date_night_time</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:focusedMonthDateColor">@color/white_txt_thick</item>
+    </style>
+
+    <style name ="CalendarHeaderTextAppearanceDayTime" parent="TextAppearance.MaterialCalendarWidget.Header">
+        <item name="android:textColor">@color/grey_txt_thick</item>
+    </style>
+    <style name ="CalendarHeaderTextAppearanceNightTime" parent="TextAppearance.MaterialCalendarWidget.Header">
+        <item name="android:textColor">@color/grey_txt_light</item>
+    </style>
+
+
+
+</resources>

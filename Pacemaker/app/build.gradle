@@ -6,7 +6,6 @@ apply plugin: 'kotlin-android-extensions'
 android {
     def config = rootProject.extensions.getByName("ext")
 
-    compileSdkVersion config["compile_sdk"]
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId config["applicationId"]
@@ -22,6 +21,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileSdkVersion = compile_sdk
 }
 
 dependencies {
@@ -82,5 +82,11 @@ dependencies {
 
     //circle view
     implementation 'com.github.jakob-grabner:Circle-Progress-View:1.4'
+    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+}
+repositories {
+    mavenCentral()
 }

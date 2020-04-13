@@ -6,6 +6,7 @@ import com.devjj.pacemaker.core.navigation.SplashActivity
 import com.devjj.pacemaker.features.pacemaker.*
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionFragment
 import com.devjj.pacemaker.features.pacemaker.history.HistoryFragment
+import com.devjj.pacemaker.features.pacemaker.history.HistoryListener
 import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.devjj.pacemaker.features.pacemaker.option.OptionFragment

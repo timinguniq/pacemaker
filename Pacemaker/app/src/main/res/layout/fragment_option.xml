@@ -70,7 +70,7 @@
                 app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_title"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+<!--
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fOption_clo_weight"
             android:layout_width="match_parent"
@@ -142,7 +142,7 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+/-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fOption_clo_interver"
             android:layout_width="match_parent"
@@ -199,7 +199,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="00:30"
                     android:textColor="#ff3b4046"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -232,7 +231,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+<!--
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fOption_clo_language"
             android:layout_width="match_parent"
@@ -345,7 +344,7 @@
             </RadioGroup>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
+-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fOption_clo_supportUs"
             android:layout_width="match_parent"

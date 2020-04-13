@@ -50,7 +50,7 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
 
     // homeFragment 초기화 하는 함수
     private fun initializeView() {
-        this.activity!!.aPacemaker_tv_title.text="내 트레이닝"
+        //this.activity!!.aPacemaker_tv_title.text="내 트레이닝"
         if(!setting.isNightMode){
             // 화이트모드
             fHome_floating_action_btn.setImageResource(R.drawable.fhome_img_fabtn_daytime)

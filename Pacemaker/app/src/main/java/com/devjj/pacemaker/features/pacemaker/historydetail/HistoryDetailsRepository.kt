@@ -14,6 +14,7 @@ interface HistoryDetailsRepository{
     fun historyDetails(date:String) : Either<Failure, List<HistoryDetail>>
     fun switchAchievement(id : Int) : Either<Failure, Int>
     fun updateAchievementRate(date: String) : Either<Failure,Int>
+    fun getOneDaySummary(date:String) : Either<Failure,OneDaySummary>
 
 
     class HistoryDetailDatabase
@@ -40,6 +41,15 @@ interface HistoryDetailsRepository{
             return try{
                 Right(service.updateAchievementRate(date))
             }catch(exception : Throwable){
+                Left(DatabaseError)
+            }
+        }
+
+        override fun getOneDaySummary(date: String): Either<Failure, OneDaySummary> {
+            return try{
+                Right(service.getOneDaySummary(date))
+            }
+            catch(exception : Throwable) {
                 Left(DatabaseError)
             }
         }

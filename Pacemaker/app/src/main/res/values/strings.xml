@@ -1,23 +1,26 @@
 <resources>
 
     <string name="app_name">Pacemaker</string>
+
     <string name="title_activity_pacemaker">PacemakerActivity</string>
     <string name="image_not_found">Image not found.</string>
 
-    <string name="navigation_home_txv">Home</string>
-    <string name="navigation_play_txv">Play</string>
-    <string name="navigation_history_txv">History</string>
+
+    <string name="navigation_tv_home_str">Home</string>
+    <string name="navigation_tv_play_str">Play</string>
+    <string name="navigation_tv_history_str">History</string>
+
 
     <string name="aPacemaker_title_txv">My training</string>
     <string name="fHistory_title_txv">History</string>
     <string name="aHistoryDetail_title_txv">%s월 %s일</string>
     <string name="aOption_title_txv">Option</string>
 
+
     <!-- 임시 단위 -->
-    <string name="rvExerciseItem_mass">%dkg</string>
-    <string name="rvExerciseItem_set">%dset</string>
-    <string name="rvExerciseItem_interval">%ds</string>
-    <string name="rvExerciseItem_slash">/</string>
+    <string name="rvexerciseitem_tv_unit_mass_str">%dkg</string>
+    <string name="rvexerciseitem_tv_unit_set_str">%dset</string>
+    <string name="rvexerciseitem_tv_unit_slash_str">/</string>
 
     <string name="fHome_fragment_name">HomeFragment</string>
     <string name="fHome_list_unavailable">No data.</string>
@@ -53,26 +56,21 @@
     <string name="dProfile_confirm_txv">Confirm</string>
     <string name="dProfile_tv_regex">키랑 몸무게를 다시 입력해주세요</string>
 
-    <string name="dGiveUp_give_up_txv">이 운동을 포기하시겠습니까?</string>
-    <string name="dGiveUp_confirm_txv">확인</string>
-    <string name="dGiveUp_cancel_txv">취소</string>
-    <string name="dGiveUpAll_tv_give_up">모든 운동을 포기하시겠습니까?</string>
+    <string name="dgiveup_tv_main_str">이 운동을 포기하시겠습니까?</string>
+    <string name="dgiveup_tv_confirm_str">확인</string>
+    <string name="dgiveup_tv_cancel_str">취소</string>
+    <string name="dgiveupall_tv_main_str">모든 운동을 포기하시겠습니까?</string>
 
-    <string name="fPlayPopup_continue_btn_txv">Continue</string>
-    <string name="fPlayPopup_title_checkbox_txv">여부</string>
-    <string name="fPlayPopup_list_unavailable">데이터가 없습니다.</string>
-    <string name="fPlayPopup_timer_txv">Timer</string>
-    <string name="fPlayPopup_set_txv">%d\/%dset</string>
-    <string name="fPlayPopup_ts_playlist_not_exist">재생 목록이 없습니다.</string>
-    <string name="fPlayPopup_ts_exercise_finish">운동이 완료 되었습니다.</string>
+    <string name="fplaypopup_tv_list_unavailable_str">데이터가 없습니다.</string>
+    <string name="fplaypopup_tv_playlist_not_exist_str">재생 목록이 없습니다.</string>
+    <string name="fplaypopup_tv_exercise_finish_str">운동이 완료 되었습니다.</string>
 
-    <string name="fPlayPopup_exercise_name_txv">운동이름</string>
-    <string name="fPlayPopup_mass_unit">Kg</string>
-    <string name="fPlayPopup_slash">/</string>
-    <string name="fPlayPopup_set_unit">Set</string>
-    <string name="fPlayPopup_btn_plus_txv">+10초</string>
-    <string name="fPlayPopup_sec_unit">초</string>
-    <string name="fPlayPopup_plus_unit">+</string>
+    <string name="fplaypopup_tv_exercise_name_str">운동이름</string>
+    <string name="fplaypopup_tv_unit_mass_str">Kg</string>
+    <string name="fplaypopup_tv_slash_str">/</string>
+    <string name="fplaypopup_tv_unit_set_str">Set</string>
+    <string name="fplaypopup_tv_btn_plus_str">+10초</string>
+
 
     <string name="rh_mass">%dkg</string>
     <string name="rh_height">%dcm</string>
@@ -107,5 +105,6 @@
     <string name="unit_time_min_sec">%02d:%02d</string>
     <string name="unit_sets">%d sets</string>
     <string name="unit_time_hour_min">%02dh %02dm</string>
+
 
 </resources>

@@ -99,7 +99,7 @@ class HistoryFragment : BaseFragment() {
 
     private fun initializeView() {
         setColors()
-        this.activity!!.aPacemaker_tv_title.text = this.getString(R.string.fHistory_title_txv)
+        this.activity!!.aPacemaker_tv_title.text = this.getString(R.string.fhistory_tv_title_str)
         fHistory_recyclerview.layoutManager = LinearLayoutManager(activity)
         fHistory_recyclerview.adapter = historyAdapter
 
@@ -109,6 +109,7 @@ class HistoryFragment : BaseFragment() {
         historyAdapter.clickListener = { date ->
             navigator.showHistoryDetail(activity!!, date)
         }
+
 
         if (false) {
             val a = ExerciseHistoryEntity(0,"2020-3-30",0,"벤치프레스",5,10,2,2,30,true,30,60,170,10)
@@ -123,6 +124,7 @@ class HistoryFragment : BaseFragment() {
             val j = ExerciseHistoryEntity(0,"2020-04-13",3,"풀업",0,10,5,5,70,true,80,60,170,60)
             val k = ExerciseHistoryEntity(0,"2020-04-13",3,"팔굽혀펴기",0,10,4,0,20,false,80,60,170,60)
             val l = ExerciseHistoryEntity(0,"2020-04-15",4,"벤치프레스",30,10,6,6,30,true,100,60,170,70)
+
 
             Flowable.just("abc")
                 .subscribeOn(Schedulers.io())

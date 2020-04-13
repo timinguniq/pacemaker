@@ -1,13 +1,11 @@
 package com.devjj.pacemaker.features.pacemaker.option
 
+
 import android.content.res.Configuration
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 
 import com.devjj.pacemaker.R
@@ -45,6 +43,7 @@ class OptionFragment : BaseFragment() {
 
     private fun initializeView() {
         setColors()
+
         fOption_swc_mode_item.isChecked = setting.isNightMode
         val optionListener = OptionListener(activity!!,setting,::setColors)
         optionListener.initListener()
@@ -57,7 +56,7 @@ class OptionFragment : BaseFragment() {
             true -> {
                 Log.d("color", "Dark Mode = ${setting.isNightMode}")
                 activity!!.window.statusBarColor = activity!!.getColor(R.color.grey_bg_thickest)
-                activity!!.aOption_clo_title.setBackgroundResource(R.drawable.apacemaker_dm_title_background)
+                activity!!.aOption_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)
                 activity!!.aOption_flo_container.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thickest))
 
                 fOption_swc_mode_item.thumbDrawable.setTint(activity!!.getColor(R.color.orange_bg_thick))
@@ -67,9 +66,12 @@ class OptionFragment : BaseFragment() {
 
                 fOption_clo_supportUs.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
 
+
                 fOption_txv_profile.setTextColor(activity!!.getColor(R.color.black_txt_thick))
 
                 fOption_txv_supportUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+
+
 
 
 
@@ -80,6 +82,7 @@ class OptionFragment : BaseFragment() {
                 fOption_txv_weight_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
                 fOption_txv_height_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
 
+
                 fOption_clo_language.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
                 fOption_txv_language.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_rg_korean.buttonDrawable!!.setTint(activity!!.getColor(R.color.orange_bg_basic))
@@ -88,20 +91,22 @@ class OptionFragment : BaseFragment() {
                 fOption_txv_english.setTextColor(activity!!.getColor(R.color.white_txt_thick))
 */
 
-                fOption_txv_interval_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fOption_txv_interval_time.setTextColor(activity!!.getColor(R.color.grey_txt_light))
-                fOption_iv_interval_minus.setImageResource(R.drawable.faddition_dm_rest_minus_img)
-                fOption_iv_interval_plus.setImageResource(R.drawable.faddition_dm_rest_plus_img)
+                fOption_tv_interval_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fOption_tv_interval_time.setTextColor(activity!!.getColor(R.color.grey_txt_light))
+                fOption_iv_interval_minus.setImageResource(R.drawable.img_rest_minus_nighttime)
+                fOption_iv_interval_plus.setImageResource(R.drawable.img_rest_plus_nighttime)
+
 
 
                 fOption_txv_rateUs.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_txv_feedback.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_txv_share.setTextColor(activity!!.getColor(R.color.white_txt_thick))
 
+
             }
             false -> {
                 activity!!.window.statusBarColor = activity!!.getColor(R.color.blue_bg_basic)
-                activity!!.aOption_clo_title.setBackgroundResource(R.drawable.apacemaker_wm_title_background)
+                activity!!.aOption_clo_title.setBackgroundResource(R.drawable.img_title_background_daytime)
                 activity!!.aOption_flo_container.setBackgroundColor(activity!!.getColor(R.color.white_bg_basic))
                 fOption_swc_mode_item.thumbDrawable.setTint(activity!!.getColor(R.color.blue_bg_thick))
                 fOption_swc_mode_item.trackDrawable.setTint(activity!!.getColor(R.color.blue_bg_basic))
@@ -110,9 +115,11 @@ class OptionFragment : BaseFragment() {
 
                 fOption_clo_supportUs.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
 
+
                 fOption_txv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
 
                 fOption_txv_supportUs.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
+
 
 
 
@@ -122,6 +129,7 @@ class OptionFragment : BaseFragment() {
                 fOption_txv_weight_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
                 fOption_txv_height_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
 
+
                 fOption_clo_language.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
                 fOption_txv_language.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
                 fOption_rg_korean.buttonDrawable!!.setTint(activity!!.getColor(R.color.blue_bg_basic))
@@ -130,15 +138,19 @@ class OptionFragment : BaseFragment() {
                 fOption_txv_english.setTextColor(activity!!.getColor(R.color.black_txt_thick))
 */
 
-                fOption_txv_interval_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_txv_interval_time.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
-                fOption_iv_interval_minus.setImageResource(R.drawable.faddition_wm_rest_minus_img)
-                fOption_iv_interval_plus.setImageResource(R.drawable.faddition_wm_rest_plus_img)
+
+                fOption_tv_interval_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fOption_tv_interval_time.setTextColor(activity!!.getColor(R.color.grey_txt_light))
+                fOption_iv_interval_minus.setImageResource(R.drawable.img_rest_minus_daytime)
+                fOption_iv_interval_plus.setImageResource(R.drawable.img_rest_plus_daytime)
+
+
 
                 fOption_txv_mode_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_txv_rateUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_txv_feedback.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_txv_share.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+
             }
         }
     }

@@ -23,12 +23,12 @@
             android:background="@color/base_grey">
 
             <TextView
-                android:id="@+id/fOption_txv_profile"
+                android:id="@+id/fOption_tv_profile"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/fOption_txv_profile"
-                android:textColor="@color/fOption_color_wm_txv_menu"
+                android:text="@string/foption_tv_profile_str"
+                android:textColor="@color/grey_txt_thick"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -44,12 +44,12 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/fOption_txv_mode_title"
+                android:id="@+id/fOption_tv_mode_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/fOption_txv_mode"
-                android:textColor="@color/fOption_color_wm_txv_item"
+                android:text="@string/foption_tv_mode_str"
+                android:textColor="@color/black_txt_thick"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -67,7 +67,7 @@
                 android:trackTint="@color/blue_bg_transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/fOption_txv_mode_title"
+                app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_title"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 <!--
@@ -77,32 +77,32 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/fOption_txv_weight_title"
+                android:id="@+id/fOption_tv_weight_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/fOption_txv_weight"
-                android:textColor="@color/fOption_color_wm_txv_item"
+                android:text="@string/foption_tv_weight_str"
+                android:textColor="@color/black_txt_thick"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fOption_txv_weight_item"
+                app:layout_constraintEnd_toStartOf="@+id/fOption_tv_weight_item"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/fOption_txv_weight_item"
+                android:id="@+id/fOption_tv_weight_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
                 android:background="@android:color/transparent"
                 android:focusable="auto"
-                android:text="@string/rh_mass"
-                android:textColor="@color/fOption_color_wm_txv_menu"
+                android:text="@string/rh_tv_unit_mass_str"
+                android:textColor="@color/grey_txt_thick"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/fOption_txv_weight_title"
+                app:layout_constraintStart_toEndOf="@+id/fOption_tv_weight_title"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -113,21 +113,21 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/fOption_txv_height_title"
+                android:id="@+id/fOption_tv_height_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/fOption_txv_height"
-                android:textColor="@color/fOption_color_wm_txv_item"
+                android:text="@string/foption_tv_height_str"
+                android:textColor="@color/black_txt_thick"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fOption_txv_height_item"
+                app:layout_constraintEnd_toStartOf="@+id/fOption_tv_height_item"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/fOption_txv_height_item"
+                android:id="@+id/fOption_tv_height_item"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
@@ -137,7 +137,7 @@
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/fOption_txv_height_title"
+                app:layout_constraintStart_toEndOf="@+id/fOption_tv_height_title"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -149,12 +149,12 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/fOption_txv_interval_title"
+                android:id="@+id/fOption_tv_interval_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/fOption_txv_interval"
-                android:textColor="@color/fOption_color_wm_txv_item"
+                android:text="@string/foption_tv_interval_str"
+                android:textColor="@color/black_txt_thick"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -170,7 +170,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
-                app:layout_constraintStart_toEndOf="@+id/fOption_txv_interval_title"
+                app:layout_constraintStart_toEndOf="@+id/fOption_tv_interval_title"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <FrameLayout
@@ -178,7 +178,7 @@
                     android:layout_width="40dp"
                     android:layout_height="match_parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/fOption_txv_interval_time"
+                    app:layout_constraintEnd_toStartOf="@+id/fOption_tv_interval_time"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -189,13 +189,13 @@
                         android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:contentDescription="@string/image_not_found"
-                        android:src="@drawable/faddition_wm_rest_minus_img" />
+                        android:src="@drawable/img_rest_minus_daytime" />
 
                 </FrameLayout>
 
 
                 <TextView
-                    android:id="@+id/fOption_txv_interval_time"
+                    android:id="@+id/fOption_tv_interval_time"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -214,7 +214,7 @@
                     android:layout_height="match_parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/fOption_txv_interval_time"
+                    app:layout_constraintStart_toEndOf="@+id/fOption_tv_interval_time"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
@@ -223,7 +223,7 @@
                         android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:contentDescription="@string/image_not_found"
-                        android:src="@drawable/faddition_wm_rest_plus_img" />
+                        android:src="@drawable/img_rest_plus_daytime" />
 
                 </FrameLayout>
 
@@ -239,12 +239,12 @@
             android:background="@color/base_grey">
 
             <TextView
-                android:id="@+id/fOption_txv_language"
+                android:id="@+id/fOption_tv_language"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/fOption_txv_language"
-                android:textColor="@color/fOption_color_wm_txv_menu"
+                android:text="@string/foption_tv_language_str"
+                android:textColor="@color/grey_txt_thick"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -277,12 +277,12 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/fOption_txv_korean"
+                        android:id="@+id/fOption_tv_korean"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:text="@string/fOption_txv_korean"
-                        android:textColor="@color/fOption_color_wm_txv_item"
+                        android:text="@string/foption_tv_korean_str"
+                        android:textColor="@color/black_txt_thick"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -301,12 +301,12 @@
                     app:layout_constraintTop_toBottomOf="@id/fOption_clo_korean">
 
                     <TextView
-                        android:id="@+id/fOption_txv_english"
+                        android:id="@+id/fOption_tv_english"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
-                        android:text="@string/fOption_txv_english"
-                        android:textColor="@color/fOption_color_wm_txv_item"
+                        android:text="@string/foption_tv_english_str"
+                        android:textColor="@color/black_txt_thick"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -352,12 +352,12 @@
             android:background="@color/base_grey">
 
             <TextView
-                android:id="@+id/fOption_txv_supportUs"
+                android:id="@+id/fOption_tv_supportUs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/fOption_txv_supportUs"
-                android:textColor="@color/fOption_color_wm_txv_menu"
+                android:text="@string/foption_tv_supportUs_str"
+                android:textColor="@color/grey_txt_thick"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -372,12 +372,12 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/fOption_txv_rateUs"
+                android:id="@+id/fOption_tv_rateUs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/fOption_txv_rateUs"
-                android:textColor="@color/fOption_color_wm_txv_item"
+                android:text="@string/foption_tv_rateUs_str"
+                android:textColor="@color/black_txt_thick"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -392,12 +392,12 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/fOption_txv_feedback"
+                android:id="@+id/fOption_tv_feedback"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/fOption_txv_feedback"
-                android:textColor="@color/fOption_color_wm_txv_item"
+                android:text="@string/foption_tv_feedback_str"
+                android:textColor="@color/black_txt_thick"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -412,12 +412,12 @@
             android:layout_height="40dp">
 
             <TextView
-                android:id="@+id/fOption_txv_share"
+                android:id="@+id/fOption_tv_share"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/fOption_txv_share"
-                android:textColor="@color/fOption_color_wm_txv_item"
+                android:text="@string/foption_tv_share_str"
+                android:textColor="@color/black_txt_thick"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

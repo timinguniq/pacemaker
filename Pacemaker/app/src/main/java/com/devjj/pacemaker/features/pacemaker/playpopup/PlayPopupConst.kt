@@ -1,8 +1,5 @@
 package com.devjj.pacemaker.features.pacemaker.playpopup
 
-import android.graphics.Color
-
-
 // 현재 셋트 수를 나타내는 변수.
 var currentSet: Int = 1
 var maxSet: Int = 0
@@ -26,9 +23,9 @@ val maxPlusClickNumber = 3
 // 날짜
 var date: String = ""
 // 키
-var height = 0
+var height = 0f
 // 몸무게
-var weight = 0
+var weight = 0f
 // 운동 총 시간(휴식시간 다 포함)
 var totalTime = 0
 

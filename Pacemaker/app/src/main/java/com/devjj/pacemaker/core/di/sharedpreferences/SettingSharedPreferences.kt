@@ -21,16 +21,16 @@ class SettingSharedPreferences(context: Context) {
     /* get/set 함수 임의 설정. get 실행 시 저장된 값을 반환하며 default 값은 false
      * set(value) 실행 시 value로 값을 대체한 후 저장 */
 
-    var height: Int
-        get() = prefs.getInt(PREF_KEY_HEIGHT, 0)
-        set(value) = prefs.edit().putInt(PREF_KEY_HEIGHT, value).apply()
+    var height: Float
+        get() = prefs.getFloat(PREF_KEY_HEIGHT, 0f)
+        set(value) = prefs.edit().putFloat(PREF_KEY_HEIGHT, value).apply()
 
-    var weight: Int
-        get() = prefs.getInt(PREF_KEY_WEIGHT, 0)
-        set(value) = prefs.edit().putInt(PREF_KEY_WEIGHT, value).apply()
+    var weight: Float
+        get() = prefs.getFloat(PREF_KEY_WEIGHT, 0f)
+        set(value) = prefs.edit().putFloat(PREF_KEY_WEIGHT, value).apply()
 
     var restTime: Int
-        get() = prefs.getInt(PREF_KEY_REST_TIME, 0)
+        get() = prefs.getInt(PREF_KEY_REST_TIME, 60)
         set(value) = prefs.edit().putInt(PREF_KEY_REST_TIME, value).apply()
 
     var language: Int

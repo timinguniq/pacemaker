@@ -1,5 +1,6 @@
 package com.devjj.pacemaker.features.pacemaker.option
 
+import android.content.res.Configuration
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.activity_option.*
 import kotlinx.android.synthetic.main.fragment_option.*
+import java.util.*
 import javax.inject.Inject
 
 class OptionFragment : BaseFragment() {
@@ -43,54 +45,11 @@ class OptionFragment : BaseFragment() {
 
     private fun initializeView() {
         setColors()
-        fOption_txv_weight_item.isFocusable=false
-        fOption_txv_height_item.isFocusable=false
-        fOption_txv_weight_item.setText(getString(R.string.rh_mass, setting.weight))
-        fOption_txv_height_item.setText(getString(R.string.rh_height, setting.height))
-
         fOption_swc_mode_item.isChecked = setting.isNightMode
-        activity!!.window.statusBarColor = activity!!.getColor(R.color.blue_bg_basic)
+        val optionListener = OptionListener(activity!!,setting,::setColors)
+        optionListener.initListener()
+        fOption_txv_interval_time.text = getString(R.string.unit_time_min_sec,setting.restTime/60,setting.restTime%60)
 
-        fOption_swc_mode_item.setOnCheckedChangeListener { buttonView, isChecked ->
-            setting.isNightMode = isChecked
-            Log.d("color", "${activity!!.getColor(R.color.base_grey)}")
-            setColors()
-        }
-
-        fOption_txv_weight_item.setOnClickListener { v ->
-            Log.d("jayOption","weight on click")
-            v.isFocusable=true
-            v.requestFocus()
-        }
-
-        fOption_txv_weight_item.setOnFocusChangeListener { v, hasFocus ->
-            when(hasFocus){
-                true->{
-                    Log.d("jayOption","weight focus gained")
-                }
-                false->{
-                    Log.d("jayOption","weight focus lost")
-                }
-            }
-        }
-
-
-        fOption_txv_height_item.setOnClickListener { v ->
-            Log.d("jayOption","height on click")
-            v.isFocusable=true
-            v.requestFocus()
-        }
-
-        fOption_txv_height_item.setOnFocusChangeListener { v, hasFocus ->
-            when(hasFocus){
-                true->{
-                    Log.d("jayOption","height focus gained")
-                }
-                false->{
-                    Log.d("jayOption","height focus lost")
-                }
-            }
-        }
     }
 
     private fun setColors() {
@@ -105,31 +64,36 @@ class OptionFragment : BaseFragment() {
                 fOption_swc_mode_item.trackDrawable.setTint(activity!!.getColor(R.color.orange_bg_basic))
 
                 fOption_clo_profile.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
-                fOption_clo_language.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
+
                 fOption_clo_supportUs.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
 
                 fOption_txv_profile.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_txv_language.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+
                 fOption_txv_supportUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
 
-                fOption_rg_korean.buttonDrawable!!.setTint(activity!!.getColor(R.color.orange_bg_basic))
-                fOption_rg_english.buttonDrawable!!.setTint(activity!!.getColor(R.color.orange_bg_basic))
+
 
                 fOption_txv_mode_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-
+/*
                 fOption_txv_weight_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_txv_height_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_txv_weight_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
                 fOption_txv_height_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
 
+                fOption_clo_language.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
+                fOption_txv_language.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fOption_rg_korean.buttonDrawable!!.setTint(activity!!.getColor(R.color.orange_bg_basic))
+                fOption_rg_english.buttonDrawable!!.setTint(activity!!.getColor(R.color.orange_bg_basic))
+                fOption_txv_korean.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fOption_txv_english.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+*/
 
                 fOption_txv_interval_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_txv_interval_time.setTextColor(activity!!.getColor(R.color.grey_txt_light))
                 fOption_iv_interval_minus.setImageResource(R.drawable.faddition_dm_rest_minus_img)
                 fOption_iv_interval_plus.setImageResource(R.drawable.faddition_dm_rest_plus_img)
 
-                fOption_txv_korean.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fOption_txv_english.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+
                 fOption_txv_rateUs.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_txv_feedback.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_txv_share.setTextColor(activity!!.getColor(R.color.white_txt_thick))
@@ -143,30 +107,35 @@ class OptionFragment : BaseFragment() {
                 fOption_swc_mode_item.trackDrawable.setTint(activity!!.getColor(R.color.blue_bg_basic))
 
                 fOption_clo_profile.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
-                fOption_clo_language.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
+
                 fOption_clo_supportUs.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
 
                 fOption_txv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
-                fOption_txv_language.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
+
                 fOption_txv_supportUs.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
 
-                fOption_rg_korean.buttonDrawable!!.setTint(activity!!.getColor(R.color.blue_bg_basic))
-                fOption_rg_english.buttonDrawable!!.setTint(activity!!.getColor(R.color.blue_bg_basic))
 
+
+                /*
                 fOption_txv_weight_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_txv_height_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_txv_weight_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
                 fOption_txv_height_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
 
+                fOption_clo_language.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
+                fOption_txv_language.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
+                fOption_rg_korean.buttonDrawable!!.setTint(activity!!.getColor(R.color.blue_bg_basic))
+                fOption_rg_english.buttonDrawable!!.setTint(activity!!.getColor(R.color.blue_bg_basic))
+                fOption_txv_korean.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fOption_txv_english.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+*/
 
                 fOption_txv_interval_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_txv_interval_time.setTextColor(activity!!.getColor(R.color.grey_txt_light))
+                fOption_txv_interval_time.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
                 fOption_iv_interval_minus.setImageResource(R.drawable.faddition_wm_rest_minus_img)
                 fOption_iv_interval_plus.setImageResource(R.drawable.faddition_wm_rest_plus_img)
 
                 fOption_txv_mode_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_txv_korean.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_txv_english.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_txv_rateUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_txv_feedback.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_txv_share.setTextColor(activity!!.getColor(R.color.black_txt_thick))

@@ -4,6 +4,8 @@ import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
 import com.devjj.pacemaker.core.interactor.UseCase.None
 import com.devjj.pacemaker.features.pacemaker.entities.ExerciseHistoryEntity
+import com.devjj.pacemaker.features.pacemaker.history.Summary
+import com.devjj.pacemaker.features.pacemaker.historydetail.OneDaySummary
 import io.reactivex.Flowable
 
 @Dao
@@ -22,6 +24,13 @@ interface ExerciseHistoryDAO {
 
     @Query("UPDATE exerciseHistories SET achievementRate = ( (SELECT SUM(setDone) FROM exerciseHistories WHERE achievement = 1 AND date = :date)*100/(SELECT SUM(setGoal) FROM exerciseHistories WHERE date = :date) ) WHERE date = :date")
     fun updateAchievementRate(date: String) : Int
+
+
+    @Query("SELECT Sum(setDone) as sets , (Select Sum(totalTime) FROM (SELECT * FROM exerciseHistories GROUP BY date) ) as times FROM exerciseHistories ")
+    fun getSummary() : Summary
+
+    @Query("SELECT Sum(setDone) as sets , Max(totalTime) as times FROM exerciseHistories WHERE date = :date")
+    fun getOneDaySummary(date: String) : OneDaySummary
 
     // date 검색 후 데이터 삭제하는 함수
     @Query("DELETE FROM exerciseHistories WHERE date = :date")

@@ -45,6 +45,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
 
         historyDetailViewModel = viewModel(viewModelFactory) {
             observe(historyDetails, ::renderHistoryDetails)
+            observe(oneDaySummary,::renderOneDaySummary)
         }
 
     }
@@ -54,38 +55,36 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
         initializeView()
     }
 
+    private fun renderOneDaySummary(oneDaySummary: OneDaySummary?){
+
+        fHistoryDetail_tv_totalSets.text = this.getString(R.string.unit_sets, oneDaySummary!!.sets )
+        fHistoryDetail_tv_totalReps.text = this.getString(R.string.unit_time_hour_min, oneDaySummary!!.times/60,oneDaySummary!!.times%60)
+    }
+
     private fun renderHistoryDetails(historyDetailViews: List<HistoryDetailView>?) {
         historyDetailAdapter.collection = historyDetailViews.orEmpty()
 
         fHistoryDetail_circleView_rate.setValue(historyDetailViews.orEmpty()[0].achievementRate.toFloat())
 
-        var sets = 0
-        var reps = 0
-        for (historyDetailView in historyDetailViews!!) {
-            sets += historyDetailView.set
-            reps += historyDetailView.rep
-        }
-        fHistoryDetail_tv_totalSets.text = this.getString(R.string.fHistory_detail_set,sets)
-        fHistoryDetail_tv_totalReps.text = this.getString(R.string.fHistory_detail_rep,reps)
     }
 
     private fun initializeView() {
         setColors()
         fHistoryDetail_circleView_rate.setTextTypeface(Typeface.DEFAULT_BOLD)
         fHistoryDetail_circleView_rate.setUnitTextTypeface(Typeface.DEFAULT_BOLD)
+
         historyDetailAdapter.clickListener = { id, date ->
             historyDetailViewModel.switchAchievementById(id)
             historyDetailViewModel.updateAchievementRateByDate(date)
             historyDetailViewModel.loadHistoryDetails(date)
         }
 
-
-
         fHistoryDetail_recyclerview.layoutManager = LinearLayoutManager(activity)
         fHistoryDetail_recyclerview.adapter = historyDetailAdapter
 
         val date: String = intent.getStringExtra("date")
         historyDetailViewModel.loadHistoryDetails(date)
+        historyDetailViewModel.loadOneDaySummary(date)
         Log.d("dateee", "${date.split("-")[0]}")
         activity!!.aHistoryDetail_tv_title.text = this.getString(
             R.string.aHistoryDetail_title_txv,

@@ -58,18 +58,19 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
     private fun renderOneDaySummary(oneDaySummary: OneDaySummary?){
 
         fHistoryDetail_tv_totalSets.text = this.getString(R.string.unit_sets, oneDaySummary!!.sets )
-        fHistoryDetail_tv_totalReps.text = this.getString(R.string.unit_time_hour_min, oneDaySummary!!.times/60,oneDaySummary!!.times%60)
+        fHistoryDetail_tv_totalReps.text = this.getString(R.string.unit_time_hour_min, oneDaySummary.times/60,oneDaySummary.times%60)
     }
 
     private fun renderHistoryDetails(historyDetailViews: List<HistoryDetailView>?) {
         historyDetailAdapter.collection = historyDetailViews.orEmpty()
-
         fHistoryDetail_circleView_rate.setValue(historyDetailViews.orEmpty()[0].achievementRate.toFloat())
 
     }
 
     private fun initializeView() {
+        val date: String = intent.getStringExtra("date")
         setColors()
+        historyDetailViewModel.updateAchievementRateByDate(date)
         fHistoryDetail_circleView_rate.setTextTypeface(Typeface.DEFAULT_BOLD)
         fHistoryDetail_circleView_rate.setUnitTextTypeface(Typeface.DEFAULT_BOLD)
 
@@ -82,7 +83,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
         fHistoryDetail_recyclerview.layoutManager = LinearLayoutManager(activity)
         fHistoryDetail_recyclerview.adapter = historyDetailAdapter
 
-        val date: String = intent.getStringExtra("date")
+
         historyDetailViewModel.loadHistoryDetails(date)
         historyDetailViewModel.loadOneDaySummary(date)
         Log.d("dateee", "${date.split("-")[0]}")

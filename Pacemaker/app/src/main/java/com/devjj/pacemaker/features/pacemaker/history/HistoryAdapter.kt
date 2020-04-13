@@ -36,7 +36,7 @@ class HistoryAdapter
     class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
         fun bind(historyView: HistoryView , context: Context, clickListener: (String) -> Unit ){
             itemView.rvExerciseHistoryItem_tv_date.text = historyView.date
-            itemView.rvExerciseHistoryItem_tv_rate.text = context.getString(R.string.rh_tv_unit_rate_str,historyView.achivementRate)
+            itemView.rvExerciseHistoryItem_tv_rate.text = context.getString(R.string.unit_percentage,historyView.achivementRate)
             itemView.rvExerciseHistoryItem_pb_rate.setProgress(historyView.achivementRate)
 
             itemView.rvExerciseHistoryItem_clo_main.setOnClickListener{

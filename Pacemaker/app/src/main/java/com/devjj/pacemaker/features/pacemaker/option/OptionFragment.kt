@@ -47,7 +47,7 @@ class OptionFragment : BaseFragment() {
         fOption_swc_mode_item.isChecked = setting.isNightMode
         val optionListener = OptionListener(activity!!,setting,::setColors)
         optionListener.initListener()
-        fOption_txv_interval_time.text = getString(R.string.unit_time_min_sec,setting.restTime/60,setting.restTime%60)
+        fOption_tv_interval_time.text = getString(R.string.unit_time_min_sec,setting.restTime/60,setting.restTime%60)
 
     }
 
@@ -67,15 +67,15 @@ class OptionFragment : BaseFragment() {
                 fOption_clo_supportUs.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
 
 
-                fOption_txv_profile.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fOption_tv_profile.setTextColor(activity!!.getColor(R.color.black_txt_thick))
 
-                fOption_txv_supportUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-
-
+                fOption_tv_supportUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
 
 
 
-                fOption_txv_mode_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+
+
+                fOption_tv_mode_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
 /*
                 fOption_txv_weight_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_txv_height_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
@@ -98,9 +98,9 @@ class OptionFragment : BaseFragment() {
 
 
 
-                fOption_txv_rateUs.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fOption_txv_feedback.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fOption_txv_share.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fOption_tv_rateUs.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fOption_tv_feedback.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fOption_tv_share.setTextColor(activity!!.getColor(R.color.white_txt_thick))
 
 
             }
@@ -116,9 +116,9 @@ class OptionFragment : BaseFragment() {
                 fOption_clo_supportUs.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
 
 
-                fOption_txv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
+                fOption_tv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
 
-                fOption_txv_supportUs.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
+                fOption_tv_supportUs.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
 
 
 
@@ -146,10 +146,10 @@ class OptionFragment : BaseFragment() {
 
 
 
-                fOption_txv_mode_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_txv_rateUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_txv_feedback.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_txv_share.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fOption_tv_mode_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fOption_tv_rateUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fOption_tv_feedback.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fOption_tv_share.setTextColor(activity!!.getColor(R.color.black_txt_thick))
 
             }
         }

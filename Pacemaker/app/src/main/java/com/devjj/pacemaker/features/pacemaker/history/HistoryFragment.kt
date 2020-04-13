@@ -102,6 +102,8 @@ class HistoryFragment : BaseFragment() {
         this.activity!!.aPacemaker_tv_title.text = this.getString(R.string.fhistory_tv_title_str)
         fHistory_recyclerview.layoutManager = LinearLayoutManager(activity)
         fHistory_recyclerview.adapter = historyAdapter
+        fHistory_txv_height.text= getString(R.string.unit_height,setting.height)
+        fHistory_txv_weight.text= getString(R.string.unit_weight,setting.weight)
 
         historyListener = HistoryListener(activity!!, navigator)
         historyListener.initListener()
@@ -112,18 +114,18 @@ class HistoryFragment : BaseFragment() {
 
 
         if (false) {
-            val a = ExerciseHistoryEntity(0,"2020-3-30",0,"벤치프레스",5,10,2,2,30,true,30,60,170,10)
-            val b = ExerciseHistoryEntity(0,"2020-04-01",1,"데드리프트",10,10,3,1,40,false,40,60,170,20)
-            val c = ExerciseHistoryEntity(0,"2020-04-01",2,"스쿼드",15,10,4,4,50,true,40,60,170,20)
-            val d = ExerciseHistoryEntity(0,"2020-04-03",3,"레그레이즈",20,10,5,0,60,false,50,60,170,30)
-            val e = ExerciseHistoryEntity(0,"2020-04-03",4,"크런치",25,10,6,6,70,true,50,60,170,30)
-            val f = ExerciseHistoryEntity(0,"2020-04-03",3,"이두컬",30,10,7,3,30,false,50,60,170,30)
-            val g = ExerciseHistoryEntity(0,"2020-04-05",2,"아놀드프레스",35,10,8,3,40,false,60,60,170,40)
-            val h = ExerciseHistoryEntity(0,"2020-04-05",1,"숄더프레스",40,10,7,7,50,true,60,60,170,40)
-            val i = ExerciseHistoryEntity(0,"2020-04-09",2,"플랭크",0,10,6,1,60,false,70,60,170,50)
-            val j = ExerciseHistoryEntity(0,"2020-04-13",3,"풀업",0,10,5,5,70,true,80,60,170,60)
-            val k = ExerciseHistoryEntity(0,"2020-04-13",3,"팔굽혀펴기",0,10,4,0,20,false,80,60,170,60)
-            val l = ExerciseHistoryEntity(0,"2020-04-15",4,"벤치프레스",30,10,6,6,30,true,100,60,170,70)
+            val a = ExerciseHistoryEntity(0,"2020-3-30",0,"벤치프레스",5,10,2,2,30,true,30,60f,170f,10)
+            val b = ExerciseHistoryEntity(0,"2020-04-01",1,"데드리프트",10,10,3,1,40,false,40,60f,170f,20)
+            val c = ExerciseHistoryEntity(0,"2020-04-01",2,"스쿼드",15,10,4,4,50,true,40,60f,170f,20)
+            val d = ExerciseHistoryEntity(0,"2020-04-03",3,"레그레이즈",20,10,5,0,60,false,50,60f,170f,30)
+            val e = ExerciseHistoryEntity(0,"2020-04-03",4,"크런치",25,10,6,6,70,true,50,60f,170f,30)
+            val f = ExerciseHistoryEntity(0,"2020-04-03",3,"이두컬",30,10,7,3,30,false,50,60f,170f,30)
+            val g = ExerciseHistoryEntity(0,"2020-04-05",2,"아놀드프레스",35,10,8,3,40,false,60,60f,170f,40)
+            val h = ExerciseHistoryEntity(0,"2020-04-05",1,"숄더프레스",40,10,7,7,50,true,60,60f,170f,40)
+            val i = ExerciseHistoryEntity(0,"2020-04-09",2,"플랭크",0,10,6,1,60,false,70,60f,170f,50)
+            val j = ExerciseHistoryEntity(0,"2020-04-13",3,"풀업",0,10,5,5,70,true,80,60f,170f,60)
+            val k = ExerciseHistoryEntity(0,"2020-04-13",3,"팔굽혀펴기",0,10,4,0,20,false,80,60f,170f,60)
+            val l = ExerciseHistoryEntity(0,"2020-04-15",4,"벤치프레스",30,10,6,6,30,true,100,60f,170f,70)
 
 
             Flowable.just("abc")
@@ -143,8 +145,6 @@ class HistoryFragment : BaseFragment() {
         fHistory_calendarView.tileWidth = 150
         fHistory_calendarView.tileHeight = 110
 
-        fHistory_txv_weight.text = getString(R.string.unit_weight, 150)
-        fHistory_txv_height.text = getString(R.string.unit_height, 15.1)
 /*
         fHistory_txv_sets.text = getString(R.string.unit_sets, 10)
         fHistory_txv_times.text = getString(R.string.unit_time_hour_min, 10, 10)

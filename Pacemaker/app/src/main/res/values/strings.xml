@@ -11,10 +11,10 @@
     <string name="navigation_tv_history_str">History</string>
 
 
-    <string name="aPacemaker_title_txv">My training</string>
-    <string name="fHistory_title_txv">History</string>
-    <string name="aHistoryDetail_title_txv">%s월 %s일</string>
-    <string name="aOption_title_txv">Option</string>
+    <string name="apacemaker_tv_title_str">My training</string>
+    <string name="fhistory_tv_title_str">History</string>
+    <string name="ahistorydetail_tv_title_str">%s월 %s일</string>
+    <string name="aoption_tv_title_str">Option</string>
 
 
     <!-- 임시 단위 -->
@@ -22,54 +22,52 @@
     <string name="rvexerciseitem_tv_unit_set_str">%dset</string>
     <string name="rvexerciseitem_tv_unit_slash_str">/</string>
 
-    <string name="fHome_fragment_name">HomeFragment</string>
-    <string name="fHome_list_unavailable">No data.</string>
-    <string name="fHome_title_part_txv">Part</string>
-    <string name="fHome_title_name_txv">Name</string>
-    <string name="fHome_title_mass_txv">Mass</string>
-    <string name="fHome_title_rep_txv">Reps</string>
-    <string name="fHome_title_set_txv">Sets</string>
-    <string name="fHome_title_interval_txv">Rest</string>
+    <string name="fhome_tv_fragment_name_str">HomeFragment</string>
+    <string name="fhome_tv_list_unavailable_str">No data.</string>
+    <string name="fhome_tv_title_part_str">Part</string>
+    <string name="fhome_tv_title_name_str">Name</string>
+    <string name="fhome_tv_title_mass_str">Mass</string>
+    <string name="fhome_tv_title_rep_str">Reps</string>
+    <string name="fhome_tv_title_set_str">Sets</string>
+    <string name="fhome_tv_title_interval_str">Rest</string>
 
-    <string name="fAddition_title_addition_txv">Add</string>
-    <string name="fAddition_title_edit_txv">Edit</string>
-    <string name="fAddition_part_txv">Part:</string>
-    <string name="fAddition_name_txv">Name:</string>
-    <string name="fAddition_name_hint_txv"><b>운동 이름</b></string>
-    <string name="fAddition_mass_txv">Mass</string>
-    <string name="fAddition_mass_hint_txv">Insert Mass(0 for Calisthenics)</string>
-    <string name="fAddition_rep_txv">Reps</string>
-    <string name="fAddition_rep_hint_txv">Insert Reps</string>
-    <string name="fAddition_set_txv">Set</string>
-    <string name="fAddition_set_hint_txv">Insert Sets</string>
-    <string name="fAddition_interval_txv">Rest</string>
-    <string name="fAddition_interval_hint_txv">Insert interval between exercise</string>
+    <string name="faddition_tv_title_addition_str">Add</string>
+    <string name="faddition_tv_title_edit_str">Edit</string>
+    <string name="faddition_tv_part_str">Part:</string>
+    <string name="faddition_tv_name_str">Name:</string>
+    <string name="faddition_tv_name_hint_str"><b>운동 이름</b></string>
+    <string name="faddition_tv_mass_str">Mass</string>
+    <string name="faddition_tv_mass_hint_str">Insert Mass(0 for Calisthenics)</string>
+    <string name="faddition_tv_rep_str">Reps</string>
+    <string name="faddition_tv_rep_hint_str">Insert Reps</string>
+    <string name="faddition_tv_set_str">Set</string>
+    <string name="faddition_tv_set_hint_str">Insert Sets</string>
+    <string name="faddition_tv_interval_str">Rest</string>
+    <string name="faddition_tv_interval_hint_str">Insert interval between exercise</string>
 
-    <string name="dRemove_remove_txv">Delete this one?</string>
-    <string name="dRemove_confirm_txv">Yes</string>
-    <string name="dRemove_cancel_txv">No</string>
+    <string name="dremove_tv_main_str">Delete this one?</string>
+    <string name="dremove_tv_confirm_str">Yes</string>
+    <string name="dremove_tv_cancel_str">No</string>
 
-    <string name="dProfile_height_txv">Height</string>
-    <string name="dProfile_height_hint_txv">Height(cm)</string>
-    <string name="dProfile_weight_txv">Weight</string>
-    <string name="dProfile_weight_hint_txv">Weight(kg)</string>
-    <string name="dProfile_confirm_txv">Confirm</string>
-    <string name="dProfile_tv_regex">키랑 몸무게를 다시 입력해주세요</string>
+    <string name="dprofile_tv_height_str">Height</string>
+    <string name="dprofile_tv_height_hint_str">Height(cm)</string>
+    <string name="dprofile_tv_weight_str">Weight</string>
+    <string name="dprofile_tv_weight_hint_str">Weight(kg)</string>
+    <string name="dprofile_tv_confirm_str">Confirm</string>
+    <string name="dprofile_tv_regex_str">키랑 몸무게를 다시 입력해주세요</string>
 
-    <string name="dgiveup_tv_main_str">이 운동을 포기하시겠습니까?</string>
-    <string name="dgiveup_tv_confirm_str">확인</string>
-    <string name="dgiveup_tv_cancel_str">취소</string>
-    <string name="dgiveupall_tv_main_str">모든 운동을 포기하시겠습니까?</string>
+    <string name="dgiveup_tv_give_up_str">Give up the whole session?</string>
 
-    <string name="fplaypopup_tv_list_unavailable_str">데이터가 없습니다.</string>
-    <string name="fplaypopup_tv_playlist_not_exist_str">재생 목록이 없습니다.</string>
-    <string name="fplaypopup_tv_exercise_finish_str">운동이 완료 되었습니다.</string>
+    <string name="dgiveupAll_tv_give_up">Give up the whole session?</string>
 
-    <string name="fplaypopup_tv_exercise_name_str">운동이름</string>
+    <string name="dgiveup_tv_confirm_str">Confirm</string>
+    <string name="dgiveup_tv_cancel_str">Cancel</string>
+
+    <string name="fplaypopup_tv_list_unavailable_str">No data.</string>
+
+    <string name="fplaypopup_tv_exercise_name_str">Exercise Name</string>
     <string name="fplaypopup_tv_unit_mass_str">Kg</string>
-    <string name="fplaypopup_tv_slash_str">/</string>
     <string name="fplaypopup_tv_unit_set_str">Set</string>
-    <string name="fplaypopup_tv_btn_plus_str">+10초</string>
 
 
     <string name="rh_mass">%dkg</string>
@@ -80,31 +78,40 @@
 
 
 
-    <string name="fHistory_detail_set">%d Sets</string>
-    <string name="fHistory_detail_rep">%d Reps</string>
+    <string name="fhistory_detail_set">%d Sets</string>
+    <string name="fhistory_detail_rep">%d Reps</string>
 
-    <string name="fOption_txv_profile">Profile</string>
-    <string name="fOption_txv_mode">Night mode</string>
-    <string name="fOption_txv_weight">Weight</string>
-    <string name="fOption_txv_height">Height</string>
-    <string name="fOption_txv_interval">Rest time</string>
-    <string name="fOption_txv_language">Language</string>
-    <string name="fOption_txv_korean">한국어</string>
-    <string name="fOption_txv_english">English</string>
-    <string name="fOption_txv_supportUs">SUPPORT US</string>
-    <string name="fOption_txv_rateUs">Rate us</string>
-    <string name="fOption_txv_feedback">Feedback</string>
-    <string name="fOption_txv_share">Share</string>
+    <string name="foption_tv_profile_str">Profile</string>
+    <string name="foption_tv_mode_str">Night mode</string>
+    <string name="foption_tv_weight_str">Weight</string>
+    <string name="foption_tv_height_str">Height</string>
+    <string name="foption_tv_interval_str">Rest time</string>
+    <string name="foption_tv_language_str">Language</string>
+    <string name="foption_tv_korean_str">한국어</string>
+    <string name="foption_tv_english_str">English</string>
+    <string name="foption_tv_supportUs_str">SUPPORT US</string>
+    <string name="foption_tv_rateUs_str">Rate us</string>
+    <string name="foption_tv_feedback_str">Feedback</string>
+    <string name="foption_tv_share_str">Share</string>
 
 
-    <string name="fHistory_txv_profile">Profile</string>
-    <string name="fHistory_txv_report">Report</string>
-    <string name="fHistory_txv_total">Total</string>
-    <string name="unit_weight">%d kg</string>
+    <string name="fhistory_tv_profile_str">Profile</string>
+    <string name="fhistory_tv_report_str">Report</string>
+    <string name="fhistory_tv_total_str">Total</string>
+    <string name="unit_weight">%.1f kg</string>
     <string name="unit_height">%.1f cm</string>
     <string name="unit_time_min_sec">%02d:%02d</string>
     <string name="unit_sets">%d sets</string>
     <string name="unit_time_hour_min">%02dh %02dm</string>
+    <string name="unit_percentage">%d%%</string>
+    
+    <string name="dgiveup_tv_main_str">Skip this session?</string>
+    <string name="dgiveupall_tv_main_str">Give up the whole session?</string>
+    <string name="fplaypopup_tv_btn_plus_str">+10sec</string>
+    <string name="fplaypopup_tv_exercise_finish_str">Completed today\'s session</string>
+    <string name="fplaypopup_tv_playlist_not_exist_str">No list</string>
+    <string name="fplaypopup_tv_slash_str">/</string>
+    <string name="stimer_tv_main_str">PaceMarker is running.</string>
 
 
 </resources>

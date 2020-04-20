@@ -29,9 +29,6 @@ class TimerService : Service() {
 
     private val channelId = "channelId"
 
-    // BroadcastReceiver를 생성하는 함수.
-    private val receiver = TimerServiceBroadcastReceiver()
-
     override fun onBind(intent: Intent?): IBinder? {
         // TODO("Return the communication channel to the service.")
         //super.onBind(intent)
@@ -136,9 +133,6 @@ class TimerService : Service() {
         super.onCreate()
 
         startNotification()
-
-        // receiver 등록하는 코드
-        registerReceiver(receiver, makeFilter())
     }
 
     // 처음 시작되면 호출되는 함수.
@@ -154,7 +148,6 @@ class TimerService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        unregisterReceiver(receiver)
         timer.cancel()
     }
 
@@ -201,23 +194,6 @@ class TimerService : Service() {
         // Foreground 시작하는 코드
         startForeground(1, notification)
 
-    }
-
-
-    private fun makeFilter(): IntentFilter {
-        val filter: IntentFilter = IntentFilter()
-        filter.addAction("com.devjj.pacemaker.timerservice")
-        return filter
-    }
-
-    class TimerServiceBroadcastReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            Log.d("test", "TimerServiceBroadcastReceiver onReceive")
-
-            if (!isTimerProgress) {
-                timer.scheduledExecutionTime()
-            }
-        }
     }
 }
 

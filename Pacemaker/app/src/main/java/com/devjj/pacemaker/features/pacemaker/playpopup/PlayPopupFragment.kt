@@ -402,19 +402,6 @@ class PlayPopupFragment : BaseFragment() {
         }
     }
 
-/*
-    // totalTime 시간 늘리는 Timer
-    private fun totalTimer(){
-        totalTimer = Timer("TotalTimer", false).schedule(60000, 60000){
-            runBlocking {
-                launch(Dispatchers.Main){
-                    totalTime++
-                }
-            }
-        }
-    }
-*/
-
     // 부위 이미지 마진주는 함수
     fun marginPartImg(margin: Int){
         val params = ConstraintLayout.LayoutParams(
@@ -472,42 +459,6 @@ class PlayPopupFragment : BaseFragment() {
         }
     }
 
-    private var am: AlarmManager? = null
-
-    fun startByAlarm(
-        ctx: Context,
-        wakeup: Boolean,
-        nexttime: Long,
-        autoStart: Boolean
-    ) {
-        val intent = Intent("com.devjj.pacemaker.timerservice")
-
-        val pi = if (wakeup) PendingIntent.getBroadcast(
-            ctx,
-            0,
-            intent,
-            PendingIntent.FLAG_CANCEL_CURRENT
-        ) else PendingIntent.getService(
-            ctx,
-            0,
-            intent,
-            PendingIntent.FLAG_CANCEL_CURRENT
-        )
-
-        am = ctx.getSystemService(Activity.ALARM_SERVICE) as AlarmManager
-        val currentApiVersion = Build.VERSION.SDK_INT
-        if (currentApiVersion >= Build.VERSION_CODES.KITKAT) {
-            am!!.setExact(if (wakeup) AlarmManager.RTC_WAKEUP else AlarmManager.RTC, nexttime, pi)
-        } else {
-            am!![if (wakeup) AlarmManager.RTC_WAKEUP else AlarmManager.RTC, nexttime] = pi
-        }
-        am!!.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-            SystemClock.elapsedRealtime() + 1000,
-            1000,
-            pi)
-        //or am.setRepeating ...
-    }
-
     // playPopup 데이터 갱신 실패시 핸들링하는 함수.
     private fun handleFailure(failure: Failure?) {
         when (failure) {
@@ -517,7 +468,6 @@ class PlayPopupFragment : BaseFragment() {
             else -> Log.d("PlayPopupFragment", "error")
         }
     }
-
 
     private fun renderFailure(@StringRes message: Int) {
         // TODO : 나중에 메세지에 따른 구현 해야 될듯.

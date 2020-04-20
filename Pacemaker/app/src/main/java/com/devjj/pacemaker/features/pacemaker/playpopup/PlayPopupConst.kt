@@ -35,6 +35,12 @@ val maxHeight = 250
 val minWeight = 0
 val maxWeight = 300
 //
+var timerFinish = false
+
+// 마지막 운동 여부
+var isFinalExercise = false
+// 마지막 운동의 마지막 세트
+var isFinalExerciseFinalSet = false
 
 var currentPlayPopupData: PlayPopupData = PlayPopupData.empty()
 var allPlayPopupDataList: MutableList<PlayPopupData> = mutableListOf<PlayPopupData>()

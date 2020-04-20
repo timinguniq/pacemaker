@@ -113,10 +113,11 @@
         <string name="fplaypopup_tv_playlist_not_exist_str">재생 목록이 없습니다.</string>
         <string name="fplaypopup_tv_slash_str">/</string>
         <string name="fplaypopup_tv_unit_mass_str">Kg</string>
-        <string name="fplaypopup_tv_unit_set_str">Set</string>
+        <string name="fplaypopup_tv_unit_rep_str">Rep</string>
 
         <string name="rvexerciseitem_tv_unit_mass_str">%dkg</string>
         <string name="rvexerciseitem_tv_unit_set_str">%dset</string>
         <string name="rvexerciseitem_tv_unit_slash_str">/</string>
-    <string name="stimer_tv_main_str">Pacemaker 어플이 실행 중입니다.</string>
-    </resources>
+
+        <string name="stimer_tv_main_str">Pacemaker 어플이 실행 중입니다.</string>
+</resources>

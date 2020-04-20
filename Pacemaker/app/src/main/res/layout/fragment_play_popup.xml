@@ -223,11 +223,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/fPlayPopup_tv_m_s"
+            app:layout_constraintBottom_toTopOf="@+id/fPlayPopup_tv_m_r"
             app:layout_constraintVertical_chainStyle="spread_inside"/>
 
         <TextView
-            android:id="@+id/fPlayPopup_tv_m_s"
+            android:id="@+id/fPlayPopup_tv_m_r"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"

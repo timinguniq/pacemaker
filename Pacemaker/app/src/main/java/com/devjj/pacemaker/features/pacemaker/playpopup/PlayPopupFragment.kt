@@ -1,8 +1,12 @@
 package com.devjj.pacemaker.features.pacemaker.playpopup
 
-import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import android.annotation.SuppressLint
+import android.app.Activity
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
+import android.os.*
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +19,7 @@ import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
+import com.devjj.pacemaker.features.pacemaker.PlayPopupActivity
 import com.devjj.pacemaker.features.pacemaker.service.TimerService
 import kotlinx.android.synthetic.main.fragment_play_popup.*
 import kotlinx.coroutines.Dispatchers
@@ -25,8 +30,11 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.concurrent.schedule
 
-@Singleton
+
 class PlayPopupFragment : BaseFragment() {
+    private var totalTimeStart: Long = 0
+    private var totalTimeEnd: Long = 0
+
     @Inject lateinit var setting: SettingSharedPreferences
     @Inject lateinit var navigator: Navigator
 
@@ -34,7 +42,7 @@ class PlayPopupFragment : BaseFragment() {
 
     private lateinit var playPopupViewModel: PlayPopupViewModel
 
-    private var totalTimer: TimerTask = Timer().schedule(100, 1000){}
+    //private var totalTimer: TimerTask = Timer().schedule(100, 1000){}
 
     // 진행바들 변수 리스트
     private val progressBars: List<View> by lazy{
@@ -52,14 +60,18 @@ class PlayPopupFragment : BaseFragment() {
 
         Log.d("test", "onCreate PlayPopupFragment")
         playPopupViewModel = viewModel(viewModelFactory){
+            observe(existPlayPopupList, ::existPlayPopupList)
             observe(playPopupList, ::renderPlayPopupList)
             failure(failure, ::handleFailure)
         }
 
         // 테스트 코드
         // 서비스 시작
-        TimerService.startService(context!!)
+        TimerService.startService(activity!!)
         //
+
+        // 테스트 중.
+        totalTimeStart = System.currentTimeMillis()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,6 +82,15 @@ class PlayPopupFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
         //initializeView()
+
+        // 테스트 코드
+        //startByAlarm(context!!, true, 1000, true)
+
+        // 총 운동 시간 초기화
+        totalTime = 0
+
+        isFinalExercise = false
+        isFinalExerciseFinalSet = false
 
         isNightMode = setting.isNightMode
 
@@ -85,37 +106,31 @@ class PlayPopupFragment : BaseFragment() {
         // 클릭 리스너들 모아둔 함수.
         playPopupListener.clickListener()
 
-        if(!TimerService.isProgressTimer()) {
-            // DB에 있는 데이터 로드
-            //playPopupViewModel.loadPlayPopupList()
+        // 데이터를 리스트를 로드하는 함수.
+        playPopupViewModel.existPlayPopupList()
 
-            playPopupViewModel.loadPlayPopupList()
+        if(!TimerService.isProgressTimer()) {
             // 초기 마진 셋팅
             marginPartImg(25)
 
-            totalTime = 0
+            // 데이터를 리스트를 로드하는 함수.
+            playPopupViewModel.loadPlayPopupList()
 
             // totalTimer 시작시키는 함수.
-            totalTimer()
+            //totalTimer()
         }else{
+            // isProgressTimer = true 일때
             val playPopupViewCurrentSet = currentPlayPopupData.setDone
 
             settingNextProgressBars(playPopupViewCurrentSet)
 
-            //showSet()
         }
-
-        // 테스트 코드
-        // 서비스 시작
-        //TimerService.startService(context!!)
-        //
 
     }
 
     override fun onStop() {
         super.onStop()
-        totalTimer.cancel()
-        //TimerService.stopService(context!!)
+        //totalTimer.cancel()
     }
 
     // 뷰 모드에 대한 초기 셋팅
@@ -175,7 +190,7 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_cv_rate.rimColor = listResource[3]
         fPlayPopup_cv_rate.setBarColor(listResource[4])
         fPlayPopup_tv_name.setTextColor(listResource[5])
-        fPlayPopup_tv_m_s.setTextColor(listResource[6])
+        fPlayPopup_tv_m_r.setTextColor(listResource[6])
         fPlayPopup_iv_confirm.setImageResource(listResource[7])
         fPlayPopup_tv_plus.setTextColor(listResource[8])
         fPlayPopup_tv_plus.setBackgroundResource(listResource[9])
@@ -185,43 +200,70 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_clo_next.visibility = View.GONE
     }
 
-    // playPopup 데이터들 갱신하는 함수.
-    private fun renderPlayPopupList(playPopupView: List<PlayPopupView>?) {
+    // 재생 목록 확인하고 창 종료하는 함수
+    private fun existPlayPopupList(playPopupView: List<PlayPopupView>?){
+        Log.d("test", "existPlayPopupList")
         // 재생 목록이 없으면 화면 종료
         if(playPopupView!!.isEmpty()){
+            // 팝업
             Toast.makeText(context, R.string.fplaypopup_tv_playlist_not_exist_str, Toast.LENGTH_LONG).show()
+            // 서비스 종료
+            TimerService.stopService(context!!)
+            // 화면 종료
             activity?.finish()
         }
         //
+    }
+
+    // playPopup 데이터들 갱신하는 함수.
+    private fun renderPlayPopupList(playPopupView: List<PlayPopupView>?) {
+        //existPlayPopupList(playPopupView)
+
         Log.d("test", "renderPlayPopupList")
 
         // 전체 포기를 위한 초기화 데이터 리스트에 추가
-        for(popupView in playPopupView.orEmpty()){
-            var playPopupData = PlayPopupData(popupView.id, popupView.part, popupView.name, popupView.mass,
-                popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval, popupView.achievement == 1)
-            allPlayPopupDataList.add(playPopupData)
+        for(i in playPopupView.orEmpty().indices){
+            var playPopupData = PlayPopupData(playPopupView.orEmpty()[i].id, playPopupView.orEmpty()[i].part, playPopupView.orEmpty()[i].name,
+                playPopupView.orEmpty()[i].mass, playPopupView.orEmpty()[i].rep, playPopupView.orEmpty()[i].setGoal,
+                playPopupView.orEmpty()[i].setDone, playPopupView.orEmpty()[i].interval, playPopupView.orEmpty()[i].achievement == 1)
+            if(allPlayPopupDataList.size >= playPopupView.orEmpty().size) {
+                allPlayPopupDataList[i] = playPopupData
+            }else{
+                allPlayPopupDataList.add(playPopupData)
+            }
         }
         //
 
-        currentSet = 1
+        // PlayPopupView를 핸들링하는 함수.
+        handlePlayPopupView(playPopupView)
+
+    }
+
+    // 핸들링하는 함수
+    fun handlePlayPopupView(playPopupView: List<PlayPopupView>?){
+        //currentSet = 1
 
         var achivementCount = 0
         var playPopupDataList = mutableListOf<PlayPopupData>()
         for(popupView in playPopupView.orEmpty()){
             val achivement = popupView.achievement == 1
             if(!achivement){
-                Log.d("test", "popupView setDone $popupView.setDone")
-                popupView.setDone = currentSet
+                //popupView.setDone = currentSet
+
+                Log.d("test", "popupView setGoal ${popupView.setGoal}")
+                Log.d("test", "popupView setDone1 ${popupView.setDone}")
+                //if(popupView.setGoal > popupView.setDone) popupView.setDone++
+                if(popupView.setDone == 0) popupView.setDone++
+                Log.d("test", "popupView setDone2 ${popupView.setDone}")
                 currentPlayPopupData = PlayPopupData(popupView.id, popupView.part, popupView.name, popupView.mass,
                     popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval, popupView.achievement == 1)
 
                 showInitSetting(popupView)
-
                 break
             }else{
                 achivementCount++
                 Log.d("test", "achivementCount : ${achivementCount}")
-                Log.d("test", "playPopupView : ${playPopupView.size}")
+                Log.d("test", "playPopupView : ${playPopupView?.size}")
 
                 val initPlayPopupData = PlayPopupData(popupView.id, popupView.part, popupView.name, popupView.mass,
                     popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval,
@@ -231,15 +273,25 @@ class PlayPopupFragment : BaseFragment() {
 
                 if(achivementCount == playPopupView?.size){
                     // 토탈 시간 측정하는 타이머 중지
-                    totalTimer.cancel()
+                    //totalTimer.cancel()
+
+                    // 테스트 중.
+                    totalTimeEnd = System.currentTimeMillis()
+
+                    totalTime = ((totalTimeEnd - totalTimeStart)/60000).toInt()
 
                     // 몸무게랑 키 입력하는 다이얼 로그 띄우는 함수.
                     navigator.showProfileDialog(activity!!, isNightMode, playPopupViewModel, playPopupDataList)
-                    //showDialogProfile()
 
                     Log.d("test", "totalTimer : $totalTime")
 
-                    Toast.makeText(context, R.string.fplaypopup_tv_exercise_finish_str, Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "totalTimer : $totalTime", Toast.LENGTH_LONG).show()
+
+                    //Toast.makeText(context, R.string.fplaypopup_tv_exercise_finish_str, Toast.LENGTH_LONG).show()
+                }
+
+                if(achivementCount == playPopupView?.size?.minus(1)){
+                    isFinalExercise = true
                 }
             }
         }
@@ -249,13 +301,21 @@ class PlayPopupFragment : BaseFragment() {
     fun showSet(){
         if(maxSet > currentSet){
             // 현재 세트에 1을 더하는 함수.
-            currentSet++
-            currentPlayPopupData.setDone = currentSet
+            //currentSet++
+            //currentPlayPopupData.setDone = currentSet
+            currentPlayPopupData.setDone++
             val currentPlayPopupView = PlayPopupView(currentPlayPopupData.id, currentPlayPopupData.part_img, currentPlayPopupData.name,
                 currentPlayPopupData.mass, currentPlayPopupData.rep, currentPlayPopupData.setGoal,
                 currentPlayPopupData.setDone, currentPlayPopupData.interval,
                 if(currentPlayPopupData.achievement) 1 else 0)
             showInitSetting(currentPlayPopupView)
+
+            // 운동 전체 포기를 위한 데이터 갱신
+            for(i in allPlayPopupDataList.indices){
+                if(allPlayPopupDataList[i].id == currentPlayPopupData.id){
+                    allPlayPopupDataList[i] = currentPlayPopupData
+                }
+            }
 
             // setDone 업데이트 해주는 코드
             playPopupViewModel.updateExercisePlayPopupData(currentPlayPopupData)
@@ -270,7 +330,7 @@ class PlayPopupFragment : BaseFragment() {
 
     // 초기 운동 화면을 셋팅하는 함수.
     private fun showInitSetting(currentPlayPopupView: PlayPopupView){
-        mode = STOP_MODE
+        //mode = STOP_MODE
         Log.d("test", "showBoardSetting")
         // 최대 셋 설정하는 코드
         var playPopupViewSetMax = currentPlayPopupView.setGoal
@@ -281,6 +341,7 @@ class PlayPopupFragment : BaseFragment() {
 
         Log.d("test", "showBoardSetting currentSet $currentSet")
         Log.d("test", "showBoardSetting maxSet $maxSet")
+
         // progressBar 셋팅하는 코드
         isVisibleProgressBars(playPopupViewSetMax)
         settingNextProgressBars(currentSet)
@@ -299,17 +360,23 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_tv_name.text = currentPlayPopupView.name
         var slash = getString(R.string.fplaypopup_tv_slash_str)
         var massUnit = getString(R.string.fplaypopup_tv_unit_mass_str)
-        var setUnit = getString(R.string.fplaypopup_tv_unit_set_str)
+        var repUnit = getString(R.string.fplaypopup_tv_unit_rep_str)
         var mstxv = currentPlayPopupView.mass.toString() + massUnit + " $slash " +
-                currentPlayPopupView.setGoal.toString() + setUnit
-        fPlayPopup_tv_m_s.text = mstxv
+                currentPlayPopupView.rep.toString() + repUnit
+        fPlayPopup_tv_m_r.text = mstxv
 
         interval = currentPlayPopupView.interval
         val timerText = settingFormatForTimer(interval)
         fPlayPopup_tv_rest_time.text = timerText
 
+        Log.d("test", "timerFinish $timerFinish")
+        if(timerFinish)
+            fPlayPopup_tv_rest_time.text = "00:00"
+
         // 세트가 마지막 세트로 왔을 때 휴식 시간을 운동간 휴식시간으로 셋팅하기 위한 코드
         if(currentSet == maxSet){
+            if(isFinalExercise) isFinalExerciseFinalSet = true
+
             interval = setting.restTime
             val restTimeText = settingFormatForTimer(interval)
             fPlayPopup_tv_rest_time.text = restTimeText
@@ -335,6 +402,7 @@ class PlayPopupFragment : BaseFragment() {
         }
     }
 
+/*
     // totalTime 시간 늘리는 Timer
     private fun totalTimer(){
         totalTimer = Timer("TotalTimer", false).schedule(60000, 60000){
@@ -345,6 +413,7 @@ class PlayPopupFragment : BaseFragment() {
             }
         }
     }
+*/
 
     // 부위 이미지 마진주는 함수
     fun marginPartImg(margin: Int){
@@ -401,6 +470,42 @@ class PlayPopupFragment : BaseFragment() {
                 progressBars[index].setBackgroundResource(resourcesSelect)
             }
         }
+    }
+
+    private var am: AlarmManager? = null
+
+    fun startByAlarm(
+        ctx: Context,
+        wakeup: Boolean,
+        nexttime: Long,
+        autoStart: Boolean
+    ) {
+        val intent = Intent("com.devjj.pacemaker.timerservice")
+
+        val pi = if (wakeup) PendingIntent.getBroadcast(
+            ctx,
+            0,
+            intent,
+            PendingIntent.FLAG_CANCEL_CURRENT
+        ) else PendingIntent.getService(
+            ctx,
+            0,
+            intent,
+            PendingIntent.FLAG_CANCEL_CURRENT
+        )
+
+        am = ctx.getSystemService(Activity.ALARM_SERVICE) as AlarmManager
+        val currentApiVersion = Build.VERSION.SDK_INT
+        if (currentApiVersion >= Build.VERSION_CODES.KITKAT) {
+            am!!.setExact(if (wakeup) AlarmManager.RTC_WAKEUP else AlarmManager.RTC, nexttime, pi)
+        } else {
+            am!![if (wakeup) AlarmManager.RTC_WAKEUP else AlarmManager.RTC, nexttime] = pi
+        }
+        am!!.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            SystemClock.elapsedRealtime() + 1000,
+            1000,
+            pi)
+        //or am.setRepeating ...
     }
 
     // playPopup 데이터 갱신 실패시 핸들링하는 함수.

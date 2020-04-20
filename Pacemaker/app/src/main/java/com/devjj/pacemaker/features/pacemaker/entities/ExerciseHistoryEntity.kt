@@ -23,6 +23,6 @@ data class ExerciseHistoryEntity(
     val totalTime: Int
 ){
     fun toHistory() = History(id, date, achievementRate)
-    fun toHistoryDetail() = HistoryDetail(id,date,part,name,mass,rep,setDone,interval, (if(achievement)1 else 0) ,achievementRate)
+    fun toHistoryDetail() = HistoryDetail(id,date,part,name,mass,rep,setGoal,setDone,interval, (if(achievement)1 else 0) ,achievementRate)
     fun isAcheived() = this.setGoal == this.setDone
 }

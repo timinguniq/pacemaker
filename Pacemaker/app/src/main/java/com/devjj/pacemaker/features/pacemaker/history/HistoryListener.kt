@@ -7,11 +7,11 @@ import com.prolificinteractive.materialcalendarview.CalendarDay
 import kotlinx.android.synthetic.main.fragment_history.*
 import org.threeten.bp.LocalDate
 
-class HistoryListener(val activity : Activity, val navigator: Navigator){
+class HistoryListener(val activity : Activity, val navigator: Navigator,private val historyViewModel : HistoryViewModel){
 
     fun initListener(){
         activity.fHistory_calendarView.setOnDateChangedListener { calendarView, date, selected ->
-            Log.d("calendarCheck", "date : ${date.date} , selected : $selected")
+            Log.d("jayCalendarCheck", "date : ${date.date} , selected : $selected")
 
             calendarView.setDateSelected(
                 CalendarDay.from(LocalDate.of(date.year, date.month, date.day)),
@@ -19,11 +19,16 @@ class HistoryListener(val activity : Activity, val navigator: Navigator){
             )
             when(selected){
                 false->{
-                    Log.d("calendarCheck", "date : ${date.date.toString()}")
+                    Log.d("jayCalendarCheck", "date : ${date.date}")
                     navigator.showHistoryDetail(activity, date.date.toString())
                 }
                 true->{}
             }
+        }
+
+        activity.fHistory_calendarView.setOnMonthChangedListener { widget, date ->
+            historyViewModel.loadSummaryOneMonth(date.date.toString())
+            Log.d("jayDateCheck.OnChanged", date.date.toString())
         }
     }
 }

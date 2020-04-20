@@ -58,7 +58,7 @@
             android:layout_width="10dp"
             android:layout_height="55dp"
             android:gravity="center"
-            android:text="@string/rvexerciseitem_tv_unit_slash_str"
+            android:text="@string/template_slash_str"
             android:textSize="17sp"
             android:textColor="#ff88898a"
             app:layout_constraintTop_toTopOf="parent"

@@ -1,19 +1,20 @@
 package com.devjj.pacemaker.features.pacemaker.historydetail
 
-
 import android.content.Intent
-import android.content.SharedPreferences
-import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.transition.TransitionManager
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import at.grabner.circleprogress.TextMode
-import at.grabner.circleprogress.UnitPosition
+import android.transition.Slide
+import android.transition.Transition
+import androidx.core.view.isVisible
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.extension.isVisible
 import com.devjj.pacemaker.core.extension.observe
 import com.devjj.pacemaker.core.extension.viewModel
 import com.devjj.pacemaker.core.navigation.Navigator
@@ -21,9 +22,13 @@ import com.devjj.pacemaker.core.platform.BaseFragment
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_history_detail.*
+import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.android.synthetic.main.fragment_history_detail.*
+import kotlinx.android.synthetic.main.recyclerview_exercise_detail_item.*
+import kotlinx.android.synthetic.main.recyclerview_exercise_detail_item.view.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.sync.Mutex
+import java.util.*
 import javax.inject.Inject
 
 class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
@@ -36,6 +41,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
     @Inject
     lateinit var historyDetailAdapter: HistoryDetailAdapter
     @Inject lateinit var setting: SettingSharedPreferences
+
 
     private lateinit var historyDetailViewModel: HistoryDetailViewModel
 
@@ -74,11 +80,66 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
         fHistoryDetail_circleView_rate.setTextTypeface(Typeface.DEFAULT_BOLD)
         fHistoryDetail_circleView_rate.setUnitTextTypeface(Typeface.DEFAULT_BOLD)
 
-        historyDetailAdapter.clickListener = { id, date ->
+        historyDetailAdapter.clickListener = { view, id, date ->
+            /*
             historyDetailViewModel.switchAchievementById(id)
             historyDetailViewModel.updateAchievementRateByDate(date)
-            historyDetailViewModel.loadHistoryDetails(date)
+            historyDetailViewModel.loadHistoryDetails(date)*/
+
+           // view.rvExerciseItem_tv_name.startAnimation(anim)
+
+            /*
+            when(view.rvExerciseItem_clo_detail.visibility) {
+                GONE-> {
+                    view.rvExerciseItem_clo_detail.visibility = VISIBLE
+                }
+                VISIBLE-> {
+                    view.animation=anim
+                    view.rvExerciseItem_clo_detail.visibility = GONE
+                }
+            }
+            */
+
+            historyDetailViewModel.updateAchievementRateByDate(date)
+            var transition :Transition = Slide(Gravity.BOTTOM)
+            transition.duration = 500
+            transition.addTarget(view.rvExerciseItem_clo_detail)
+            TransitionManager.beginDelayedTransition(view.rvExerciseItem_clo_main,transition)
+
+            when(view.rvExerciseItem_clo_detail.isVisible()){
+                true->view.rvExerciseItem_clo_detail.visibility = View.GONE
+                false->view.rvExerciseItem_clo_detail.visibility = View.VISIBLE
+            }
+
+            /*
+            when(view.rvExerciseItem_clo_detail.visibility){
+                GONE->{
+                    var transition :Transition = Slide(Gravity.TOP)
+                    transition.setDuration(1000)
+                    transition.addTarget(view.rvExerciseItem_clo_detail)
+                    TransitionManager.beginDelayedTransition(view.rvExerciseItem_clo_main,transition)
+                 /*   view.rvExerciseItem_clo_detail.animate()
+                        .setDuration(5000)
+                        .alpha(1.0f)
+                        .translationY(view.rvExerciseItem_clo_detail.height.toFloat())*/
+                    view.rvExerciseItem_clo_detail.visibility = VISIBLE
+                }
+                VISIBLE->{
+                    var transition :Transition = Slide(Gravity.BOTTOM)
+                    transition.setDuration(1000)
+                    transition.addTarget(view.rvExerciseItem_clo_detail)
+              /*      view.rvExerciseItem_clo_detail.animate()
+                        .setDuration(5000)
+                        .alpha(0.0f)
+                        .translationY(0f)*/
+                    TransitionManager.beginDelayedTransition(view.rvExerciseItem_clo_main,transition)
+                    view.rvExerciseItem_clo_detail.visibility = GONE
+                }
+            }
+        */
+
         }
+
 
         fHistoryDetail_recyclerview.layoutManager = LinearLayoutManager(activity)
         fHistoryDetail_recyclerview.adapter = historyDetailAdapter
@@ -87,11 +148,14 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
         historyDetailViewModel.loadHistoryDetails(date)
         historyDetailViewModel.loadOneDaySummary(date)
         Log.d("dateee", "${date.split("-")[0]}")
+
+        activity!!.aHistoryDetail_tv_title.text = date
+        /*
         activity!!.aHistoryDetail_tv_title.text = this.getString(
             R.string.ahistorydetail_tv_title_str,
             date.split("-")[1],
             date.split("-")[2]
-        )
+        )*/
     }
 
     private fun setColors(){

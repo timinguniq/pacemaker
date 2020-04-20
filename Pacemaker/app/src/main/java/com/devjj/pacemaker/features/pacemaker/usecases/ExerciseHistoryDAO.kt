@@ -22,15 +22,18 @@ interface ExerciseHistoryDAO {
     @Query("UPDATE exerciseHistories SET achievement = NOT achievement WHERE id = :id")
     fun switchAchievement(id: Int): Int
 
-    @Query("UPDATE exerciseHistories SET achievementRate = ( (SELECT SUM(setDone) FROM exerciseHistories WHERE achievement = 1 AND date = :date)*100/(SELECT SUM(setGoal) FROM exerciseHistories WHERE date = :date) ) WHERE date = :date")
+    @Query("UPDATE exerciseHistories SET achievementRate = ( (SELECT SUM(setDone) FROM exerciseHistories WHERE date = :date)*100/(SELECT SUM(setGoal) FROM exerciseHistories WHERE date = :date) ) WHERE date = :date")
     fun updateAchievementRate(date: String) : Int
 
 
-    @Query("SELECT Sum(setDone) as sets , (Select Sum(totalTime) FROM (SELECT * FROM exerciseHistories GROUP BY date) ) as times FROM exerciseHistories ")
+    @Query("SELECT Sum(setDone) as sets , (Select Sum(totalTime) FROM (SELECT * FROM exerciseHistories GROUP BY date)) as times ,Sum(mass*setDone) as kgs FROM exerciseHistories ")
     fun getSummary() : Summary
 
     @Query("SELECT Sum(setDone) as sets , Max(totalTime) as times FROM exerciseHistories WHERE date = :date")
     fun getOneDaySummary(date: String) : OneDaySummary
+
+    @Query("SELECT (SELECT Sum(setDone) FROM exerciseHistories  WHERE substr(date,0,8) = substr(:date,0,8) ) as sets , (SELECT Sum(totalTime) FROM (SELECT * FROM exerciseHistories GROUP BY date) WHERE substr(date,0,8) = substr(:date,0,8)) as times ,(SELECT Sum(setDone*mass) FROM exerciseHistories  WHERE substr(date,0,8) = substr(:date,0,8) ) as kgs")
+    fun getOneMonthSummary(date: String) : Summary
 
     // date 검색 후 데이터 삭제하는 함수
     @Query("DELETE FROM exerciseHistories WHERE date = :date")

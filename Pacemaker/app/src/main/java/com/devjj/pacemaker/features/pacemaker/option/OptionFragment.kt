@@ -1,12 +1,14 @@
 package com.devjj.pacemaker.features.pacemaker.option
 
 
+import android.content.Intent
 import android.content.res.Configuration
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
@@ -49,6 +51,7 @@ class OptionFragment : BaseFragment() {
         optionListener.initListener()
         fOption_tv_interval_time.text = getString(R.string.unit_time_min_sec,setting.restTime/60,setting.restTime%60)
 
+
     }
 
     private fun setColors() {
@@ -63,46 +66,21 @@ class OptionFragment : BaseFragment() {
                 fOption_swc_mode_item.trackDrawable.setTint(activity!!.getColor(R.color.orange_bg_basic))
 
                 fOption_clo_profile.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
-
                 fOption_clo_supportUs.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
 
-
                 fOption_tv_profile.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-
                 fOption_tv_supportUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
 
-
-
-
-
                 fOption_tv_mode_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-/*
-                fOption_txv_weight_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fOption_txv_height_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fOption_txv_weight_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
-                fOption_txv_height_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
-
-
-                fOption_clo_language.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
-                fOption_txv_language.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_rg_korean.buttonDrawable!!.setTint(activity!!.getColor(R.color.orange_bg_basic))
-                fOption_rg_english.buttonDrawable!!.setTint(activity!!.getColor(R.color.orange_bg_basic))
-                fOption_txv_korean.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fOption_txv_english.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-*/
 
                 fOption_tv_interval_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_tv_interval_time.setTextColor(activity!!.getColor(R.color.grey_txt_light))
                 fOption_iv_interval_minus.setImageResource(R.drawable.img_rest_minus_nighttime)
                 fOption_iv_interval_plus.setImageResource(R.drawable.img_rest_plus_nighttime)
 
-
-
                 fOption_tv_rateUs.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_tv_feedback.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_tv_share.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-
-
             }
             false -> {
                 activity!!.window.statusBarColor = activity!!.getColor(R.color.blue_bg_basic)
@@ -112,45 +90,20 @@ class OptionFragment : BaseFragment() {
                 fOption_swc_mode_item.trackDrawable.setTint(activity!!.getColor(R.color.blue_bg_basic))
 
                 fOption_clo_profile.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
-
                 fOption_clo_supportUs.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
 
-
                 fOption_tv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
-
                 fOption_tv_supportUs.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
-
-
-
-
-                /*
-                fOption_txv_weight_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_txv_height_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_txv_weight_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
-                fOption_txv_height_item.setTextColor(activity!!.getColor(R.color.grey_txt_light))
-
-
-                fOption_clo_language.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
-                fOption_txv_language.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
-                fOption_rg_korean.buttonDrawable!!.setTint(activity!!.getColor(R.color.blue_bg_basic))
-                fOption_rg_english.buttonDrawable!!.setTint(activity!!.getColor(R.color.blue_bg_basic))
-                fOption_txv_korean.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fOption_txv_english.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-*/
-
 
                 fOption_tv_interval_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_tv_interval_time.setTextColor(activity!!.getColor(R.color.grey_txt_light))
                 fOption_iv_interval_minus.setImageResource(R.drawable.img_rest_minus_daytime)
                 fOption_iv_interval_plus.setImageResource(R.drawable.img_rest_plus_daytime)
 
-
-
                 fOption_tv_mode_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_tv_rateUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_tv_feedback.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_tv_share.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-
             }
         }
     }

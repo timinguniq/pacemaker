@@ -12,7 +12,13 @@ import com.devjj.pacemaker.core.extension.convertPartImgToResource
 import com.devjj.pacemaker.core.extension.inflate
 import kotlinx.android.synthetic.main.fragment_history_detail.*
 import kotlinx.android.synthetic.main.fragment_history_detail.view.*
+import kotlinx.android.synthetic.main.recyclerview_exercise_detail_item.view.*
 import kotlinx.android.synthetic.main.recyclerview_exercise_item.view.*
+import kotlinx.android.synthetic.main.recyclerview_exercise_item.view.rvExerciseItem_clo_main
+import kotlinx.android.synthetic.main.recyclerview_exercise_item.view.rvExerciseItem_iv_part
+import kotlinx.android.synthetic.main.recyclerview_exercise_item.view.rvExerciseItem_tv_mass
+import kotlinx.android.synthetic.main.recyclerview_exercise_item.view.rvExerciseItem_tv_name
+import kotlinx.android.synthetic.main.recyclerview_exercise_item.view.rvExerciseItem_tv_set
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -22,26 +28,26 @@ class HistoryDetailAdapter
     internal var collection: List<HistoryDetailView> by Delegates.observable(emptyList()){
         _,_,_-> notifyDataSetChanged()
     }
-    internal var clickListener: (Int,String) -> Unit={ _,_->}
+    internal var clickListener: (View,Int,String) -> Unit={ _,_,_->}
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.recyclerview_exercise_item))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(parent.inflate(R.layout.recyclerview_exercise_detail_item))
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) = viewHolder.bind(collection[position],context,setting,clickListener)
 
     override fun getItemCount() = collection.size
 
     class ViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
-        fun bind(historyDetailView: HistoryDetailView, context: Context,setting: SettingSharedPreferences,clickListener :(Int,String)->Unit={_,_->}){
+        fun bind(historyDetailView: HistoryDetailView, context: Context,setting: SettingSharedPreferences,clickListener :(View,Int,String)->Unit={_,_,_->}){
             val partImgResource = convertPartImgToResource(historyDetailView.part_img, false)
             itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
             itemView.rvExerciseItem_tv_name.text = historyDetailView.name
-            itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.rvexerciseitem_tv_unit_mass_str, historyDetailView.mass)
-            //itemView.rvExerciseItem_tv_rep.text = historyDetailView.rep.toString()
-            itemView.rvExerciseItem_tv_set.text = context.getString(R.string.rvexerciseitem_tv_unit_set_str, historyDetailView.set)
-            //itemView.rvExerciseItem_tv_interval.text = historyDetailView.interval.toString()
-
+           // itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.rvexerciseitem_tv_unit_mass_str, historyDetailView.mass)
+           // itemView.rvExerciseItem_tv_set.text = context.getString(R.string.unit_sets_goal_done, historyDetailView.setDone,historyDetailView.setGoal,historyDetailView.rep)
+            itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.unit_mass, historyDetailView.mass)
+            itemView.rvExerciseItem_tv_set.text = context.getString(R.string.unit_sets_goal_done, historyDetailView.setDone,historyDetailView.setGoal)
+            itemView.rvExerciseItem_tv_rep.text = context.getString(R.string.unit_reps, historyDetailView.rep)
             itemView.rvExerciseItem_clo_main.setOnClickListener{
-                clickListener(historyDetailView.id ,historyDetailView.date)
+                clickListener(itemView,historyDetailView.id ,historyDetailView.date)
             }
 
             if(setting.isNightMode) {
@@ -49,17 +55,24 @@ class HistoryDetailAdapter
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
                 itemView.rvExerciseItem_clo_main.setBackgroundColor(context.getColor(R.color.grey_bg_thick))
                 itemView.rvExerciseItem_tv_name.setTextColor(context.getColor(R.color.white_txt_thick))
+
+                itemView.rvExerciseItem_clo_detail.setBackgroundColor(context.getColor(R.color.grey_bg_light))
                 itemView.rvExerciseItem_tv_mass.setTextColor(context.getColor(R.color.black_txt_thick))
-                itemView.rvExerciseItem_tv_slash.setTextColor(context.getColor(R.color.black_txt_thick))
                 itemView.rvExerciseItem_tv_set.setTextColor(context.getColor(R.color.black_txt_thick))
+                itemView.rvExerciseItem_tv_rep.setTextColor(context.getColor(R.color.black_txt_thick))
+
+
+
             }else{
                 val partImgResource = convertPartImgToResource(historyDetailView.part_img, false)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
                 itemView.rvExerciseItem_clo_main.setBackgroundColor(context.getColor(R.color.grey_bg_light))
                 itemView.rvExerciseItem_tv_name.setTextColor(context.getColor(R.color.black_txt_thick))
-                itemView.rvExerciseItem_tv_mass.setTextColor(context.getColor(R.color.grey_txt_light))
-                itemView.rvExerciseItem_tv_slash.setTextColor(context.getColor(R.color.grey_txt_light))
-                itemView.rvExerciseItem_tv_set.setTextColor(context.getColor(R.color.grey_txt_light))
+
+                itemView.rvExerciseItem_clo_detail.setBackgroundColor(context.getColor(R.color.grey_bg_thick))
+                itemView.rvExerciseItem_tv_mass.setTextColor(context.getColor(R.color.white_txt_thick))
+                itemView.rvExerciseItem_tv_set.setTextColor(context.getColor(R.color.white_txt_thick))
+                itemView.rvExerciseItem_tv_rep.setTextColor(context.getColor(R.color.white_txt_thick))
 
             }
 

@@ -4,7 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 import com.devjj.pacemaker.core.extension.empty
 
-data class HistoryDetailView(val id: Int, val date:String,val part_img: Int, val name: String, val mass: Int, val rep: Int, val set: Int, val interval: Int, val achievement:Int,val achievementRate:Int):
+data class HistoryDetailView(val id: Int, val date:String,val part_img: Int, val name: String, val mass: Int, val rep: Int, val setGoal:Int ,val setDone: Int, val interval: Int, val achievement:Int,val achievementRate:Int):
     Parcelable {
 
     companion object CREATOR : Parcelable.Creator<HistoryDetailView>{
@@ -16,13 +16,13 @@ data class HistoryDetailView(val id: Int, val date:String,val part_img: Int, val
             return arrayOfNulls(size)
         }
 
-        fun empty() = HistoryDetailView(-1,String.empty(),0,String.empty(),0,0,0,0,0,0)
+        fun empty() = HistoryDetailView(-1,String.empty(),0,String.empty(),0,0,0,0,0,0,0)
     }
 
     override fun describeContents() = 0
 
     constructor(parcel: Parcel) : this(parcel.readInt(),parcel.readString()!!, parcel.readInt(), parcel.readString()!!, parcel.readInt(),
-        parcel.readInt(), parcel.readInt(), parcel.readInt(), parcel.readInt(),parcel.readInt())
+        parcel.readInt(), parcel.readInt(),parcel.readInt(), parcel.readInt(), parcel.readInt(),parcel.readInt())
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         with(dest) {
@@ -32,7 +32,8 @@ data class HistoryDetailView(val id: Int, val date:String,val part_img: Int, val
             writeString(name)
             writeInt(mass)
             writeInt(rep)
-            writeInt(set)
+            writeInt(setGoal)
+            writeInt(setDone)
             writeInt(interval)
             writeInt(achievement)
             writeInt(achievementRate)

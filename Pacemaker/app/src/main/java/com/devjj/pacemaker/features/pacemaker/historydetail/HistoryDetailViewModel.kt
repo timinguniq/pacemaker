@@ -40,7 +40,8 @@ class HistoryDetailViewModel
                 it.name,
                 it.mass,
                 it.rep,
-                it.set,
+                it.setGoal,
+                it.setDone,
                 it.interval,
                 it.achievement,
                 it.achievementRate

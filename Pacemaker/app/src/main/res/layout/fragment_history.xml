@@ -33,7 +33,6 @@
                 android:id="@+id/fHistory_calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipToPadding="true"
                 app:mcv_dateTextAppearance="@style/CalendarDateTextAppearanceDayTime"
                 app:mcv_selectionColor="#FF765B"
                 app:mcv_selectionMode="multiple"
@@ -49,13 +48,12 @@
                 android:background="@color/grey_bg_light">
 
                 <TextView
-                    android:id="@+id/fHistory_txv_report"
+                    android:id="@+id/fHistory_tv_report"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
                     android:layout_marginEnd="18dp"
                     android:text="@string/fhistory_tv_report_str"
-                    android:textColor="@color/grey_bg_light"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -71,20 +69,20 @@
                 android:layout_marginTop="15dp">
 
                 <TextView
-                    android:id="@+id/fHistory_txv_profile"
+                    android:id="@+id/fHistory_tv_profile"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
                     android:layout_marginEnd="18dp"
                     android:text="@string/fhistory_tv_profile_str"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@id/fHistory_txv_weight"
+                    app:layout_constraintBottom_toTopOf="@id/fHistory_tv_weight"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/fHistory_txv_weight"
+                    android:id="@+id/fHistory_tv_weight"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
@@ -93,12 +91,12 @@
                     android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/fHistory_txv_height"
+                    app:layout_constraintEnd_toStartOf="@+id/fHistory_tv_height"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fHistory_txv_profile" />
+                    app:layout_constraintTop_toBottomOf="@id/fHistory_tv_profile" />
 
                 <TextView
-                    android:id="@+id/fHistory_txv_height"
+                    android:id="@+id/fHistory_tv_height"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -107,8 +105,8 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/fHistory_txv_weight"
-                    app:layout_constraintTop_toBottomOf="@id/fHistory_txv_profile" />
+                    app:layout_constraintStart_toEndOf="@+id/fHistory_tv_weight"
+                    app:layout_constraintTop_toBottomOf="@id/fHistory_tv_profile" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -117,54 +115,131 @@
                 android:layout_marginTop="15dp">
 
                 <TextView
-                    android:id="@+id/fHistory_txv_total"
+                    android:id="@+id/fHistory_tv_month"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginEnd="18dp"
+                    android:text="@string/fhistory_tv_month_str"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/fHistory_llo_month"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/fHistory_llo_month"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fHistory_tv_month">
+
+                    <TextView
+                        android:id="@+id/fHistory_tv_month_sets"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/unit_sets"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/fHistory_tv_month_times"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/unit_time_hour_min"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/fHistory_tv_month_kgs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/unit_mass"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    android:id="@+id/fHistory_tv_total"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="18dp"
                     android:layout_marginEnd="18dp"
                     android:text="@string/fhistory_tv_total_str"
                     android:textSize="14sp"
-                    app:layout_constraintBottom_toTopOf="@id/fHistory_txv_sets"
+                    app:layout_constraintBottom_toTopOf="@id/fHistory_llo_total"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/fHistory_txv_sets"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="10dp"
-                    android:text="TextView"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/fHistory_txv_times"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fHistory_txv_total" />
-
-                <TextView
-                    android:id="@+id/fHistory_txv_times"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="TextView"
-                    android:textSize="30sp"
-                    android:textStyle="bold"
+                <LinearLayout
+                    android:id="@+id/fHistory_llo_total"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/fHistory_txv_sets"
-                    app:layout_constraintTop_toBottomOf="@id/fHistory_txv_total" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/fHistory_tv_total">
+
+                    <TextView
+                        android:id="@+id/fHistory_tv_total_sets"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/unit_sets"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/fHistory_tv_total_times"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/unit_time_hour_min"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/fHistory_tv_total_kgs"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/unit_mass"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+<!--
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fHistory_recyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="409dp">
 
             </androidx.recyclerview.widget.RecyclerView>
-
+-->
         </LinearLayout>
     </ScrollView>
 

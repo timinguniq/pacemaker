@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.extension.convertPxToDp
 import com.devjj.pacemaker.core.extension.observe
 import com.devjj.pacemaker.core.extension.viewModel
 import com.devjj.pacemaker.core.navigation.Navigator
@@ -149,8 +150,8 @@ class HistoryFragment : BaseFragment() {
     private fun setColors() {
         Log.d("jayColor", "history fragment")
 
-        fHistory_calendarView.tileWidth = 150
-        fHistory_calendarView.tileHeight = 90
+        fHistory_calendarView.tileWidth = convertPxToDp(context!!,400f).toInt()
+        fHistory_calendarView.tileHeight = convertPxToDp(context!!,250f).toInt()
 
 /*
         fHistory_txv_sets.text = getString(R.string.unit_sets, 10)

@@ -12,6 +12,8 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupFragment
+import com.devjj.pacemaker.features.pacemaker.playpopup.STOP_MODE
+import com.devjj.pacemaker.features.pacemaker.playpopup.mode
 import com.devjj.pacemaker.features.pacemaker.service.TimerService
 import com.google.android.gms.ads.AdRequest
 import kotlinx.android.synthetic.main.activity_addition.*
@@ -48,6 +50,7 @@ class PlayPopupActivity : BaseActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+        mode = STOP_MODE
         TimerService.setProgressTimer(false)
         TimerService.stopService(this)
     }

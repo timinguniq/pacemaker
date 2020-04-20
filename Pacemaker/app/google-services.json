@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "670241217151",
+    "firebase_url": "https://pacemaker-50ce7.firebaseio.com",
+    "project_id": "pacemaker-50ce7",
+    "storage_bucket": "pacemaker-50ce7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670241217151:android:acf30fd68109566b88bd4a",
+        "android_client_info": {
+          "package_name": "com.devjj.pacemaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "670241217151-jntisdcolc9f31ivfk8ss559kp6t30t7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAapzEmzujys0bawXMoFyk4CtvkF3HQj_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "670241217151-jntisdcolc9f31ivfk8ss559kp6t30t7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

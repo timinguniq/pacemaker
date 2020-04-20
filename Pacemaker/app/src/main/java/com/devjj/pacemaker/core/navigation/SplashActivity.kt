@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.os.CancellationSignal
 import android.os.Handler
 import android.util.Log
+import android.view.ViewGroup
+import android.widget.Button
 import androidx.room.DatabaseConfiguration
 import androidx.room.RoomDatabase
 import com.devjj.pacemaker.AndroidApplication
@@ -48,6 +50,9 @@ class SplashActivity : AppCompatActivity() {
             navigator.showMain(this)
         }, 1500)
 
+        // 크러시 테스트 함수.
+        //crashTest()
+
         // 테스트 광고
         MobileAds.initialize(this) {}
 
@@ -56,5 +61,18 @@ class SplashActivity : AppCompatActivity() {
 
         //setting.restTime = 70
         //
+    }
+
+    // 크러쉬 테스트 함수.
+    fun crashTest(){
+        val crashButton = Button(this)
+        crashButton.text = "Crash!"
+        crashButton.setOnClickListener {
+            throw RuntimeException("Test Crash") // Force a crash
+        }
+
+        addContentView(crashButton, ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT))
     }
 }

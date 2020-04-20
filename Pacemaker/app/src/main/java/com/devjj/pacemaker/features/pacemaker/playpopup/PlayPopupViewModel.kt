@@ -19,11 +19,17 @@ class PlayPopupViewModel
                     private val saveExerciseHistoryData: SaveExerciseHistoryData,
                     private val deleteExerciseHistoryData: DeleteExerciseHistoryData) : BaseViewModel() {
 
+    var totalTime : MutableLiveData<Int> = MutableLiveData()
+
     var playPopupList: MutableLiveData<List<PlayPopupView>> = MutableLiveData()
+
+    var existPlayPopupList: MutableLiveData<List<PlayPopupView>> = MutableLiveData()
 
     var playPopupData: MutableLiveData<PlayPopupView> = MutableLiveData()
 
     fun loadPlayPopupList() = getPlayPopupData(UseCase.None()) {it.fold(::handleFailure, ::handlePlayPopupData)}
+
+    fun existPlayPopupList() = getPlayPopupData(UseCase.None()) {it.fold(::handleFailure, ::handleExistPlayPopupData)}
 
     fun updateExercisePlayPopupData(playPopupData: PlayPopupData) =
         updateExercisePlayPopupData(UpdateExercisePlayPopupData.Params(playPopupData))
@@ -48,6 +54,13 @@ class PlayPopupViewModel
     fun deleteExerciseHistoryData(saveDate: String){
         date = saveDate
         deleteExerciseHistoryData(UseCase.None()) {it.fold(::handleFailure,::handleTheExerciseHistoryData)}
+    }
+
+    private fun handleExistPlayPopupData(playPopupData: List<PlayPopupData>){
+        this.existPlayPopupList.value = playPopupData.map{
+            PlayPopupView(it.id, it.part_img, it.name, it.mass, it.rep, it.setGoal, it.setDone, it.interval,
+                if(it.achievement) 1 else 0)
+        }
     }
 
     private fun handlePlayPopupData(playPopupData: List<PlayPopupData>){

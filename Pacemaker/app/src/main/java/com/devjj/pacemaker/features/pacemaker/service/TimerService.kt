@@ -1,13 +1,16 @@
 package com.devjj.pacemaker.features.pacemaker.service
 
+import android.annotation.SuppressLint
 import android.app.*
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.media.AudioAttributes
 import android.os.*
 import android.util.Log
 import android.widget.RemoteViews
-import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.features.pacemaker.PlayPopupActivity
@@ -16,15 +19,15 @@ import kotlinx.android.synthetic.main.fragment_play_popup.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import java.security.AccessController.getContext
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 import kotlin.concurrent.schedule
 
+@Singleton
 class TimerService : Service() {
 
     private val channelId = "channelId"
-
 
     override fun onBind(intent: Intent?): IBinder? {
         // TODO("Return the communication channel to the service.")
@@ -33,13 +36,27 @@ class TimerService : Service() {
     }
 
     companion object {
-
         private lateinit var vib: Vibrator
+
+        private lateinit var pm: PowerManager
+
+        private lateinit var w1: PowerManager.WakeLock
+
+        private fun startPowerManager() = w1.acquire(5 * 60 * 1000L /*5 minutes*/)
+
+        private fun endPowerManager() {
+            if (w1.isHeld) w1.release() else Log.d("test", "w1.isHeld false")
+        }
 
         fun startService(context: Context) {
             val startIntent = Intent(context, TimerService::class.java)
             context.startService(startIntent)
             vib = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+            pm = context.getSystemService(Context.POWER_SERVICE) as PowerManager
+            w1 = pm.newWakeLock(
+                PowerManager.PARTIAL_WAKE_LOCK,
+                "timerservice:wakelock"
+            ) as PowerManager.WakeLock
         }
 
         fun stopService(context: Context) {
@@ -53,10 +70,11 @@ class TimerService : Service() {
         private var isTimerProgress: Boolean = false
 
         fun timerStart(activity: Activity) {
-            isTimerProgress = true
+            timerFinish = false
+            startPowerManager()
+            timer.cancel()
 
             timer = Timer("timer", false).schedule(100, 1000) {
-                //doSomethingTimer()
                 interval -= 1
                 Log.d("test", "timerStart interval : $interval")
                 runBlocking {
@@ -70,36 +88,43 @@ class TimerService : Service() {
                     activity.fPlayPopup_tv_rest_time?.text = settingFormatForTimer(interval)
                     timer.cancel()
                     isTimerProgress = false
-                    mode = STOP_MODE
+                    endPowerManager()
+                    //mode = STOP_MODE
                     // TODO : 진동이나 소리로 알려줘야 될 것 같다.
-
+                    timerFinish = true
                     //
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         val audioAttributes = AudioAttributes.Builder().build()
-                        vib.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE),
-                            audioAttributes)
-                    }else{
-                        vib.vibrate(200)
+                        vib.vibrate(
+                            VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE),
+                            audioAttributes
+                        )
+                    } else {
+                        vib.vibrate(500)
                     }
                     //
                 }
             }
 
-            if(!isTimerProgress)
+            if (!isTimerProgress)
                 timer.scheduledExecutionTime()
+
+            isTimerProgress = true
         }
 
         fun timerStop() {
             timer.cancel()
             isTimerProgress = false
+            timerFinish = true
             mode = STOP_MODE
+            endPowerManager()
         }
 
         // Timer가 진행중인지 확인하는 함수
         fun isProgressTimer() = isTimerProgress
 
         // Timer 진행여부 셋팅
-        fun setProgressTimer(isProgress: Boolean){
+        fun setProgressTimer(isProgress: Boolean) {
             isTimerProgress = isProgress
         }
     }
@@ -112,31 +137,18 @@ class TimerService : Service() {
 
     // 처음 시작되면 호출되는 함수.
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        callEvent(intent)
         return START_NOT_STICKY
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
         super.onTaskRemoved(rootIntent)
         stopSelf()
-    }
-
-    // 이벤트를 호출(구현하고 싶은 코드를 구현하면 됩니다.)
-    private fun callEvent(intent: Intent?) {
-        Log.d("test", "callEvent()")
-        timer.scheduledExecutionTime()
+        endPowerManager()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         timer.cancel()
-    }
-
-    // Timer에서 실행되는 함수.
-    private fun doSomethingTimer() {
-        Handler(Looper.getMainLooper()).post {
-            Toast.makeText(applicationContext, "test", Toast.LENGTH_SHORT).show()
-        }
     }
 
     // 채널을 등록하는 함수.
@@ -181,5 +193,8 @@ class TimerService : Service() {
 
         // Foreground 시작하는 코드
         startForeground(1, notification)
+
     }
 }
+
+

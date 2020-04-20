@@ -192,7 +192,7 @@ class Navigator
             // 데이터 초기화
             for(playPopupData in playPopupDataList){
                 playPopupData.achievement = false
-                playPopupData.setDone = 1
+                playPopupData.setDone = 0
                 playPopupViewModel.updateExercisePlayPopupData(playPopupData)
             }
             //
@@ -233,6 +233,7 @@ class Navigator
             Log.d("test", "showGiveUpExerciseDialog confirm")
 
             playPopupData.achievement = true
+            playPopupData.setDone--
             playPopupViewModel.updateExercisePlayPopupData(playPopupData)
             playPopupViewModel.loadPlayPopupList()
             dialog.dismiss()
@@ -273,8 +274,15 @@ class Navigator
             Log.d("test", "showGiveUpAllExerciseDialog confirm")
 
             for(playPopupData in playPopupDataList){
-                playPopupData.achievement = true
-                playPopupViewModel.updateExercisePlayPopupData(playPopupData)
+                Log.d("test", "playPopupData.achievement ${playPopupData.achievement}")
+                Log.d("test", "playPopupData.setDone : ${playPopupData.setDone}")
+                if(!playPopupData.achievement) {
+                    playPopupData.achievement = true
+                    playPopupData.setDone--
+                    if (playPopupData.setDone <= 0)
+                        playPopupData.setDone = 0
+                    playPopupViewModel.updateExercisePlayPopupData(playPopupData)
+                }
             }
 
             playPopupViewModel.loadPlayPopupList()

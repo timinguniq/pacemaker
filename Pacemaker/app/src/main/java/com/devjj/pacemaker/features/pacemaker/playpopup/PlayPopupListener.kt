@@ -36,6 +36,11 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
         // 확인 키를 눌렀을 때 리스너
         activity.fPlayPopup_iv_confirm.setOnClickListener {
+            if(isFinalExerciseFinalSet){
+                activity.fPlayPopup_flo_next.callOnClick()
+                return@setOnClickListener
+            }
+
             mode = PROGRESS_MODE
 
             playPopupFragment.settingForMode()
@@ -51,6 +56,7 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
             // 타이머 시작
             TimerService.timerStart(activity)
+
 
 /*
             timer = Timer("TimerDown", false).schedule(100, 1000){

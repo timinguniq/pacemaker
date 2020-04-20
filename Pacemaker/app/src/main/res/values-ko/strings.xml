@@ -86,6 +86,7 @@
     <string name="fplaypopup_tv_list_unavailable_str">데이터가 없습니다.</string>
     <string name="fplaypopup_tv_unit_mass_str">Kg</string>
     <string name="fplaypopup_tv_unit_set_str">Set</string>
+    <string name="fplaypopup_tv_unit_rep_str">Rep</string>
 
     <string name="template_feedback_title">페이스메이커 피드백</string>
     <string name="template_slash_str">/</string>

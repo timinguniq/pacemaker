@@ -1,5 +1,5 @@
 package com.devjj.pacemaker.features.pacemaker.history
-
+/*
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
@@ -44,4 +44,4 @@ class HistoryAdapter
             }
         }
     }
-}
+}*/

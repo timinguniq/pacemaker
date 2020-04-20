@@ -2,9 +2,7 @@ package com.devjj.pacemaker.features.pacemaker.history
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import androidx.core.view.get
-import androidx.core.view.marginBottom
+import androidx.annotation.NonNull
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.devjj.pacemaker.R
@@ -16,18 +14,11 @@ import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.devjj.pacemaker.features.pacemaker.entities.ExerciseHistoryEntity
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.DayViewDecorator
-import com.prolificinteractive.materialcalendarview.DayViewFacade
-import com.prolificinteractive.materialcalendarview.MaterialCalendarView
-import com.prolificinteractive.materialcalendarview.format.TitleFormatter
-import com.prolificinteractive.materialcalendarview.format.WeekDayFormatter
 import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.fragment_history.*
 import org.threeten.bp.LocalDate
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 class HistoryFragment : BaseFragment() {
@@ -37,8 +28,8 @@ class HistoryFragment : BaseFragment() {
     private lateinit var historyViewModel: HistoryViewModel
     @Inject
     lateinit var db: ExerciseHistoryDatabase
-    @Inject
-    lateinit var historyAdapter: HistoryAdapter
+
+    //@Inject lateinit var historyAdapter: HistoryAdapter
     @Inject
     lateinit var navigator: Navigator
     @Inject
@@ -53,6 +44,7 @@ class HistoryFragment : BaseFragment() {
             observe(histories, ::renderHistoryList)
             //    failure(failure, ::handleFailure)
             observe(summary, ::renderSummary)
+            observe(summaryOneMonth, ::renderSummaryOneMonth)
         }
 
     }
@@ -65,14 +57,13 @@ class HistoryFragment : BaseFragment() {
     }
 
     private fun renderHistoryList(histories: List<HistoryView>?) {
-        historyAdapter.collection = histories.orEmpty()
-
+        //historyAdapter.collection = histories.orEmpty()
         when (histories) {
             null -> {
                 Log.d("calendar", "empty")
             }
             else ->
-                for (history in histories!!) {
+                for (history in histories) {
                     Log.d("test", "datess ${history.date}")
                     var dates = history.date.split("-")
                     Log.d("calendarcheck", "${dates[0]} , ${dates[1]} , ${dates[2]}")
@@ -91,30 +82,41 @@ class HistoryFragment : BaseFragment() {
     }
 
     private fun renderSummary(summary: Summary?) {
-        fHistory_txv_sets.text = getString(R.string.unit_sets, summary!!.sets)
-        fHistory_txv_times.text =
-            getString(R.string.unit_time_hour_min, summary!!.times / 60, summary!!.times % 60)
+
+        fHistory_tv_total_sets.text = getString(R.string.unit_sets, summary!!.sets)
+        fHistory_tv_total_times.text = getString(R.string.unit_time_hour_min, summary.times / 60, summary.times % 60)
+        fHistory_tv_total_kgs.text = getString(R.string.unit_mass, summary.kgs)
+    }
+
+    private fun renderSummaryOneMonth(summary : Summary?){
+
+        fHistory_tv_month_sets.text = getString(R.string.unit_sets, summary!!.sets)
+        fHistory_tv_month_times.text = getString(R.string.unit_time_hour_min, summary.times / 60, summary.times % 60)
+        fHistory_tv_month_kgs.text = getString(R.string.unit_mass, summary.kgs)
+        Log.d("jayTotaltime", summary.times.toString())
     }
 
 
     private fun initializeView() {
         setColors()
         this.activity!!.aPacemaker_tv_title.text = this.getString(R.string.fhistory_tv_title_str)
-        fHistory_recyclerview.layoutManager = LinearLayoutManager(activity)
-        fHistory_recyclerview.adapter = historyAdapter
-        fHistory_txv_height.text= getString(R.string.unit_height,setting.height)
-        fHistory_txv_weight.text= getString(R.string.unit_weight,setting.weight)
-
-        historyListener = HistoryListener(activity!!, navigator)
+        //fHistory_recyclerview.layoutManager = LinearLayoutManager(activity)
+        //fHistory_recyclerview.adapter = historyAdapter
+        fHistory_tv_height.text= getString(R.string.unit_height,setting.height)
+        fHistory_tv_weight.text= getString(R.string.unit_weight,setting.weight)
+        historyListener = HistoryListener(activity!!, navigator,historyViewModel)
         historyListener.initListener()
 
+        /*
         historyAdapter.clickListener = { date ->
             navigator.showHistoryDetail(activity!!, date)
         }
+*/
+
 
 
         if (false) {
-            val a = ExerciseHistoryEntity(0,"2020-3-30",0,"벤치프레스",5,10,2,2,30,true,30,60f,170f,10)
+            val a = ExerciseHistoryEntity(0,"2020-03-30",0,"벤치프레스",5,10,2,2,30,true,30,60f,170f,10)
             val b = ExerciseHistoryEntity(0,"2020-04-01",1,"데드리프트",10,10,3,1,40,false,40,60f,170f,20)
             val c = ExerciseHistoryEntity(0,"2020-04-01",2,"스쿼드",15,10,4,4,50,true,40,60f,170f,20)
             val d = ExerciseHistoryEntity(0,"2020-04-03",3,"레그레이즈",20,10,5,0,60,false,50,60f,170f,30)
@@ -135,15 +137,20 @@ class HistoryFragment : BaseFragment() {
                 }
         }
 
+        @NonNull
+        val today = CalendarDay.today().date.toString()
+
         historyViewModel.loadHistories()
         historyViewModel.loadSummary()
+        historyViewModel.loadSummaryOneMonth(today)
+        Log.d("jayDateCheck", today)
     }
 
     private fun setColors() {
         Log.d("jayColor", "history fragment")
 
         fHistory_calendarView.tileWidth = 150
-        fHistory_calendarView.tileHeight = 110
+        fHistory_calendarView.tileHeight = 90
 
 /*
         fHistory_txv_sets.text = getString(R.string.unit_sets, 10)
@@ -159,15 +166,21 @@ class HistoryFragment : BaseFragment() {
                 fHistory_calendarView.setWeekDayTextAppearance(R.style.CalendarHeaderTextAppearanceNightTime)
 
                 fHistory_clo_report.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thicker))
-                fHistory_txv_report.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_tv_report.setTextColor(activity!!.getColor(R.color.black_txt_thick))
 
-                fHistory_txv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_basic))
-                fHistory_txv_weight.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fHistory_txv_height.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fHistory_tv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_basic))
+                fHistory_tv_weight.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fHistory_tv_height.setTextColor(activity!!.getColor(R.color.white_txt_thick))
 
-                fHistory_txv_total.setTextColor(activity!!.getColor(R.color.grey_txt_basic))
-                fHistory_txv_sets.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fHistory_txv_times.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fHistory_tv_total.setTextColor(activity!!.getColor(R.color.grey_txt_basic))
+                fHistory_tv_total_sets.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fHistory_tv_total_times.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fHistory_tv_total_kgs.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+
+                fHistory_tv_month.setTextColor(activity!!.getColor(R.color.grey_txt_basic))
+                fHistory_tv_month_sets.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fHistory_tv_month_times.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fHistory_tv_month_kgs.setTextColor(activity!!.getColor(R.color.white_txt_thick))
             }
             false -> {
                 Log.d("jayColor", "Day time mode")
@@ -178,15 +191,21 @@ class HistoryFragment : BaseFragment() {
                 fHistory_calendarView.setWeekDayTextAppearance(R.style.CalendarHeaderTextAppearanceDayTime)
 
                 fHistory_clo_report.setBackgroundColor(activity!!.getColor(R.color.grey_bg_light))
-                fHistory_txv_report.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
+                fHistory_tv_report.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
 
-                fHistory_txv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
-                fHistory_txv_weight.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fHistory_txv_height.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_tv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
+                fHistory_tv_weight.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_tv_height.setTextColor(activity!!.getColor(R.color.black_txt_thick))
 
-                fHistory_txv_total.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
-                fHistory_txv_sets.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fHistory_txv_times.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_tv_total.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
+                fHistory_tv_total_sets.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_tv_total_times.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_tv_total_kgs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+
+                fHistory_tv_month.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
+                fHistory_tv_month_sets.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_tv_month_times.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_tv_month_kgs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
             }
         }
     }

@@ -297,7 +297,7 @@ class PlayPopupFragment : BaseFragment() {
         //
 
         fPlayPopup_tv_name.text = currentPlayPopupView.name
-        var slash = getString(R.string.fplaypopup_tv_slash_str)
+        var slash = getString(R.string.template_slash_str)
         var massUnit = getString(R.string.fplaypopup_tv_unit_mass_str)
         var setUnit = getString(R.string.fplaypopup_tv_unit_set_str)
         var mstxv = currentPlayPopupView.mass.toString() + massUnit + " $slash " +

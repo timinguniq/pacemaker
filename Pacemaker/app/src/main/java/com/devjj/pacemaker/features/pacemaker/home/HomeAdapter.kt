@@ -39,8 +39,8 @@ class HomeAdapter
         fun bind(homeView: HomeView, context: Context, setting: SettingSharedPreferences,
                  clickListener: (AdditionView) -> Unit, longClickListener: (HomeView) -> Unit) {
             itemView.rvExerciseItem_tv_name.text = homeView.name
-            itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.rvexerciseitem_tv_unit_mass_str, homeView.mass)
-            itemView.rvExerciseItem_tv_set.text = context.getString(R.string.rvexerciseitem_tv_unit_set_str, homeView.set)
+            itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.unit_mass , homeView.mass)
+            itemView.rvExerciseItem_tv_set.text = context.getString(R.string.unit_sets, homeView.set)
 
             if(!setting.isNightMode) {
                 // 화이트 모드

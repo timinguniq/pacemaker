@@ -307,7 +307,7 @@ class Navigator
                     // 현재 컨테이너에 있는 fragment 구하는 코드.
                     val fragment = fragmentManager.findFragmentById(R.id.aPacemaker_flo_container)
                     // homeFragment 이름 가져오는 함수.
-                    val homeFragmentName = context.resources.getString(R.string.fhome_tv_fragment_name_str)
+                    val homeFragmentName = context.resources.getString(R.string.fhome_tv_fragment_name_str )
                     // 지금 보여지는 화면이 home이 아닐경우 home으로 이동하는 코드
                     if(!fragment.toString().contains(homeFragmentName)){
                         fragmentManager.beginTransaction().replace(R.id.aPacemaker_flo_container, HomeFragment()).commit()

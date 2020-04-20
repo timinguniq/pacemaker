@@ -3,18 +3,6 @@
     <color name="colorPrimary">#4A008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="bottomColor">#cccccc</color>
-    <color name="playPopupBtnContinue">#FFC107</color>
-    <color name="playPopupTv">#CDDC39</color>
-
-    <color name="fhome_wm_fabtn_color">#FF5C83CF</color>
-    <color name="fhome_dm_fabtn_color">#FFF74938</color>
-
-    <color name="rv_exercise_item_wm_bg_clor">#FFF8F8F8</color>
-    <color name="rv_exercise_item_dm_bg_clor">#FF88898A</color>
-
-    <color name="fOption_color_wm_txv_menu">#FF88898A</color>
-    <color name="fOption_color_wm_txv_item">#FF3B4046</color>
 
     <color name="base_orange">#FFFF765B</color>
     <color name="sub_orange">#B3FF765B</color>
@@ -22,7 +10,6 @@
     <color name="sub_blue">#B35C83CF</color>
     <color name="base_grey">#FFF9F9F9</color>
     <color name="white">#FFFFFFFF</color>
-
 
     <color name="orange_bg_basic">#FFFF765B</color>
     <color name="orange_bg_thick">#FFF74938</color>

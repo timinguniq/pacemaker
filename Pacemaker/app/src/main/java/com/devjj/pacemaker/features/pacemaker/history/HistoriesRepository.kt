@@ -11,6 +11,8 @@ interface HistoriesRepository {
 
     fun histories(): Either<Failure, List<History>>
     fun summary() : Either<Failure,Summary>
+    fun summaryOneMonth(date:String) : Either<Failure,Summary>
+
     class HistoryDatabase
     @Inject constructor(
         private val service: HistoryDatabaseService
@@ -26,6 +28,15 @@ interface HistoriesRepository {
         override fun summary(): Either<Failure, Summary> {
             return try{
                 Right(service.summary())
+            }
+            catch(exception: Throwable){
+                Left(DatabaseError)
+            }
+        }
+
+        override fun summaryOneMonth(date: String): Either<Failure, Summary> {
+            return try{
+                Right(service.getOneMonthSummary(date))
             }
             catch(exception: Throwable){
                 Left(DatabaseError)

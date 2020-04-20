@@ -9,15 +9,9 @@
 
     <string name="apacemaker_tv_title_str">내 트레이닝</string>
     <string name="fhistory_tv_title_str">기록</string>
-    <string name="ahistorydetail_tv_title_str">%s월 %s일</string>
     <string name="aoption_tv_title_str">옵션</string>
 
     <!-- 임시 단위 -->
-    <string name="rvExerciseItem_mass">%dkg</string>
-    <string name="rvExerciseItem_set">%dset</string>
-    <string name="rvExerciseItem_interval">%ds</string>
-    <string name="rvExerciseItem_slash">/</string>
-
     <string name="fhome_tv_fragment_name_str">HomeFragment</string>
     <string name="fhome_tv_list_unavailable_str">데이터가 없습니다.</string>
     <string name="fhome_tv_title_part_str">부위</string>
@@ -56,67 +50,45 @@
     <string name="dgiveup_tv_confirm_str">확인</string>
     <string name="dgiveup_tv_cancel_str">취소</string>
     <string name="dgiveupAll_tv_give_up">모든 운동을 포기하시겠습니까?</string>
-    <!--
-        <string name="fplaypopup_continue_btn_str">Continue</string>
-        <string name="fplaypopup_title_checkbox_str">여부</string>
-        <string name="fplaypopup_list_unavailable">데이터가 없습니다.</string>
-        <string name="fplaypopup_timer_str">Timer</string>
-        <string name="fplaypopup_set_str">%d\/%dset</string>
-        <string name="fplaypopup_ts_playlist_not_exist">재생 목록이 없습니다.</string>
-        <string name="fplaypopup_ts_exercise_finish">운동이 완료 되었습니다.</string>
 
-        <string name="fplaypopup_exercise_name_str">운동이름</string>
-        <string name="fplaypopup_mass_unit">Kg</string>
-        <string name="fplaypopup_slash">/</string>
-        <string name="fplaypopup_set_unit">Set</string>
-        <string name="fplaypopup_btn_plus_str">+10초</string>
-        <string name="fplaypopup_sec_unit">초</string>
-        <string name="fplaypopup_plus_unit">+</string>
-    -->
-        <string name="rh_mass">%dkg</string>
-        <string name="rh_height">%dcm</string>
-        <string name="rh_set">%dset</string>
-        <string name="rh_interval">%ds</string>
-        <string name="rh_rate">%d%%</string>
-        <string name="fhistory_detail_set">%d 세트</string>
-        <string name="fhistory_detail_rep">%d 회</string>
+    <string name="fhistory_detail_set">%d 세트</string>
+    <string name="fhistory_detail_rep">%d 회</string>
 
-        <string name="foption_tv_profile_str">프로필</string>
-        <string name="foption_tv_mode_str">야간 모드</string>
-        <string name="foption_tv_weight_str">몸무게</string>
-        <string name="foption_tv_height_str">키</string>
-        <string name="foption_tv_interval_str">휴식 시간</string>
-        <string name="foption_tv_language_str">언어</string>
-        <string name="foption_tv_korean_str">한국어</string>
-        <string name="foption_tv_english_str">English</string>
-        <string name="foption_tv_supportUs_str">SUPPORT US</string>
-        <string name="foption_tv_rateUs_str">평점주기</string>
-        <string name="foption_tv_feedback_str">피드백</string>
-        <string name="foption_tv_share_str">공유</string>
+    <string name="foption_tv_profile_str">프로필</string>
+    <string name="foption_tv_mode_str">야간 모드</string>
+    <string name="foption_tv_interval_str">휴식 시간</string>
+    <string name="foption_tv_supportUs_str">SUPPORT US</string>
+    <string name="foption_tv_rateUs_str">평점주기</string>
+    <string name="foption_tv_feedback_str">피드백</string>
+    <string name="foption_tv_share_str">공유</string>
 
-        <string name="fhistory_tv_profile_str">프로필</string>
-        <string name="fhistory_tv_report_str">리포트</string>
-        <string name="fhistory_tv_total_str">전체 기록</string>
-        <string name="unit_weight">%.1f kg</string>
-        <string name="unit_height">%.1f cm</string>
-        <string name="unit_time_min_sec">%02d:%02d</string>
-        <string name="unit_sets">%d 세트</string>
-        <string name="unit_time_hour_min">%02d시간 %02d분</string>
-        <string name="unit_percentage">%d%%</string>
+    <string name="fhistory_tv_profile_str">프로필</string>
+    <string name="fhistory_tv_report_str">리포트</string>
+    <string name="fhistory_tv_total_str">전체 기록</string>
+    <string name="fhistory_tv_month_str">이달 기록</string>
 
-        <string name="dgiveup_tv_main_str">이 운동을 포기하시겠습니까?</string>
-        <string name="dgiveupall_tv_main_str">모든 운동을 포기하시겠습니까?</string>
-        <string name="fplaypopup_tv_btn_plus_str">+10초</string>
-        <string name="fplaypopup_tv_exercise_finish_str">운동이 완료 되었습니다.</string>
-        <string name="fplaypopup_tv_exercise_name_str">운동이름</string>
-        <string name="fplaypopup_tv_list_unavailable_str">데이터가 없습니다.</string>
-        <string name="fplaypopup_tv_playlist_not_exist_str">재생 목록이 없습니다.</string>
-        <string name="fplaypopup_tv_slash_str">/</string>
-        <string name="fplaypopup_tv_unit_mass_str">Kg</string>
-        <string name="fplaypopup_tv_unit_set_str">Set</string>
+    <string name="unit_weight">%.1f kg</string>
+    <string name="unit_height">%.1f cm</string>
+    <string name="unit_mass">%d kg</string>
+    <string name="unit_time_min_sec">%02d:%02d</string>
+    <string name="unit_sets">%d set</string>
+    <string name="unit_sets_goal_done">%d/%d set</string>
+    <string name="unit_reps">%d rep</string>
+    <string name="unit_time_hour_min">%02d시간 %02d분</string>
+    <string name="unit_percentage">%d%%</string>
 
-        <string name="rvexerciseitem_tv_unit_mass_str">%dkg</string>
-        <string name="rvexerciseitem_tv_unit_set_str">%dset</string>
-        <string name="rvexerciseitem_tv_unit_slash_str">/</string>
+    <string name="dgiveup_tv_main_str">이 운동을 포기하시겠습니까?</string>
+    <string name="dgiveupall_tv_main_str">모든 운동을 포기하시겠습니까?</string>
+    <string name="fplaypopup_tv_btn_plus_str">+10초</string>
+    <string name="fplaypopup_tv_exercise_finish_str">운동이 완료 되었습니다.</string>
+    <string name="fplaypopup_tv_playlist_not_exist_str">재생 목록이 없습니다.</string>
+    <string name="fplaypopup_tv_exercise_name_str">운동이름</string>
+    <string name="fplaypopup_tv_list_unavailable_str">데이터가 없습니다.</string>
+    <string name="fplaypopup_tv_unit_mass_str">Kg</string>
+    <string name="fplaypopup_tv_unit_set_str">Set</string>
+
+    <string name="template_feedback_title">페이스메이커 피드백</string>
+    <string name="template_slash_str">/</string>
+
     <string name="stimer_tv_main_str">Pacemaker 어플이 실행 중입니다.</string>
-    </resources>
+</resources>

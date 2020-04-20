@@ -1,6 +1,7 @@
 package com.devjj.pacemaker.core.extension
 
 import android.app.Activity
+import android.content.Context
 import androidx.core.content.res.ResourcesCompat
 import com.devjj.pacemaker.R
 
@@ -30,6 +31,10 @@ fun convertPartImgToResource(part_img: Int, isNightMode: Boolean) =
                         else -> R.drawable.img_part_upper_body_nighttime
                 }
         }
+
+fun convertPxToDp(context : Context, px : Float) :Float {
+        return px / context.getResources().getDisplayMetrics().density;
+}
 
 // color resource 불러오기
 fun loadColor(activity: Activity, resource: Int) = ResourcesCompat.getColor(activity.resources, resource, null)

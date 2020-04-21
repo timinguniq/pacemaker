@@ -224,7 +224,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
 
 
     private fun renderFailure(@StringRes message: Int) {
-        //fHome_recyclerview.invisible()
+        //fHome_recyclerview.gone()
 
         // TODO : 나중에 메세지에 따른 구현 해야 될듯.
     }

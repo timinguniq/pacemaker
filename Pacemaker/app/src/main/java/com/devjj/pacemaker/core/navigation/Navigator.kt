@@ -3,6 +3,7 @@ package com.devjj.pacemaker.core.navigation
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.text.Editable
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -63,6 +64,7 @@ class Navigator
             // 화이트모드
             dialogView.dRemove_clo_main.background =
                 ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_daytime, null)
+            dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
             dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
             dialogView.dRemove_tv_confirm.setTextColor(loadColor(activity, R.color.blue_bg_thick))
             dialogView.dRemove_tv_cancel.setTextColor(loadColor(activity, R.color.blue_bg_thick))
@@ -131,6 +133,9 @@ class Navigator
 
             dialogView.dProfile_tv_confirm.setTextColor(loadColor(activity, R.color.orange_bg_thick))
         }
+
+        dialogView.dProfile_ev_height.setText(Editable.Factory.getInstance().newEditable(setting.height.toString()))
+        dialogView.dProfile_ev_weight.setText(Editable.Factory.getInstance().newEditable(setting.weight.toString()))
 
         val dialog = builder.setView(dialogView).show()
 

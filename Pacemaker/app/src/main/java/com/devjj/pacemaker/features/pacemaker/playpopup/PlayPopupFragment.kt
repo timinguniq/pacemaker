@@ -390,10 +390,10 @@ class PlayPopupFragment : BaseFragment() {
         when (mode) {
             STOP_MODE -> {
                 fPlayPopup_clo_confirm.visible()
-                fPlayPopup_clo_next.invisible()
+                fPlayPopup_clo_next.gone()
             }
             PROGRESS_MODE -> {
-                fPlayPopup_clo_confirm.invisible()
+                fPlayPopup_clo_confirm.gone()
                 fPlayPopup_clo_next.visible()
             }
             else -> {
@@ -429,7 +429,7 @@ class PlayPopupFragment : BaseFragment() {
 
         for(index in 0 until inVisibleCount){
             handler.post{
-                progressBars[index].invisible()
+                progressBars[index].gone()
             }
         }
     }

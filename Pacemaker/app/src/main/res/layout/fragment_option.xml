@@ -70,79 +70,79 @@
                 app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_title"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-<!--
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fOption_clo_weight"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+        <!--
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fOption_clo_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
 
-            <TextView
-                android:id="@+id/fOption_tv_weight_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:text="@string/foption_tv_weight_str"
-                android:textColor="@color/black_txt_thick"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fOption_tv_weight_item"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/fOption_tv_weight_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:text="@string/foption_tv_weight_str"
+                        android:textColor="@color/black_txt_thick"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/fOption_tv_weight_item"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/fOption_tv_weight_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="18dp"
-                android:background="@android:color/transparent"
-                android:focusable="auto"
-                android:text="@string/rh_tv_unit_mass_str"
-                android:textColor="@color/grey_txt_thick"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/fOption_tv_weight_title"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <EditText
+                        android:id="@+id/fOption_tv_weight_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="18dp"
+                        android:background="@android:color/transparent"
+                        android:focusable="auto"
+                        android:text="@string/rh_tv_unit_mass_str"
+                        android:textColor="@color/grey_txt_thick"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/fOption_tv_weight_title"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fOption_clo_height"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fOption_clo_height"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp">
 
-            <TextView
-                android:id="@+id/fOption_tv_height_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:text="@string/foption_tv_height_str"
-                android:textColor="@color/black_txt_thick"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/fOption_tv_height_item"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/fOption_tv_height_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:text="@string/foption_tv_height_str"
+                        android:textColor="@color/black_txt_thick"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/fOption_tv_height_item"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/fOption_tv_height_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="18dp"
-                android:background="@android:color/transparent"
-                android:focusable="auto"
-                android:text="TextView"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/fOption_tv_height_title"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <EditText
+                        android:id="@+id/fOption_tv_height_item"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="18dp"
+                        android:background="@android:color/transparent"
+                        android:focusable="auto"
+                        android:text="TextView"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/fOption_tv_height_title"
+                        app:layout_constraintTop_toTopOf="parent" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-/-->
+                </androidx.constraintlayout.widget.ConstraintLayout>
+        /-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fOption_clo_interver"
             android:layout_width="match_parent"
@@ -164,7 +164,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/fOption_clo_interval_item"
-                android:layout_width="110dp"
+                android:layout_width="120dp"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -224,26 +224,136 @@
                         android:layout_gravity="center"
                         android:contentDescription="@string/image_not_found"
                         android:src="@drawable/img_rest_plus_daytime" />
-
                 </FrameLayout>
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-<!--
+        <!--
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/fOption_clo_language"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/base_grey">
+
+                    <TextView
+                        android:id="@+id/fOption_tv_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="18dp"
+                        android:text="@string/foption_tv_language_str"
+                        android:textColor="@color/grey_txt_thick"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayout2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/fOption_rg_languages"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/fOption_clo_korean"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:layout_constraintBottom_toTopOf="@id/fOption_clo_english"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:id="@+id/fOption_tv_korean"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="18dp"
+                                android:text="@string/foption_tv_korean_str"
+                                android:textColor="@color/black_txt_thick"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/fOption_clo_english"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/fOption_clo_korean">
+
+                            <TextView
+                                android:id="@+id/fOption_tv_english"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="18dp"
+                                android:text="@string/foption_tv_english_str"
+                                android:textColor="@color/black_txt_thick"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <RadioGroup
+                        android:id="@+id/fOption_rg_languages"
+                        android:layout_width="wrap_content"
+                        android:layout_height="80dp"
+                        android:layout_marginEnd="18dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <RadioButton
+                            android:id="@+id/fOption_rg_korean"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:buttonTint="@color/sub_blue"
+                            android:checked="true" />
+
+                        <RadioButton
+                            android:id="@+id/fOption_rg_english"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:buttonTint="@color/sub_blue" />
+
+                    </RadioGroup>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+        -->
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fOption_clo_language"
+            android:id="@+id/fOption_clo_option"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/base_grey">
 
             <TextView
-                android:id="@+id/fOption_tv_language"
+                android:id="@+id/fOption_tv_option"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
-                android:text="@string/foption_tv_language_str"
+                android:text="@string/foption_tv_option_str"
                 android:textColor="@color/grey_txt_thick"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -255,96 +365,71 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_option_weight"
             android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_height="40dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout2"
+            <TextView
+                android:id="@+id/fOption_tv_mode_weight"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="@string/foption_tv_mode_weight_str"
+                android:textColor="@color/black_txt_thick"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/fOption_rg_languages"
+                app:layout_constraintEnd_toStartOf="@id/fOption_swc_mode_weight"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/fOption_clo_korean"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    app:layout_constraintBottom_toTopOf="@id/fOption_clo_english"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <TextView
-                        android:id="@+id/fOption_tv_korean"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="18dp"
-                        android:text="@string/foption_tv_korean_str"
-                        android:textColor="@color/black_txt_thick"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/fOption_clo_english"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/fOption_clo_korean">
-
-                    <TextView
-                        android:id="@+id/fOption_tv_english"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="18dp"
-                        android:text="@string/foption_tv_english_str"
-                        android:textColor="@color/black_txt_thick"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <RadioGroup
-                android:id="@+id/fOption_rg_languages"
-                android:layout_width="wrap_content"
-                android:layout_height="80dp"
+            <Switch
+                android:id="@+id/fOption_swc_mode_weight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
+                android:shadowColor="@color/sub_blue"
+                android:thumbTint="@color/blue_bg_basic"
+                android:trackTint="@color/blue_bg_transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/constraintLayout2"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <RadioButton
-                    android:id="@+id/fOption_rg_korean"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:buttonTint="@color/sub_blue"
-                    android:checked="true" />
-
-                <RadioButton
-                    android:id="@+id/fOption_rg_english"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:buttonTint="@color/sub_blue" />
-
-            </RadioGroup>
-
+                app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_weight"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
--->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_option_height"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/fOption_tv_mode_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="@string/foption_tv_mode_height_str"
+                android:textColor="@color/black_txt_thick"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/fOption_swc_mode_height"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Switch
+                android:id="@+id/fOption_swc_mode_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:shadowColor="@color/sub_blue"
+                android:thumbTint="@color/blue_bg_basic"
+                android:trackTint="@color/blue_bg_transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_height"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fOption_clo_supportUs"
             android:layout_width="match_parent"
@@ -424,7 +509,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

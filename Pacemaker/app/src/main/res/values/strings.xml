@@ -45,6 +45,7 @@
     <string name="dprofile_tv_weight_str">Weight</string>
     <string name="dprofile_tv_weight_hint_str">Weight(kg)</string>
     <string name="dprofile_tv_confirm_str">Confirm</string>
+    <string name="dprofile_tv_first_setting_str">Save and start this app.</string>
     <string name="dprofile_tv_regex_str">Please enter your height and weight again.</string>
 
     <string name="dgiveup_tv_give_up_str">Give up the whole session?</string>
@@ -59,7 +60,10 @@
 
     <string name="foption_tv_profile_str">Profile</string>
     <string name="foption_tv_mode_str">Night mode</string>
+    <string name="foption_tv_mode_weight_str">Always update weight</string>
+    <string name="foption_tv_mode_height_str">Always update height</string>
     <string name="foption_tv_interval_str">Rest time</string>
+    <string name="foption_tv_option_str">Option</string>
     <string name="foption_tv_supportUs_str">SUPPORT US</string>
     <string name="foption_tv_rateUs_str">Rate us</string>
     <string name="foption_tv_feedback_str">Feedback</string>

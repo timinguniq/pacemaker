@@ -7,6 +7,7 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.dialog.showProfileDialog
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
@@ -67,6 +68,10 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
         homeListener = HomeListener(activity!!, context!!, navigator, homeAdapter, homeViewModel, setting.isNightMode)
         // 클릭 리스너
         homeListener.clickListener()
+
+        if(setting.height < 0 && setting.weight < 0) {
+             showProfileDialog(activity!!, setting, 0)
+        }
     }
 
     // Home 데이터들 갱신하는 함수.
@@ -86,7 +91,7 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
     }
 
     private fun renderFailure(@StringRes message: Int) {
-        fHome_recyclerview.invisible()
+        fHome_recyclerview.gone()
 
         // TODO : 나중에 메세지에 따른 구현 해야 될듯.
     }

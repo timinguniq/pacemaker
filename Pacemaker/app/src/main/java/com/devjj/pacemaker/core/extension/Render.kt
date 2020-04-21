@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.core.content.res.ResourcesCompat
 import com.devjj.pacemaker.R
 
+
 // TODO : 나중에 상의
 // part_img를 resource로 변경해주는 함수.
 fun convertPartImgToResource(part_img: Int, isNightMode: Boolean) =
@@ -33,7 +34,11 @@ fun convertPartImgToResource(part_img: Int, isNightMode: Boolean) =
         }
 
 fun convertPxToDp(context : Context, px : Float) :Float {
-        return px / context.getResources().getDisplayMetrics().density;
+        return px / context.getResources().getDisplayMetrics().density
+}
+
+fun convertDpToPx(context: Context, dp: Float): Float {
+        return dp * context.resources.displayMetrics.density
 }
 
 // color resource 불러오기

@@ -19,6 +19,14 @@ class OptionListener (val activity: Activity,val setting : SettingSharedPreferen
             setColors()
         }
 
+        activity.fOption_swc_mode_weight.setOnCheckedChangeListener { buttonView, isChecked ->
+            setting.isUpdateWeight = isChecked
+        }
+
+        activity.fOption_swc_mode_height.setOnCheckedChangeListener { buttonView, isChecked ->
+            setting.isUpdateHeight = isChecked
+        }
+
         activity.fOption_iv_interval_plus.setOnClickListener {
             var timeInSec = 60* activity.fOption_tv_interval_time.text.split(":")[0].toInt()
             timeInSec += activity.fOption_tv_interval_time.text.split(":")[1].toInt()

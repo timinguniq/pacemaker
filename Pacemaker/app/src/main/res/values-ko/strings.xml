@@ -39,12 +39,13 @@
     <string name="dremove_tv_confirm_str">확인</string>
     <string name="dremove_tv_cancel_str">취소</string>
 
-    <string name="dprofile_tv_height_str">키</string>
-    <string name="dprofile_tv_height_hint_str">키(cm)</string>
-    <string name="dprofile_tv_weight_str">몸무게</string>
-    <string name="dprofile_tv_weight_hint_str">몸무게(kg)</string>
+    <string name="dprofile_tv_height_str">신장</string>
+    <string name="dprofile_tv_height_hint_str">신장(cm)</string>
+    <string name="dprofile_tv_weight_str">체중</string>
+    <string name="dprofile_tv_weight_hint_str">체중(kg)</string>
     <string name="dprofile_tv_confirm_str">확인</string>
-    <string name="dprofile_tv_regex_str">키랑 몸무게를 다시 입력해주세요</string>
+    <string name="dprofile_tv_first_setting_str">저장 후 시작</string>
+    <string name="dprofile_tv_regex_str">신장과 체중을 다시 입력해주세요</string>
 
     <string name="dgiveup_tv_give_up_str">이 운동을 포기하시겠습니까?</string>
     <string name="dgiveup_tv_confirm_str">확인</string>
@@ -56,8 +57,11 @@
 
     <string name="foption_tv_profile_str">프로필</string>
     <string name="foption_tv_mode_str">야간 모드</string>
+    <string name="foption_tv_mode_weight_str">매번 체중 입력</string>
+    <string name="foption_tv_mode_height_str">매번 신장 입력</string>
     <string name="foption_tv_interval_str">휴식 시간</string>
     <string name="foption_tv_supportUs_str">SUPPORT US</string>
+    <string name="foption_tv_option_str">설정</string>
     <string name="foption_tv_rateUs_str">평점주기</string>
     <string name="foption_tv_feedback_str">피드백</string>
     <string name="foption_tv_share_str">공유</string>

@@ -47,11 +47,12 @@ class OptionFragment : BaseFragment() {
         setColors()
 
         fOption_swc_mode_item.isChecked = setting.isNightMode
+        fOption_swc_mode_weight.isChecked = setting.isUpdateWeight
+        fOption_swc_mode_height.isChecked = setting.isUpdateHeight
+
         val optionListener = OptionListener(activity!!,setting,::setColors)
         optionListener.initListener()
         fOption_tv_interval_time.text = getString(R.string.unit_time_min_sec,setting.restTime/60,setting.restTime%60)
-
-
     }
 
     private fun setColors() {
@@ -64,12 +65,18 @@ class OptionFragment : BaseFragment() {
 
                 fOption_swc_mode_item.thumbDrawable.setTint(activity!!.getColor(R.color.orange_bg_thick))
                 fOption_swc_mode_item.trackDrawable.setTint(activity!!.getColor(R.color.orange_bg_basic))
+                fOption_swc_mode_weight.thumbDrawable.setTint(activity!!.getColor(R.color.orange_bg_thick))
+                fOption_swc_mode_weight.trackDrawable.setTint(activity!!.getColor(R.color.orange_bg_thick))
+                fOption_swc_mode_height.thumbDrawable.setTint(activity!!.getColor(R.color.orange_bg_thick))
+                fOption_swc_mode_height.trackDrawable.setTint(activity!!.getColor(R.color.orange_bg_thick))
 
                 fOption_clo_profile.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
                 fOption_clo_supportUs.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
+                fOption_clo_option.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thick))
 
                 fOption_tv_profile.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_tv_supportUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fOption_tv_option.setTextColor(activity!!.getColor(R.color.black_txt_thick))
 
                 fOption_tv_mode_title.setTextColor(activity!!.getColor(R.color.white_txt_thick))
 
@@ -81,19 +88,28 @@ class OptionFragment : BaseFragment() {
                 fOption_tv_rateUs.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_tv_feedback.setTextColor(activity!!.getColor(R.color.white_txt_thick))
                 fOption_tv_share.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fOption_tv_mode_weight.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fOption_tv_mode_height.setTextColor(activity!!.getColor(R.color.white_txt_thick))
             }
             false -> {
                 activity!!.window.statusBarColor = activity!!.getColor(R.color.blue_bg_basic)
                 activity!!.aOption_clo_title.setBackgroundResource(R.drawable.img_title_background_daytime)
                 activity!!.aOption_flo_container.setBackgroundColor(activity!!.getColor(R.color.white_bg_basic))
+
                 fOption_swc_mode_item.thumbDrawable.setTint(activity!!.getColor(R.color.blue_bg_thick))
                 fOption_swc_mode_item.trackDrawable.setTint(activity!!.getColor(R.color.blue_bg_basic))
+                fOption_swc_mode_weight.thumbDrawable.setTint(activity!!.getColor(R.color.blue_bg_thick))
+                fOption_swc_mode_weight.trackDrawable.setTint(activity!!.getColor(R.color.blue_bg_basic))
+                fOption_swc_mode_height.thumbDrawable.setTint(activity!!.getColor(R.color.blue_bg_thick))
+                fOption_swc_mode_height.trackDrawable.setTint(activity!!.getColor(R.color.blue_bg_basic))
 
                 fOption_clo_profile.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
                 fOption_clo_supportUs.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
+                fOption_clo_option.setBackgroundColor(activity!!.getColor(R.color.grey_bg_basic))
 
                 fOption_tv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
                 fOption_tv_supportUs.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
+                fOption_tv_option.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
 
                 fOption_tv_interval_title.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_tv_interval_time.setTextColor(activity!!.getColor(R.color.grey_txt_light))
@@ -104,6 +120,8 @@ class OptionFragment : BaseFragment() {
                 fOption_tv_rateUs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_tv_feedback.setTextColor(activity!!.getColor(R.color.black_txt_thick))
                 fOption_tv_share.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fOption_tv_mode_weight.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fOption_tv_mode_height.setTextColor(activity!!.getColor(R.color.black_txt_thick))
             }
         }
     }

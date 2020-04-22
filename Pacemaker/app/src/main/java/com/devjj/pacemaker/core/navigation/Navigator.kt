@@ -176,7 +176,7 @@ class Navigator
             val sSaveDate = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(Date())
 
             // 날짜가 같은 DB에 데이터 다 지우기
-            playPopupViewModel.deleteExerciseHistoryData(sSaveDate)
+            playPopupViewModel.deleteExerciseHistoryData()
 
             for(playPopupData in playPopupDataList) {
                 Log.d("test", "id : ${playPopupData.id}, part_img : ${playPopupData.part_img}, name : ${playPopupData.name},\n"
@@ -191,7 +191,7 @@ class Navigator
                     )
 
                 Log.d("test", "fSaveHeight : $fSaveHeight, fSaveWeight : $fSaveWeight")
-                playPopupViewModel.saveExerciseHistoryData(insertPlayPopupData, sSaveDate, fSaveHeight, fSaveWeight)
+                playPopupViewModel.saveExerciseHistoryData(insertPlayPopupData)
             }
 
             // 데이터 초기화

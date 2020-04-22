@@ -25,6 +25,7 @@ import kotlinx.android.synthetic.main.fragment_play_popup.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -62,6 +63,7 @@ class PlayPopupFragment : BaseFragment() {
         playPopupViewModel = viewModel(viewModelFactory){
             observe(existPlayPopupList, ::existPlayPopupList)
             observe(playPopupList, ::renderPlayPopupList)
+            observe(playPopupData, ::getPlayPopupView)
             failure(failure, ::handleFailure)
         }
 
@@ -281,13 +283,50 @@ class PlayPopupFragment : BaseFragment() {
                     totalTime = ((totalTimeEnd - totalTimeStart)/60000).toInt()
 
                     // 몸무게랑 키 입력하는 다이얼 로그 띄우는 함수.
-                    navigator.showProfileDialog(activity!!, isNightMode, playPopupViewModel, playPopupDataList)
+                    //navigator.showProfileDialog(activity!!, isNightMode, playPopupViewModel, playPopupDataList)
+
+                    val sSaveDate = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(Date())
+                    //date = sSaveDate
+                    date = sSaveDate
+                    height = setting.height
+                    weight = setting.weight
+
+                    // 날짜가 같은 DB에 데이터 다 지우기
+                    playPopupViewModel.deleteExerciseHistoryData()
+
+                    for(playPopupData in playPopupDataList) {
+                        Log.d("test", "id : ${playPopupData.id}, part_img : ${playPopupData.part_img}, name : ${playPopupData.name},\n"
+                                + "mass : ${playPopupData.mass}, rep : ${playPopupData.rep}, setGoal : ${playPopupData.setGoal},\n"
+                                + "setDone : ${playPopupData.setDone}, interval : ${playPopupData.interval}, achievement : ${playPopupData.achievement}")
+
+                        var insertPlayPopupData =
+                            PlayPopupData(
+                                playPopupData.id, playPopupData.part_img, playPopupData.name,
+                                playPopupData.mass, playPopupData.rep, playPopupData.setGoal,
+                                playPopupData.setDone, playPopupData.interval, playPopupData.achievement
+                            )
+
+                        playPopupViewModel.saveExerciseHistoryData(insertPlayPopupData)
+
+                    }
+
+                    // 데이터 초기화
+                    for(playPopupData in playPopupDataList){
+                        playPopupData.achievement = false
+                        playPopupData.setDone = 0
+                        playPopupViewModel.updateExercisePlayPopupData(playPopupData)
+                    }
+                    //
+
+                    // TimerService 종료
+                    TimerService.stopService(activity!!)
+                    //
+
 
                     Log.d("test", "totalTimer : $totalTime")
 
                     Toast.makeText(context, "totalTimer : $totalTime", Toast.LENGTH_LONG).show()
 
-                    //Toast.makeText(context, R.string.fplaypopup_tv_exercise_finish_str, Toast.LENGTH_LONG).show()
                 }
 
                 if(achivementCount == playPopupView?.size?.minus(1)){
@@ -370,6 +409,7 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_tv_rest_time.text = timerText
 
         Log.d("test", "timerFinish $timerFinish")
+
         if(timerFinish)
             fPlayPopup_tv_rest_time.text = "00:00"
 
@@ -457,6 +497,18 @@ class PlayPopupFragment : BaseFragment() {
                 progressBars[index].setBackgroundResource(resourcesSelect)
             }
         }
+    }
+
+    // ExerciseHistroyData 추가 후 데이터 받아오는 함수
+    private fun getPlayPopupView(playPopupView: PlayPopupView?){
+        // TODO : 데이터 insert후에 여기로 데이터 넘어오는 확인 후 id 값과 함께 신장, 체중 받는 다이얼 로그 띄우기
+        Log.d("test", "getPlayPopupView id : ${playPopupView?.id}")
+        if(setting.isUpdateHeight || setting.isUpdateWeight){
+            // 둘중 하나라도 true라면
+
+        }
+
+        activity?.finish()
     }
 
     // playPopup 데이터 갱신 실패시 핸들링하는 함수.

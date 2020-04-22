@@ -35,10 +35,10 @@ class PlayPopupViewModel
         updateExercisePlayPopupData(UpdateExercisePlayPopupData.Params(playPopupData))
 
     // AdditionData를 ExerciseEntity로 변환해서 저장하는 함수.
-    fun saveExerciseHistoryData(playPopupData: PlayPopupData, saveDate: String, saveHeight: Float, saveWeight: Float) {
-        date = saveDate
-        height = saveHeight
-        weight = saveWeight
+    fun saveExerciseHistoryData(playPopupData: PlayPopupData) {
+        //date = saveDate
+        //height = saveHeight
+        //weight = saveWeight
         Log.d("test", "date : ${date}, height : ${height}, weight : ${weight}")
 
         Log.d("test", "achievement rate : ${100 * playPopupData.setDone / playPopupData.setGoal}")
@@ -51,8 +51,8 @@ class PlayPopupViewModel
         }
     }
 
-    fun deleteExerciseHistoryData(saveDate: String){
-        date = saveDate
+    fun deleteExerciseHistoryData(){
+        //date = saveDate
         deleteExerciseHistoryData(UseCase.None()) {it.fold(::handleFailure,::handleTheExerciseHistoryData)}
     }
 
@@ -71,7 +71,10 @@ class PlayPopupViewModel
     }
 
     private fun handleTheExerciseHistoryData(playPopupData: PlayPopupData?){
-        val tempPlayPopupData = playPopupData?:PlayPopupData.empty()
+        Log.d("test", "handleTheExerciseHistoryData : ${playPopupData?.id}")
+        var tempPlayPopupData = playPopupData
+        if(tempPlayPopupData==null)
+            tempPlayPopupData = PlayPopupData.empty()
         this.playPopupData.value = PlayPopupView(tempPlayPopupData.id, tempPlayPopupData.part_img, tempPlayPopupData.name,
             tempPlayPopupData.mass, tempPlayPopupData.rep, tempPlayPopupData.setGoal, tempPlayPopupData.setDone,
             tempPlayPopupData.interval, if(tempPlayPopupData.achievement) 1 else 0)

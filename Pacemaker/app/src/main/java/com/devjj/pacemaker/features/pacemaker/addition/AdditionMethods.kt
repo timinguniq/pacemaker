@@ -34,15 +34,15 @@ fun rotationPartId(direction: Int){
 // 휴식 시간 관련 계산 함수
 fun calcIntervalTime(increase: Int){
     when(increase) {
-        INTERVAL_MINUS -> additionData_interval -= 5
-        INTERVAL_PLUS -> additionData_interval += 5
+        INTERVAL_MINUS -> additionData_interval -= REST_TIME_INTERVAL
+        INTERVAL_PLUS -> additionData_interval += REST_TIME_INTERVAL
         else -> Log.d("test", "calcIntervalTime error")
     }
 
-    if(additionData_interval < 0){
-        additionData_interval = 0
-    }else if(additionData_interval > 300){
-        additionData_interval = 300
+    if(additionData_interval <= REST_TIME_MINVALUE){
+        additionData_interval = REST_TIME_MINVALUE
+    }else if(additionData_interval >= REST_TIME_MAXVALUE){
+        additionData_interval = REST_TIME_MAXVALUE
     }
 }
 

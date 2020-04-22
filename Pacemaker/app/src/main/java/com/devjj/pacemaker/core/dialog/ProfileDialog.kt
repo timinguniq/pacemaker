@@ -12,7 +12,8 @@ import com.devjj.pacemaker.core.extension.*
 import kotlinx.android.synthetic.main.dialog_profile_input.*
 import kotlinx.android.synthetic.main.dialog_profile_input.view.*
 
-fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, id : Int) {
+// date 형식은 'yyyy-MM-dd'
+fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, date : String) {
     val builder = AlertDialog.Builder(activity)
     val dialogView = activity.layoutInflater.inflate(R.layout.dialog_profile_input, null)
 

@@ -39,7 +39,7 @@ interface PlayPopupRepository {
         override fun insertExerciseHistoryData(playPopupData: PlayPopupData): Either<Failure, PlayPopupData> {
             service.insertExerciseHistoryData(playPopupData)
             return try {
-                Right(PlayPopupData.empty())
+                Right(playPopupData)
             } catch (exception: Throwable) {
                 Left(DatabaseError)
             }

@@ -12,7 +12,7 @@ import com.devjj.pacemaker.core.extension.*
 import kotlinx.android.synthetic.main.dialog_profile_input.*
 import kotlinx.android.synthetic.main.dialog_profile_input.view.*
 
-fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, id : Int) {
+fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, date : String , flag : Int) {
     val builder = AlertDialog.Builder(activity)
     val dialogView = activity.layoutInflater.inflate(R.layout.dialog_profile_input, null)
 
@@ -78,9 +78,6 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, id 
 
     val dialog = builder.setView(dialogView).show()
 
-    if( dialogView.dProfile_clo_weight.isGone() && dialogView.dProfile_clo_height.isGone()){
-        dialog.dismiss()
-    }
 
     var fSaveHeight: Float
     var fSaveWeight: Float

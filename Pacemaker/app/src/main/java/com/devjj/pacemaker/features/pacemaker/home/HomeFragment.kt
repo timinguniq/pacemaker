@@ -70,7 +70,7 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
         homeListener.clickListener()
 
         if(setting.height < 0 && setting.weight < 0) {
-             showProfileDialog(activity!!, setting, 0)
+             showProfileDialog(activity!!, setting, String.empty(), GET_HEIGHT_WEIGHT)
         }
     }
 

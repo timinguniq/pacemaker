@@ -1,6 +1,5 @@
 package com.devjj.pacemaker.core.di
 
-import android.app.PendingIntent.getActivity
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -8,12 +7,9 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
+import com.devjj.pacemaker.core.di.database.StatisticsDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
-import com.devjj.pacemaker.features.pacemaker.AdditionActivity
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionFragment
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionListener
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionRepository
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionViewModel
 import com.devjj.pacemaker.features.pacemaker.home.HomeRepository
 import com.devjj.pacemaker.features.pacemaker.history.HistoriesRepository
 import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailsRepository
@@ -43,7 +39,6 @@ class ApplicationModule(private val application: AndroidApplication) {
                 }
             }
         }).build()
-
         return db
     }
 
@@ -55,7 +50,24 @@ class ApplicationModule(private val application: AndroidApplication) {
             ExerciseHistoryDatabase::class.java,
             "exerciseHistories"
         ).build()
+        return db
+    }
 
+    @Provides
+    @Singleton
+    fun provideStatisticsDatabase(): StatisticsDatabase {
+        val db = Room.databaseBuilder(
+            application,
+            StatisticsDatabase::class.java,
+            "statistics"
+        ).addCallback(object : RoomDatabase.Callback(){
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                super.onCreate(db)
+                Thread{
+                    db.beginTransactionNonExclusive()
+                }
+            }
+        }).build()
         return db
     }
 

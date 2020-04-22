@@ -69,6 +69,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         initSettingMode(isNightMode)
 
         // 초기화
+        additionData_part_img = 0
         additionData_mass = 0
         additionData_rep = 1
         additionData_set = 1
@@ -77,7 +78,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
 
     // 넘버 픽커 초기화
     private fun initNumberPicker(){
-        val data1: Array<String> = Array(201){
+        val massData: Array<String> = Array(MASS_MAXVALUE+1){
             i ->
             when(i){
                 in 0..9 -> "00$i"
@@ -90,35 +91,35 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             }
         }
 
-        val data2: Array<String> = Array(20) {
+        val repData: Array<String> = Array(REP_MAXVALUE) {
             i -> if((i+1)<10) "0" + (i+1).toString() else (i+1).toString()
         }
 
-        val data3: Array<String> = Array(10){
+        val setData: Array<String> = Array(SET_MAXVALUE){
             i -> if((i+1)<10) "0" + (i+1).toString() else (i+1).toString()
         }
 
         // 테스트 코드
         fAddition_np_mass.minValue = 0
-        fAddition_np_mass.maxValue = data1.size-1
+        fAddition_np_mass.maxValue = massData.size-1
         fAddition_np_mass.wrapSelectorWheel = false
-        data1.reverse()
-        fAddition_np_mass.displayedValues = data1
-        fAddition_np_mass.value = 200
+        massData.reverse()
+        fAddition_np_mass.displayedValues = massData
+        fAddition_np_mass.value = MASS_MAXVALUE
 
         fAddition_np_rep.minValue = 1
-        fAddition_np_rep.maxValue = data2.size
+        fAddition_np_rep.maxValue = repData.size
         fAddition_np_rep.wrapSelectorWheel = false
-        data2.reverse()
-        fAddition_np_rep.displayedValues = data2
-        fAddition_np_rep.value = 20
+        repData.reverse()
+        fAddition_np_rep.displayedValues = repData
+        fAddition_np_rep.value = REP_MAXVALUE
 
         fAddition_np_set.minValue = 1
-        fAddition_np_set.maxValue = data3.size
+        fAddition_np_set.maxValue = setData.size
         fAddition_np_set.wrapSelectorWheel = false
-        data3.reverse()
-        fAddition_np_set.displayedValues = data3
-        fAddition_np_set.value = 10
+        setData.reverse()
+        fAddition_np_set.displayedValues = setData
+        fAddition_np_set.value = SET_MAXVALUE
         //
     }
 
@@ -135,8 +136,9 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             listResource.add(partMainImage)
             listResource.add(R.drawable.faddition_img_name_line_daytime)
             listResource.add(loadColor(activity!!, R.color.black_txt_thick))
-            listResource.add(loadColor(activity!!, R.color.grey_txt_light))
-            listResource.add(loadColor(activity!!, R.color.grey_bg_light))
+            listResource.add(loadColor(activity!!, R.color.black_txt_transparent))
+            listResource.add(loadColor(activity!!, R.color.grey_txt_thick))
+            listResource.add(loadColor(activity!!, R.color.grey_bg_basic))
             listResource.add(R.drawable.img_rest_minus_daytime)
             listResource.add(R.drawable.img_rest_plus_daytime)
             listResource.add(R.drawable.img_save_daytime)
@@ -149,7 +151,8 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             listResource.add(partMainImage)
             listResource.add(R.drawable.faddition_img_name_line_nighttime)
             listResource.add(loadColor(activity!!, R.color.white))
-            listResource.add(loadColor(activity!!, R.color.grey_txt_thick))
+            listResource.add(loadColor(activity!!, R.color.white_transparent))
+            listResource.add(loadColor(activity!!, R.color.grey_txt_light))
             listResource.add(loadColor(activity!!, R.color.grey_bg_thickest))
             listResource.add(R.drawable.img_rest_minus_nighttime)
             listResource.add(R.drawable.img_rest_plus_nighttime)
@@ -162,26 +165,26 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         fAddition_iv_part_main.setImageResource(listResource[3])
         fAddition_iv_name_line.setImageResource(listResource[4])
         fAddition_ev_name.setTextColor(listResource[5])
-        fAddition_ev_name.setHintTextColor(listResource[5])
+        fAddition_ev_name.setHintTextColor(listResource[6])
 
-        fAddition_tv_mass.setTextColor(listResource[6])
-        fAddition_tv_rep.setTextColor(listResource[6])
-        fAddition_tv_set.setTextColor(listResource[6])
-        fAddition_tv_interval.setTextColor(listResource[6])
+        fAddition_tv_mass.setTextColor(listResource[7])
+        fAddition_tv_rep.setTextColor(listResource[7])
+        fAddition_tv_set.setTextColor(listResource[7])
+        fAddition_tv_interval.setTextColor(listResource[7])
 
         setNumberPickerTextColor(fAddition_np_mass, listResource[5])
-        fAddition_np_mass.setBackgroundColor(listResource[7])
+        fAddition_np_mass.setBackgroundColor(listResource[8])
         setNumberPickerTextColor(fAddition_np_rep, listResource[5])
-        fAddition_np_rep.setBackgroundColor(listResource[7])
+        fAddition_np_rep.setBackgroundColor(listResource[8])
         setNumberPickerTextColor(fAddition_np_set, listResource[5])
-        fAddition_np_set.setBackgroundColor(listResource[7])
+        fAddition_np_set.setBackgroundColor(listResource[8])
 
-        fAddition_clo_interval_time.setBackgroundColor(listResource[7])
-        fAddition_iv_interval_minus.setImageResource(listResource[8])
-        fAddition_iv_interval_plus.setImageResource(listResource[9])
+        fAddition_clo_interval_time.setBackgroundColor(listResource[8])
+        fAddition_iv_interval_minus.setImageResource(listResource[9])
+        fAddition_iv_interval_plus.setImageResource(listResource[10])
         fAddition_tv_interval_time.setTextColor(listResource[5])
 
-        fAddition_iv_save.setImageResource(listResource[10])
+        fAddition_iv_save.setImageResource(listResource[11])
     }
 
     // Exercise 데이터들 갱신하는 함수.
@@ -200,9 +203,9 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
 
                 fAddition_tv_title.text = resources.getString(R.string.faddition_tv_title_edit_str)
                 fAddition_ev_name.text = String.editText(tempAdditionView.name)
-                fAddition_np_mass.value = 200 - tempAdditionView.mass
-                fAddition_np_rep.value = 21 - tempAdditionView.rep
-                fAddition_np_set.value = 11 - tempAdditionView.set
+                fAddition_np_mass.value = MASS_MAXVALUE - tempAdditionView.mass
+                fAddition_np_rep.value = (REP_MAXVALUE + 1) - tempAdditionView.rep
+                fAddition_np_set.value = (SET_MAXVALUE + 1) - tempAdditionView.set
                 additionData_interval = tempAdditionView.interval
                 settingIntervalTime(fAddition_tv_interval_time)
             }

@@ -15,6 +15,7 @@ import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.dialog.showProfileDialog
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
@@ -25,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_play_popup.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -62,6 +64,7 @@ class PlayPopupFragment : BaseFragment() {
         playPopupViewModel = viewModel(viewModelFactory){
             observe(existPlayPopupList, ::existPlayPopupList)
             observe(playPopupList, ::renderPlayPopupList)
+            observe(playPopupStatisticsData, ::getPlayPopupStatisticsView)
             failure(failure, ::handleFailure)
         }
 
@@ -281,13 +284,59 @@ class PlayPopupFragment : BaseFragment() {
                     totalTime = ((totalTimeEnd - totalTimeStart)/60000).toInt()
 
                     // 몸무게랑 키 입력하는 다이얼 로그 띄우는 함수.
-                    navigator.showProfileDialog(activity!!, isNightMode, playPopupViewModel, playPopupDataList)
+                    //navigator.showProfileDialog(activity!!, isNightMode, playPopupViewModel, playPopupDataList)
+
+                    val sSaveDate = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(Date())
+                    //date = sSaveDate
+                    date = sSaveDate
+                    height = setting.height
+                    weight = setting.weight
+
+                    // 날짜가 같은 DB에 데이터 다 지우기
+                    playPopupViewModel.deleteExerciseHistoryData()
+
+                    // 오늘 운동의 전체 성공세트, 전체 목표세트
+                    var todayTotalSetDone = 0
+                    var todayTotalSetGoal = 0
+
+                    for(playPopupData in playPopupDataList) {
+                        Log.d("test", "id : ${playPopupData.id}, part_img : ${playPopupData.part_img}, name : ${playPopupData.name},\n"
+                                + "mass : ${playPopupData.mass}, rep : ${playPopupData.rep}, setGoal : ${playPopupData.setGoal},\n"
+                                + "setDone : ${playPopupData.setDone}, interval : ${playPopupData.interval}, achievement : ${playPopupData.achievement}")
+
+                        todayTotalSetDone += playPopupData.setDone
+                        todayTotalSetGoal += playPopupData.setGoal
+
+                        var insertPlayPopupData =
+                            PlayPopupData(
+                                playPopupData.id, playPopupData.part_img, playPopupData.name,
+                                playPopupData.mass, playPopupData.rep, playPopupData.setGoal,
+                                playPopupData.setDone, playPopupData.interval, playPopupData.achievement
+                            )
+
+                        playPopupViewModel.saveExerciseHistoryData(insertPlayPopupData)
+
+                    }
+
+                    playPopupViewModel.saveStatisticsData(todayTotalSetDone, todayTotalSetGoal)
+
+                    // 데이터 초기화
+                    for(playPopupData in playPopupDataList){
+                        playPopupData.achievement = false
+                        playPopupData.setDone = 0
+                        playPopupViewModel.updateExercisePlayPopupData(playPopupData)
+                    }
+                    //
+
+                    // TimerService 종료
+                    TimerService.stopService(activity!!)
+                    //
+
 
                     Log.d("test", "totalTimer : $totalTime")
 
                     Toast.makeText(context, "totalTimer : $totalTime", Toast.LENGTH_LONG).show()
 
-                    //Toast.makeText(context, R.string.fplaypopup_tv_exercise_finish_str, Toast.LENGTH_LONG).show()
                 }
 
                 if(achivementCount == playPopupView?.size?.minus(1)){
@@ -370,6 +419,7 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_tv_rest_time.text = timerText
 
         Log.d("test", "timerFinish $timerFinish")
+
         if(timerFinish)
             fPlayPopup_tv_rest_time.text = "00:00"
 
@@ -458,6 +508,33 @@ class PlayPopupFragment : BaseFragment() {
             }
         }
     }
+
+    // ExerciseHistroyData 추가 후 데이터 받아오는 함수
+    private fun getPlayPopupStatisticsView(playPopupView: PlayPopupView?){
+        // TODO : 데이터 insert후에 여기로 데이터 넘어오는 확인 후 id 값과 함께 신장, 체중 받는 다이얼 로그 띄우기
+        Log.d("test", "getPlayPopupStatisticsView id : ${playPopupView?.id}")
+        if(!setting.isUpdateHeight && !setting.isUpdateWeight){
+            // 둘다 false 팝업창 안 띄우기
+            activity?.finish()
+            return
+        }
+
+        var standard = 0
+        if(setting.isUpdateHeight) standard++
+        if(setting.isUpdateWeight) standard+=2
+
+
+        when(standard){
+            1 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY)
+            2 -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY)
+            3 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT)
+            else -> Log.d("test", "getPlayPopupStatisticsView error")
+        }
+
+        //activity?.finish()
+    }
+
+
 
     // playPopup 데이터 갱신 실패시 핸들링하는 함수.
     private fun handleFailure(failure: Failure?) {

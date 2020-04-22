@@ -174,7 +174,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/fAddition_clo_m_r_s"
                 android:layout_width="280dp"
-                android:layout_height="140dp"
+                android:layout_height="170dp"
                 android:layout_marginTop="35dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -185,7 +185,7 @@
                 <!-- 중량 레이아웃 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/fAddition_clo_mass"
-                    android:layout_width="60dp"
+                    android:layout_width="65dp"
                     android:layout_height="match_parent"
                     app:layout_constraintEnd_toStartOf="@+id/fAddition_clo_rep"
                     app:layout_constraintStart_toStartOf="parent"
@@ -196,7 +196,7 @@
                     <TextView
                         android:id="@+id/fAddition_tv_mass"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:gravity="center"
                         android:text="@string/faddition_tv_mass_str"
                         android:textSize="18sp"
@@ -210,7 +210,7 @@
                     <NumberPicker
                         android:id="@+id/fAddition_np_mass"
                         android:layout_width="match_parent"
-                        android:layout_height="110dp"
+                        android:layout_height="130dp"
                         android:layout_marginTop="10dp"
                         android:theme="@style/AppTheme.NumberPicker"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -223,7 +223,7 @@
                 <!-- 횟수 레이아웃 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/fAddition_clo_rep"
-                    android:layout_width="60dp"
+                    android:layout_width="65dp"
                     android:layout_height="match_parent"
                     app:layout_constraintEnd_toStartOf="@+id/fAddition_clo_set"
                     app:layout_constraintStart_toEndOf="@+id/fAddition_clo_mass"
@@ -233,7 +233,7 @@
                     <TextView
                         android:id="@+id/fAddition_tv_rep"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:gravity="center"
                         android:text="@string/faddition_tv_rep_str"
                         android:textSize="18sp"
@@ -247,7 +247,7 @@
                     <NumberPicker
                         android:id="@+id/fAddition_np_rep"
                         android:layout_width="match_parent"
-                        android:layout_height="110dp"
+                        android:layout_height="130dp"
                         android:layout_marginTop="10dp"
                         android:theme="@style/AppTheme.NumberPicker"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -261,7 +261,7 @@
                 <!-- 세트 레이아웃 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/fAddition_clo_set"
-                    android:layout_width="60dp"
+                    android:layout_width="65dp"
                     android:layout_height="match_parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/fAddition_clo_rep"
@@ -272,7 +272,7 @@
                     <TextView
                         android:id="@+id/fAddition_tv_set"
                         android:layout_width="wrap_content"
-                        android:layout_height="20dp"
+                        android:layout_height="30dp"
                         android:gravity="center"
                         android:text="@string/faddition_tv_set_str"
                         android:textSize="18sp"
@@ -286,7 +286,7 @@
                     <NumberPicker
                         android:id="@+id/fAddition_np_set"
                         android:layout_width="match_parent"
-                        android:layout_height="110dp"
+                        android:layout_height="130dp"
                         android:layout_marginTop="10dp"
                         android:theme="@style/AppTheme.NumberPicker"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -313,7 +313,7 @@
 
                 <TextView
                     android:id="@+id/fAddition_tv_interval"
-                    android:layout_width="wrap_content"
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
                     android:gravity="center"
@@ -328,7 +328,7 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/fAddition_clo_interval_time"
-                    android:layout_width="170dp"
+                    android:layout_width="173dp"
                     android:layout_height="match_parent"
                     android:background="#fff1f1f1"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -421,7 +421,7 @@
             <!-- 빈 공간을 만들기 위한 View -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="60dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fAddition_flo_save"/>

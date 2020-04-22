@@ -42,7 +42,7 @@ class TimerService : Service() {
 
         private lateinit var w1: PowerManager.WakeLock
 
-        private fun startPowerManager() = w1.acquire(5 * 60 * 1000L /*5 minutes*/)
+        private fun startPowerManager() = w1.acquire(6 * 60 * 1000L /* 6 minutes */)
 
         private fun endPowerManager() {
             if (w1.isHeld) w1.release() else Log.d("test", "w1.isHeld false")
@@ -115,7 +115,7 @@ class TimerService : Service() {
         fun timerStop() {
             timer.cancel()
             isTimerProgress = false
-            timerFinish = true
+            //timerFinish = true
             mode = STOP_MODE
             endPowerManager()
         }

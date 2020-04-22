@@ -12,10 +12,12 @@ interface PlayPopupRepository {
     fun playPopupData() : Either<Failure, List<PlayPopupData>>
     // DB에 ExerciseData를 업데이트(수정) 후 갱신까지.
     fun updateExerciseData(playPopupData: PlayPopupData): Either<Failure, Unit>
-    // DB에 ExerciseHistoryData를 데이터를 추가하는 함수.
+    // DB에 ExerciseHistoryData를 추가하는 함수.
     fun insertExerciseHistoryData(playPopupData: PlayPopupData): Either<Failure, PlayPopupData>
     // DB에 날짜를 받아 ExerciseHistoryData를 삭제하는 함수.
     fun deleteExerciseHistoryData(): Either<Failure, PlayPopupData>
+    // DB에 StatisticsData를 추가하는 함수
+    fun insertStatisticsData(todaySetDone: Int, todaySetGoal: Int): Either<Failure, PlayPopupData>
 
     class DbRepository
     @Inject constructor(private val service: PlayPopupDatabaseService) :
@@ -39,7 +41,7 @@ interface PlayPopupRepository {
         override fun insertExerciseHistoryData(playPopupData: PlayPopupData): Either<Failure, PlayPopupData> {
             service.insertExerciseHistoryData(playPopupData)
             return try {
-                Right(PlayPopupData.empty())
+                Right(playPopupData)
             } catch (exception: Throwable) {
                 Left(DatabaseError)
             }
@@ -48,6 +50,15 @@ interface PlayPopupRepository {
 
         override fun deleteExerciseHistoryData(): Either<Failure, PlayPopupData> {
             service.deleteExerciseHistoryData()
+            return try {
+                Right(PlayPopupData.empty())
+            } catch (exception: Throwable) {
+                Left(DatabaseError)
+            }
+        }
+
+        override fun insertStatisticsData(todaySetDone: Int, todaySetGoal: Int): Either<Failure, PlayPopupData> {
+            service.insertStatisticsData(todaySetDone, todaySetGoal)
             return try {
                 Right(PlayPopupData.empty())
             } catch (exception: Throwable) {

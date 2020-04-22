@@ -1,5 +1,6 @@
 package com.devjj.pacemaker.core.platform
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.devjj.pacemaker.AndroidApplication
@@ -24,6 +25,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        // 세로 화면으로 고정하는 코드
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         setContentView(layout)
 
         addFragment(savedInstanceState)

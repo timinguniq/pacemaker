@@ -69,6 +69,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         initSettingMode(isNightMode)
 
         // 초기화
+        additionData_part_img = 0
         additionData_mass = 0
         additionData_rep = 1
         additionData_set = 1

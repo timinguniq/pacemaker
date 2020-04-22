@@ -13,6 +13,12 @@ interface ExerciseHistoryDAO {
     @Query("SELECT * FROM exerciseHistories")
     fun getAll(): List<ExerciseHistoryEntity>
 
+    @Insert(onConflict = REPLACE)
+    fun insert(vararg exerciseHistoryEntity: ExerciseHistoryEntity)
+
+    @Delete
+    fun delete(exerciseHistoryEntity: ExerciseHistoryEntity)
+
     @Query("SELECT * FROM exerciseHistories GROUP BY date")
     fun getAllDates(): List<ExerciseHistoryEntity>
 
@@ -24,7 +30,6 @@ interface ExerciseHistoryDAO {
 
     @Query("UPDATE exerciseHistories SET achievementRate = ( (SELECT SUM(setDone) FROM exerciseHistories WHERE date = :date)*100/(SELECT SUM(setGoal) FROM exerciseHistories WHERE date = :date) ) WHERE date = :date")
     fun updateAchievementRate(date: String) : Int
-
 
     @Query("SELECT Sum(setDone) as sets , (Select Sum(totalTime) FROM (SELECT * FROM exerciseHistories GROUP BY date)) as times ,Sum(mass*setDone) as kgs FROM exerciseHistories ")
     fun getSummary() : Summary
@@ -39,9 +44,5 @@ interface ExerciseHistoryDAO {
     @Query("DELETE FROM exerciseHistories WHERE date = :date")
     fun deleteForDate(date: String)
 
-    @Insert(onConflict = REPLACE)
-    fun insert(vararg exerciseHistoryEntity: ExerciseHistoryEntity)
 
-    @Delete
-    fun delete(exerciseHistoryEntity: ExerciseHistoryEntity)
 }

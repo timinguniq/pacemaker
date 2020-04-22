@@ -15,6 +15,7 @@ import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.dialog.showProfileDialog
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
@@ -63,7 +64,7 @@ class PlayPopupFragment : BaseFragment() {
         playPopupViewModel = viewModel(viewModelFactory){
             observe(existPlayPopupList, ::existPlayPopupList)
             observe(playPopupList, ::renderPlayPopupList)
-            observe(playPopupData, ::getPlayPopupView)
+            observe(playPopupStatisticsData, ::getPlayPopupStatisticsView)
             failure(failure, ::handleFailure)
         }
 
@@ -294,10 +295,17 @@ class PlayPopupFragment : BaseFragment() {
                     // 날짜가 같은 DB에 데이터 다 지우기
                     playPopupViewModel.deleteExerciseHistoryData()
 
+                    // 오늘 운동의 전체 성공세트, 전체 목표세트
+                    var todayTotalSetDone = 0
+                    var todayTotalSetGoal = 0
+
                     for(playPopupData in playPopupDataList) {
                         Log.d("test", "id : ${playPopupData.id}, part_img : ${playPopupData.part_img}, name : ${playPopupData.name},\n"
                                 + "mass : ${playPopupData.mass}, rep : ${playPopupData.rep}, setGoal : ${playPopupData.setGoal},\n"
                                 + "setDone : ${playPopupData.setDone}, interval : ${playPopupData.interval}, achievement : ${playPopupData.achievement}")
+
+                        todayTotalSetDone += playPopupData.setDone
+                        todayTotalSetGoal += playPopupData.setGoal
 
                         var insertPlayPopupData =
                             PlayPopupData(
@@ -309,6 +317,8 @@ class PlayPopupFragment : BaseFragment() {
                         playPopupViewModel.saveExerciseHistoryData(insertPlayPopupData)
 
                     }
+
+                    playPopupViewModel.saveStatisticsData(todayTotalSetDone, todayTotalSetGoal)
 
                     // 데이터 초기화
                     for(playPopupData in playPopupDataList){
@@ -500,16 +510,31 @@ class PlayPopupFragment : BaseFragment() {
     }
 
     // ExerciseHistroyData 추가 후 데이터 받아오는 함수
-    private fun getPlayPopupView(playPopupView: PlayPopupView?){
+    private fun getPlayPopupStatisticsView(playPopupView: PlayPopupView?){
         // TODO : 데이터 insert후에 여기로 데이터 넘어오는 확인 후 id 값과 함께 신장, 체중 받는 다이얼 로그 띄우기
-        Log.d("test", "getPlayPopupView id : ${playPopupView?.id}")
-        if(setting.isUpdateHeight || setting.isUpdateWeight){
-            // 둘중 하나라도 true라면
-
+        Log.d("test", "getPlayPopupStatisticsView id : ${playPopupView?.id}")
+        if(!setting.isUpdateHeight && !setting.isUpdateWeight){
+            // 둘다 false 팝업창 안 띄우기
+            activity?.finish()
+            return
         }
 
-        activity?.finish()
+        var standard = 0
+        if(setting.isUpdateHeight) standard++
+        if(setting.isUpdateWeight) standard+=2
+
+
+        when(standard){
+            1 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY)
+            2 -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY)
+            3 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT)
+            else -> Log.d("test", "getPlayPopupStatisticsView error")
+        }
+
+        //activity?.finish()
     }
+
+
 
     // playPopup 데이터 갱신 실패시 핸들링하는 함수.
     private fun handleFailure(failure: Failure?) {

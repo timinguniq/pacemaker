@@ -31,7 +31,7 @@ class HistoryViewModel
         this.summaryOneMonth.value = summary
     }
 
-    private fun handleHistoryList(histores: List<History>) {
-        this.histories.value = histores.map { HistoryView(it.id, it.date, it.achievementRate) }
+    private fun handleHistoryList(histories: List<History>) {
+        this.histories.value = histories.map { HistoryView(it.id, it.date, it.achievementRate) }
     }
 }

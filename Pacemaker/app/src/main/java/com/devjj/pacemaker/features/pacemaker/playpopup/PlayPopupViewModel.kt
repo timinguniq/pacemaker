@@ -7,17 +7,15 @@ import com.devjj.pacemaker.core.interactor.UseCase
 import com.devjj.pacemaker.core.platform.BaseViewModel
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
-import com.devjj.pacemaker.features.pacemaker.usecases.DeleteExerciseHistoryData
-import com.devjj.pacemaker.features.pacemaker.usecases.GetPlayPopupData
-import com.devjj.pacemaker.features.pacemaker.usecases.SaveExerciseHistoryData
-import com.devjj.pacemaker.features.pacemaker.usecases.UpdateExercisePlayPopupData
+import com.devjj.pacemaker.features.pacemaker.usecases.*
 import javax.inject.Inject
 
 class PlayPopupViewModel
 @Inject constructor(private val getPlayPopupData: GetPlayPopupData,
                     private val updateExercisePlayPopupData: UpdateExercisePlayPopupData,
                     private val saveExerciseHistoryData: SaveExerciseHistoryData,
-                    private val deleteExerciseHistoryData: DeleteExerciseHistoryData) : BaseViewModel() {
+                    private val deleteExerciseHistoryData: DeleteExerciseHistoryData,
+                    private val saveStatisticsData: SaveStatisticsData) : BaseViewModel() {
 
     var totalTime : MutableLiveData<Int> = MutableLiveData()
 
@@ -27,6 +25,8 @@ class PlayPopupViewModel
 
     var playPopupData: MutableLiveData<PlayPopupView> = MutableLiveData()
 
+    var playPopupStatisticsData: MutableLiveData<PlayPopupView> = MutableLiveData()
+
     fun loadPlayPopupList() = getPlayPopupData(UseCase.None()) {it.fold(::handleFailure, ::handlePlayPopupData)}
 
     fun existPlayPopupList() = getPlayPopupData(UseCase.None()) {it.fold(::handleFailure, ::handleExistPlayPopupData)}
@@ -34,7 +34,7 @@ class PlayPopupViewModel
     fun updateExercisePlayPopupData(playPopupData: PlayPopupData) =
         updateExercisePlayPopupData(UpdateExercisePlayPopupData.Params(playPopupData))
 
-    // AdditionData를 ExerciseEntity로 변환해서 저장하는 함수.
+    // PlayPopupData를 ExerciseEntity로 변환해서 저장하는 함수.
     fun saveExerciseHistoryData(playPopupData: PlayPopupData) {
         //date = saveDate
         //height = saveHeight
@@ -51,9 +51,20 @@ class PlayPopupViewModel
         }
     }
 
-    fun deleteExerciseHistoryData(){
-        //date = saveDate
+    fun deleteExerciseHistoryData() =
         deleteExerciseHistoryData(UseCase.None()) {it.fold(::handleFailure,::handleTheExerciseHistoryData)}
+
+
+    // PlayPopupData를 StatisticsEntity로 변환해서 저장하는 함수.
+    fun saveStatisticsData(todaySetDone: Int, todaySetGoal: Int) {
+        Log.d("test", "todaySetDone : $todaySetDone, todaySetGoal : $todaySetGoal")
+
+        saveStatisticsData(SaveStatisticsData.Params(todaySetDone, todaySetGoal)) {
+            it.fold(
+                ::handleFailure,
+                ::handleTheStatisticsData
+            )
+        }
     }
 
     private fun handleExistPlayPopupData(playPopupData: List<PlayPopupData>){
@@ -76,6 +87,16 @@ class PlayPopupViewModel
         if(tempPlayPopupData==null)
             tempPlayPopupData = PlayPopupData.empty()
         this.playPopupData.value = PlayPopupView(tempPlayPopupData.id, tempPlayPopupData.part_img, tempPlayPopupData.name,
+            tempPlayPopupData.mass, tempPlayPopupData.rep, tempPlayPopupData.setGoal, tempPlayPopupData.setDone,
+            tempPlayPopupData.interval, if(tempPlayPopupData.achievement) 1 else 0)
+    }
+
+    private fun handleTheStatisticsData(playPopupData: PlayPopupData?){
+        Log.d("test", "handleTheStatisticsData")
+        var tempPlayPopupData = playPopupData
+        if(tempPlayPopupData==null)
+            tempPlayPopupData = PlayPopupData.empty()
+        this.playPopupStatisticsData.value = PlayPopupView(tempPlayPopupData.id, tempPlayPopupData.part_img, tempPlayPopupData.name,
             tempPlayPopupData.mass, tempPlayPopupData.rep, tempPlayPopupData.setGoal, tempPlayPopupData.setDone,
             tempPlayPopupData.interval, if(tempPlayPopupData.achievement) 1 else 0)
     }

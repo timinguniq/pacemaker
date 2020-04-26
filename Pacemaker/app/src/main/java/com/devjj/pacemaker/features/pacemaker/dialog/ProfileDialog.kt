@@ -1,15 +1,11 @@
-package com.devjj.pacemaker.core.dialog
+package com.devjj.pacemaker.features.pacemaker.dialog
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.text.Editable
-import android.view.View
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
-import kotlinx.android.synthetic.main.dialog_profile_input.*
 import kotlinx.android.synthetic.main.dialog_profile_input.view.*
 
 // date 형식은 'yyyy-MM-dd'
@@ -72,8 +68,6 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
             dialogView.dProfile_clo_height.gone()
         }
     }
-
-
 
 
 

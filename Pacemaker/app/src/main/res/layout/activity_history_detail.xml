@@ -41,4 +41,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aHistoryDetail_clo_title"
         tools:context=".HistoryDetailActivity" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

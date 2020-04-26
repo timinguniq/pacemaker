@@ -3,14 +3,20 @@ package com.devjj.pacemaker.features.pacemaker
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
+import android.widget.Toast
+import androidx.core.app.CoreComponentFactory
+import androidx.core.content.res.ResourcesCompat
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
+import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_pacemaker.*
 import javax.inject.Inject
 
@@ -28,6 +34,9 @@ class PacemakerActivity : BaseActivity() {
 
     override var layout = R.layout.activity_pacemaker
     override var fragmentId = R.id.aPacemaker_flo_container
+
+    private val FINISH_MAX_COUNT = 4
+    private var backKeyTime:Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,5 +86,65 @@ class PacemakerActivity : BaseActivity() {
         val adRequest = AdRequest.Builder().build()
         aPacemaker_adView.loadAd(adRequest)
         // TODO : 여기까지 인데. 광고 때문에 view로 매개변수 받아야 될 것 같음.
+    }
+
+    override fun onBackPressed() {
+        //super.onBackPressed()
+        Log.d("test", "PacemakerActivity onBackPressed()")
+
+        if(System.currentTimeMillis() - backKeyTime < 2000){
+            Log.d("test", "PacemakerActivity if")
+            setting.finishCount++
+            Log.d("test", "PacemakerActivity setting.finishCount : ${setting.finishCount}")
+            if(setting.finishCount >= FINISH_MAX_COUNT){
+                setting.finishCount = 0
+                // 전면 광고를 띄우는 메소드
+                showInterstitialAd()
+            }else{
+                finishAffinity()
+            }
+        }else{
+            val toastStr = resources.getString(R.string.apacemaker_tv_terminate_str)
+            Toast.makeText(this, toastStr, Toast.LENGTH_LONG).show()
+        }
+        backKeyTime = System.currentTimeMillis()
+    }
+
+    // 전면 광고를 셋팅하는 함수.
+    private fun showInterstitialAd(){
+        val AD_INTERSTITIAL_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"
+
+        // Create the InterstitialAd and set it up.
+        val mInterstitialAd = InterstitialAd(this).apply {
+            adUnitId = AD_INTERSTITIAL_UNIT_ID
+            adListener = (object : AdListener() {
+                override fun onAdLoaded() {
+                    Toast.makeText(this@PacemakerActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
+                    if (isLoaded) {
+                        show()
+                        finishAffinity()
+                    }
+                }
+
+                override fun onAdFailedToLoad(errorCode: Int) {
+                    Toast.makeText(this@PacemakerActivity,
+                        "onAdFailedToLoad() with error code: $errorCode",
+                        Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onAdClosed() {
+                    Log.d("test", "onAdClosed")
+                }
+            })
+        }
+
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+/*
+        Handler().post{
+            if (mInterstitialAd.isLoaded) {
+                mInterstitialAd.show()
+            }
+        }
+        */
     }
 }

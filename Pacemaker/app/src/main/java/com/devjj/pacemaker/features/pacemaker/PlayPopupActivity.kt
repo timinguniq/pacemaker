@@ -33,6 +33,8 @@ class PlayPopupActivity : BaseActivity() {
 
     @Inject lateinit var navigator: Navigator
 
+    override fun fragment() = PlayPopupFragment()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
@@ -45,8 +47,6 @@ class PlayPopupActivity : BaseActivity() {
         val adRequest = AdRequest.Builder().build()
         aPlayPopup_adView.loadAd(adRequest)
     }
-
-    override fun fragment() = PlayPopupFragment()
 
     override fun onBackPressed() {
         super.onBackPressed()

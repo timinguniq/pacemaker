@@ -7,7 +7,7 @@ import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
-import com.devjj.pacemaker.core.dialog.showProfileDialog
+import com.devjj.pacemaker.features.pacemaker.dialog.showProfileDialog
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
@@ -70,7 +70,12 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
         homeListener.clickListener()
 
         if(setting.height < 0 && setting.weight < 0) {
-             showProfileDialog(activity!!, setting, String.empty(), GET_HEIGHT_WEIGHT)
+            showProfileDialog(
+                activity!!,
+                setting,
+                String.empty(),
+                GET_HEIGHT_WEIGHT
+            )
         }
     }
 

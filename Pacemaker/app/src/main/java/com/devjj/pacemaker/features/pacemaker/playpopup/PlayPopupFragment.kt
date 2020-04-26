@@ -1,11 +1,5 @@
 package com.devjj.pacemaker.features.pacemaker.playpopup
 
-import android.annotation.SuppressLint
-import android.app.Activity
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import android.os.*
 import android.util.Log
 import android.view.View
@@ -15,22 +9,16 @@ import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
-import com.devjj.pacemaker.core.dialog.showProfileDialog
+import com.devjj.pacemaker.features.pacemaker.dialog.showProfileDialog
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
-import com.devjj.pacemaker.features.pacemaker.PlayPopupActivity
 import com.devjj.pacemaker.features.pacemaker.service.TimerService
 import kotlinx.android.synthetic.main.fragment_play_popup.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
-import javax.inject.Singleton
-import kotlin.concurrent.schedule
 
 
 class PlayPopupFragment : BaseFragment() {
@@ -420,9 +408,6 @@ class PlayPopupFragment : BaseFragment() {
 
         Log.d("test", "timerFinish $timerFinish")
 
-        if(timerFinish)
-            fPlayPopup_tv_rest_time.text = "00:00"
-
         // 세트가 마지막 세트로 왔을 때 휴식 시간을 운동간 휴식시간으로 셋팅하기 위한 코드
         if(currentSet == maxSet){
             if(isFinalExercise) isFinalExerciseFinalSet = true
@@ -432,6 +417,9 @@ class PlayPopupFragment : BaseFragment() {
             fPlayPopup_tv_rest_time.text = restTimeText
         }
         //
+
+        if(timerFinish)
+            fPlayPopup_tv_rest_time.text = "00:00"
 
     }
 
@@ -511,7 +499,6 @@ class PlayPopupFragment : BaseFragment() {
 
     // ExerciseHistroyData 추가 후 데이터 받아오는 함수
     private fun getPlayPopupStatisticsView(playPopupView: PlayPopupView?){
-        // TODO : 데이터 insert후에 여기로 데이터 넘어오는 확인 후 id 값과 함께 신장, 체중 받는 다이얼 로그 띄우기
         Log.d("test", "getPlayPopupStatisticsView id : ${playPopupView?.id}")
         if(!setting.isUpdateHeight && !setting.isUpdateWeight){
             // 둘다 false 팝업창 안 띄우기
@@ -525,9 +512,24 @@ class PlayPopupFragment : BaseFragment() {
 
 
         when(standard){
-            1 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY)
-            2 -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY)
-            3 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT)
+            1 -> showProfileDialog(
+                activity!!,
+                setting,
+                date,
+                GET_HEIGHT_ONLY
+            )
+            2 -> showProfileDialog(
+                activity!!,
+                setting,
+                date,
+                GET_WEIGHT_ONLY
+            )
+            3 -> showProfileDialog(
+                activity!!,
+                setting,
+                date,
+                GET_HEIGHT_WEIGHT
+            )
             else -> Log.d("test", "getPlayPopupStatisticsView error")
         }
 

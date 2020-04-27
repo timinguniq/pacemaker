@@ -1,5 +1,5 @@
-package com.devjj.pacemaker.core.dialog
 
+package com.devjj.pacemaker.features.pacemaker.dialog
 import android.app.Activity
 import android.app.AlertDialog
 import androidx.core.content.res.ResourcesCompat
@@ -52,7 +52,6 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
         dialogView.dProfile_ev_weight.setHintTextColor(activity.getColor(R.color.grey_444646_47))
 
         dialogView.dProfile_tv_confirm.setTextColor(activity.getColor(R.color.blue_5F87D6))
-
     }
 
 
@@ -83,9 +82,7 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
             dialogView.dProfile_clo_height.gone()
         }
     }
-
     val dialog = builder.setView(dialogView).show()
-
 
     var fSaveHeight: Float
     var fSaveWeight: Float
@@ -98,7 +95,6 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
         fSaveHeight = if (sSaveHeight == String.empty()) setting.height else sSaveHeight.toFloat()
         fSaveWeight = if (sSaveWeight == String.empty()) setting.weight else sSaveWeight.toFloat()
         //
-
 
         fSaveHeight = fSaveHeight.round(1)
         fSaveWeight = fSaveWeight.round(1)
@@ -116,13 +112,11 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
     }
 
     dialog.setOnDismissListener {
-
         if(setting.height >=0 && setting.weight >= 0){
             updateProfile(UpdateProfile.Params(date,setting.height,setting.weight))
         }
         if(setting.height < 0 ) setting.height = 0f
         if(setting.weight < 0 ) setting.weight = 0f
-
         activity.finish()
     }
 }

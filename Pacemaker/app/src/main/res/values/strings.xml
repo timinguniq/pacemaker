@@ -54,6 +54,9 @@
 
     <string name="dgiveupAll_tv_give_up">Give up the whole session?</string>
 
+    <!-- TODO 나중에 수정 요망 -->
+    <string name="apacemaker_tv_terminate_str">2초 안에 다시 한번 백키를 누르시면 종료됩니다.(영어로 번역좀)</string>
+    <!--                    -->
 
     <string name="fhistory_detail_set">%d Sets</string>
     <string name="fhistory_detail_rep">%d Reps</string>
@@ -102,4 +105,4 @@
     <string name="template_slash_str">/</string>
 
     <string name="stimer_tv_main_str">PaceMarker is running.</string>
-    </resources>
+</resources>

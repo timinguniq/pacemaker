@@ -70,10 +70,13 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
 
         // 초기화
         additionData_part_img = 0
+        val partImg = convertPartImgToResource(additionData_part_img, isNightMode)
+        fAddition_iv_part_main.setImageResource(partImg)
         additionData_mass = 0
         additionData_rep = 1
         additionData_set = 1
         additionData_interval = 30
+        //
     }
 
     // 넘버 픽커 초기화

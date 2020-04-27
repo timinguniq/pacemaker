@@ -10,9 +10,9 @@ class SettingSharedPreferences(context: Context) {
     val PREF_KEY_HEIGHT = "height"
     val PREF_KEY_WEIGHT = "weight"
     val PREF_KEY_REST_TIME = "restTime"
-    val PREF_KEY_LANGUAGE = "language"
     val PREF_KEY_UPDATE_WEIGHT = "updateWeight"
     val PREF_KEY_UPDATE_HEIGHT = "updateHeight"
+    val PREF_KEY_FINISH_COUNT = "finishCount"
     val PREF_KEY_SHOW_BMI = "showbmi"
 
     val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
@@ -44,10 +44,10 @@ class SettingSharedPreferences(context: Context) {
         get() = prefs.getInt(PREF_KEY_REST_TIME, 60)
         set(value) = prefs.edit().putInt(PREF_KEY_REST_TIME, value).apply()
 
-    var language: Int
-        get() = prefs.getInt(PREF_KEY_LANGUAGE, 0)
-        set(value) = prefs.edit().putInt(PREF_KEY_LANGUAGE, value).apply()
-
+    var finishCount: Int
+        get() = prefs.getInt(PREF_KEY_FINISH_COUNT, 0)
+        set(value) = prefs.edit().putInt(PREF_KEY_FINISH_COUNT, value).apply()
+  
     var isShowbmi : Boolean
         get() = prefs.getBoolean(PREF_KEY_SHOW_BMI, true)
         set(value) = prefs.edit().putBoolean(PREF_KEY_SHOW_BMI,value).apply()

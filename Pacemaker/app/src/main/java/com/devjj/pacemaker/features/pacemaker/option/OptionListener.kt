@@ -15,7 +15,7 @@ class OptionListener (val activity: Activity,val setting : SettingSharedPreferen
     fun initListener(){
         activity.fOption_swc_mode_item.setOnCheckedChangeListener { buttonView, isChecked ->
             setting.isNightMode = isChecked
-            Log.d("color", "${activity!!.getColor(R.color.base_grey)}")
+            Log.d("color", "${activity!!.getColor(R.color.grey_F9F9F9)}")
             setColors()
         }
 

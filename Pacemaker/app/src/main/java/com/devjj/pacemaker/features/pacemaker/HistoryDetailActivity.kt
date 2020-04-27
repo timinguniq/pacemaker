@@ -33,14 +33,14 @@ class HistoryDetailActivity : BaseActivity() {
         Log.d("setting","${setting.isNightMode}")
             when(setting.isNightMode){
                 true->{
-                    window.statusBarColor = getColor(R.color.grey_bg_thickest)
+                    window.statusBarColor = getColor(R.color.grey_444646)
                     aHistoryDetail_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)
-                    aHistoryDetail_flo_container.setBackgroundColor(getColor(R.color.grey_bg_thickest))
+                    aHistoryDetail_flo_container.setBackgroundColor(getColor(R.color.grey_444646))
                 }
                 false->{
-                    window.statusBarColor = getColor(R.color.blue_bg_thick)
+                    window.statusBarColor = getColor(R.color.blue_5F87D6)
                     aHistoryDetail_clo_title.setBackgroundResource(R.drawable.img_title_background_daytime)
-                    aHistoryDetail_flo_container.setBackgroundColor(getColor(R.color.white))
+                    aHistoryDetail_flo_container.setBackgroundColor(getColor(R.color.white_FFFFFF))
                 }
             }
     }

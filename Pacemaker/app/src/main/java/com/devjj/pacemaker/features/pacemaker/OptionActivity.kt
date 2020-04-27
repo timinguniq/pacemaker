@@ -42,14 +42,14 @@ class OptionActivity : BaseActivity() {
     fun setColor(){
         when(setting.isNightMode){
             true->{
-                window.statusBarColor = getColor(R.color.grey_bg_thickest)
+                window.statusBarColor = getColor(R.color.grey_444646)
                 aOption_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)
-                aOption_flo_container.setBackgroundColor(getColor(R.color.grey_bg_thickest))
+                aOption_flo_container.setBackgroundColor(getColor(R.color.grey_444646))
             }
             false->{
-                window.statusBarColor = getColor(R.color.blue_bg_basic)
+                window.statusBarColor = getColor(R.color.blue_5C83CF)
                 aOption_clo_title.setBackgroundResource(R.drawable.img_title_background_daytime)
-                aOption_flo_container.setBackgroundColor(getColor(R.color.white_bg_basic))
+                aOption_flo_container.setBackgroundColor(getColor(R.color.white_FFFFFF))
             }
         }
     }

@@ -190,53 +190,53 @@ class HistoryFragment : BaseFragment() {
         when (setting.isNightMode) {
             true -> {
                 Log.d("jayColor", "Night time mode")
-                // activity!!.getColor(R.color.orange_bg_thick)
-                fHistory_calendarView.selectionColor = activity!!.getColor(R.color.orange_bg_thick)
+                // activity!!.getColor(R.color.orange_F74938)
+                fHistory_calendarView.selectionColor = activity!!.getColor(R.color.orange_F74938)
                 fHistory_calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearanceNightTime)
                 fHistory_calendarView.setHeaderTextAppearance(R.style.CalendarHeaderTextAppearanceNightTime)
                 fHistory_calendarView.setWeekDayTextAppearance(R.style.CalendarHeaderTextAppearanceNightTime)
 
-                fHistory_clo_report.setBackgroundColor(activity!!.getColor(R.color.grey_bg_thicker))
-                fHistory_tv_report.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_clo_report.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
+                fHistory_tv_report.setTextColor(activity!!.getColor(R.color.black_3B4046))
 
-                fHistory_tv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_basic))
-                fHistory_tv_weight.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fHistory_tv_height.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fHistory_tv_profile.setTextColor(activity!!.getColor(R.color.grey_AEB3B3))
+                fHistory_tv_weight.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+                fHistory_tv_height.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
 
-                fHistory_tv_total.setTextColor(activity!!.getColor(R.color.grey_txt_basic))
-                fHistory_tv_total_sets.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fHistory_tv_total_times.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fHistory_tv_total_kgs.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fHistory_tv_total.setTextColor(activity!!.getColor(R.color.grey_AEB3B3))
+                fHistory_tv_total_sets.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+                fHistory_tv_total_times.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+                fHistory_tv_total_kgs.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
 
-                fHistory_tv_month.setTextColor(activity!!.getColor(R.color.grey_txt_basic))
-                fHistory_tv_month_sets.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fHistory_tv_month_times.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fHistory_tv_month_kgs.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+                fHistory_tv_month.setTextColor(activity!!.getColor(R.color.grey_AEB3B3))
+                fHistory_tv_month_sets.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+                fHistory_tv_month_times.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+                fHistory_tv_month_kgs.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
             }
             false -> {
                 Log.d("jayColor", "Day time mode")
-                fHistory_calendarView.selectionColor = activity!!.getColor(R.color.orange_bg_thick)
+                fHistory_calendarView.selectionColor = activity!!.getColor(R.color.orange_F74938)
 
                 fHistory_calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearanceDayTime)
                 fHistory_calendarView.setHeaderTextAppearance(R.style.CalendarHeaderTextAppearanceDayTime)
                 fHistory_calendarView.setWeekDayTextAppearance(R.style.CalendarHeaderTextAppearanceDayTime)
 
-                fHistory_clo_report.setBackgroundColor(activity!!.getColor(R.color.grey_bg_light))
-                fHistory_tv_report.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
+                fHistory_clo_report.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9_70))
+                fHistory_tv_report.setTextColor(activity!!.getColor(R.color.grey_87888A))
 
-                fHistory_tv_profile.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
-                fHistory_tv_weight.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fHistory_tv_height.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_tv_profile.setTextColor(activity!!.getColor(R.color.grey_87888A))
+                fHistory_tv_weight.setTextColor(activity!!.getColor(R.color.black_3B4046))
+                fHistory_tv_height.setTextColor(activity!!.getColor(R.color.black_3B4046))
 
-                fHistory_tv_total.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
-                fHistory_tv_total_sets.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fHistory_tv_total_times.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fHistory_tv_total_kgs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_tv_total.setTextColor(activity!!.getColor(R.color.grey_87888A))
+                fHistory_tv_total_sets.setTextColor(activity!!.getColor(R.color.black_3B4046))
+                fHistory_tv_total_times.setTextColor(activity!!.getColor(R.color.black_3B4046))
+                fHistory_tv_total_kgs.setTextColor(activity!!.getColor(R.color.black_3B4046))
 
-                fHistory_tv_month.setTextColor(activity!!.getColor(R.color.grey_txt_thick))
-                fHistory_tv_month_sets.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fHistory_tv_month_times.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fHistory_tv_month_kgs.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistory_tv_month.setTextColor(activity!!.getColor(R.color.grey_87888A))
+                fHistory_tv_month_sets.setTextColor(activity!!.getColor(R.color.black_3B4046))
+                fHistory_tv_month_times.setTextColor(activity!!.getColor(R.color.black_3B4046))
+                fHistory_tv_month_kgs.setTextColor(activity!!.getColor(R.color.black_3B4046))
             }
         }
     }

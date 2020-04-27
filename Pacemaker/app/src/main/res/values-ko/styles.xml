@@ -43,20 +43,20 @@
     <style name ="CalendarDateTextAppearanceDayTime" parent="TextAppearance.MaterialCalendarWidget.Date">
         <item name="android:textColor">@color/selected_date_day_time</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:focusedMonthDateColor">@color/white_txt_thick</item>
+        <item name="android:focusedMonthDateColor">@color/white_F7FAFD</item>
     </style>
 
     <style name ="CalendarDateTextAppearanceNightTime" parent="TextAppearance.MaterialCalendarWidget.Date">
         <item name="android:textColor">@color/selected_date_night_time</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:focusedMonthDateColor">@color/white_txt_thick</item>
+        <item name="android:focusedMonthDateColor">@color/white_F7FAFD</item>
     </style>
 
     <style name ="CalendarHeaderTextAppearanceDayTime" parent="TextAppearance.MaterialCalendarWidget.Header">
-        <item name="android:textColor">@color/grey_txt_thick</item>
+        <item name="android:textColor">@color/grey_87888A</item>
     </style>
     <style name ="CalendarHeaderTextAppearanceNightTime" parent="TextAppearance.MaterialCalendarWidget.Header">
-        <item name="android:textColor">@color/grey_txt_light</item>
+        <item name="android:textColor">@color/grey_B2B2B2</item>
     </style>
 
 

@@ -23,6 +23,6 @@
         android:gravity="center"
         android:text="@string/stimer_tv_main_str"
         android:textSize="18sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white_FFFFFF"/>
 
 </LinearLayout>

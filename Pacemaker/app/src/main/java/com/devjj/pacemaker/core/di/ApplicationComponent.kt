@@ -6,12 +6,12 @@ import com.devjj.pacemaker.core.navigation.SplashActivity
 import com.devjj.pacemaker.features.pacemaker.*
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionFragment
 import com.devjj.pacemaker.features.pacemaker.history.HistoryFragment
-import com.devjj.pacemaker.features.pacemaker.history.HistoryListener
 import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailFragment
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.devjj.pacemaker.features.pacemaker.option.OptionFragment
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupFragment
 import com.devjj.pacemaker.features.pacemaker.service.TimerService
+import com.devjj.pacemaker.features.pacemaker.statistics.StatisticsFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -25,6 +25,7 @@ interface ApplicationComponent {
     fun inject(additionActivity: AdditionActivity)
     fun inject(playPopupActivity: PlayPopupActivity)
     fun inject(historyDetailActivity: HistoryDetailActivity)
+    fun inject(statisticsActivity: StatisticsActivity)
 
     fun inject(homeFragment: HomeFragment)
     fun inject(historyFragment: HistoryFragment)
@@ -32,6 +33,7 @@ interface ApplicationComponent {
     fun inject(additionFragment: AdditionFragment)
     fun inject(playPopupFragment: PlayPopupFragment)
     fun inject(historyDetailFragment: HistoryDetailFragment)
+    fun inject(statisticsFragment : StatisticsFragment)
 
     fun inject(timerService: TimerService)
 }

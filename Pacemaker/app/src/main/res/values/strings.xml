@@ -99,6 +99,8 @@
     <string name="fplaypopup_tv_unit_set_str">Set</string>
     <string name="fplaypopup_tv_unit_rep_str">Rep</string>
 
+    <string name="fStatistics_tv_mode_bmi_str">See BMI(25)</string>
+
     <string name="template_feedback_title">Pacemaker Feedback</string>
     <string name="template_slash_str">/</string>
 

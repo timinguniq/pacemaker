@@ -56,6 +56,10 @@
             android:name=".features.pacemaker.HistoryDetailActivity"
             android:theme="@style/CustomAppTheme" />
 
+        <activity
+            android:name=".features.pacemaker.StatisticsActivity"
+            android:theme="@style/CustomAppTheme" />
+
         <service
             android:name=".features.pacemaker.service.TimerService"
             android:enabled="true"

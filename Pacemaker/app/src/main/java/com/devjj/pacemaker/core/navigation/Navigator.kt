@@ -55,6 +55,8 @@ class Navigator
     // 추가화면과 편집화면으로 이동하는 함수.
     fun showAddition(context: Context, additionView: AdditionView) = context.startActivity(AdditionActivity.callingIntent(context, additionView))
 
+    fun showStatistics(context : Context) = context.startActivity(StatisticsActivity.callingIntent(context))
+
     // 삭제 다이얼 로그를 보여주는 함수.
     fun showDeleteDialog(activity: Activity, isNightMode: Boolean, homeViewModel: HomeViewModel, homeView: HomeView){
         val builder = AlertDialog.Builder(activity)
@@ -64,17 +66,17 @@ class Navigator
             // 화이트모드
             dialogView.dRemove_clo_main.background =
                 ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_daytime, null)
-            dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
-            dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
-            dialogView.dRemove_tv_confirm.setTextColor(loadColor(activity, R.color.blue_bg_thick))
-            dialogView.dRemove_tv_cancel.setTextColor(loadColor(activity, R.color.blue_bg_thick))
+            dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_444646))
+            dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_444646))
+            dialogView.dRemove_tv_confirm.setTextColor(loadColor(activity, R.color.blue_5F87D6))
+            dialogView.dRemove_tv_cancel.setTextColor(loadColor(activity, R.color.blue_5F87D6))
         }else{
             // 다크모드
             dialogView.dRemove_clo_main.background =
                 ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_nighttime, null)
-            dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_basic))
-            dialogView.dRemove_tv_confirm.setTextColor(loadColor(activity, R.color.orange_bg_thick))
-            dialogView.dRemove_tv_cancel.setTextColor(loadColor(activity, R.color.orange_bg_thick))
+            dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_F9F9F9))
+            dialogView.dRemove_tv_confirm.setTextColor(loadColor(activity, R.color.orange_F74938))
+            dialogView.dRemove_tv_cancel.setTextColor(loadColor(activity, R.color.orange_F74938))
         }
 
         val dialog = builder.setView(dialogView).show()
@@ -109,29 +111,29 @@ class Navigator
             // 화이트모드
             dialogView.dProfile_clo_main.background =
                     ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_daytime, null)
-            dialogView.dProfile_tv_height.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
-            dialogView.dProfile_ev_height.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
-            dialogView.dProfile_ev_height.setHintTextColor(loadColor(activity, R.color.grey_bg_lightest))
+            dialogView.dProfile_tv_height.setTextColor(loadColor(activity, R.color.grey_444646))
+            dialogView.dProfile_ev_height.setTextColor(loadColor(activity, R.color.grey_444646))
+            dialogView.dProfile_ev_height.setHintTextColor(loadColor(activity, R.color.grey_444646_47))
 
-            dialogView.dProfile_tv_weight.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
-            dialogView.dProfile_ev_weight.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
-            dialogView.dProfile_ev_weight.setHintTextColor(loadColor(activity, R.color.grey_bg_lightest))
+            dialogView.dProfile_tv_weight.setTextColor(loadColor(activity, R.color.grey_444646))
+            dialogView.dProfile_ev_weight.setTextColor(loadColor(activity, R.color.grey_444646))
+            dialogView.dProfile_ev_weight.setHintTextColor(loadColor(activity, R.color.grey_444646_47))
 
-            dialogView.dProfile_tv_confirm.setTextColor(loadColor(activity, R.color.blue_bg_thick))
+            dialogView.dProfile_tv_confirm.setTextColor(loadColor(activity, R.color.blue_5F87D6))
 
         }else{
             // 다크모드
             dialogView.dProfile_clo_main.background =
                 ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_nighttime, null)
-            dialogView.dProfile_tv_height.setTextColor(loadColor(activity, R.color.grey_bg_basic))
-            dialogView.dProfile_ev_height.setTextColor(loadColor(activity, R.color.blue_bg_thick))
-            dialogView.dProfile_ev_height.setHintTextColor(loadColor(activity, R.color.white_txt_light))
+            dialogView.dProfile_tv_height.setTextColor(loadColor(activity, R.color.grey_F9F9F9))
+            dialogView.dProfile_ev_height.setTextColor(loadColor(activity, R.color.blue_5F87D6))
+            dialogView.dProfile_ev_height.setHintTextColor(loadColor(activity, R.color.white_F7FAFD_47))
 
-            dialogView.dProfile_tv_weight.setTextColor(loadColor(activity, R.color.grey_bg_basic))
-            dialogView.dProfile_ev_weight.setTextColor(loadColor(activity, R.color.blue_bg_thick))
-            dialogView.dProfile_ev_weight.setHintTextColor(loadColor(activity, R.color.white_txt_light))
+            dialogView.dProfile_tv_weight.setTextColor(loadColor(activity, R.color.grey_F9F9F9))
+            dialogView.dProfile_ev_weight.setTextColor(loadColor(activity, R.color.blue_5F87D6))
+            dialogView.dProfile_ev_weight.setHintTextColor(loadColor(activity, R.color.white_F7FAFD_47))
 
-            dialogView.dProfile_tv_confirm.setTextColor(loadColor(activity, R.color.orange_bg_thick))
+            dialogView.dProfile_tv_confirm.setTextColor(loadColor(activity, R.color.orange_F74938))
         }
 
         dialogView.dProfile_ev_height.setText(Editable.Factory.getInstance().newEditable(setting.height.toString()))
@@ -220,16 +222,16 @@ class Navigator
             // 화이트모드
             dialogView.dGiveUp_clo_main.background =
                 ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_daytime, null)
-            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
-            dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.blue_bg_thick))
-            dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.blue_bg_thick))
+            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_444646))
+            dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.blue_5F87D6))
+            dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.blue_5F87D6))
         }else{
             // 다크모드
             dialogView.dGiveUp_clo_main.background =
                 ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_nighttime, null)
-            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_basic))
-            dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.orange_bg_thick))
-            dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.orange_bg_thick))
+            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_F9F9F9))
+            dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.orange_F74938))
+            dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.orange_F74938))
         }
 
         val dialog = builder.setView(dialogView).show()
@@ -261,16 +263,16 @@ class Navigator
             // 화이트모드
             dialogView.dGiveUp_clo_main.background =
                 ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_daytime, null)
-            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_thickest))
-            dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.blue_bg_thick))
-            dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.blue_bg_thick))
+            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_444646))
+            dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.blue_5F87D6))
+            dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.blue_5F87D6))
         }else{
             // 다크모드
             dialogView.dGiveUp_clo_main.background =
                 ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_nighttime, null)
-            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_bg_basic))
-            dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.orange_bg_thick))
-            dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.orange_bg_thick))
+            dialogView.dGiveUp_tv_main.setTextColor(loadColor(activity, R.color.grey_F9F9F9))
+            dialogView.dGiveUp_tv_confirm.setTextColor(loadColor(activity, R.color.orange_F74938))
+            dialogView.dGiveUp_tv_cancel.setTextColor(loadColor(activity, R.color.orange_F74938))
         }
 
         val dialog = builder.setView(dialogView).show()

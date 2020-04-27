@@ -30,5 +30,9 @@ class HistoryListener(val activity : Activity, val navigator: Navigator,private 
             historyViewModel.loadSummaryOneMonth(date.date.toString())
             Log.d("jayDateCheck.OnChanged", date.date.toString())
         }
+
+        activity.fHistory_clo_profile.setOnClickListener {
+            navigator.showStatistics(activity)
+        }
     }
 }

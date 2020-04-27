@@ -22,6 +22,7 @@ import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.devjj.pacemaker.features.pacemaker.PlayPopupActivity
 import com.devjj.pacemaker.features.pacemaker.service.TimerService
+import com.devjj.pacemaker.features.pacemaker.usecases.UpdateProfile
 import kotlinx.android.synthetic.main.fragment_play_popup.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -39,6 +40,7 @@ class PlayPopupFragment : BaseFragment() {
 
     @Inject lateinit var setting: SettingSharedPreferences
     @Inject lateinit var navigator: Navigator
+    @Inject lateinit var updateProfile: UpdateProfile
 
     private lateinit var playPopupListener: PlayPopupListener
 
@@ -157,29 +159,29 @@ class PlayPopupFragment : BaseFragment() {
 
         if(!isNightMode){
             // 화이트모드
-            listResource.add(loadColor(activity!!, R.color.blue_bg_thick))
+            listResource.add(loadColor(activity!!, R.color.blue_5F87D6))
             listResource.add(R.drawable.img_popup_background_daytime)
             listResource.add(R.drawable.fplaypopup_img_progress_unselect_bar_daytime)
-            listResource.add(loadColor(activity!!, R.color.blue_bg_transparent))
-            listResource.add(loadColor(activity!!, R.color.blue_bg_basic))
-            listResource.add(loadColor(activity!!, R.color.black_txt_thick))
-            listResource.add(loadColor(activity!!, R.color.grey_txt_light))
+            listResource.add(loadColor(activity!!, R.color.blue_5C83CF_70))
+            listResource.add(loadColor(activity!!, R.color.blue_5C83CF))
+            listResource.add(loadColor(activity!!, R.color.black_3B4046))
+            listResource.add(loadColor(activity!!, R.color.grey_B2B2B2))
             listResource.add(R.drawable.img_save_daytime)
-            listResource.add(loadColor(activity!!, R.color.blue_bg_thick))
+            listResource.add(loadColor(activity!!, R.color.blue_5F87D6))
             listResource.add(R.drawable.fplaypopup_img_plus_background_daytime)
             listResource.add(R.drawable.fplaypopup_img_under_background_daytime)
             listResource.add(R.drawable.fplaypopup_img_under_next_background_daytime)
         }else{
             // 다크모드
-            listResource.add(loadColor(activity!!, R.color.grey_bg_thickest))
+            listResource.add(loadColor(activity!!, R.color.grey_444646))
             listResource.add(R.drawable.img_popup_background_nighttime)
             listResource.add(R.drawable.fplaypopup_img_progress_unselect_bar_nighttime)
-            listResource.add(loadColor(activity!!, R.color.orange_bg_light))
-            listResource.add(loadColor(activity!!, R.color.orange_bg_thick))
-            listResource.add(loadColor(activity!!, R.color.white))
-            listResource.add(loadColor(activity!!, R.color.grey_txt_thick))
+            listResource.add(loadColor(activity!!, R.color.orange_B0463C))
+            listResource.add(loadColor(activity!!, R.color.orange_F74938))
+            listResource.add(loadColor(activity!!, R.color.white_FFFFFF))
+            listResource.add(loadColor(activity!!, R.color.grey_87888A))
             listResource.add(R.drawable.img_save_nighttime)
-            listResource.add(loadColor(activity!!, R.color.orange_bg_thick))
+            listResource.add(loadColor(activity!!, R.color.orange_F74938))
             listResource.add(R.drawable.fplaypopup_img_plus_background_nighttime)
             listResource.add(R.drawable.fplaypopup_img_under_background_nighttime)
             listResource.add(R.drawable.fplaypopup_img_under_next_background_nighttime)
@@ -525,9 +527,9 @@ class PlayPopupFragment : BaseFragment() {
 
 
         when(standard){
-            1 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY)
-            2 -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY)
-            3 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT)
+            1 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY,updateProfile)
+            2 -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY,updateProfile)
+            3 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT,updateProfile)
             else -> Log.d("test", "getPlayPopupStatisticsView error")
         }
 

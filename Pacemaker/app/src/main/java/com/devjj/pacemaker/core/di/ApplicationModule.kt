@@ -14,6 +14,7 @@ import com.devjj.pacemaker.features.pacemaker.home.HomeRepository
 import com.devjj.pacemaker.features.pacemaker.history.HistoriesRepository
 import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailsRepository
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupRepository
+import com.devjj.pacemaker.features.pacemaker.statistics.StatisticsRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -96,5 +97,9 @@ class ApplicationModule(private val application: AndroidApplication) {
     @Provides
     @Singleton
     fun provideHistoryDetailRepository(dataSource: HistoryDetailsRepository.HistoryDetailDatabase) : HistoryDetailsRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun provideStatisticsDetailRepository(dataSource : StatisticsRepository.DbRepository) : StatisticsRepository = dataSource
 
 }

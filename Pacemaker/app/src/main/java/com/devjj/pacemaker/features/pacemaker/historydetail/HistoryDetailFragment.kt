@@ -159,19 +159,19 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
     }
 
     private fun setColors(){
-        fHistoryDetail_circleView_rate.rimColor = activity!!.getColor(R.color.orange_bg_transparent)
+        fHistoryDetail_circleView_rate.rimColor = activity!!.getColor(R.color.orange_FF765B_70)
         when(setting.isNightMode){
             true->{
-               fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_bg_thick))
-                fHistoryDetail_circleView_rate.setTextColor(activity!!.getColor(R.color.orange_bg_thick))
-                fHistoryDetail_tv_totalReps.setTextColor(activity!!.getColor(R.color.white_txt_thick))
-                fHistoryDetail_tv_totalSets.setTextColor(activity!!.getColor(R.color.white_txt_thick))
+               fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_F74938))
+                fHistoryDetail_circleView_rate.setTextColor(activity!!.getColor(R.color.orange_F74938))
+                fHistoryDetail_tv_totalReps.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+                fHistoryDetail_tv_totalSets.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
             }
             false->{
-                fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_bg_basic))
-                fHistoryDetail_circleView_rate.setTextColor(activity!!.getColor(R.color.orange_bg_basic))
-                fHistoryDetail_tv_totalReps.setTextColor(activity!!.getColor(R.color.black_txt_thick))
-                fHistoryDetail_tv_totalSets.setTextColor(activity!!.getColor(R.color.black_txt_thick))
+                fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_FF765B))
+                fHistoryDetail_circleView_rate.setTextColor(activity!!.getColor(R.color.orange_FF765B))
+                fHistoryDetail_tv_totalReps.setTextColor(activity!!.getColor(R.color.black_3B4046))
+                fHistoryDetail_tv_totalSets.setTextColor(activity!!.getColor(R.color.black_3B4046))
             }
         }
     }

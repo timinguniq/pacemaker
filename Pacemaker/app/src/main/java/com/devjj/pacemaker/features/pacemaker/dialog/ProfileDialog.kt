@@ -2,67 +2,65 @@ package com.devjj.pacemaker.core.dialog
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.text.Editable
-import android.view.View
-import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
-import kotlinx.android.synthetic.main.dialog_profile_input.*
+import com.devjj.pacemaker.features.pacemaker.usecases.UpdateProfile
 import kotlinx.android.synthetic.main.dialog_profile_input.view.*
+import javax.inject.Inject
 
 // date 형식은 'yyyy-MM-dd'
-fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, date : String , flag : Int) {
+fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, date : String , flag : Int , updateProfile: UpdateProfile) {
+
     val builder = AlertDialog.Builder(activity)
     val dialogView = activity.layoutInflater.inflate(R.layout.dialog_profile_input, null)
-
 
     dialogView.dProfile_swc_mode_height.isChecked = setting.isUpdateHeight
     dialogView.dProfile_swc_mode_weight.isChecked = setting.isUpdateWeight
 
-    dialogView.dProfile_swc_mode_weight.setOnCheckedChangeListener { buttonView, isChecked ->
+    dialogView.dProfile_swc_mode_weight.setOnCheckedChangeListener { _, isChecked ->
         setting.isUpdateWeight = isChecked
     }
 
-    dialogView.dProfile_swc_mode_height.setOnCheckedChangeListener { buttonView, isChecked ->
+    dialogView.dProfile_swc_mode_height.setOnCheckedChangeListener { _, isChecked ->
         setting.isUpdateHeight = isChecked
     }
 
     if (setting.isNightMode) {
         dialogView.dProfile_clo_main.background =
             ResourcesCompat.getDrawable( activity.resources, R.drawable.img_popup_background_nighttime, null )
-        dialogView.dProfile_tv_height.setTextColor(activity.getColor(R.color.grey_bg_basic))
-        dialogView.dProfile_ev_height.setTextColor(activity.getColor(R.color.blue_bg_thick))
-        dialogView.dProfile_ev_height.setHintTextColor(activity.getColor(R.color.white_txt_light))
+        dialogView.dProfile_tv_height.setTextColor(activity.getColor(R.color.grey_F9F9F9))
+        dialogView.dProfile_ev_height.setTextColor(activity.getColor(R.color.blue_5F87D6))
+        dialogView.dProfile_ev_height.setHintTextColor(activity.getColor(R.color.white_F7FAFD_47))
 
-        dialogView.dProfile_tv_weight.setTextColor(activity.getColor(R.color.grey_bg_basic))
-        dialogView.dProfile_ev_weight.setTextColor(activity.getColor(R.color.blue_bg_thick))
-        dialogView.dProfile_ev_weight.setHintTextColor(activity.getColor(R.color.white_txt_light))
+        dialogView.dProfile_tv_weight.setTextColor(activity.getColor(R.color.grey_F9F9F9))
+        dialogView.dProfile_ev_weight.setTextColor(activity.getColor(R.color.blue_5F87D6))
+        dialogView.dProfile_ev_weight.setHintTextColor(activity.getColor(R.color.white_F7FAFD_47))
 
-        dialogView.dProfile_tv_confirm.setTextColor(activity.getColor(R.color.orange_bg_thick))
+        dialogView.dProfile_tv_confirm.setTextColor(activity.getColor(R.color.orange_F74938))
 
     } else {
         dialogView.dProfile_clo_main.background =
             ResourcesCompat.getDrawable( activity.resources, R.drawable.img_popup_background_daytime, null )
-        dialogView.dProfile_tv_height.setTextColor(activity.getColor(R.color.grey_bg_thickest))
-        dialogView.dProfile_ev_height.setTextColor(activity.getColor(R.color.grey_bg_thickest))
-        dialogView.dProfile_ev_height.setHintTextColor(activity.getColor(R.color.grey_bg_lightest))
+        dialogView.dProfile_tv_height.setTextColor(activity.getColor(R.color.grey_444646))
+        dialogView.dProfile_ev_height.setTextColor(activity.getColor(R.color.grey_444646))
+        dialogView.dProfile_ev_height.setHintTextColor(activity.getColor(R.color.grey_444646_47))
 
-        dialogView.dProfile_tv_weight.setTextColor(activity.getColor(R.color.grey_bg_thickest))
-        dialogView.dProfile_ev_weight.setTextColor(activity.getColor(R.color.grey_bg_thickest))
-        dialogView.dProfile_ev_weight.setHintTextColor(activity.getColor(R.color.grey_bg_lightest))
+        dialogView.dProfile_tv_weight.setTextColor(activity.getColor(R.color.grey_444646))
+        dialogView.dProfile_ev_weight.setTextColor(activity.getColor(R.color.grey_444646))
+        dialogView.dProfile_ev_weight.setHintTextColor(activity.getColor(R.color.grey_444646_47))
 
-        dialogView.dProfile_tv_confirm.setTextColor(activity.getColor(R.color.blue_bg_thick))
+        dialogView.dProfile_tv_confirm.setTextColor(activity.getColor(R.color.blue_5F87D6))
 
     }
 
 
 
     if(setting.weight < 0 && setting.height < 0 ){
-            dialogView.dProfile_clo_option_height.visible()
-            dialogView.dProfile_clo_option_weight.visible()
-            dialogView.dProfile_tv_confirm.text = activity.getString(R.string.dprofile_tv_first_setting_str)
+        dialogView.dProfile_clo_option_height.visible()
+        dialogView.dProfile_clo_option_weight.visible()
+        dialogView.dProfile_tv_confirm.text = activity.getString(R.string.dprofile_tv_first_setting_str)
     }else {
         if(!setting.isUpdateWeight){
             dialogView.dProfile_clo_weight.gone()
@@ -73,9 +71,18 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
         }
     }
 
-
-
-
+    when(flag){
+        GET_HEIGHT_WEIGHT->{
+            dialogView.dProfile_clo_weight.visible()
+            dialogView.dProfile_clo_height.visible()
+        }
+        GET_HEIGHT_ONLY->{
+            dialogView.dProfile_clo_weight.gone()
+        }
+        GET_WEIGHT_ONLY->{
+            dialogView.dProfile_clo_height.gone()
+        }
+    }
 
     val dialog = builder.setView(dialogView).show()
 
@@ -109,11 +116,13 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
     }
 
     dialog.setOnDismissListener {
+
+        if(setting.height >=0 && setting.weight >= 0){
+            updateProfile(UpdateProfile.Params(date,setting.height,setting.weight))
+        }
         if(setting.height < 0 ) setting.height = 0f
         if(setting.weight < 0 ) setting.weight = 0f
 
-
-        // TODO : 내가 삽입해놓은 코드 나중에 수정해야 되면 수정해
         activity.finish()
     }
 }

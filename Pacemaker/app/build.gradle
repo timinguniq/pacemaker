@@ -94,6 +94,9 @@ dependencies {
 
     // Add the Firebase SDK for Crashlytics.
     implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta04'
+
+    //MP chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
 
 repositories {

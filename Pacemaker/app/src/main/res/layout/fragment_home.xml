@@ -27,7 +27,7 @@
         app:maxImageSize="50dp"
         app:borderWidth="4dp"
         app:backgroundTintMode="screen"
-        app:backgroundTint="@color/base_blue"
+        app:backgroundTint="@color/blue_5C83CF"
         app:srcCompat="@drawable/fhome_img_fabtn_daytime"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

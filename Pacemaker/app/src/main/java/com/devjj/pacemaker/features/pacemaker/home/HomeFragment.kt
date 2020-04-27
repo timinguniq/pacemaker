@@ -12,6 +12,7 @@ import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
+import com.devjj.pacemaker.features.pacemaker.usecases.UpdateProfile
 import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
@@ -21,7 +22,7 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
     @Inject lateinit var navigator: Navigator
     @Inject lateinit var homeAdapter: HomeAdapter
     @Inject lateinit var setting: SettingSharedPreferences
-
+    @Inject lateinit var updateProfile: UpdateProfile
     private lateinit var homeViewModel: HomeViewModel
 
     private lateinit var homeListener: HomeListener
@@ -56,12 +57,12 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
             // 화이트모드
             fHome_floating_action_btn.setImageResource(R.drawable.fhome_img_fabtn_daytime)
             fHome_floating_action_btn.supportBackgroundTintList =
-                ContextCompat.getColorStateList(activity!!, R.color.base_blue)
+                ContextCompat.getColorStateList(activity!!, R.color.blue_5C83CF)
         }else{
             // 다크모드
             fHome_floating_action_btn.setImageResource(R.drawable.fhome_img_fabtn_nighttime)
             fHome_floating_action_btn.supportBackgroundTintList =
-                ContextCompat.getColorStateList(activity!!, R.color.orange_bg_thick)
+                ContextCompat.getColorStateList(activity!!, R.color.orange_F74938)
         }
 
         // homeListener 초기화
@@ -70,7 +71,8 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
         homeListener.clickListener()
 
         if(setting.height < 0 && setting.weight < 0) {
-             showProfileDialog(activity!!, setting, String.empty(), GET_HEIGHT_WEIGHT)
+             showProfileDialog(activity!!, setting, String.empty(), GET_HEIGHT_WEIGHT,updateProfile)
+
         }
     }
 

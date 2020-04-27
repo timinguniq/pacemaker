@@ -13,6 +13,7 @@ class SettingSharedPreferences(context: Context) {
     val PREF_KEY_LANGUAGE = "language"
     val PREF_KEY_UPDATE_WEIGHT = "updateWeight"
     val PREF_KEY_UPDATE_HEIGHT = "updateHeight"
+    val PREF_KEY_SHOW_BMI = "showbmi"
 
     val prefs: SharedPreferences = context.getSharedPreferences(PREFS_FILENAME, Context.MODE_PRIVATE)
     /* 파일 이름과 데이터를 저장할 Key 값을 만들고 prefs 인스턴스 초기화 */
@@ -46,5 +47,9 @@ class SettingSharedPreferences(context: Context) {
     var language: Int
         get() = prefs.getInt(PREF_KEY_LANGUAGE, 0)
         set(value) = prefs.edit().putInt(PREF_KEY_LANGUAGE, value).apply()
+
+    var isShowbmi : Boolean
+        get() = prefs.getBoolean(PREF_KEY_SHOW_BMI, true)
+        set(value) = prefs.edit().putBoolean(PREF_KEY_SHOW_BMI,value).apply()
 
 }

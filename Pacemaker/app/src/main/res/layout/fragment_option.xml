@@ -20,7 +20,7 @@
             android:id="@+id/fOption_clo_profile"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/base_grey">
+            android:background="@color/grey_F9F9F9">
 
             <TextView
                 android:id="@+id/fOption_tv_profile"
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/foption_tv_profile_str"
-                android:textColor="@color/grey_txt_thick"
+                android:textColor="@color/grey_87888A"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/foption_tv_mode_str"
-                android:textColor="@color/black_txt_thick"
+                android:textColor="@color/black_3B4046"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -62,9 +62,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
-                android:shadowColor="@color/sub_blue"
-                android:thumbTint="@color/blue_bg_basic"
-                android:trackTint="@color/blue_bg_transparent"
+                android:shadowColor="@color/blue_5C83CF_70"
+                android:thumbTint="@color/blue_5C83CF"
+                android:trackTint="@color/blue_5C83CF_70"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_title"
@@ -82,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
                         android:text="@string/foption_tv_weight_str"
-                        android:textColor="@color/black_txt_thick"
+                        android:textColor="@color/black_3B4046"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -98,7 +98,7 @@
                         android:background="@android:color/transparent"
                         android:focusable="auto"
                         android:text="@string/rh_tv_unit_mass_str"
-                        android:textColor="@color/grey_txt_thick"
+                        android:textColor="@color/grey_87888A"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +118,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
                         android:text="@string/foption_tv_height_str"
-                        android:textColor="@color/black_txt_thick"
+                        android:textColor="@color/black_3B4046"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/foption_tv_interval_str"
-                android:textColor="@color/black_txt_thick"
+                android:textColor="@color/black_3B4046"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -233,7 +233,7 @@
                     android:id="@+id/fOption_clo_language"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="@color/base_grey">
+                    android:background="@color/grey_F9F9F9">
 
                     <TextView
                         android:id="@+id/fOption_tv_language"
@@ -241,7 +241,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="18dp"
                         android:text="@string/foption_tv_language_str"
-                        android:textColor="@color/grey_txt_thick"
+                        android:textColor="@color/grey_87888A"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -279,7 +279,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="18dp"
                                 android:text="@string/foption_tv_korean_str"
-                                android:textColor="@color/black_txt_thick"
+                                android:textColor="@color/black_3B4046"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -303,7 +303,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="18dp"
                                 android:text="@string/foption_tv_english_str"
-                                android:textColor="@color/black_txt_thick"
+                                android:textColor="@color/black_3B4046"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -329,14 +329,14 @@
                             android:id="@+id/fOption_rg_korean"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:buttonTint="@color/sub_blue"
+                            android:buttonTint="@color/blue_5C83CF_70"
                             android:checked="true" />
 
                         <RadioButton
                             android:id="@+id/fOption_rg_english"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:buttonTint="@color/sub_blue" />
+                            android:buttonTint="@color/blue_5C83CF_70" />
 
                     </RadioGroup>
 
@@ -346,7 +346,7 @@
             android:id="@+id/fOption_clo_option"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/base_grey">
+            android:background="@color/grey_F9F9F9">
 
             <TextView
                 android:id="@+id/fOption_tv_option"
@@ -354,7 +354,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/foption_tv_option_str"
-                android:textColor="@color/grey_txt_thick"
+                android:textColor="@color/grey_87888A"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -375,7 +375,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/foption_tv_mode_weight_str"
-                android:textColor="@color/black_txt_thick"
+                android:textColor="@color/black_3B4046"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -388,9 +388,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
-                android:shadowColor="@color/sub_blue"
-                android:thumbTint="@color/blue_bg_basic"
-                android:trackTint="@color/blue_bg_transparent"
+                android:shadowColor="@color/blue_5C83CF_70"
+                android:thumbTint="@color/blue_5C83CF"
+                android:trackTint="@color/blue_5C83CF_70"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_weight"
@@ -408,7 +408,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/foption_tv_mode_height_str"
-                android:textColor="@color/black_txt_thick"
+                android:textColor="@color/black_3B4046"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -421,9 +421,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
-                android:shadowColor="@color/sub_blue"
-                android:thumbTint="@color/blue_bg_basic"
-                android:trackTint="@color/blue_bg_transparent"
+                android:shadowColor="@color/blue_5C83CF_70"
+                android:thumbTint="@color/blue_5C83CF"
+                android:trackTint="@color/blue_5C83CF_70"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_height"
@@ -434,7 +434,7 @@
             android:id="@+id/fOption_clo_supportUs"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@color/base_grey">
+            android:background="@color/grey_F9F9F9">
 
             <TextView
                 android:id="@+id/fOption_tv_supportUs"
@@ -442,7 +442,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/foption_tv_supportUs_str"
-                android:textColor="@color/grey_txt_thick"
+                android:textColor="@color/grey_87888A"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -462,7 +462,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/foption_tv_rateUs_str"
-                android:textColor="@color/black_txt_thick"
+                android:textColor="@color/black_3B4046"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -482,7 +482,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/foption_tv_feedback_str"
-                android:textColor="@color/black_txt_thick"
+                android:textColor="@color/black_3B4046"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -502,7 +502,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="18dp"
                 android:text="@string/foption_tv_share_str"
-                android:textColor="@color/black_txt_thick"
+                android:textColor="@color/black_3B4046"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"

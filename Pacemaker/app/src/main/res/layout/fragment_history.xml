@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/grey_bg_light">
+                android:background="@color/grey_F9F9F9_70">
 
                 <TextView
                     android:id="@+id/fHistory_tv_report"
@@ -64,6 +64,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fHistory_clo_profile"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp">

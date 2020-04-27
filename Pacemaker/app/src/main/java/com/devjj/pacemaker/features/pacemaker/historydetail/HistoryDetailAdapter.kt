@@ -53,26 +53,26 @@ class HistoryDetailAdapter
             if(setting.isNightMode) {
                 val partImgResource = convertPartImgToResource(historyDetailView.part_img, true)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-                itemView.rvExerciseItem_clo_main.setBackgroundColor(context.getColor(R.color.grey_bg_thick))
-                itemView.rvExerciseItem_tv_name.setTextColor(context.getColor(R.color.white_txt_thick))
+                itemView.rvExerciseItem_clo_main.setBackgroundColor(context.getColor(R.color.grey_606060))
+                itemView.rvExerciseItem_tv_name.setTextColor(context.getColor(R.color.white_F7FAFD))
 
-                itemView.rvExerciseItem_clo_detail.setBackgroundColor(context.getColor(R.color.grey_bg_light))
-                itemView.rvExerciseItem_tv_mass.setTextColor(context.getColor(R.color.black_txt_thick))
-                itemView.rvExerciseItem_tv_set.setTextColor(context.getColor(R.color.black_txt_thick))
-                itemView.rvExerciseItem_tv_rep.setTextColor(context.getColor(R.color.black_txt_thick))
+                itemView.rvExerciseItem_clo_detail.setBackgroundColor(context.getColor(R.color.grey_F9F9F9_70))
+                itemView.rvExerciseItem_tv_mass.setTextColor(context.getColor(R.color.black_3B4046))
+                itemView.rvExerciseItem_tv_set.setTextColor(context.getColor(R.color.black_3B4046))
+                itemView.rvExerciseItem_tv_rep.setTextColor(context.getColor(R.color.black_3B4046))
 
 
 
             }else{
                 val partImgResource = convertPartImgToResource(historyDetailView.part_img, false)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-                itemView.rvExerciseItem_clo_main.setBackgroundColor(context.getColor(R.color.grey_bg_light))
-                itemView.rvExerciseItem_tv_name.setTextColor(context.getColor(R.color.black_txt_thick))
+                itemView.rvExerciseItem_clo_main.setBackgroundColor(context.getColor(R.color.grey_F9F9F9_70))
+                itemView.rvExerciseItem_tv_name.setTextColor(context.getColor(R.color.black_3B4046))
 
-                itemView.rvExerciseItem_clo_detail.setBackgroundColor(context.getColor(R.color.grey_bg_thick))
-                itemView.rvExerciseItem_tv_mass.setTextColor(context.getColor(R.color.white_txt_thick))
-                itemView.rvExerciseItem_tv_set.setTextColor(context.getColor(R.color.white_txt_thick))
-                itemView.rvExerciseItem_tv_rep.setTextColor(context.getColor(R.color.white_txt_thick))
+                itemView.rvExerciseItem_clo_detail.setBackgroundColor(context.getColor(R.color.grey_606060))
+                itemView.rvExerciseItem_tv_mass.setTextColor(context.getColor(R.color.white_F7FAFD))
+                itemView.rvExerciseItem_tv_set.setTextColor(context.getColor(R.color.white_F7FAFD))
+                itemView.rvExerciseItem_tv_rep.setTextColor(context.getColor(R.color.white_F7FAFD))
 
             }
 

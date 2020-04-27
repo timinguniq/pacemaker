@@ -57,18 +57,18 @@ class PacemakerActivity : BaseActivity() {
         // TODO : 여기서부터 그거 함수로 extension에 빼면 됨.
         if(!setting.isNightMode){
             // TODO : 여기로 들어오면 다크모드가 아니다.
-            window.statusBarColor = getColor(R.color.blue_bg_thick)
+            window.statusBarColor = getColor(R.color.blue_5F87D6)
             aPacemaker_clo_title.setBackgroundResource(R.drawable.img_title_background_daytime)
-            aPacemaker_flo_container.setBackgroundColor(getColor(R.color.white))
-            aPacemaker_bottom_navigation_view.setBackgroundColor(getColor(R.color.grey_bg_basic))
+            aPacemaker_flo_container.setBackgroundColor(getColor(R.color.white_FFFFFF))
+            aPacemaker_bottom_navigation_view.setBackgroundColor(getColor(R.color.grey_F9F9F9))
             aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_bottom_icon_bg_color_daytime
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_wm_bottom_icon_color,null)
         }else{
             // TODO : 여기로 들어오면 다크모드
-            window.statusBarColor = getColor(R.color.grey_bg_thickest)
+            window.statusBarColor = getColor(R.color.grey_444646)
             aPacemaker_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)
-            aPacemaker_flo_container.setBackgroundColor(getColor(R.color.grey_bg_thick))
-            aPacemaker_bottom_navigation_view.setBackgroundColor(getColor(R.color.grey_bg_thickest))
+            aPacemaker_flo_container.setBackgroundColor(getColor(R.color.grey_606060))
+            aPacemaker_bottom_navigation_view.setBackgroundColor(getColor(R.color.grey_444646))
             aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_bottom_icon_bg_color_nighttime
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_dm_bottom_icon_color,null)
         }

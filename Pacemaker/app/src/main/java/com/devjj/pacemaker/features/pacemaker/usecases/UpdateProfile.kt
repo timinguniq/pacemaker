@@ -1,8 +1,6 @@
 package com.devjj.pacemaker.features.pacemaker.usecases
 
 import com.devjj.pacemaker.core.interactor.UseCase
-import com.devjj.pacemaker.core.interactor.UseCase.None
-import com.devjj.pacemaker.features.pacemaker.dialog.Profile
 import com.devjj.pacemaker.features.pacemaker.statistics.StatisticsRepository
 import javax.inject.Inject
 

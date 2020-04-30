@@ -4,8 +4,6 @@ import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.functional.Either
 import com.devjj.pacemaker.core.functional.Either.Left
 import com.devjj.pacemaker.core.functional.Either.Right
-import com.devjj.pacemaker.core.interactor.UseCase.None
-import com.devjj.pacemaker.features.pacemaker.dialog.Profile
 import javax.inject.Inject
 
 interface StatisticsRepository {

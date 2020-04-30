@@ -3,6 +3,7 @@ package com.devjj.pacemaker.features.pacemaker.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.devjj.pacemaker.core.extension.empty
+import com.devjj.pacemaker.features.pacemaker.historydetail.StatisticsOneDay
 import com.devjj.pacemaker.features.pacemaker.statistics.Statistics
 
 @Entity(tableName = "statistics")
@@ -19,4 +20,5 @@ data class StatisticsEntity(
     }
 
     fun toStatistics() = Statistics(id,date,height,weight)
+    fun toStatisticsOneDay() = StatisticsOneDay(id,date,totalTime,achievementRate)
 }

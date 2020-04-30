@@ -5,8 +5,7 @@ import android.os.Parcelable
 
 data class HistoryView(
     val id: Int,
-    val date: String,
-    val achivementRate: Int
+    val date: String
 ) : Parcelable{
     companion object CREATOR : Parcelable.Creator<HistoryView>{
         override fun createFromParcel(parcel: Parcel): HistoryView {
@@ -21,14 +20,13 @@ data class HistoryView(
     override fun describeContents() = 0
 
     constructor(parcel: Parcel):this(
-        parcel.readInt(), parcel.readString()!!,parcel.readInt()
+        parcel.readInt(), parcel.readString()!!
     )
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         with(dest){
             writeInt(id)
             writeString(date)
-            writeInt(achivementRate)
         }
     }
 }

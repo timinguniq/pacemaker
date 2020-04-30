@@ -8,9 +8,11 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.app.CoreComponentFactory
 import androidx.core.content.res.ResourcesCompat
+import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.extension.round
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
@@ -18,7 +20,12 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import kotlinx.android.synthetic.main.activity_pacemaker.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import java.util.*
 import javax.inject.Inject
+import kotlin.concurrent.schedule
 
 
 class PacemakerActivity : BaseActivity() {
@@ -35,7 +42,9 @@ class PacemakerActivity : BaseActivity() {
     override var layout = R.layout.activity_pacemaker
     override var fragmentId = R.id.aPacemaker_flo_container
 
-    private val FINISH_MAX_COUNT = 4
+    private var FINISH_MAX_COUNT = 5
+    private val FINSIH_MAX_COUNT_MIN_VALUE = 3
+    private val FINSIH_MAX_COUNT_MAX_VALUE = 10
     private var backKeyTime:Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,11 +52,17 @@ class PacemakerActivity : BaseActivity() {
         setContentView(R.layout.activity_pacemaker)
         appComponent.inject(this)
         Log.d("test", "onCreate PacemakerActivity")
+
+        // FINSIH_MAX_COUNT 셋팅
+        FINISH_MAX_COUNT = (((FINSIH_MAX_COUNT_MAX_VALUE - FINSIH_MAX_COUNT_MIN_VALUE) * Math.random()) +
+                FINSIH_MAX_COUNT_MIN_VALUE).round(0).toInt()
     }
 
     override fun onResume() {
         super.onResume()
         initializeView()
+
+        Log.d("test", "PacemakerActivity finish_max_count : $FINISH_MAX_COUNT")
     }
 
     override fun fragment() = HomeFragment()

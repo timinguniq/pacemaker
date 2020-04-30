@@ -55,7 +55,7 @@
     <string name="dgiveupAll_tv_give_up">Give up the whole session?</string>
 
     <!-- TODO 나중에 수정 요망 -->
-    <string name="apacemaker_tv_terminate_str">2초 안에 다시 한번 백키를 누르시면 종료됩니다.(영어로 번역좀)</string>
+    <string name="apacemaker_tv_terminate_str">Press back key again to terminate Pacemaker</string>
     <!--                    -->
 
     <string name="fhistory_detail_set">%d Sets</string>

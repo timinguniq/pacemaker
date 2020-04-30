@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
+import com.devjj.pacemaker.features.pacemaker.dialog.showDeleteDialog
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
@@ -26,7 +27,7 @@ class HomeListener(val activity: Activity, val context: Context,
 
         homeAdapter.longClickListener = {homeView ->
             Log.d("test", "longClickListener")
-            navigator.showDeleteDialog(activity, isNightMode, homeViewModel, homeView)
+            showDeleteDialog(activity, isNightMode, homeViewModel, homeView)
         }
 
         // DB에 있는 데이터 로드

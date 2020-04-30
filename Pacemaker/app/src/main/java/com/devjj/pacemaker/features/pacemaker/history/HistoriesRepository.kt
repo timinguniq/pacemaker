@@ -11,6 +11,7 @@ import javax.inject.Inject
 interface HistoriesRepository {
 
     fun histories(): Either<Failure, List<History>>
+
     fun sumOfSetsAndMass() : Either<Failure,SumOfSetsAndMass>
     fun sumOfSetsAndMassOfOneMonth(date:String) : Either<Failure,SumOfSetsAndMass>
     fun totalTimes(date : String) : Either<Failure, TotalTimes>

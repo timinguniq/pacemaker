@@ -55,7 +55,6 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
     }
 
 
-
     if(setting.weight < 0 && setting.height < 0 ){
         dialogView.dProfile_clo_option_height.visible()
         dialogView.dProfile_clo_option_weight.visible()
@@ -99,11 +98,6 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
         fSaveHeight = fSaveHeight.round(1)
         fSaveWeight = fSaveWeight.round(1)
 
-
-        // 소수점 한자리 반올림하는 코드
-        //fSaveHeight = (fSaveHeight * 10).roundToInt() / 10f
-        //fSaveWeight = (fSaveWeight * 10).roundToInt() / 10f
-        //
 
         setting.height = fSaveHeight
         setting.weight = fSaveWeight

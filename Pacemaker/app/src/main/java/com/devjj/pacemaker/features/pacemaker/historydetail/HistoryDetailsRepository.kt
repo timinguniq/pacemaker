@@ -14,9 +14,9 @@ import javax.inject.Inject
 interface HistoryDetailsRepository{
 
     fun historyDetails(date:String) : Either<Failure, List<HistoryDetail>>
+
     fun getOneDaySets(date:String) : Either<Failure,OneDaySets>
     fun getStatisticsOneDay(date : String) : Either<Failure,StatisticsOneDay>
-
     class HistoryDetailDatabase
     @Inject constructor(private val serviceHistoryDetail: HistoryDetailDatabaseService, private val serviceStatistics :StatisticsDatabaseService ):HistoryDetailsRepository{
 
@@ -45,5 +45,6 @@ interface HistoryDetailsRepository{
                 Left(DatabaseError)
             }
         }
+
     }
 }

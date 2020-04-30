@@ -53,7 +53,7 @@
     <string name="dgiveupAll_tv_give_up">모든 운동을 포기하시겠습니까?</string>
 
     <!-- TODO 나중에 수정 요망 -->
-    <string name="apacemaker_tv_terminate_str">2초 안에 다시 한번 백키를 누르시면 종료됩니다.</string>
+    <string name="apacemaker_tv_terminate_str">뒤로가기를 한번 더 누르면 종료됩니다.</string>
     <!--                    -->
 
     <string name="fhistory_detail_set">%d 세트</string>

@@ -36,5 +36,4 @@ interface ExerciseHistoryDAO {
     @Query("DELETE FROM exerciseHistories WHERE date = :date")
     fun deleteForDate(date: String)
 
-
 }

@@ -20,7 +20,12 @@ import com.devjj.pacemaker.features.pacemaker.PacemakerActivity
 import com.google.android.gms.ads.MobileAds
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import java.util.*
 import javax.inject.Inject
+import kotlin.concurrent.schedule
 
 class SplashActivity : AppCompatActivity() {
 
@@ -40,6 +45,11 @@ class SplashActivity : AppCompatActivity() {
         appComponent.inject(this)
         Log.d("test", "onCreate SplashActivity")
 
+        //log를 위한 코드
+        val app = AndroidApplication()
+        AndroidApplication.DEBUG = app.isDebuggable(this)
+        //
+
     }
 
     override fun onResume() {
@@ -48,7 +58,7 @@ class SplashActivity : AppCompatActivity() {
         // TODO : 2초 뒤 화면전환 구현하기 나중에
         Handler().postDelayed({
             navigator.showMain(this)
-        }, 1500)
+        }, 1700)
 
         // 크러시 테스트 함수.
         //crashTest()
@@ -56,11 +66,6 @@ class SplashActivity : AppCompatActivity() {
         // 테스트 광고
         MobileAds.initialize(this) {}
 
-        // TODO : 테스트 코드 나중에 ß삭제
-        //setting.isNightMode = false
-
-        //setting.restTime = 70
-        //
     }
 
     // 크러쉬 테스트 함수.

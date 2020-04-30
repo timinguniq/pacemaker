@@ -7,6 +7,7 @@ import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailsReposi
 import com.devjj.pacemaker.features.pacemaker.historydetail.OneDaySets
 import javax.inject.Inject
 
+
 class GetOneDaySets
 @Inject constructor(private val historyDetailsRepository: HistoryDetailsRepository) : UseCase<OneDaySets,String>(){
     override suspend fun run(paramas: String) = historyDetailsRepository.getOneDaySets(paramas)

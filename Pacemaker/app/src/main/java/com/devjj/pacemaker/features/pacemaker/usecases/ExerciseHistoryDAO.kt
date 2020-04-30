@@ -24,7 +24,7 @@ interface ExerciseHistoryDAO {
 
     @Query("SELECT * FROM exerciseHistories WHERE date = :date")
     fun getAllByDate(date: String): List<ExerciseHistoryEntity>
-
+/*
     @Query("UPDATE exerciseHistories SET achievement = NOT achievement WHERE id = :id")
     fun switchAchievement(id: Int): Int
 
@@ -39,7 +39,7 @@ interface ExerciseHistoryDAO {
 
     @Query("SELECT (SELECT Sum(setDone) FROM exerciseHistories  WHERE substr(date,0,8) = substr(:date,0,8) ) as sets , (SELECT Sum(totalTime) FROM (SELECT * FROM exerciseHistories GROUP BY date) WHERE substr(date,0,8) = substr(:date,0,8)) as times ,(SELECT Sum(setDone*mass) FROM exerciseHistories  WHERE substr(date,0,8) = substr(:date,0,8) ) as kgs")
     fun getOneMonthSummary(date: String) : Summary
-
+*/
     // date 검색 후 데이터 삭제하는 함수
     @Query("DELETE FROM exerciseHistories WHERE date = :date")
     fun deleteForDate(date: String)

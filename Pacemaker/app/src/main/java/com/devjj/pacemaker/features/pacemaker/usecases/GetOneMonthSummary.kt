@@ -10,5 +10,8 @@ import javax.inject.Inject
 
 class GetOneMonthSummary
 @Inject constructor(private val historiesRepository: HistoriesRepository ) : UseCase<Summary,String>() {
-    override suspend fun run(paramas: String) = historiesRepository.summaryOneMonth(paramas)
+    //override suspend fun run(paramas: String) = historiesRepository.summaryOneMonth(paramas)
+    override suspend fun run(paramas: String): Either<Failure, Summary> {
+        TODO("Not yet implemented")
+    }
 }

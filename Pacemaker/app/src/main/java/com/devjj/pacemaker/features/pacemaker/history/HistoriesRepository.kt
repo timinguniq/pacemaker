@@ -10,9 +10,10 @@ import javax.inject.Inject
 interface HistoriesRepository {
 
     fun histories(): Either<Failure, List<History>>
+    /*
     fun summary() : Either<Failure,Summary>
     fun summaryOneMonth(date:String) : Either<Failure,Summary>
-
+*/
     class HistoryDatabase
     @Inject constructor(
         private val service: HistoryDatabaseService
@@ -24,7 +25,7 @@ interface HistoriesRepository {
                 Left(DatabaseError)
             }
         }
-
+/*
         override fun summary(): Either<Failure, Summary> {
             return try{
                 Right(service.summary())
@@ -34,6 +35,7 @@ interface HistoriesRepository {
             }
         }
 
+
         override fun summaryOneMonth(date: String): Either<Failure, Summary> {
             return try{
                 Right(service.getOneMonthSummary(date))
@@ -42,6 +44,8 @@ interface HistoriesRepository {
                 Left(DatabaseError)
             }
         }
+
+ */
 
     }
 

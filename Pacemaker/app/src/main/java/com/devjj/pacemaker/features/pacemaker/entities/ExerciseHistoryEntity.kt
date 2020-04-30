@@ -15,14 +15,9 @@ data class ExerciseHistoryEntity(
     val rep: Int,
     val setGoal: Int,
     val setDone: Int,
-    val interval: Int,
-    val achievement: Boolean,
-    val achievementRate: Int,
-    val height : Float,
-    val weight : Float,
-    val totalTime: Int
+    val interval: Int
 ){
-    fun toHistory() = History(id, date, achievementRate)
-    fun toHistoryDetail() = HistoryDetail(id,date,part,name,mass,rep,setGoal,setDone,interval, (if(achievement)1 else 0) ,achievementRate)
+    fun toHistory() = History(id, date, 0)
+    fun toHistoryDetail() = HistoryDetail(id,date,part,name,mass,rep,setGoal,setDone,interval, 0 ,0)
     fun isAcheived() = this.setGoal == this.setDone
 }

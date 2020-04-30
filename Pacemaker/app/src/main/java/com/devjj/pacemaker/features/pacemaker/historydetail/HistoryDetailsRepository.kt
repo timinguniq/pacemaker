@@ -12,10 +12,11 @@ import javax.inject.Inject
 interface HistoryDetailsRepository{
 
     fun historyDetails(date:String) : Either<Failure, List<HistoryDetail>>
+    /*
     fun switchAchievement(id : Int) : Either<Failure, Int>
     fun updateAchievementRate(date: String) : Either<Failure,Int>
     fun getOneDaySummary(date:String) : Either<Failure,OneDaySummary>
-
+*/
 
     class HistoryDetailDatabase
     @Inject constructor(private val service: HistoryDetailDatabaseService):HistoryDetailsRepository{
@@ -28,7 +29,7 @@ interface HistoryDetailsRepository{
                 Left(DatabaseError)
             }
         }
-
+/*
         override fun switchAchievement(id: Int): Either<Failure, Int> {
             return try{
                 Right(service.switchAchievement(id))
@@ -53,5 +54,6 @@ interface HistoryDetailsRepository{
                 Left(DatabaseError)
             }
         }
+        */
     }
 }

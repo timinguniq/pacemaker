@@ -9,5 +9,8 @@ import javax.inject.Inject
 class UpdateAchievementRate
 @Inject constructor(private val historyDetailsRepository: HistoryDetailsRepository) :
     UseCase<Int, String>() {
-    override suspend fun run(paramas: String): Either<Failure, Int> = historyDetailsRepository.updateAchievementRate(paramas)
+    //override suspend fun run(paramas: String): Either<Failure, Int> = historyDetailsRepository.updateAchievementRate(paramas)
+    override suspend fun run(paramas: String): Either<Failure, Int> {
+        TODO("Not yet implemented")
+    }
 }

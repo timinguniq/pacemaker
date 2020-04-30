@@ -131,7 +131,7 @@ class HistoryFragment : BaseFragment() {
 */
 
 
-
+/*
         if (false) {
             val a = ExerciseHistoryEntity(0,"2020-03-30",0,"벤치프레스",5,10,2,2,30,true,30,60f,170f,10)
 
@@ -167,6 +167,7 @@ class HistoryFragment : BaseFragment() {
                     statisticsDB.StatisticsDAO().insert(A,B,C,D,E,F,G)
                 }
         }
+        */
 
         @NonNull
         val today = CalendarDay.today().date.toString()

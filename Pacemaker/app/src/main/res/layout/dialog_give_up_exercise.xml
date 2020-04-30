@@ -21,12 +21,12 @@
 
     <TextView
         android:id="@+id/dGiveUp_tv_confirm"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="25dp"
         android:gravity="center"
         android:text="@string/dgiveup_tv_confirm_str"
-        android:textSize="17sp"
+        android:textSize="18sp"
         android:textColor="#ff000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,12 +34,12 @@
 
     <TextView
         android:id="@+id/dGiveUp_tv_cancel"
-        android:layout_width="60dp"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="30dp"
         android:gravity="center"
         android:text="@string/dgiveup_tv_cancel_str"
-        android:textSize="17sp"
+        android:textSize="18sp"
         android:textColor="#ff000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/dGiveUp_tv_confirm"

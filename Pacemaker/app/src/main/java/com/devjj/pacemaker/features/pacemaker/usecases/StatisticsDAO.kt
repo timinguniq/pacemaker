@@ -5,7 +5,6 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
-import com.devjj.pacemaker.features.pacemaker.dialog.Profile
 import com.devjj.pacemaker.features.pacemaker.entities.StatisticsEntity
 
 @Dao

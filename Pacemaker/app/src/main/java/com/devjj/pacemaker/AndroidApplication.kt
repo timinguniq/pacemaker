@@ -4,13 +4,10 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import android.util.Log
 import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.di.ApplicationModule
 import com.devjj.pacemaker.core.di.DaggerApplicationComponent
-import com.devjj.pacemaker.features.pacemaker.service.TimerService
 import com.squareup.leakcanary.LeakCanary
-import javax.inject.Singleton
 
 class AndroidApplication : Application() {
 

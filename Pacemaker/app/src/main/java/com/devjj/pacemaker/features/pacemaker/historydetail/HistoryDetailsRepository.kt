@@ -5,6 +5,8 @@ import com.devjj.pacemaker.core.exception.Failure.DatabaseError
 import com.devjj.pacemaker.core.functional.Either
 import com.devjj.pacemaker.core.functional.Either.Left
 import com.devjj.pacemaker.core.functional.Either.Right
+import com.devjj.pacemaker.features.pacemaker.statistics.Statistics
+import com.devjj.pacemaker.features.pacemaker.statistics.StatisticsDatabaseService
 import kotlinx.coroutines.sync.Mutex
 import javax.inject.Inject
 
@@ -12,48 +14,37 @@ import javax.inject.Inject
 interface HistoryDetailsRepository{
 
     fun historyDetails(date:String) : Either<Failure, List<HistoryDetail>>
-    /*
-    fun switchAchievement(id : Int) : Either<Failure, Int>
-    fun updateAchievementRate(date: String) : Either<Failure,Int>
-    fun getOneDaySummary(date:String) : Either<Failure,OneDaySummary>
-*/
 
+    fun getOneDaySets(date:String) : Either<Failure,OneDaySets>
+    fun getStatisticsOneDay(date : String) : Either<Failure,StatisticsOneDay>
     class HistoryDetailDatabase
-    @Inject constructor(private val service: HistoryDetailDatabaseService):HistoryDetailsRepository{
+    @Inject constructor(private val serviceHistoryDetail: HistoryDetailDatabaseService, private val serviceStatistics :StatisticsDatabaseService ):HistoryDetailsRepository{
 
         override fun historyDetails(date:String): Either<Failure, List<HistoryDetail>> {
 
             return try{
-                Right(service.historiesByDate(date).map { it.toHistoryDetail() })
+                Right(serviceHistoryDetail.historiesByDate(date).map { it.toHistoryDetail() })
             }catch (exception:Throwable){
                 Left(DatabaseError)
             }
         }
-/*
-        override fun switchAchievement(id: Int): Either<Failure, Int> {
-            return try{
-                Right(service.switchAchievement(id))
-            }catch(exception:Throwable){
-                Left(DatabaseError)
-            }
-        }
 
-        override fun updateAchievementRate(date : String): Either<Failure, Int> {
+        override fun getOneDaySets(date: String): Either<Failure, OneDaySets> {
             return try{
-                Right(service.updateAchievementRate(date))
-            }catch(exception : Throwable){
-                Left(DatabaseError)
-            }
-        }
-
-        override fun getOneDaySummary(date: String): Either<Failure, OneDaySummary> {
-            return try{
-                Right(service.getOneDaySummary(date))
+                Right(serviceHistoryDetail.getOneDaySets(date))
             }
             catch(exception : Throwable) {
                 Left(DatabaseError)
             }
         }
-        */
+
+        override fun getStatisticsOneDay(date: String): Either<Failure, StatisticsOneDay> {
+            return try{
+                Right(serviceStatistics.getStatisticsOneDay(date).toStatisticsOneDay())
+            }catch (exception : Throwable){
+                Left(DatabaseError)
+            }
+        }
+
     }
 }

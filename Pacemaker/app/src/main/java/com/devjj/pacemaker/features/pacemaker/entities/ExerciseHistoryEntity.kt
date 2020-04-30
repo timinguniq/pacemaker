@@ -17,7 +17,7 @@ data class ExerciseHistoryEntity(
     val setDone: Int,
     val interval: Int
 ){
-    fun toHistory() = History(id, date, 0)
-    fun toHistoryDetail() = HistoryDetail(id,date,part,name,mass,rep,setGoal,setDone,interval, 0 ,0)
+    fun toHistory() = History(id, date)
+    fun toHistoryDetail() = HistoryDetail(id,date,part,name,mass,rep,setGoal,setDone,interval)
     fun isAcheived() = this.setGoal == this.setDone
 }

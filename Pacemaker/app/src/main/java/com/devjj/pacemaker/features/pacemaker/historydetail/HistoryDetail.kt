@@ -10,10 +10,9 @@ data class HistoryDetail(val id: Int,
                          val rep: Int,
                          val setGoal : Int,
                          val setDone:Int,
-                         val interval:Int,
-                         val achievement : Int,
-                         val achievementRate : Int){
+                         val interval:Int
+                         ){
     companion object{
-        fun empty() = HistoryDetail(-1,String.empty(),0,String.empty(),0,0,0,0,0,0,0)
+        fun empty() = HistoryDetail(-1,String.empty(),0,String.empty(),0,0,0,0,0)
     }
 }

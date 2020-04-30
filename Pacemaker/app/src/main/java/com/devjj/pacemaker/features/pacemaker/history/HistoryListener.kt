@@ -27,11 +27,12 @@ class HistoryListener(val activity : Activity, val navigator: Navigator,private 
         }
 
         activity.fHistory_calendarView.setOnMonthChangedListener { widget, date ->
-            historyViewModel.loadSummaryOneMonth(date.date.toString())
+            historyViewModel.loadOneMonthSumOfSetsAndMass(date.date.toString())
+            historyViewModel.loadTotalTimes(date.date.toString())
             Log.d("jayDateCheck.OnChanged", date.date.toString())
         }
 
-        activity.fHistory_clo_profile.setOnClickListener {
+        activity.fHistory_iv_chart.setOnClickListener {
             navigator.showStatistics(activity)
         }
     }

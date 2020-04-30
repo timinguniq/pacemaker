@@ -83,31 +83,45 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/fHistory_tv_weight"
+                    android:id="@+id/fHistory_tv_height"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
-                    android:text="TextView"
+                    android:text="@string/unit_height"
                     android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/fHistory_tv_height"
+                    app:layout_constraintEnd_toStartOf="@id/fHistory_tv_weight"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/fHistory_tv_profile" />
 
                 <TextView
-                    android:id="@+id/fHistory_tv_height"
+                    android:id="@+id/fHistory_tv_weight"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="TextView"
+                    android:text="@string/unit_weight"
                     android:textSize="30sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/fHistory_tv_weight"
+                    app:layout_constraintEnd_toStartOf="@id/fHistory_iv_chart"
+                    app:layout_constraintStart_toEndOf="@id/fHistory_tv_height"
                     app:layout_constraintTop_toBottomOf="@id/fHistory_tv_profile" />
+
+
+                <ImageView
+                    android:id="@+id/fHistory_iv_chart"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/fHistory_tv_weight"
+                    app:layout_constraintTop_toBottomOf="@id/fHistory_tv_profile"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:srcCompat="@drawable/fhistory_img_btn_chart" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -233,7 +247,7 @@
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--
+            <!--
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/fHistory_recyclerview"
                 android:layout_width="match_parent"

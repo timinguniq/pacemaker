@@ -8,6 +8,6 @@ import javax.inject.Singleton
 class HistoryDatabaseService
 @Inject constructor(val db : ExerciseHistoryDatabase){
     fun histories() = db.ExerciseHistoryDAO().getAllDates()
-    fun summary() = db.ExerciseHistoryDAO().getSummary()
-    fun getOneMonthSummary(date :String) = db.ExerciseHistoryDAO().getOneMonthSummary(date)
+    fun setsAndMass() = db.ExerciseHistoryDAO().getSetsAndMass()
+    fun getOneMonthSumOfSetsAndMass(date :String) = db.ExerciseHistoryDAO().getOneMonthSumOfSetsAndMass(date)
 }

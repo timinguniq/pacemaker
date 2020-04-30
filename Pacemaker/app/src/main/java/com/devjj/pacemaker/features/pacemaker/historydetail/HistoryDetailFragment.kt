@@ -51,7 +51,8 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
 
         historyDetailViewModel = viewModel(viewModelFactory) {
             observe(historyDetails, ::renderHistoryDetails)
-            observe(oneDaySummary,::renderOneDaySummary)
+            observe(statisticsOneDay,::renderStatisticsOneDay)
+            observe(oneDaySets, ::renderOneDaySets)
         }
 
     }
@@ -61,22 +62,26 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
         initializeView()
     }
 
-    private fun renderOneDaySummary(oneDaySummary: OneDaySummary?){
+    private fun renderOneDaySets(oneDaySets: OneDaySets?){
+        fHistoryDetail_tv_totalSets.text = this.getString(R.string.unit_sets, oneDaySets!!.sets )
+    }
 
-        fHistoryDetail_tv_totalSets.text = this.getString(R.string.unit_sets, oneDaySummary!!.sets )
-        fHistoryDetail_tv_totalReps.text = this.getString(R.string.unit_time_hour_min, oneDaySummary.times/60,oneDaySummary.times%60)
+    private fun renderStatisticsOneDay(statisticsOneDay: StatisticsOneDay?){
+
+        //fHistoryDetail_tv_totalSets.text = this.getString(R.string.unit_sets, statisticsOneDay!!.sets )
+        fHistoryDetail_tv_totalReps.text = this.getString(R.string.unit_time_hour_min, statisticsOneDay!!.totalTime/60,statisticsOneDay.totalTime%60)
+        fHistoryDetail_circleView_rate.setValue(statisticsOneDay.achievementRate.toFloat())
     }
 
     private fun renderHistoryDetails(historyDetailViews: List<HistoryDetailView>?) {
         historyDetailAdapter.collection = historyDetailViews.orEmpty()
-        fHistoryDetail_circleView_rate.setValue(historyDetailViews.orEmpty()[0].achievementRate.toFloat())
+
 
     }
 
     private fun initializeView() {
         val date: String = intent.getStringExtra("date")
         setColors()
-        historyDetailViewModel.updateAchievementRateByDate(date)
         fHistoryDetail_circleView_rate.setTextTypeface(Typeface.DEFAULT_BOLD)
         fHistoryDetail_circleView_rate.setUnitTextTypeface(Typeface.DEFAULT_BOLD)
 
@@ -100,7 +105,6 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
             }
             */
 
-            historyDetailViewModel.updateAchievementRateByDate(date)
             var transition :Transition = Slide(Gravity.BOTTOM)
             transition.duration = 500
             transition.addTarget(view.rvExerciseItem_clo_detail)
@@ -111,32 +115,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
                 false->view.rvExerciseItem_clo_detail.visibility = View.VISIBLE
             }
 
-            /*
-            when(view.rvExerciseItem_clo_detail.visibility){
-                GONE->{
-                    var transition :Transition = Slide(Gravity.TOP)
-                    transition.setDuration(1000)
-                    transition.addTarget(view.rvExerciseItem_clo_detail)
-                    TransitionManager.beginDelayedTransition(view.rvExerciseItem_clo_main,transition)
-                 /*   view.rvExerciseItem_clo_detail.animate()
-                        .setDuration(5000)
-                        .alpha(1.0f)
-                        .translationY(view.rvExerciseItem_clo_detail.height.toFloat())*/
-                    view.rvExerciseItem_clo_detail.visibility = VISIBLE
-                }
-                VISIBLE->{
-                    var transition :Transition = Slide(Gravity.BOTTOM)
-                    transition.setDuration(1000)
-                    transition.addTarget(view.rvExerciseItem_clo_detail)
-              /*      view.rvExerciseItem_clo_detail.animate()
-                        .setDuration(5000)
-                        .alpha(0.0f)
-                        .translationY(0f)*/
-                    TransitionManager.beginDelayedTransition(view.rvExerciseItem_clo_main,transition)
-                    view.rvExerciseItem_clo_detail.visibility = GONE
-                }
-            }
-        */
+
 
         }
 
@@ -146,16 +125,12 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
 
 
         historyDetailViewModel.loadHistoryDetails(date)
-        historyDetailViewModel.loadOneDaySummary(date)
+        historyDetailViewModel.loadStatisticsOneDay(date)
+        historyDetailViewModel.loadOneDaySets(date)
         Log.d("dateee", "${date.split("-")[0]}")
 
         activity!!.aHistoryDetail_tv_title.text = date
-        /*
-        activity!!.aHistoryDetail_tv_title.text = this.getString(
-            R.string.ahistorydetail_tv_title_str,
-            date.split("-")[1],
-            date.split("-")[2]
-        )*/
+
     }
 
     private fun setColors(){

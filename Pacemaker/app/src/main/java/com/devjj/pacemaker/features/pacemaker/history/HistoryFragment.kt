@@ -9,6 +9,7 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.core.di.database.StatisticsDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.extension.convertDpToPx
 import com.devjj.pacemaker.core.extension.convertPxToDp
 import com.devjj.pacemaker.core.extension.observe
 import com.devjj.pacemaker.core.extension.viewModel
@@ -186,9 +187,17 @@ class HistoryFragment : BaseFragment() {
 
     private fun setColors() {
         Log.d("jayColor", "history fragment")
+/*
+        fHistory_calendarView.tileWidth = convertPxToDp(context!!,600f).toInt()
+        fHistory_calendarView.tileHeight = convertPxToDp(context!!,400f).toInt()
+*/
+        fHistory_calendarView.tileWidth = convertDpToPx(context!!,52f).toInt()
+        fHistory_calendarView.tileHeight = convertDpToPx(context!!,43f).toInt()
 
-        fHistory_calendarView.tileWidth = convertPxToDp(context!!,400f).toInt()
-        fHistory_calendarView.tileHeight = convertPxToDp(context!!,250f).toInt()
+        Log.d("test", "tile density : ${context!!.resources.displayMetrics.density}")
+        Log.d("test", "tileWidth : ${convertDpToPx(context!!, 360f)}")
+        Log.d("test", "tileHeight : ${convertDpToPx(context!!, 240f)}")
+
 
 /*
         fHistory_txv_sets.text = getString(R.string.unit_sets, 10)

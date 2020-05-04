@@ -34,7 +34,7 @@ fun convertPartImgToResource(part_img: Int, isNightMode: Boolean) =
         }
 
 fun convertPxToDp(context : Context, px : Float) :Float {
-        return px / context.getResources().getDisplayMetrics().density
+        return px / context.resources.displayMetrics.density
 }
 
 fun convertDpToPx(context: Context, dp: Float): Float {

@@ -187,9 +187,18 @@ class HistoryFragment : BaseFragment() {
 
     private fun setColors() {
         Log.d("jayColor", "history fragment")
+/*
+        fHistory_calendarView.tileWidth = convertPxToDp(context!!,600f).toInt()
+        fHistory_calendarView.tileHeight = convertPxToDp(context!!,400f).toInt()
+*/
+        fHistory_calendarView.tileWidth = convertDpToPx(context!!,52f).toInt()
+        fHistory_calendarView.tileHeight = convertDpToPx(context!!,40f).toInt()
 
-        fHistory_calendarView.tileWidth = convertDpToPx(context!!,55f).toInt()
-        fHistory_calendarView.tileHeight = convertDpToPx(context!!,30f).toInt()
+        Log.d("test", "tile density : ${context!!.resources.displayMetrics.density}")
+        Log.d("test", "tileWidth : ${convertDpToPx(context!!, 360f)}")
+        Log.d("test", "tileHeight : ${convertDpToPx(context!!, 240f)}")
+
+
 
 /*
         fHistory_txv_sets.text = getString(R.string.unit_sets, 10)

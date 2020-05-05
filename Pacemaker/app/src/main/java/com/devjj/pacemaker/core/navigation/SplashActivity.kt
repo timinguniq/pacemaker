@@ -8,24 +8,15 @@ import android.os.Handler
 import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
-import androidx.room.DatabaseConfiguration
-import androidx.room.RoomDatabase
 import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
-import com.devjj.pacemaker.features.pacemaker.PacemakerActivity
+import com.devjj.pacemaker.core.functional.Dlog
 import com.google.android.gms.ads.MobileAds
-import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import java.util.*
 import javax.inject.Inject
-import kotlin.concurrent.schedule
 
 class SplashActivity : AppCompatActivity() {
 
@@ -65,6 +56,9 @@ class SplashActivity : AppCompatActivity() {
 
         // 테스트 광고
         MobileAds.initialize(this) {}
+
+        // TODO : 예시 코드 나중에 지워야 됨.
+        Dlog.d("test")
 
     }
 

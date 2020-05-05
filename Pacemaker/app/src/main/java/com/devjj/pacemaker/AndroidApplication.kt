@@ -23,7 +23,6 @@ class AndroidApplication : Application() {
             .build()
     }
 
-
     override fun onCreate() {
         super.onCreate()
         this.injectMembers()

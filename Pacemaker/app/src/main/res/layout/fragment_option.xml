@@ -365,6 +365,39 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_option_height"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <TextView
+                android:id="@+id/fOption_tv_mode_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18dp"
+                android:text="@string/foption_tv_mode_height_str"
+                android:textColor="@color/black_3B4046"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/fOption_swc_mode_height"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Switch
+                android:id="@+id/fOption_swc_mode_height"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="18dp"
+                android:shadowColor="@color/blue_5C83CF_70"
+                android:thumbTint="@color/blue_5C83CF"
+                android:trackTint="@color/blue_5C83CF_70"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_height"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fOption_clo_option_weight"
             android:layout_width="match_parent"
             android:layout_height="40dp">
@@ -397,38 +430,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/fOption_clo_option_height"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
 
-            <TextView
-                android:id="@+id/fOption_tv_mode_height"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
-                android:text="@string/foption_tv_mode_height_str"
-                android:textColor="@color/black_3B4046"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/fOption_swc_mode_height"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Switch
-                android:id="@+id/fOption_swc_mode_height"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="18dp"
-                android:shadowColor="@color/blue_5C83CF_70"
-                android:thumbTint="@color/blue_5C83CF"
-                android:trackTint="@color/blue_5C83CF_70"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_height"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fOption_clo_supportUs"

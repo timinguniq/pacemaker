@@ -6,8 +6,10 @@ import androidx.core.content.ContextCompat.getColor
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.StatisticsDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.extension.gone
 import com.devjj.pacemaker.core.extension.observe
 import com.devjj.pacemaker.core.extension.viewModel
+import com.devjj.pacemaker.core.extension.visible
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -50,15 +52,12 @@ class StatisticsFragment : BaseFragment(){
                 Log.d("jayStatistics" , "no statistics")
             }
             else ->{
-                var index = 0
-                for( stats in statistics ){
-                    Log.d("jayStatistics", "id : ${stats.id} , date : ${stats.date} , height : ${stats.height} , weight : ${stats.weight}")
+                for( (index , stats) in statistics.withIndex() ){
+                    Log.d("jayStatistics", "id : stats.id , date : ${stats.date} , height : ${stats.height} , weight : ${stats.weight}")
                     weightEntries.add(Entry(index.toFloat(),stats.weight))
-                    weightOnBMIEntries.add(Entry(index.toFloat(),25*(stats.height/100f)*(stats.height/100f)))
-                    xAxisArray.add(stats.date.substring(5,stats.date.length))
-                    index++
+                    weightOnBMIEntries.add(Entry(index.toFloat(),setting.bmi.toFloat()*(stats.height/100f)*(stats.height/100f)))
+                    xAxisArray.add(stats.date)
                 }
-
             }
         }
 
@@ -66,13 +65,35 @@ class StatisticsFragment : BaseFragment(){
         weightDataSet.lineWidth = 5f
         weightDataSet.circleRadius = 5f
         weightDataSet.setCircleColor(getColor(activity!!,R.color.blue_5C83CF))
-        weightDataSet.color = getColor(activity!!,R.color.blue_5C83CF_70)
+        weightDataSet.valueTextSize = 10f
 
-        val weightOnBMIDataSet = LineDataSet(weightOnBMIEntries,"BMI 25")
+        when(setting.isNightMode){
+            true-> {
+                weightDataSet.color = getColor(activity!!, R.color.blue_A3BCE8)
+                weightDataSet.valueTextColor = getColor(activity!!, R.color.white_F7FAFD)
+            }
+            false-> {
+                weightDataSet.color = getColor(activity!!, R.color.blue_5C83CF_70)
+                weightDataSet.valueTextColor = getColor(activity!!, R.color.black_3B4046)
+            }
+        }
+
+        val weightOnBMIDataSet = LineDataSet(weightOnBMIEntries,getString(R.string.template_bmi_str,setting.bmi))
         weightOnBMIDataSet.lineWidth = 5f
         weightOnBMIDataSet.circleRadius = 5f
         weightOnBMIDataSet.setCircleColor(getColor(activity!!,R.color.orange_FF765B))
-        weightOnBMIDataSet.color = getColor(activity!!,R.color.orange_FF765B_70)
+        weightOnBMIDataSet.valueTextSize = 10f
+
+        when(setting.isNightMode){
+            true-> {
+                weightOnBMIDataSet.color = getColor(activity!!,R.color.orange_FF765B_70)
+                weightOnBMIDataSet.valueTextColor = getColor(activity!!,R.color.white_F7FAFD)
+            }
+            false-> {
+                weightOnBMIDataSet.color = getColor(activity!!,R.color.orange_FF765B_70)
+                weightOnBMIDataSet.valueTextColor = getColor(activity!!,R.color.black_3B4046)
+            }
+        }
 
         var dataSets = ArrayList<ILineDataSet>()
         fStatistics_linechart.clear()
@@ -81,11 +102,14 @@ class StatisticsFragment : BaseFragment(){
             true-> {
                 dataSets.add(weightDataSet)
                 dataSets.add(weightOnBMIDataSet)
+                fStatistics_clo_bmi_change.visible()
             }
             false->{
                 dataSets.add(weightDataSet)
+                fStatistics_clo_bmi_change.gone()
             }
         }
+        fStatistics_linechart.xAxis.isGranularityEnabled = true
         fStatistics_linechart.xAxis.valueFormatter = IndexAxisValueFormatter(xAxisArray)
         fStatistics_linechart.data = LineData(dataSets)
         //fStatistics_linechart.data = LineData(weightOnBMIDataSet)
@@ -99,20 +123,63 @@ class StatisticsFragment : BaseFragment(){
         statisticsViewModel.loadStatistics()
         setColor()
         fStatistics_swc_mode_bmi.isChecked = setting.isShowbmi
+        fStatistics_swc_monthly.isChecked = setting.isMonthly
         fStatistics_linechart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+        fStatistics_tv_bmi.text = setting.bmi.toString()
+        fStatistics_tv_mode_bmi.text = getString(R.string.template_bmi_str,setting.bmi)
+        fStatistics_linechart.axisRight.isEnabled = false
+        fStatistics_linechart.description.isEnabled = false
     }
 
-    fun setColor(){
+    private fun setColor(){
         when(setting.isNightMode){
             true ->{
                 fStatistics_swc_mode_bmi.thumbDrawable.setTint(activity!!.getColor(R.color.orange_F74938))
                 fStatistics_swc_mode_bmi.trackDrawable.setTint(activity!!.getColor(R.color.orange_FF765B))
                 fStatistics_tv_mode_bmi.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+
+                fStatistics_swc_monthly.thumbDrawable.setTint(activity!!.getColor(R.color.orange_F74938))
+                fStatistics_swc_monthly.trackDrawable.setTint(activity!!.getColor(R.color.orange_FF765B))
+                fStatistics_tv_monthly_title.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+
+                fStatistics_tv_bmi_title.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+                fStatistics_tv_bmi.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+
+                fStatistics_tv_bmi_link.setTextColor(activity!!.getColor(R.color.blue_A3BCE8))
+
+                fStatistics_iv_bmi_minus.setImageResource(R.drawable.img_rest_minus_nighttime)
+                fStatistics_iv_bmi_plus.setImageResource(R.drawable.img_rest_plus_nighttime)
+
+                fStatistics_linechart.xAxis.textColor = activity!!.getColor(R.color.white_F7FAFD)
+                fStatistics_linechart.legend.textColor = activity!!.getColor(R.color.white_F7FAFD)
+                fStatistics_linechart.axisLeft.textColor = activity!!.getColor(R.color.white_F7FAFD)
+
+
+
             }
             false ->{
                 fStatistics_swc_mode_bmi.thumbDrawable.setTint(activity!!.getColor(R.color.blue_5F87D6))
                 fStatistics_swc_mode_bmi.trackDrawable.setTint(activity!!.getColor(R.color.blue_5C83CF))
                 fStatistics_tv_mode_bmi.setTextColor(activity!!.getColor(R.color.black_3B4046))
+
+                fStatistics_swc_monthly.thumbDrawable.setTint(activity!!.getColor(R.color.blue_5F87D6))
+                fStatistics_swc_monthly.trackDrawable.setTint(activity!!.getColor(R.color.blue_5C83CF))
+                fStatistics_tv_monthly_title.setTextColor(activity!!.getColor(R.color.black_3B4046))
+
+                fStatistics_tv_bmi_title.setTextColor(activity!!.getColor(R.color.black_3B4046))
+                fStatistics_tv_bmi.setTextColor(activity!!.getColor(R.color.black_3B4046))
+
+                fStatistics_tv_bmi_link.setTextColor(activity!!.getColor(R.color.blue_5C83CF_70))
+
+                fStatistics_iv_bmi_minus.setImageResource(R.drawable.img_rest_minus_daytime)
+                fStatistics_iv_bmi_plus.setImageResource(R.drawable.img_rest_plus_daytime)
+
+                fStatistics_linechart.xAxis.textColor = activity!!.getColor(R.color.black_3B4046)
+                fStatistics_linechart.rendererLeftYAxis.paintAxisLabels.color = activity!!.getColor(R.color.black_3B4046)
+                fStatistics_linechart.legend.textColor = activity!!.getColor(R.color.black_3B4046)
+                fStatistics_linechart.axisLeft.textColor = activity!!.getColor(R.color.black_3B4046)
+
+
             }
         }
     }

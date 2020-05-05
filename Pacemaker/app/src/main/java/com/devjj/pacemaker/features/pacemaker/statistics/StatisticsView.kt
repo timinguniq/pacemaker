@@ -3,7 +3,7 @@ package com.devjj.pacemaker.features.pacemaker.statistics
 import android.os.Parcel
 import android.os.Parcelable
 
-data class StatisticsView(val id : Int, val date: String, val height : Float, val weight : Float) :
+data class StatisticsView(/*val id : Int, */val date: String, val height : Float, val weight : Float) :
     Parcelable {
 
     companion object CREATOR : Parcelable.Creator<StatisticsView> {
@@ -17,11 +17,11 @@ data class StatisticsView(val id : Int, val date: String, val height : Float, va
 
     override fun describeContents() = 0
 
-    constructor(parcel : Parcel) : this(parcel.readInt(), parcel.readString()!!, parcel.readFloat(), parcel.readFloat())
+    constructor(parcel : Parcel) : this(/*parcel.readInt(),*/ parcel.readString()!!, parcel.readFloat(), parcel.readFloat())
 
     override fun writeToParcel(dest: Parcel, flags: Int) {
         with(dest){
-            writeInt(id)
+            /*writeInt(id)*/
             writeString(date)
             writeFloat(height)
             writeFloat(weight)

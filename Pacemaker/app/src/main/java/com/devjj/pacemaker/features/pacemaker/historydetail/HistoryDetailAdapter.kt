@@ -1,5 +1,6 @@
 package com.devjj.pacemaker.features.pacemaker.historydetail
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
 import android.util.Log
@@ -9,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.convertPartImgToResource
+import com.devjj.pacemaker.core.extension.gone
 import com.devjj.pacemaker.core.extension.inflate
+import com.devjj.pacemaker.core.extension.visible
 import kotlinx.android.synthetic.main.fragment_history_detail.*
 import kotlinx.android.synthetic.main.fragment_history_detail.view.*
 import kotlinx.android.synthetic.main.recyclerview_exercise_detail_item.view.*
@@ -23,7 +26,7 @@ import javax.inject.Inject
 import kotlin.properties.Delegates
 
 class HistoryDetailAdapter
-@Inject constructor(val context: Context,val setting: SettingSharedPreferences ) : RecyclerView.Adapter<HistoryDetailAdapter.ViewHolder>(){
+@Inject constructor(val context: Context, val setting: SettingSharedPreferences) : RecyclerView.Adapter<HistoryDetailAdapter.ViewHolder>(){
 
     internal var collection: List<HistoryDetailView> by Delegates.observable(emptyList()){
         _,_,_-> notifyDataSetChanged()
@@ -61,8 +64,6 @@ class HistoryDetailAdapter
                 itemView.rvExerciseItem_tv_set.setTextColor(context.getColor(R.color.black_3B4046))
                 itemView.rvExerciseItem_tv_rep.setTextColor(context.getColor(R.color.black_3B4046))
 
-
-
             }else{
                 val partImgResource = convertPartImgToResource(historyDetailView.part_img, false)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
@@ -73,7 +74,6 @@ class HistoryDetailAdapter
                 itemView.rvExerciseItem_tv_mass.setTextColor(context.getColor(R.color.white_F7FAFD))
                 itemView.rvExerciseItem_tv_set.setTextColor(context.getColor(R.color.white_F7FAFD))
                 itemView.rvExerciseItem_tv_rep.setTextColor(context.getColor(R.color.white_F7FAFD))
-
             }
 
 

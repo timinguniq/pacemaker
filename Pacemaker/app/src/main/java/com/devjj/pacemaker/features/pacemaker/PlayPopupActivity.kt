@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import android.util.Log
 import com.devjj.pacemaker.R
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupFragment
@@ -39,7 +40,7 @@ class PlayPopupActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         initAd()
-        Log.d("test", "onCreate PlayPopupActivity")
+        Dlog.d( "onCreate PlayPopupActivity")
     }
 
     // 광고 초기화 하는 함수

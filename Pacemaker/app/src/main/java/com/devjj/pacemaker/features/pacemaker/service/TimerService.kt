@@ -13,6 +13,7 @@ import android.widget.RemoteViews
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getSystemService
 import com.devjj.pacemaker.R
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.features.pacemaker.PlayPopupActivity
 import com.devjj.pacemaker.features.pacemaker.playpopup.*
 import kotlinx.android.synthetic.main.fragment_play_popup.*
@@ -45,7 +46,7 @@ class TimerService : Service() {
         private fun startPowerManager() = w1.acquire(6 * 60 * 1000L /* 6 minutes */)
 
         private fun endPowerManager() {
-            if (w1.isHeld) w1.release() else Log.d("test", "w1.isHeld false")
+            if (w1.isHeld) w1.release() else Dlog.d( "w1.isHeld false")
         }
 
         fun startService(context: Context) {
@@ -76,7 +77,7 @@ class TimerService : Service() {
 
             timer = Timer("timer", false).schedule(100, 1000) {
                 interval -= 1
-                Log.d("test", "timerStart interval : $interval")
+                Dlog.d( "timerStart interval : $interval")
                 runBlocking {
                     launch(Dispatchers.Main) {
                         activity.fPlayPopup_tv_rest_time?.text = settingFormatForTimer(interval)

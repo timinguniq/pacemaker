@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.core.content.res.ResourcesCompat
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.extension.loadColor
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupData
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupViewModel
 import kotlinx.android.synthetic.main.dialog_give_up_exercise.view.*
@@ -35,7 +36,7 @@ fun showGiveUpExerciseDialog(activity: Activity, isNightMode: Boolean, playPopup
     val dialog = builder.setView(dialogView).show()
 
     dialogView.dGiveUp_tv_confirm.setOnClickListener {
-        Log.d("test", "showGiveUpExerciseDialog confirm")
+        Dlog.d( "showGiveUpExerciseDialog confirm")
 
         playPopupData.achievement = true
         playPopupData.setDone--
@@ -46,7 +47,7 @@ fun showGiveUpExerciseDialog(activity: Activity, isNightMode: Boolean, playPopup
     }
 
     dialogView.dGiveUp_tv_cancel.setOnClickListener {
-        Log.d("test", "showGiveUpExerciseDialog cancel")
+        Dlog.d( "showGiveUpExerciseDialog cancel")
         dialog.dismiss()
     }
 }

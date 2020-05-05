@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.extension.inTransaction
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.core.platform.BaseFragment
@@ -39,7 +40,7 @@ class AdditionActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         initializeView()
-        Log.d("test", "onCreate addition")
+        Dlog.d( "onCreate addition")
     }
 
     // AdditionActivity 초기화 하는 함수

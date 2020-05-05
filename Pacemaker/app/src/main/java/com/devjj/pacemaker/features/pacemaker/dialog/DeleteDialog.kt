@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.core.content.res.ResourcesCompat
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.extension.loadColor
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.features.pacemaker.home.HomeData
 import com.devjj.pacemaker.features.pacemaker.home.HomeView
 import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
@@ -36,7 +37,7 @@ fun showDeleteDialog(activity: Activity, isNightMode: Boolean, homeViewModel: Ho
     val dialog = builder.setView(dialogView).show()
 
     dialogView.dRemove_tv_confirm.setOnClickListener {
-        Log.d("test", "showDeleteDialog confirm")
+        Dlog.d( "showDeleteDialog confirm")
         val homeData =
             HomeData(
                 homeView.id, homeView.part_img, homeView.name, homeView.mass,
@@ -51,7 +52,7 @@ fun showDeleteDialog(activity: Activity, isNightMode: Boolean, homeViewModel: Ho
     }
 
     dialogView.dRemove_tv_cancel.setOnClickListener {
-        Log.d("test", "showDeletedialog cancel")
+        Dlog.d( "showDeletedialog cancel")
         dialog.dismiss()
     }
 }

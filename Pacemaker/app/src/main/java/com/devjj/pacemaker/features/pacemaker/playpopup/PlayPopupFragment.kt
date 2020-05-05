@@ -12,6 +12,7 @@ import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.features.pacemaker.dialog.showProfileDialog
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.devjj.pacemaker.features.pacemaker.service.TimerService
@@ -50,7 +51,7 @@ class PlayPopupFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
 
-        Log.d("test", "onCreate PlayPopupFragment")
+        Dlog.d( "onCreate PlayPopupFragment")
         playPopupViewModel = viewModel(viewModelFactory){
             observe(existPlayPopupList, ::existPlayPopupList)
             observe(playPopupList, ::renderPlayPopupList)
@@ -69,7 +70,7 @@ class PlayPopupFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Log.d("test", "onViewCreated")
+        Dlog.d( "onViewCreated")
     }
 
     override fun onResume() {
@@ -195,7 +196,7 @@ class PlayPopupFragment : BaseFragment() {
 
     // 재생 목록 확인하고 창 종료하는 함수
     private fun existPlayPopupList(playPopupView: List<PlayPopupView>?){
-        Log.d("test", "existPlayPopupList")
+        Dlog.d( "existPlayPopupList")
         // 재생 목록이 없으면 화면 종료
         if(playPopupView!!.isEmpty()){
             // 팝업
@@ -212,7 +213,7 @@ class PlayPopupFragment : BaseFragment() {
     private fun renderPlayPopupList(playPopupView: List<PlayPopupView>?) {
         //existPlayPopupList(playPopupView)
 
-        Log.d("test", "renderPlayPopupList")
+        Dlog.d( "renderPlayPopupList")
 
         // 전체 포기를 위한 초기화 데이터 리스트에 추가
         for(i in playPopupView.orEmpty().indices){
@@ -243,11 +244,11 @@ class PlayPopupFragment : BaseFragment() {
             if(!achivement){
                 //popupView.setDone = currentSet
 
-                Log.d("test", "popupView setGoal ${popupView.setGoal}")
-                Log.d("test", "popupView setDone1 ${popupView.setDone}")
+                Dlog.d( "popupView setGoal ${popupView.setGoal}")
+                Dlog.d( "popupView setDone1 ${popupView.setDone}")
                 //if(popupView.setGoal > popupView.setDone) popupView.setDone++
                 if(popupView.setDone == 0) popupView.setDone++
-                Log.d("test", "popupView setDone2 ${popupView.setDone}")
+                Dlog.d( "popupView setDone2 ${popupView.setDone}")
                 currentPlayPopupData = PlayPopupData(popupView.id, popupView.part, popupView.name, popupView.mass,
                     popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval, popupView.achievement == 1)
 
@@ -255,8 +256,8 @@ class PlayPopupFragment : BaseFragment() {
                 break
             }else{
                 achivementCount++
-                Log.d("test", "achivementCount : ${achivementCount}")
-                Log.d("test", "playPopupView : ${playPopupView?.size}")
+                Dlog.d( "achivementCount : ${achivementCount}")
+                Dlog.d( "playPopupView : ${playPopupView?.size}")
 
                 val initPlayPopupData = PlayPopupData(popupView.id, popupView.part, popupView.name, popupView.mass,
                     popupView.rep, popupView.setGoal, popupView.setDone, popupView.interval,
@@ -290,7 +291,7 @@ class PlayPopupFragment : BaseFragment() {
                     var todayTotalSetGoal = 0
 
                     for(playPopupData in playPopupDataList) {
-                        Log.d("test", "id : ${playPopupData.id}, part_img : ${playPopupData.part_img}, name : ${playPopupData.name},\n"
+                        Dlog.d( "id : ${playPopupData.id}, part_img : ${playPopupData.part_img}, name : ${playPopupData.name},\n"
                                 + "mass : ${playPopupData.mass}, rep : ${playPopupData.rep}, setGoal : ${playPopupData.setGoal},\n"
                                 + "setDone : ${playPopupData.setDone}, interval : ${playPopupData.interval}, achievement : ${playPopupData.achievement}")
 
@@ -323,7 +324,7 @@ class PlayPopupFragment : BaseFragment() {
                     //
 
 
-                    Log.d("test", "totalTimer : $totalTime")
+                    Dlog.d( "totalTimer : $totalTime")
 
                     Toast.makeText(context, "totalTimer : $totalTime", Toast.LENGTH_LONG).show()
 
@@ -370,7 +371,7 @@ class PlayPopupFragment : BaseFragment() {
     // 초기 운동 화면을 셋팅하는 함수.
     private fun showInitSetting(currentPlayPopupView: PlayPopupView){
         //mode = STOP_MODE
-        Log.d("test", "showBoardSetting")
+        Dlog.d( "showBoardSetting")
         // 최대 셋 설정하는 코드
         var playPopupViewSetMax = currentPlayPopupView.setGoal
         maxSet = playPopupViewSetMax
@@ -378,8 +379,8 @@ class PlayPopupFragment : BaseFragment() {
         currentSet = playPopupViewSetDone
         //
 
-        Log.d("test", "showBoardSetting currentSet $currentSet")
-        Log.d("test", "showBoardSetting maxSet $maxSet")
+        Dlog.d( "showBoardSetting currentSet $currentSet")
+        Dlog.d( "showBoardSetting maxSet $maxSet")
 
         // progressBar 셋팅하는 코드
         isVisibleProgressBars(playPopupViewSetMax)
@@ -408,7 +409,7 @@ class PlayPopupFragment : BaseFragment() {
         val timerText = settingFormatForTimer(interval)
         fPlayPopup_tv_rest_time.text = timerText
 
-        Log.d("test", "timerFinish $timerFinish")
+        Dlog.d( "timerFinish $timerFinish")
 
         // 세트가 마지막 세트로 왔을 때 휴식 시간을 운동간 휴식시간으로 셋팅하기 위한 코드
         if(currentSet == maxSet){
@@ -437,7 +438,7 @@ class PlayPopupFragment : BaseFragment() {
                 fPlayPopup_clo_next.visible()
             }
             else -> {
-                Log.d("test", "settingForMode Method error")
+                Dlog.d( "settingForMode Method error")
             }
         }
     }
@@ -501,7 +502,7 @@ class PlayPopupFragment : BaseFragment() {
 
     // ExerciseHistroyData 추가 후 데이터 받아오는 함수
     private fun getPlayPopupStatisticsView(playPopupView: PlayPopupView?){
-        Log.d("test", "getPlayPopupStatisticsView id : ${playPopupView?.id}")
+        Dlog.d( "getPlayPopupStatisticsView id : ${playPopupView?.id}")
         if(!setting.isUpdateHeight && !setting.isUpdateWeight){
             // 둘다 false 팝업창 안 띄우기
             activity?.finish()
@@ -517,7 +518,7 @@ class PlayPopupFragment : BaseFragment() {
             1 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY,updateProfile)
             2 -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY,updateProfile)
             3 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT,updateProfile)
-            else -> Log.d("test", "getPlayPopupStatisticsView error")
+            else -> Dlog.d( "getPlayPopupStatisticsView error")
         }
 
         //activity?.finish()
@@ -531,7 +532,7 @@ class PlayPopupFragment : BaseFragment() {
             //is Failure.NetworkConnection -> renderFailure(R.string.failure_network_connection)
             //is Failure.ServerError -> renderFailure(R.string.failure_server_error)
             is PlayPopupFailure.ListNotAvailable -> renderFailure(R.string.fplaypopup_tv_list_unavailable_str)
-            else -> Log.d("PlayPopupFragment", "error")
+            else -> Dlog.d( "error")
         }
     }
 

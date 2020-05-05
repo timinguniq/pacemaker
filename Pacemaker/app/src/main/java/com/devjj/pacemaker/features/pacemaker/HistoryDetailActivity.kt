@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailFragment
 import kotlinx.android.synthetic.main.activity_history_detail.*
@@ -30,7 +31,7 @@ class HistoryDetailActivity : BaseActivity() {
     }
 
     private fun initializeView() {
-        Log.d("setting","${setting.isNightMode}")
+        Dlog.d("${setting.isNightMode}")
             when(setting.isNightMode){
                 true->{
                     window.statusBarColor = getColor(R.color.grey_444646)

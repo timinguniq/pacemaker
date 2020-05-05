@@ -3,6 +3,7 @@ package com.devjj.pacemaker.features.pacemaker.playpopup
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.interactor.UseCase
 import com.devjj.pacemaker.core.platform.BaseViewModel
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
@@ -39,10 +40,10 @@ class PlayPopupViewModel
         //date = saveDate
         //height = saveHeight
         //weight = saveWeight
-        Log.d("test", "date : ${date}, height : ${height}, weight : ${weight}")
+        Dlog.d( "date : ${date}, height : ${height}, weight : ${weight}")
 
-        Log.d("test", "achievement rate : ${100 * playPopupData.setDone / playPopupData.setGoal}")
-        Log.d("savingtest","date : ${date}, name : ${playPopupData.name}, height : ${height}, weight : ${weight}")
+        Dlog.d( "achievement rate : ${100 * playPopupData.setDone / playPopupData.setGoal}")
+        Dlog.d("date : ${date}, name : ${playPopupData.name}, height : ${height}, weight : ${weight}")
         saveExerciseHistoryData(SaveExerciseHistoryData.Params(playPopupData)) {
             it.fold(
                 ::handleFailure,
@@ -57,7 +58,7 @@ class PlayPopupViewModel
 
     // PlayPopupData를 StatisticsEntity로 변환해서 저장하는 함수.
     fun saveStatisticsData(todaySetDone: Int, todaySetGoal: Int) {
-        Log.d("test", "todaySetDone : $todaySetDone, todaySetGoal : $todaySetGoal")
+        Dlog.d( "todaySetDone : $todaySetDone, todaySetGoal : $todaySetGoal")
 
         saveStatisticsData(SaveStatisticsData.Params(todaySetDone, todaySetGoal)) {
             it.fold(
@@ -82,7 +83,7 @@ class PlayPopupViewModel
     }
 
     private fun handleTheExerciseHistoryData(playPopupData: PlayPopupData?){
-        Log.d("test", "handleTheExerciseHistoryData : ${playPopupData?.id}")
+        Dlog.d( "handleTheExerciseHistoryData : ${playPopupData?.id}")
         var tempPlayPopupData = playPopupData
         if(tempPlayPopupData==null)
             tempPlayPopupData = PlayPopupData.empty()
@@ -92,7 +93,7 @@ class PlayPopupViewModel
     }
 
     private fun handleTheStatisticsData(playPopupData: PlayPopupData?){
-        Log.d("test", "handleTheStatisticsData")
+        Dlog.d( "handleTheStatisticsData")
         var tempPlayPopupData = playPopupData
         if(tempPlayPopupData==null)
             tempPlayPopupData = PlayPopupData.empty()

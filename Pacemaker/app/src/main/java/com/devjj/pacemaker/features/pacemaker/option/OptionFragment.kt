@@ -12,6 +12,7 @@ import androidx.core.content.ContextCompat
 
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.activity_option.*
 import kotlinx.android.synthetic.main.fragment_option.*
@@ -58,7 +59,7 @@ class OptionFragment : BaseFragment() {
     private fun setColors() {
         when (setting.isNightMode) {
             true -> {
-                Log.d("color", "Dark Mode = ${setting.isNightMode}")
+                Dlog.d( "Dark Mode = ${setting.isNightMode}")
                 activity!!.window.statusBarColor = activity!!.getColor(R.color.grey_444646)
                 activity!!.aOption_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)
                 activity!!.aOption_flo_container.setBackgroundColor(activity!!.getColor(R.color.grey_444646))

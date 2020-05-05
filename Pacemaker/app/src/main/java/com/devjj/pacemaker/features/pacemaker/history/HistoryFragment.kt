@@ -13,6 +13,7 @@ import com.devjj.pacemaker.core.extension.convertDpToPx
 import com.devjj.pacemaker.core.extension.convertPxToDp
 import com.devjj.pacemaker.core.extension.observe
 import com.devjj.pacemaker.core.extension.viewModel
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.devjj.pacemaker.features.pacemaker.entities.ExerciseHistoryEntity
@@ -72,13 +73,13 @@ class HistoryFragment : BaseFragment() {
         //historyAdapter.collection = histories.orEmpty()
         when (histories) {
             null -> {
-                Log.d("calendar", "empty")
+                Dlog.d( "empty")
             }
             else ->
                 for (history in histories) {
-                    Log.d("test", "datess ${history.date}")
+                    Dlog.d( "datess ${history.date}")
                     var dates = history.date.split("-")
-                    Log.d("calendarcheck", "${dates[0]} , ${dates[1]} , ${dates[2]}")
+                    Dlog.d( "${dates[0]} , ${dates[1]} , ${dates[2]}")
                     fHistory_calendarView.setDateSelected(
                         CalendarDay.from(
                             LocalDate.of(
@@ -105,7 +106,7 @@ class HistoryFragment : BaseFragment() {
         fHistory_tv_month_sets.text = getString(R.string.unit_sets, sumOfSetsAndMass!!.sets)
       //  fHistory_tv_month_times.text = getString(R.string.unit_time_hour_min, sumOfSetsAndMass.times / 60, sumOfSetsAndMass.times % 60)
         fHistory_tv_month_kgs.text = getString(R.string.unit_mass, sumOfSetsAndMass.mass)
-       // Log.d("jayTotaltime", sumOfSetsAndMass.times.toString())
+       // Dlog.d( sumOfSetsAndMass.times.toString())
     }
 
     private fun renderTotalTimes(totalTimes: TotalTimes?){
@@ -182,11 +183,11 @@ class HistoryFragment : BaseFragment() {
         historyViewModel.loadSumOfSetsAndMass()
         historyViewModel.loadOneMonthSumOfSetsAndMass(today)
         historyViewModel.loadTotalTimes(today)
-        Log.d("jayDateCheck", today)
+        Dlog.d( today)
     }
 
     private fun setColors() {
-        Log.d("jayColor", "history fragment")
+        Dlog.d( "history fragment")
 /*
         fHistory_calendarView.tileWidth = convertPxToDp(context!!,600f).toInt()
         fHistory_calendarView.tileHeight = convertPxToDp(context!!,400f).toInt()
@@ -194,9 +195,9 @@ class HistoryFragment : BaseFragment() {
         fHistory_calendarView.tileWidth = convertDpToPx(context!!,52f).toInt()
         fHistory_calendarView.tileHeight = convertDpToPx(context!!,40f).toInt()
 
-        Log.d("test", "tile density : ${context!!.resources.displayMetrics.density}")
-        Log.d("test", "tileWidth : ${convertDpToPx(context!!, 360f)}")
-        Log.d("test", "tileHeight : ${convertDpToPx(context!!, 240f)}")
+        Dlog.d( "tile density : ${context!!.resources.displayMetrics.density}")
+        Dlog.d( "tileWidth : ${convertDpToPx(context!!, 360f)}")
+        Dlog.d( "tileHeight : ${convertDpToPx(context!!, 240f)}")
 
 
 
@@ -206,7 +207,7 @@ class HistoryFragment : BaseFragment() {
 */
         when (setting.isNightMode) {
             true -> {
-                Log.d("jayColor", "Night time mode")
+                Dlog.d( "Night time mode")
                 // activity!!.getColor(R.color.orange_F74938)
                 fHistory_calendarView.selectionColor = activity!!.getColor(R.color.orange_F74938)
                 fHistory_calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearanceNightTime)
@@ -235,7 +236,7 @@ class HistoryFragment : BaseFragment() {
                 fHistory_iv_chart.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
             }
             false -> {
-                Log.d("jayColor", "Day time mode")
+                Dlog.d( "Day time mode")
                 fHistory_calendarView.selectionColor = activity!!.getColor(R.color.orange_F74938)
 
                 fHistory_calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearanceDayTime)

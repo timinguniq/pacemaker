@@ -104,7 +104,7 @@
     <string name="template_feedback_title">페이스메이커 피드백</string>
     <string name="template_slash_str">/</string>
     <string name="template_bmi_str">BMI %d</string>
-    <string name="template_bmi_link_str">BMI란?(위키 링크)</string>
+    <string name="template_bmi_link_str"><u>BMI란?(위키 링크)</u></string>
     <string name="template_bmi_link_uri">https://ko.wikipedia.org/wiki/%EC%B2%B4%EC%A7%88%EB%9F%89_%EC%A7%80%EC%88%98</string>
 
     <string name="stimer_tv_main_str">Pacemaker 어플이 실행 중입니다.</string>

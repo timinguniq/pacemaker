@@ -14,6 +14,7 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.extension.convertPartImgToResource
 import com.devjj.pacemaker.core.extension.empty
+import com.devjj.pacemaker.core.functional.Dlog
 import kotlinx.android.synthetic.main.fragment_addition.*
 import javax.inject.Inject
 
@@ -100,7 +101,7 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
                     }
                 }
                 else -> {
-                    Log.d("addition", "fAddition_iv_save.setOnClickListener error")
+                    Dlog.d( "fAddition_iv_save.setOnClickListener error")
                 }
             }
         }
@@ -108,10 +109,10 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
         // name edit에서 엔터를 누르면 저장으로 포커스를 보내기 위한 코드
         activity.fAddition_ev_name.setOnEditorActionListener { _, actionId, _ ->
             when(actionId){
-                EditorInfo.IME_ACTION_SEARCH -> Log.d("test", "SEARCH")
+                EditorInfo.IME_ACTION_SEARCH -> Dlog.d( "SEARCH")
                 else -> {
                     // 엔터 키를 눌렀을 때 들어오는 코드
-                    Log.d("test", "else")
+                    Dlog.d( "else")
                     activity.fAddition_iv_save.isFocusableInTouchMode = true
                     activity.fAddition_iv_save.requestFocus()
                 }
@@ -123,19 +124,19 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
     // 넘버 픽커 리스너
     fun numberPickerListener() {
         activity.fAddition_np_mass.setOnValueChangedListener { picker, oldVal, newVal ->
-            Log.d("test", "mass oldVal : ${oldVal}, rep newVal : $newVal")
-            Log.d("test", "mass picker.displayedValues ${picker.displayedValues[picker.value]}")
+            Dlog.d( "mass oldVal : ${oldVal}, rep newVal : $newVal")
+            Dlog.d( "mass picker.displayedValues ${picker.displayedValues[picker.value]}")
             additionData_mass = picker.displayedValues[picker.value].toInt()
         }
 
         activity.fAddition_np_rep.setOnValueChangedListener { picker, oldVal, newVal ->
-            Log.d("test", "rep oldVal : ${oldVal}, rep newVal : $newVal")
-            Log.d("test", "rep picker.displayedValues ${picker.displayedValues[picker.value - 1]}")
+            Dlog.d( "rep oldVal : ${oldVal}, rep newVal : $newVal")
+            Dlog.d( "rep picker.displayedValues ${picker.displayedValues[picker.value - 1]}")
             additionData_rep = picker.displayedValues[picker.value - 1].toInt()
         }
         activity.fAddition_np_set.setOnValueChangedListener { picker, oldVal, newVal ->
-            Log.d("test", "set oldVal : ${oldVal}, rep newVal : $newVal")
-            Log.d("test", "set picker.displayedValues ${picker.displayedValues[picker.value - 1]}")
+            Dlog.d( "set oldVal : ${oldVal}, rep newVal : $newVal")
+            Dlog.d( "set picker.displayedValues ${picker.displayedValues[picker.value - 1]}")
             additionData_set = picker.displayedValues[picker.value - 1].toInt()
         }
     }

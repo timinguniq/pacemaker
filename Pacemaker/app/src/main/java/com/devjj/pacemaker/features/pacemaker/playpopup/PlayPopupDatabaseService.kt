@@ -34,7 +34,7 @@ class PlayPopupDatabaseService
 
     // DB에 StatisticsData를 저장하는 함수
     fun insertStatisticsData(todaySetDone: Int, todaySetGoal: Int) = dbStatistics.StatisticsDAO().insert(
-        StatisticsEntity(0, date, height, weight, totalTime, (100 * todaySetDone/todaySetGoal))
+        StatisticsEntity(/*0,*/ date, height, weight, totalTime, (100 * todaySetDone/todaySetGoal))
     )
 
 }

@@ -137,7 +137,7 @@ class HistoryFragment : BaseFragment() {
 */
 
 
-/*
+
         if (false) {
             val a = ExerciseHistoryEntity(0,"2020-03-30",0,"벤치프레스",5,10,2,2,30)
 
@@ -158,13 +158,13 @@ class HistoryFragment : BaseFragment() {
 
             val l = ExerciseHistoryEntity(0,"2020-04-15",4,"벤치프레스",30,10,6,6,30)
 
-            val A = StatisticsEntity(0,"2020-03-30",110f, 60f,10,100)
-            val B = StatisticsEntity(0,"2020-04-01",120f, 70f,20,71)
-            val C = StatisticsEntity(0,"2020-04-03",130f, 80f,30,50)
-            val D = StatisticsEntity(0,"2020-04-05",120f, 90f,40,66)
-            val E = StatisticsEntity(0,"2020-04-09",130f, 100f,50,16)
-            val F = StatisticsEntity(0,"2020-04-13",140f, 110f,60,55)
-            val G = StatisticsEntity(0,"2020-04-15",150f, 120f,70,100)
+            val A = StatisticsEntity(/*0,*/"2020-03-30",110f, 60f,10,100)
+            val B = StatisticsEntity(/*0,*/"2020-04-01",120f, 70f,20,71)
+            val C = StatisticsEntity(/*0,*/"2020-04-03",130f, 80f,30,50)
+            val D = StatisticsEntity(/*0,*/"2020-04-05",120f, 90f,40,66)
+            val E = StatisticsEntity(/*0,*/"2020-04-09",130f, 100f,50,16)
+            val F = StatisticsEntity(/*0,*/"2020-04-13",140f, 110f,60,55)
+            val G = StatisticsEntity(/*0,*/"2020-04-15",150f, 120f,70,100)
 
             Flowable.just("abc")
                 .subscribeOn(Schedulers.io())
@@ -173,7 +173,7 @@ class HistoryFragment : BaseFragment() {
                     statisticsDB.StatisticsDAO().insert(A,B,C,D,E,F,G)
                 }
         }
-        */
+
 
         @NonNull
         val today = CalendarDay.today().date.toString()
@@ -192,11 +192,12 @@ class HistoryFragment : BaseFragment() {
         fHistory_calendarView.tileHeight = convertPxToDp(context!!,400f).toInt()
 */
         fHistory_calendarView.tileWidth = convertDpToPx(context!!,52f).toInt()
-        fHistory_calendarView.tileHeight = convertDpToPx(context!!,43f).toInt()
+        fHistory_calendarView.tileHeight = convertDpToPx(context!!,40f).toInt()
 
         Log.d("test", "tile density : ${context!!.resources.displayMetrics.density}")
         Log.d("test", "tileWidth : ${convertDpToPx(context!!, 360f)}")
         Log.d("test", "tileHeight : ${convertDpToPx(context!!, 240f)}")
+
 
 
 /*
@@ -211,6 +212,8 @@ class HistoryFragment : BaseFragment() {
                 fHistory_calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearanceNightTime)
                 fHistory_calendarView.setHeaderTextAppearance(R.style.CalendarHeaderTextAppearanceNightTime)
                 fHistory_calendarView.setWeekDayTextAppearance(R.style.CalendarHeaderTextAppearanceNightTime)
+                fHistory_calendarView.leftArrow.setTint(activity!!.getColor(R.color.white_F7FAFD))
+                fHistory_calendarView.rightArrow.setTint(activity!!.getColor(R.color.white_F7FAFD))
 
                 fHistory_clo_report.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
                 fHistory_tv_report.setTextColor(activity!!.getColor(R.color.black_3B4046))
@@ -238,6 +241,8 @@ class HistoryFragment : BaseFragment() {
                 fHistory_calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearanceDayTime)
                 fHistory_calendarView.setHeaderTextAppearance(R.style.CalendarHeaderTextAppearanceDayTime)
                 fHistory_calendarView.setWeekDayTextAppearance(R.style.CalendarHeaderTextAppearanceDayTime)
+                fHistory_calendarView.leftArrow.setTint(activity!!.getColor(R.color.black_3B4046))
+                fHistory_calendarView.rightArrow.setTint(activity!!.getColor(R.color.black_3B4046))
 
                 fHistory_clo_report.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9_70))
                 fHistory_tv_report.setTextColor(activity!!.getColor(R.color.grey_87888A))

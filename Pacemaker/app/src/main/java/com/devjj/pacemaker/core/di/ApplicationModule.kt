@@ -78,6 +78,7 @@ class ApplicationModule(private val application: AndroidApplication) {
         return SettingSharedPreferences(application)
     }
 
+
     @Provides
     @Singleton
     fun provideHomeRepository(dataSource: HomeRepository.DbRepository): HomeRepository = dataSource

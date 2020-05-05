@@ -61,6 +61,8 @@
     <string name="fhistory_detail_set">%d Sets</string>
     <string name="fhistory_detail_rep">%d Reps</string>
 
+    <string name="fhistory_detail_tv_openall_str">Open every details</string>
+
     <string name="foption_tv_profile_str">Profile</string>
     <string name="foption_tv_mode_str">Night mode</string>
     <string name="foption_tv_mode_weight_str">Always update weight</string>
@@ -99,10 +101,15 @@
     <string name="fplaypopup_tv_unit_set_str">Set</string>
     <string name="fplaypopup_tv_unit_rep_str">Rep</string>
 
-    <string name="fStatistics_tv_mode_bmi_str">See BMI(25)</string>
+    <string name="fstatistics_tv_mode_bmi_str">See BMI(%d)</string>
+    <string name="fstatistics_tv_bmi_str">BMI</string>
+    <string name="fstatistics_tv_monthly_title">Draw graph monthly</string>
 
     <string name="template_feedback_title">Pacemaker Feedback</string>
     <string name="template_slash_str">/</string>
+    <string name="template_bmi_str">BMI %d</string>
+    <string name="template_bmi_link_str">What\'s BMI?(Link to wikipedia)</string>
+    <string name="template_bmi_link_uri">https://en.wikipedia.org/wiki/Body_mass_index</string>
 
     <string name="stimer_tv_main_str">PaceMarker is running.</string>
 </resources>

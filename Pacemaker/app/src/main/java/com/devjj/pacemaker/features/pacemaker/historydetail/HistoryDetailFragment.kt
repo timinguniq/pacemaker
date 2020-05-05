@@ -10,13 +10,16 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.transition.Slide
 import android.transition.Transition
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.get
 import androidx.core.view.isVisible
+import androidx.core.view.iterator
+import androidx.core.view.size
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
-import com.devjj.pacemaker.core.extension.isVisible
-import com.devjj.pacemaker.core.extension.observe
-import com.devjj.pacemaker.core.extension.viewModel
+import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import io.reactivex.Flowable
@@ -44,6 +47,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
 
 
     private lateinit var historyDetailViewModel: HistoryDetailViewModel
+    private lateinit var historyDetailListener : HistoryDetailListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,48 +85,19 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
 
     private fun initializeView() {
         val date: String = intent.getStringExtra("date")
+        fHistoryDetail_iv_drop.setImageDrawable(activity!!.getDrawable(R.drawable.fhistorydetail_img_btn_dropdown_daytime))
+        fHistoryDetail_iv_drop.tag = R.drawable.fhistorydetail_img_btn_dropdown_daytime
+
+        historyDetailListener = HistoryDetailListener(activity!!,historyDetailAdapter)
+        historyDetailListener.initListener()
+
         setColors()
+
         fHistoryDetail_circleView_rate.setTextTypeface(Typeface.DEFAULT_BOLD)
         fHistoryDetail_circleView_rate.setUnitTextTypeface(Typeface.DEFAULT_BOLD)
 
-        historyDetailAdapter.clickListener = { view, id, date ->
-            /*
-            historyDetailViewModel.switchAchievementById(id)
-            historyDetailViewModel.updateAchievementRateByDate(date)
-            historyDetailViewModel.loadHistoryDetails(date)*/
-
-           // view.rvExerciseItem_tv_name.startAnimation(anim)
-
-            /*
-            when(view.rvExerciseItem_clo_detail.visibility) {
-                GONE-> {
-                    view.rvExerciseItem_clo_detail.visibility = VISIBLE
-                }
-                VISIBLE-> {
-                    view.animation=anim
-                    view.rvExerciseItem_clo_detail.visibility = GONE
-                }
-            }
-            */
-
-            var transition :Transition = Slide(Gravity.BOTTOM)
-            transition.duration = 500
-            transition.addTarget(view.rvExerciseItem_clo_detail)
-            TransitionManager.beginDelayedTransition(view.rvExerciseItem_clo_main,transition)
-
-            when(view.rvExerciseItem_clo_detail.isVisible()){
-                true->view.rvExerciseItem_clo_detail.visibility = View.GONE
-                false->view.rvExerciseItem_clo_detail.visibility = View.VISIBLE
-            }
-
-
-
-        }
-
-
         fHistoryDetail_recyclerview.layoutManager = LinearLayoutManager(activity)
         fHistoryDetail_recyclerview.adapter = historyDetailAdapter
-
 
         historyDetailViewModel.loadHistoryDetails(date)
         historyDetailViewModel.loadStatisticsOneDay(date)
@@ -137,16 +112,22 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
         fHistoryDetail_circleView_rate.rimColor = activity!!.getColor(R.color.orange_FF765B_70)
         when(setting.isNightMode){
             true->{
-               fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_F74938))
+                fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_F74938))
                 fHistoryDetail_circleView_rate.setTextColor(activity!!.getColor(R.color.orange_F74938))
                 fHistoryDetail_tv_totalReps.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
                 fHistoryDetail_tv_totalSets.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+                fHistoryDetail_clo_openAll.setBackgroundColor(activity!!.getColor(R.color.grey_606060))
+                fHistoryDetail_tv_openAll.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+                fHistoryDetail_iv_drop.drawable.setTint(activity!!.getColor(R.color.white_F7FAFD))
             }
             false->{
                 fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_FF765B))
                 fHistoryDetail_circleView_rate.setTextColor(activity!!.getColor(R.color.orange_FF765B))
                 fHistoryDetail_tv_totalReps.setTextColor(activity!!.getColor(R.color.black_3B4046))
                 fHistoryDetail_tv_totalSets.setTextColor(activity!!.getColor(R.color.black_3B4046))
+                fHistoryDetail_clo_openAll.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9_70))
+                fHistoryDetail_tv_openAll.setTextColor(activity!!.getColor(R.color.black_3B4046))
+                fHistoryDetail_iv_drop.drawable.setTint(activity!!.getColor(R.color.black_3B4046))
             }
         }
     }

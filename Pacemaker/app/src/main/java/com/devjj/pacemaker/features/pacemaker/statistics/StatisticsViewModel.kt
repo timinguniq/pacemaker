@@ -14,13 +14,10 @@ class StatisticsViewModel
     private val getStatistics: GetStatistics
 ): BaseViewModel() {
     var statistics : MutableLiveData<List<StatisticsView>> = MutableLiveData()
- //   var statisticsPerMonth : MutableLiveData<List<StatisticsView>> = MutableLiveData()
 
     fun loadStatistics() = getStatistics(None()){ it.fold(::handleFailure , ::handleStatistics) }
 
-
     private fun handleStatistics(statistics: List<Statistics>){
-
         when(setting.isMonthly) {
             false-> {
                 this.statistics.value = statistics.map {
@@ -45,7 +42,7 @@ class StatisticsViewModel
                     perMonthList.add(StatisticsView(key.substring(2,key.length),averageHeight,averageWeight))
                 }
                 this.statistics.value = perMonthList
-                //Log.d("jayGroupBy",this.statisticsPerMonth.value.toString())
+                //Dlog.d(this.statisticsPerMonth.value.toString())
             }
         }
     }

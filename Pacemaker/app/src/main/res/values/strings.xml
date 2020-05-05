@@ -108,7 +108,7 @@
     <string name="template_feedback_title">Pacemaker Feedback</string>
     <string name="template_slash_str">/</string>
     <string name="template_bmi_str">BMI %d</string>
-    <string name="template_bmi_link_str">What\'s BMI?(Link to wikipedia)</string>
+    <string name="template_bmi_link_str"><u>What\'s BMI?(Link to wikipedia)</u></string>
     <string name="template_bmi_link_uri">https://en.wikipedia.org/wiki/Body_mass_index</string>
 
     <string name="stimer_tv_main_str">PaceMarker is running.</string>

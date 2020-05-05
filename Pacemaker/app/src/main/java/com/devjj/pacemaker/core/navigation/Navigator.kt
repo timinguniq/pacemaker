@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.features.login.Authenticator
 import com.devjj.pacemaker.features.login.LoginActivity
 import com.devjj.pacemaker.features.pacemaker.*
@@ -90,9 +91,11 @@ class Navigator
                 R.id.navigation_history -> {
                     fragmentManager.beginTransaction().replace(R.id.aPacemaker_flo_container, HistoryFragment()).commit()
                 }
-                else -> Log.d("test", "else") == 0
+                else -> Dlog.d( "else")
             }
-            Log.d("test", "final") == 0
+            //TODO: log 확인
+            Dlog.d( "final")
+            true
         }
     }
 

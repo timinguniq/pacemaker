@@ -10,6 +10,7 @@ import com.devjj.pacemaker.core.extension.gone
 import com.devjj.pacemaker.core.extension.observe
 import com.devjj.pacemaker.core.extension.viewModel
 import com.devjj.pacemaker.core.extension.visible
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -53,7 +54,7 @@ class StatisticsFragment : BaseFragment(){
             }
             else ->{
                 for( (index , stats) in statistics.withIndex() ){
-                    Log.d("jayStatistics", "id : stats.id , date : ${stats.date} , height : ${stats.height} , weight : ${stats.weight}")
+                    Dlog.d( "id : stats.id , date : ${stats.date} , height : ${stats.height} , weight : ${stats.weight}")
                     weightEntries.add(Entry(index.toFloat(),stats.weight))
                     weightOnBMIEntries.add(Entry(index.toFloat(),setting.bmi.toFloat()*(stats.height/100f)*(stats.height/100f)))
                     xAxisArray.add(stats.date)

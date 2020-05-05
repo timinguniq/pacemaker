@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.TextView
+import com.devjj.pacemaker.core.functional.Dlog
 import kotlinx.android.synthetic.main.fragment_addition.*
 import javax.inject.Inject
 
@@ -15,13 +16,13 @@ import javax.inject.Inject
 // direction 이 0이면 left, 1이면 right
 fun rotationPartId(direction: Int){
     if(additionData_part_img < 0 || additionData_part_img > 5){
-        Log.d("test", "rotationPartId error")
+        Dlog.d( "rotationPartId error")
     }
 
     when(direction){
         DIRECTION_LEFT -> additionData_part_img--
         DIRECTION_RIGHT -> additionData_part_img++
-        else -> Log.d("test", "rotationPartId when error")
+        else -> Dlog.d( "rotationPartId when error")
     }
 
     if(additionData_part_img < 0){
@@ -36,7 +37,7 @@ fun calcIntervalTime(increase: Int){
     when(increase) {
         INTERVAL_MINUS -> additionData_interval -= REST_TIME_INTERVAL
         INTERVAL_PLUS -> additionData_interval += REST_TIME_INTERVAL
-        else -> Log.d("test", "calcIntervalTime error")
+        else -> Dlog.d( "calcIntervalTime error")
     }
 
     if(additionData_interval <= REST_TIME_MINVALUE){
@@ -68,7 +69,7 @@ fun convertIntervalTimeToSec(input: String): Int{
     try {
         result = arrayString[0].toInt() * 60 + arrayString[1].toInt()
     }catch (exception: Exception){
-        Log.d("test", "convertIntervalTimeToSec error")
+        Dlog.d( "convertIntervalTimeToSec error")
     }
     return result
 }
@@ -109,7 +110,7 @@ fun setNumberPickerTextColor(numberPicker: NumberPicker, color: Int){
                     selectionDividerField.isAccessible = accessible
                     numberPicker.invalidate()
                 } catch (exception: Exception) {
-                    Log.d("test", "exception $exception")
+                    Dlog.d( "exception $exception")
                 }
             }
         }

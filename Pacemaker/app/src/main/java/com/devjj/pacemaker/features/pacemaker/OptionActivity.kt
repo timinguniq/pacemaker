@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.option.OptionFragment
 import com.google.android.gms.ads.AdRequest
@@ -29,7 +30,7 @@ class OptionActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
         initializeView()
-        Log.d("test", "onCreate OptionActivity")
+        Dlog.d( "onCreate OptionActivity")
     }
 
     // OptionActivity 초기화 하는 함수

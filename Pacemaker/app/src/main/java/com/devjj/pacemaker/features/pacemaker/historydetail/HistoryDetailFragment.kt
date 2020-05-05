@@ -20,6 +20,7 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import io.reactivex.Flowable
@@ -102,7 +103,7 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
         historyDetailViewModel.loadHistoryDetails(date)
         historyDetailViewModel.loadStatisticsOneDay(date)
         historyDetailViewModel.loadOneDaySets(date)
-        Log.d("dateee", "${date.split("-")[0]}")
+        Dlog.d( "${date.split("-")[0]}")
 
         activity!!.aHistoryDetail_tv_title.text = date
 

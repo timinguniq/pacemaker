@@ -34,7 +34,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         appComponent.inject(this)
-        Log.d("test", "onCreate SplashActivity")
+        Dlog.d( "onCreate SplashActivity")
 
         //log를 위한 코드
         val app = AndroidApplication()

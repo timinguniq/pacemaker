@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
 import com.devjj.pacemaker.features.pacemaker.dialog.showDeleteDialog
@@ -26,7 +27,7 @@ class HomeListener(val activity: Activity, val context: Context,
             navigator.showAddition(activity, additionView)}
 
         homeAdapter.longClickListener = {homeView ->
-            Log.d("test", "longClickListener")
+            Dlog.d( "longClickListener")
             showDeleteDialog(activity, isNightMode, homeViewModel, homeView)
         }
 

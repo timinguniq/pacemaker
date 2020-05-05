@@ -10,6 +10,7 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.fragment_addition.*
 import javax.inject.Inject
@@ -88,7 +89,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
                 in 10..99 -> "0$i"
                 in 100..200 -> i.toString()
                 else -> {
-                   Log.d("test", "initNumberPicker error")
+                   Dlog.d( "initNumberPicker error")
                    i.toString()
                 }
             }
@@ -213,7 +214,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
                 settingIntervalTime(fAddition_tv_interval_time)
             }
             else -> {
-                Log.d("addition", "renderExerciseData error")
+                Dlog.d( "renderExerciseData error")
             }
         }
     }
@@ -224,7 +225,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             //is Failure.NetworkConnection -> renderFailure(R.string.failure_network_connection)
             //is Failure.ServerError -> renderFailure(R.string.failure_server_error)
             is AdditionFailure.ListNotAvailable -> renderFailure(R.string.fhome_tv_list_unavailable_str)
-            else -> Log.d("AdditionFragment", "error")
+            else -> Dlog.d( "error")
         }
     }
 

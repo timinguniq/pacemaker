@@ -10,6 +10,7 @@ import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.features.pacemaker.dialog.showProfileDialog
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.devjj.pacemaker.features.pacemaker.usecases.UpdateProfile
@@ -32,7 +33,7 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         appComponent.inject(this)
-        Log.d("test", "onCreate HomeFragment")
+        Dlog.d( "onCreate HomeFragment")
 
         homeViewModel = viewModel(viewModelFactory){
             observe(homeList, ::renderHomeList)
@@ -87,7 +88,7 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
             //is Failure.NetworkConnection -> renderFailure(R.string.failure_network_connection)
             //is Failure.ServerError -> renderFailure(R.string.failure_server_error)
             is HomeFailure.ListNotAvailable -> renderFailure(R.string.fhome_tv_list_unavailable_str)
-            else -> Log.d("homeFragment", "error")
+            else -> Dlog.d( "error")
         }
     }
 

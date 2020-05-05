@@ -13,6 +13,7 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.round
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
@@ -51,7 +52,7 @@ class PacemakerActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pacemaker)
         appComponent.inject(this)
-        Log.d("test", "onCreate PacemakerActivity")
+        Dlog.d( "onCreate PacemakerActivity")
 
         // FINSIH_MAX_COUNT 셋팅
         FINISH_MAX_COUNT = (((FINSIH_MAX_COUNT_MAX_VALUE - FINSIH_MAX_COUNT_MIN_VALUE) * Math.random()) +
@@ -62,7 +63,7 @@ class PacemakerActivity : BaseActivity() {
         super.onResume()
         initializeView()
 
-        Log.d("test", "PacemakerActivity finish_max_count : $FINISH_MAX_COUNT")
+        Dlog.d( "PacemakerActivity finish_max_count : $FINISH_MAX_COUNT")
     }
 
     override fun fragment() = HomeFragment()
@@ -105,12 +106,12 @@ class PacemakerActivity : BaseActivity() {
 
     override fun onBackPressed() {
         //super.onBackPressed()
-        Log.d("test", "PacemakerActivity onBackPressed()")
+        Dlog.d( "PacemakerActivity onBackPressed()")
 
         if(System.currentTimeMillis() - backKeyTime < 2000){
-            Log.d("test", "PacemakerActivity if")
+            Dlog.d( "PacemakerActivity if")
             setting.finishCount++
-            Log.d("test", "PacemakerActivity setting.finishCount : ${setting.finishCount}")
+            Dlog.d( "PacemakerActivity setting.finishCount : ${setting.finishCount}")
             if(setting.finishCount >= FINISH_MAX_COUNT){
                 setting.finishCount = 0
                 // 전면 광고를 띄우는 메소드
@@ -148,7 +149,7 @@ class PacemakerActivity : BaseActivity() {
                 }
 
                 override fun onAdClosed() {
-                    Log.d("test", "onAdClosed")
+                    Dlog.d( "onAdClosed")
                 }
             })
         }

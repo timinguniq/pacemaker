@@ -6,6 +6,7 @@ import androidx.core.content.res.ResourcesCompat
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.features.pacemaker.usecases.UpdateProfile
 import kotlinx.android.synthetic.main.dialog_profile_input.view.*
 import javax.inject.Inject
@@ -83,6 +84,9 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
     }
     val dialog = builder.setView(dialogView).show()
 
+    // dialog 외부(밖에) 클릭시 꺼지는거 막는 코드
+    dialog.setCancelable(false)
+
     var fSaveHeight: Float
     var fSaveWeight: Float
 
@@ -111,8 +115,12 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
         }
         if(setting.height < 0 ) setting.height = 0f
         if(setting.weight < 0 ) setting.weight = 0f
-        activity.finish()
+        Dlog.d("activity.localClassName : ${activity.localClassName}")
+        val pacemakerActivityName = activity.getString(R.string.title_activity_pacemaker)
+        if(!activity.localClassName.contains(pacemakerActivityName))
+            activity.finish()
     }
+
 }
 
 

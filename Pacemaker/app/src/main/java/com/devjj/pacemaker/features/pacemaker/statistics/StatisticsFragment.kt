@@ -25,8 +25,7 @@ import javax.inject.Inject
 class StatisticsFragment : BaseFragment(){
     override fun layoutId() = R.layout.fragment_statistics
 
-    @Inject
-    lateinit var statisticsDB : StatisticsDatabase
+    @Inject lateinit var statisticsDB : StatisticsDatabase
     private lateinit var statisticsViewModel: StatisticsViewModel
     @Inject lateinit var setting: SettingSharedPreferences
 
@@ -154,9 +153,6 @@ class StatisticsFragment : BaseFragment(){
                 fStatistics_linechart.xAxis.textColor = activity!!.getColor(R.color.white_F7FAFD)
                 fStatistics_linechart.legend.textColor = activity!!.getColor(R.color.white_F7FAFD)
                 fStatistics_linechart.axisLeft.textColor = activity!!.getColor(R.color.white_F7FAFD)
-
-
-
             }
             false ->{
                 fStatistics_swc_mode_bmi.thumbDrawable.setTint(activity!!.getColor(R.color.blue_5F87D6))
@@ -179,8 +175,6 @@ class StatisticsFragment : BaseFragment(){
                 fStatistics_linechart.rendererLeftYAxis.paintAxisLabels.color = activity!!.getColor(R.color.black_3B4046)
                 fStatistics_linechart.legend.textColor = activity!!.getColor(R.color.black_3B4046)
                 fStatistics_linechart.axisLeft.textColor = activity!!.getColor(R.color.black_3B4046)
-
-
             }
         }
     }

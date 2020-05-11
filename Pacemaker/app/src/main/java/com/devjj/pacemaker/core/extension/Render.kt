@@ -42,4 +42,4 @@ fun convertDpToPx(context: Context, dp: Float): Float {
 }
 
 // color resource 불러오기
-fun loadColor(activity: Activity, resource: Int) = ResourcesCompat.getColor(activity.resources, resource, null)
+fun loadColor(context: Context, resource: Int) = ResourcesCompat.getColor(context.resources, resource, null)

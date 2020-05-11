@@ -25,8 +25,7 @@ class StatisticsActivity : BaseActivity(){
     override var fragmentId = R.id.aStatistics_flo_container
     override fun fragment() = StatisticsFragment()
 
-    @Inject
-    lateinit var navigator: Navigator
+    @Inject lateinit var navigator: Navigator
     @Inject lateinit var setting: SettingSharedPreferences
     @Inject lateinit var statisticsDB : StatisticsDatabase
 
@@ -42,7 +41,6 @@ class StatisticsActivity : BaseActivity(){
     }
 
     private fun initializeView() {
-
         if(setting.isNightMode){
             window.statusBarColor = getColor(R.color.grey_444646)
             aStatistics_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)

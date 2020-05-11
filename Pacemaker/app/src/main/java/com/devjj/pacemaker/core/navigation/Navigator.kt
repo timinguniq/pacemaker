@@ -58,7 +58,6 @@ class Navigator
 
     fun showStatistics(context : Context) = context.startActivity(StatisticsActivity.callingIntent(context))
 
-
     fun showHistoryDetail(context : Context, date : String) = context.startActivity(HistoryDetailActivity.callingIntent(context,date))
 
     fun showPlayPopup(context: Context) : Boolean{
@@ -93,9 +92,8 @@ class Navigator
                 }
                 else -> Dlog.d( "else")
             }
-            //TODO: log 확인
             Dlog.d( "final")
-            true
+            it.isChecked
         }
     }
 

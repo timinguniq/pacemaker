@@ -44,8 +44,6 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
             playPopupFragment.settingForMode()
 
-            //playPopupFragment.showSet()
-
             // margin
             playPopupFragment.marginPartImg(0)
             //
@@ -55,13 +53,11 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
             // 타이머 시작
             TimerService.timerStart(activity)
-
         }
 
         // Next 버튼 눌렀을 떄. 이벤트 함수
         activity.fPlayPopup_flo_next.setOnClickListener{
             mode = STOP_MODE
-            //timer.cancel()
             TimerService.timerStop()
 
             val handler = Handler(Looper.getMainLooper())
@@ -90,6 +86,4 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
             showGiveUpAllExerciseDialog(activity, isNightMode, playPopupViewModel, allPlayPopupDataList)
         }
     }
-
-
 }

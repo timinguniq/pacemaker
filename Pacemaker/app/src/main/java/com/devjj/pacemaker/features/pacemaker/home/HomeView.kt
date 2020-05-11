@@ -11,11 +11,6 @@ import android.os.Parcelable
 // interval는 운동간 휴식시간 단위는 초 ex) 40
 data class HomeView(val id: Int, val part_img: Int, val name: String, val mass: Int, val rep: Int, val set: Int, val interval: Int) :
     Parcelable {
-    /*
-    companion object{
-        @JvmField val CREATOR = parcelableCreator(::HomeView)
-    }
-    */
 
     companion object CREATOR : Parcelable.Creator<HomeView> {
         override fun createFromParcel(parcel: Parcel): HomeView {

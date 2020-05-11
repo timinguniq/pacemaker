@@ -78,7 +78,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="2dp"/>
+            android:layout_marginBottom="2dp" />
         <!--
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/fOption_clo_weight"
@@ -413,7 +413,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="2dp"/>
+            android:layout_marginBottom="2dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fOption_clo_option_weight"

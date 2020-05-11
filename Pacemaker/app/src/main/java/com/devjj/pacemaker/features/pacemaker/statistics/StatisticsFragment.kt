@@ -196,9 +196,9 @@ class StatisticsFragment : BaseFragment(){
                 fStatistics_linechart.legend.textColor = activity!!.getColor(R.color.black_3B4046)
                 fStatistics_linechart.axisLeft.textColor = activity!!.getColor(R.color.black_3B4046)
 
-                fStatistics_clo_line_01.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9_70))
-                fStatistics_clo_line_02.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
-                fStatistics_clo_line_03.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
+                fStatistics_clo_line_01.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9))
+                fStatistics_clo_line_02.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9))
+                fStatistics_clo_line_03.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9))
             }
         }
     }

@@ -41,7 +41,7 @@ class OptionFragment : BaseFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        Toast.makeText(activity, "저장됨", Toast.LENGTH_SHORT).show()
+        Toast.makeText(activity, getString(R.string.foption_toast_saved), Toast.LENGTH_SHORT).show()
     }
 
     private fun initializeView() {

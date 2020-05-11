@@ -72,6 +72,7 @@
     <string name="foption_tv_rateUs_str">Rate us</string>
     <string name="foption_tv_feedback_str">Feedback</string>
     <string name="foption_tv_share_str">Share</string>
+    <string name="foption_toast_saved">Option Saved</string>
 
     <string name="fhistory_tv_profile_str">Profile</string>
     <string name="fhistory_tv_report_str">Report</string>

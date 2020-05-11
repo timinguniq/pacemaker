@@ -27,8 +27,7 @@ import javax.inject.Inject
 class StatisticsFragment : BaseFragment(){
     override fun layoutId() = R.layout.fragment_statistics
 
-    @Inject
-    lateinit var statisticsDB : StatisticsDatabase
+    @Inject lateinit var statisticsDB : StatisticsDatabase
     private lateinit var statisticsViewModel: StatisticsViewModel
     @Inject lateinit var setting: SettingSharedPreferences
 
@@ -169,7 +168,6 @@ class StatisticsFragment : BaseFragment(){
                 fStatistics_clo_line_01.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
                 fStatistics_clo_line_02.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
                 fStatistics_clo_line_03.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
-
             }
             false ->{
                 fStatistics_clo_option.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9))
@@ -202,6 +200,4 @@ class StatisticsFragment : BaseFragment(){
             }
         }
     }
-
-
 }

@@ -1,13 +1,9 @@
 package com.devjj.pacemaker.features.pacemaker.playpopup
 
-import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.interactor.UseCase
 import com.devjj.pacemaker.core.platform.BaseViewModel
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
 import com.devjj.pacemaker.features.pacemaker.usecases.*
 import javax.inject.Inject
 
@@ -37,13 +33,6 @@ class PlayPopupViewModel
 
     // PlayPopupData를 ExerciseEntity로 변환해서 저장하는 함수.
     fun saveExerciseHistoryData(playPopupData: PlayPopupData) {
-        //date = saveDate
-        //height = saveHeight
-        //weight = saveWeight
-        Dlog.d( "date : ${date}, height : ${height}, weight : ${weight}")
-
-        Dlog.d( "achievement rate : ${100 * playPopupData.setDone / playPopupData.setGoal}")
-        Dlog.d("date : ${date}, name : ${playPopupData.name}, height : ${height}, weight : ${weight}")
         saveExerciseHistoryData(SaveExerciseHistoryData.Params(playPopupData)) {
             it.fold(
                 ::handleFailure,
@@ -55,6 +44,12 @@ class PlayPopupViewModel
     fun deleteExerciseHistoryData() =
         deleteExerciseHistoryData(UseCase.None()) {it.fold(::handleFailure,::handleTheExerciseHistoryData)}
 
+    private fun handleExistPlayPopupData(playPopupData: List<PlayPopupData>){
+        this.existPlayPopupList.value = playPopupData.map{
+            PlayPopupView(it.id, it.part_img, it.name, it.mass, it.rep, it.setGoal, it.setDone, it.interval,
+                if(it.achievement) 1 else 0)
+        }
+    }
 
     // PlayPopupData를 StatisticsEntity로 변환해서 저장하는 함수.
     fun saveStatisticsData(todaySetDone: Int, todaySetGoal: Int) {
@@ -68,13 +63,6 @@ class PlayPopupViewModel
         }
     }
 
-    private fun handleExistPlayPopupData(playPopupData: List<PlayPopupData>){
-        this.existPlayPopupList.value = playPopupData.map{
-            PlayPopupView(it.id, it.part_img, it.name, it.mass, it.rep, it.setGoal, it.setDone, it.interval,
-                if(it.achievement) 1 else 0)
-        }
-    }
-
     private fun handlePlayPopupData(playPopupData: List<PlayPopupData>){
         this.playPopupList.value = playPopupData.map{
             PlayPopupView(it.id, it.part_img, it.name, it.mass, it.rep, it.setGoal, it.setDone, it.interval,
@@ -84,9 +72,7 @@ class PlayPopupViewModel
 
     private fun handleTheExerciseHistoryData(playPopupData: PlayPopupData?){
         Dlog.d( "handleTheExerciseHistoryData : ${playPopupData?.id}")
-        var tempPlayPopupData = playPopupData
-        if(tempPlayPopupData==null)
-            tempPlayPopupData = PlayPopupData.empty()
+        var tempPlayPopupData = playPopupData ?: PlayPopupData.empty()
         this.playPopupData.value = PlayPopupView(tempPlayPopupData.id, tempPlayPopupData.part_img, tempPlayPopupData.name,
             tempPlayPopupData.mass, tempPlayPopupData.rep, tempPlayPopupData.setGoal, tempPlayPopupData.setDone,
             tempPlayPopupData.interval, if(tempPlayPopupData.achievement) 1 else 0)
@@ -94,14 +80,13 @@ class PlayPopupViewModel
 
     private fun handleTheStatisticsData(playPopupData: PlayPopupData?){
         Dlog.d( "handleTheStatisticsData")
-        var tempPlayPopupData = playPopupData
-        if(tempPlayPopupData==null)
-            tempPlayPopupData = PlayPopupData.empty()
+        var tempPlayPopupData = playPopupData ?: PlayPopupData.empty()
         this.playPopupStatisticsData.value = PlayPopupView(tempPlayPopupData.id, tempPlayPopupData.part_img, tempPlayPopupData.name,
             tempPlayPopupData.mass, tempPlayPopupData.rep, tempPlayPopupData.setGoal, tempPlayPopupData.setDone,
             tempPlayPopupData.interval, if(tempPlayPopupData.achievement) 1 else 0)
     }
 
+    // TODO: 재영이가 만들었으면 지우기
     // 키, 몸무게 regex
     // 출력이 true이면 통과(정상 범위)
     fun regexHeightAndWeight(height: Float, weight: Float) : Boolean{

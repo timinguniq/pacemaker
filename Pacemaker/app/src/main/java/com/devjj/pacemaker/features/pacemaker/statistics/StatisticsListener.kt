@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.fragment_statistics.*
 class StatisticsListener (val activity: Activity, val setting : SettingSharedPreferences,val statisticsViewModel :StatisticsViewModel){
     val MAX_BMI = 50
     val MIN_BMI = 0
+
     fun initListener(){
 
         activity.fStatistics_swc_monthly.setOnCheckedChangeListener{ buttonView, isChecked ->

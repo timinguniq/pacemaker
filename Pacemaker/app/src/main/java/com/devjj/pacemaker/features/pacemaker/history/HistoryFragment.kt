@@ -137,8 +137,6 @@ class HistoryFragment : BaseFragment() {
         }
 */
 
-
-
         if (false) {
             val a = ExerciseHistoryEntity(0,"2020-03-30",0,"벤치프레스",5,10,2,2,30)
 
@@ -188,10 +186,7 @@ class HistoryFragment : BaseFragment() {
 
     private fun setColors() {
         Dlog.d( "history fragment")
-/*
-        fHistory_calendarView.tileWidth = convertPxToDp(context!!,600f).toInt()
-        fHistory_calendarView.tileHeight = convertPxToDp(context!!,400f).toInt()
-*/
+
         fHistory_calendarView.tileWidth = convertDpToPx(context!!,52f).toInt()
         fHistory_calendarView.tileHeight = convertDpToPx(context!!,40f).toInt()
 
@@ -199,12 +194,11 @@ class HistoryFragment : BaseFragment() {
         Dlog.d( "tileWidth : ${convertDpToPx(context!!, 360f)}")
         Dlog.d( "tileHeight : ${convertDpToPx(context!!, 240f)}")
 
-
-
 /*
         fHistory_txv_sets.text = getString(R.string.unit_sets, 10)
         fHistory_txv_times.text = getString(R.string.unit_time_hour_min, 10, 10)
 */
+
         when (setting.isNightMode) {
             true -> {
                 Dlog.d( "Night time mode")

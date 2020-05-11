@@ -34,6 +34,7 @@
     <string name="faddition_tv_set_hint_str">운동 세트 수를 입력하세요</string>
     <string name="faddition_tv_interval_str">휴식</string>
     <string name="faddition_tv_interval_hint_str">운동간 휴식 시간을 입력하세요</string>
+    <string name="faddition_tv_exercise_name_str">운동 이름을 입력해주세요</string>
 
     <string name="dremove_tv_main_str">이 운동을 지우시겠습니까?</string>
     <string name="dremove_tv_confirm_str">확인</string>
@@ -52,9 +53,7 @@
     <string name="dgiveup_tv_cancel_str">취소</string>
     <string name="dgiveupAll_tv_give_up">모든 운동을 포기하시겠습니까?</string>
 
-    <!-- TODO 나중에 수정 요망 -->
     <string name="apacemaker_tv_terminate_str">뒤로가기를 한번 더 누르면 종료됩니다.</string>
-    <!--                    -->
 
     <string name="fhistory_detail_set">%d 세트</string>
     <string name="fhistory_detail_rep">%d 회</string>
@@ -109,6 +108,7 @@
     <string name="template_bmi_link_uri">https://ko.wikipedia.org/wiki/%EC%B2%B4%EC%A7%88%EB%9F%89_%EC%A7%80%EC%88%98</string>
 
     <string name="stimer_tv_main_str">Pacemaker 어플이 실행 중입니다.</string>
+    <string name="stimer_tv_tag_str">timerservice:wakelock</string>
 
     <string name="fhistory_comment_prefix_month">이번달에는&#160;</string>
     <string name="fhistory_comment_prefix_total">지금까지&#160;</string>
@@ -128,4 +128,5 @@
     <string name="fhistory_10000">퀸 엘리자베스II호의 닻을</string>
     <string name="fhistory_20000">F-15 이글 한 기를</string>
     <string name="fhistory_50000">흰긴수염고래 한 마리를</string>
+  
 </resources>

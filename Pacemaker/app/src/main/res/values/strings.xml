@@ -35,6 +35,7 @@
     <string name="faddition_tv_set_hint_str">Insert Sets</string>
     <string name="faddition_tv_interval_str">Rest</string>
     <string name="faddition_tv_interval_hint_str">Insert interval between exercise</string>
+    <string name="faddition_tv_exercise_name_str">Please insert the name of exercise</string>
 
     <string name="dremove_tv_main_str">Delete this one?</string>
     <string name="dremove_tv_confirm_str">Yes</string>
@@ -54,9 +55,7 @@
 
     <string name="dgiveupAll_tv_give_up">Give up the whole session?</string>
 
-    <!-- TODO 나중에 수정 요망 -->
     <string name="apacemaker_tv_terminate_str">Press back key again to terminate Pacemaker</string>
-    <!--                    -->
 
     <string name="fhistory_detail_set">%d Sets</string>
     <string name="fhistory_detail_rep">%d Reps</string>
@@ -113,7 +112,8 @@
     <string name="template_bmi_link_uri">https://en.wikipedia.org/wiki/Body_mass_index</string>
 
     <string name="stimer_tv_main_str">PaceMarker is running.</string>
-
+    <string name="stimer_tv_tag_str">timerservice:wakelock</string>
+  
     <string name="fhistory_comment_prefix_month">You\'ve lifted&#160;</string>
     <string name="fhistory_comment_prefix_total">You\'ve lifted&#160;</string>
     <string name="fhistory_comment_suffix_month">&#160;so far during the month</string>
@@ -131,6 +131,5 @@
     <string name="fhistory_10000">an Anchor of Queen Elizabeth 2</string>
     <string name="fhistory_20000">a F-15 eagle</string>
     <string name="fhistory_50000">a Blue whale</string>
-
 
 </resources>

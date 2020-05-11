@@ -20,7 +20,6 @@ class PlayPopupDatabaseService
     )
 
     // DB에 ExerciseHistroyData를 추가하는 함수.
-
     //TODO: 저장하는 데이터 수정 2020-04-30
     fun insertExerciseHistoryData(playPopupData: PlayPopupData) = dbHistroy.ExerciseHistoryDAO().insert(
         ExerciseHistoryEntity(0, date, playPopupData.part_img, playPopupData.name, playPopupData.mass,

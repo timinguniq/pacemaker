@@ -102,7 +102,6 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
         fSaveHeight = fSaveHeight.round(1)
         fSaveWeight = fSaveWeight.round(1)
 
-
         setting.height = fSaveHeight
         setting.weight = fSaveWeight
 

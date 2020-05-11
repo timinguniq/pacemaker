@@ -79,9 +79,8 @@ class PacemakerActivity : BaseActivity() {
             navigator.showOption(this)
         }
 
-        // TODO : 여기서부터 그거 함수로 extension에 빼면 됨.
         if(!setting.isNightMode){
-            // TODO : 여기로 들어오면 다크모드가 아니다.
+            // 화이트 모드
             window.statusBarColor = getColor(R.color.blue_5F87D6)
             aPacemaker_clo_title.setBackgroundResource(R.drawable.img_title_background_daytime)
             aPacemaker_flo_container.setBackgroundColor(getColor(R.color.white_FFFFFF))
@@ -89,7 +88,7 @@ class PacemakerActivity : BaseActivity() {
             aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_bottom_icon_bg_color_daytime
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_wm_bottom_icon_color,null)
         }else{
-            // TODO : 여기로 들어오면 다크모드
+            // 다크 모드
             window.statusBarColor = getColor(R.color.grey_444646)
             aPacemaker_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)
             aPacemaker_flo_container.setBackgroundColor(getColor(R.color.grey_606060))
@@ -155,12 +154,6 @@ class PacemakerActivity : BaseActivity() {
         }
 
         mInterstitialAd.loadAd(AdRequest.Builder().build())
-/*
-        Handler().post{
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            }
-        }
-        */
+
     }
 }

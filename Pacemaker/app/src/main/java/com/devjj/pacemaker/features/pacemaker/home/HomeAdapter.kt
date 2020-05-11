@@ -9,6 +9,7 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.convertPartImgToResource
 import com.devjj.pacemaker.core.extension.inflate
+import com.devjj.pacemaker.core.extension.loadColor
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
 import kotlinx.android.synthetic.main.recyclerview_exercise_item.view.*
 import javax.inject.Inject
@@ -46,21 +47,21 @@ class HomeAdapter
                 // 화이트 모드
                 val partImgResource = convertPartImgToResource(homeView.part_img, false)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-                itemView.rvExerciseItem_clo_main.setBackgroundColor(Color.argb(255, 248, 248, 248))
-                itemView.rvExerciseItem_tv_name.setTextColor(Color.argb(255, 59, 64, 70))
-                itemView.rvExerciseItem_tv_mass.setTextColor(Color.argb(255, 136, 137, 138))
-                itemView.rvExerciseItem_tv_slash.setTextColor(Color.argb(255, 136, 137, 138))
-                itemView.rvExerciseItem_tv_set.setTextColor(Color.argb(255, 136, 137, 138))
-
+                itemView.rvExerciseItem_clo_main.setBackgroundColor(loadColor(context, R.color.grey_F9F9F9))
+                itemView.rvExerciseItem_tv_name.setTextColor(loadColor(context, R.color.black_3B4046))
+                itemView.rvExerciseItem_tv_mass.setTextColor(loadColor(context, R.color.grey_88898A))
+                itemView.rvExerciseItem_tv_slash.setTextColor(loadColor(context, R.color.grey_88898A))
+                itemView.rvExerciseItem_tv_set.setTextColor(loadColor(context, R.color.grey_88898A))
             }else{
                 // 다크 모드
                 val partImgResource = convertPartImgToResource(homeView.part_img, true)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-                itemView.rvExerciseItem_clo_main.setBackgroundColor(Color.argb(255, 136, 137, 138))
-                itemView.rvExerciseItem_tv_name.setTextColor(Color.argb(255, 247, 250, 253))
-                itemView.rvExerciseItem_tv_mass.setTextColor(Color.argb(255, 68, 70, 71))
-                itemView.rvExerciseItem_tv_slash.setTextColor(Color.argb(255, 68, 70, 71))
-                itemView.rvExerciseItem_tv_set.setTextColor(Color.argb(255, 68, 70, 71))
+                itemView.rvExerciseItem_clo_main.setBackgroundColor(loadColor(context, R.color.grey_F9F9F9))
+                itemView.rvExerciseItem_tv_name.setTextColor(loadColor(context, R.color.white_F7FAFD))
+                itemView.rvExerciseItem_tv_mass.setTextColor(loadColor(context, R.color.grey_444646))
+                itemView.rvExerciseItem_tv_slash.setTextColor(loadColor(context, R.color.grey_444646))
+                itemView.rvExerciseItem_tv_set.setTextColor(loadColor(context, R.color.grey_444646))
+
             }
 
             // 메인 레이아웃 클릭 시 이벤트 함수.

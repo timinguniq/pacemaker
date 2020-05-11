@@ -37,6 +37,15 @@ class TimerService : Service() {
     }
 
     companion object {
+        // 타이머 처음 지연 시간(0.1초)
+        private val timerStartDelay: Long = 100
+        // 타이머 간격시간 (1초)
+        private val timerInterval: Long = 1000
+        // 타이머 이름
+        private val timerName = "countTimer"
+        // 진동 지속 시간
+        private val vibPeriod: Long = 1300
+
         private lateinit var vib: Vibrator
 
         private lateinit var pm: PowerManager
@@ -54,9 +63,10 @@ class TimerService : Service() {
             context.startService(startIntent)
             vib = context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
             pm = context.getSystemService(Context.POWER_SERVICE) as PowerManager
+            val wakeLockTag = context.getString(R.string.stimer_tv_tag_str)
             w1 = pm.newWakeLock(
                 PowerManager.PARTIAL_WAKE_LOCK,
-                "timerservice:wakelock"
+                wakeLockTag
             ) as PowerManager.WakeLock
         }
 
@@ -65,7 +75,7 @@ class TimerService : Service() {
             context.stopService(stopIntent)
         }
 
-        private var timer = Timer("timer", false).schedule(100, 1000) {}
+        private var timer = Timer(timerName, false).schedule(timerStartDelay, timerInterval) {}
 
         // timer가 진행중인지 나타내는 변수
         private var isTimerProgress: Boolean = false
@@ -75,7 +85,7 @@ class TimerService : Service() {
             startPowerManager()
             timer.cancel()
 
-            timer = Timer("timer", false).schedule(100, 1000) {
+            timer = Timer(timerName, false).schedule(timerStartDelay, timerInterval) {
                 interval -= 1
                 Dlog.d( "timerStart interval : $interval")
                 runBlocking {
@@ -90,18 +100,17 @@ class TimerService : Service() {
                     timer.cancel()
                     isTimerProgress = false
                     endPowerManager()
-                    //mode = STOP_MODE
-                    // TODO : 진동이나 소리로 알려줘야 될 것 같다.
+
                     timerFinish = true
-                    //
+                    // 진동하는 코드
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                         val audioAttributes = AudioAttributes.Builder().build()
                         vib.vibrate(
-                            VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE),
+                            VibrationEffect.createOneShot(vibPeriod, VibrationEffect.DEFAULT_AMPLITUDE),
                             audioAttributes
                         )
                     } else {
-                        vib.vibrate(500)
+                        vib.vibrate(vibPeriod)
                     }
                     //
                 }
@@ -116,7 +125,6 @@ class TimerService : Service() {
         fun timerStop() {
             timer.cancel()
             isTimerProgress = false
-            //timerFinish = true
             mode = STOP_MODE
             endPowerManager()
         }
@@ -184,7 +192,7 @@ class TimerService : Service() {
                 .setContentIntent(contentIntent)  // pendingIntent 클릭시 화면 전환을 위해
                 .build()
         } else {
-            //TODO("VERSION.SDK_INT < O")
+            // TODO("VERSION.SDK_INT < O")
             Notification.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)  // 아이콘 셋팅
                 .setContent(view)                 // 레이아웃 셋팅

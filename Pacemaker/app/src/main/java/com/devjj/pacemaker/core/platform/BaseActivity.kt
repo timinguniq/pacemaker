@@ -1,5 +1,6 @@
 package com.devjj.pacemaker.core.platform
 
+import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -23,11 +24,13 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract var layout: Int
     abstract var fragmentId: Int
 
+    @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         // 세로 화면으로 고정하는 코드
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        //
 
         setContentView(layout)
 

@@ -36,8 +36,8 @@ class StatisticsViewModel
                         averageHeight += item.height
                         averageWeight += item.weight
                     }
-                    averageHeight /= list.size
-                    averageWeight /= list.size
+                    averageHeight /= list.size.toFloat()
+                    averageWeight /= list.size.toFloat()
 
                     perMonthList.add(StatisticsView(key.substring(2,key.length),averageHeight,averageWeight))
                 }

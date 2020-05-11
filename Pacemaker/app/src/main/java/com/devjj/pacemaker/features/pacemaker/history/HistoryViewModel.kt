@@ -18,6 +18,7 @@ class HistoryViewModel
     var setsAndMassOneMonth : MutableLiveData<SumOfSetsAndMass> = MutableLiveData()
     var totalTimes : MutableLiveData<TotalTimes> = MutableLiveData()
 
+
     fun loadHistories() =
         getExerciseHistories(None()) { it.fold(::handleFailure, ::handleHistoryList) }
     fun loadSumOfSetsAndMass() = getSumOfSetsAndMass(None()) { it.fold(::handleFailure, ::handleSetsAndMass) }

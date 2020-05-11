@@ -24,22 +24,48 @@
                 android:id="@+id/fStatistics_linechart"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintBottom_toTopOf="@+id/fStatistics_clo_bmi"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/fStatistics_clo_option"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fStatistics_clo_option"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/grey_F9F9F9"
+                app:layout_constraintBottom_toTopOf="@id/fStatistics_clo_monthly"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fStatistics_linechart">
+
+                <TextView
+                    android:id="@+id/fStatistics_tv_option"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:text="@string/foption_tv_option_str"
+                    android:textColor="@color/grey_87888A"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/fStatistics_clo_monthly"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
-                app:layout_constraintBottom_toTopOf="@id/fStatistics_clo_bmi"
+                app:layout_constraintBottom_toTopOf="@id/fStatistics_clo_line_01"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fStatistics_linechart">
+                app:layout_constraintTop_toBottomOf="@+id/fStatistics_clo_option">
 
                 <TextView
                     android:id="@+id/fStatistics_tv_monthly_title"
@@ -69,16 +95,28 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fStatistics_clo_line_01"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@id/fStatistics_clo_bmi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fStatistics_clo_monthly" />
             <!-- 여기까지 -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/fStatistics_clo_bmi"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintBottom_toTopOf="@id/fStatistics_clo_bmi_change"
+                android:layout_height="40dp"
+                app:layout_constraintBottom_toTopOf="@id/fStatistics_clo_line_02"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/fStatistics_clo_monthly">
+                app:layout_constraintTop_toBottomOf="@+id/fStatistics_clo_line_01">
 
                 <TextView
                     android:id="@+id/fStatistics_tv_mode_bmi"
@@ -110,14 +148,26 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fStatistics_clo_line_02"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@id/fStatistics_clo_bmi_change"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fStatistics_clo_bmi" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/fStatistics_clo_bmi_change"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginTop="5dp"
-                app:layout_constraintBottom_toTopOf="@id/fStatistics_tv_bmi_link"
+                app:layout_constraintBottom_toTopOf="@id/fStatistics_clo_line_03"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fStatistics_clo_bmi">
+                app:layout_constraintTop_toBottomOf="@id/fStatistics_clo_line_02">
 
                 <TextView
                     android:id="@+id/fStatistics_tv_bmi_title"
@@ -200,21 +250,42 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/fStatistics_tv_bmi_link"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fStatistics_clo_line_03"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@id/fStatistics_clo_bmi_link"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fStatistics_clo_bmi_change" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fStatistics_clo_bmi_link"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_marginStart="18dp"
-                android:layout_marginTop="15dp"
-                android:text="@string/template_bmi_link_str"
-                android:textColor="@color/blue_5C83CF_70"
-                android:textSize="18sp"
-                android:textStyle="bold|italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/fStatistics_clo_bmi_change" />
+                app:layout_constraintTop_toBottomOf="@id/fStatistics_clo_line_03">
+
+                <TextView
+                    android:id="@+id/fStatistics_tv_bmi_link"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/template_bmi_link_str"
+                    android:textColor="@color/blue_5C83CF_70"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

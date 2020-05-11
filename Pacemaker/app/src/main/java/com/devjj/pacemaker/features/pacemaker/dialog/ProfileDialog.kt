@@ -110,11 +110,11 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
     }
 
     dialog.setOnDismissListener {
-        if(setting.height >=0 && setting.weight >= 0){
-            updateProfile(UpdateProfile.Params(date,setting.height,setting.weight))
-        }
         if(setting.height < 0 ) setting.height = 0f
         if(setting.weight < 0 ) setting.weight = 0f
+
+        updateProfile(UpdateProfile.Params(date,setting.height,setting.weight))
+        Dlog.d("${setting.height},  ${setting.weight}")
         Dlog.d("activity.localClassName : ${activity.localClassName}")
         val pacemakerActivityName = activity.getString(R.string.title_activity_pacemaker)
         if(!activity.localClassName.contains(pacemakerActivityName))

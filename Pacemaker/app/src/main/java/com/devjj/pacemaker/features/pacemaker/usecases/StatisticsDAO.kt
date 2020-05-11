@@ -14,7 +14,7 @@ interface StatisticsDAO {
     @Query("SELECT * FROM statistics")
     fun getAll() : List<StatisticsEntity>
 
-    @Query("UPDATE statistics SET height = :height and weight = :weight where date = :date")
+    @Query("UPDATE statistics SET height = :height , weight = :weight WHERE date = :date")
     fun updateProfile(date : String, height : Float,weight : Float)
 
     @Insert(onConflict = REPLACE)

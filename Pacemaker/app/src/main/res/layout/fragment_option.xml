@@ -70,6 +70,15 @@
                 app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_title"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_line_01"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"/>
         <!--
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/fOption_clo_weight"
@@ -385,7 +394,7 @@
 
             <Switch
                 android:id="@+id/fOption_swc_mode_height"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
                 android:shadowColor="@color/blue_5C83CF_70"
@@ -396,6 +405,15 @@
                 app:layout_constraintStart_toEndOf="@+id/fOption_tv_mode_height"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_line_02"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/fOption_clo_option_weight"
@@ -418,7 +436,7 @@
 
             <Switch
                 android:id="@+id/fOption_swc_mode_weight"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="18dp"
                 android:shadowColor="@color/blue_5C83CF_70"
@@ -475,6 +493,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_line_03"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="40dp">
 
@@ -493,6 +520,15 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fOption_clo_line_04"
+            android:layout_width="wrap_content"
+            android:layout_height="3dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

@@ -91,6 +91,11 @@ class OptionFragment : BaseFragment() {
                 fOption_tv_share.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
                 fOption_tv_mode_weight.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
                 fOption_tv_mode_height.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
+
+                fOption_clo_line_01.setBackgroundColor(activity!!.getColor(R.color.grey_606060))
+                fOption_clo_line_02.setBackgroundColor(activity!!.getColor(R.color.grey_606060))
+                fOption_clo_line_03.setBackgroundColor(activity!!.getColor(R.color.grey_606060))
+                fOption_clo_line_04.setBackgroundColor(activity!!.getColor(R.color.grey_606060))
             }
             false -> {
                 activity!!.window.statusBarColor = activity!!.getColor(R.color.blue_5C83CF)
@@ -123,6 +128,11 @@ class OptionFragment : BaseFragment() {
                 fOption_tv_share.setTextColor(activity!!.getColor(R.color.black_3B4046))
                 fOption_tv_mode_weight.setTextColor(activity!!.getColor(R.color.black_3B4046))
                 fOption_tv_mode_height.setTextColor(activity!!.getColor(R.color.black_3B4046))
+
+                fOption_clo_line_01.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9))
+                fOption_clo_line_02.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9))
+                fOption_clo_line_03.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9))
+                fOption_clo_line_04.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9))
             }
         }
     }

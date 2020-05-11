@@ -108,4 +108,24 @@
 
     <string name="stimer_tv_main_str">Pacemaker 어플이 실행 중입니다.</string>
     <string name="stimer_tv_tag_str">timerservice:wakelock</string>
+
+    <string name="fhistory_comment_prefix_month">이번달에는&#160;</string>
+    <string name="fhistory_comment_prefix_total">지금까지&#160;</string>
+    <string name="fhistory_comment_suffix_month">&#160;들어올리셨네요.</string>
+    <string name="fhistory_comment_suffix_total">&#160;들어올리셨네요.</string>
+
+    <string name="fhistory_no_data">데이터가 없습니다. 운동을 시작해보세요.</string>
+
+    <string name="fhistory_0">정수기용 생수통을</string>
+    <string name="fhistory_50">빨래 건조기를</string>
+    <string name="fhistory_100">스쿠터 한대를</string>
+    <string name="fhistory_200">원유 1배럴을</string>
+    <string name="fhistory_500">그랜드 피아노를</string>
+    <string name="fhistory_1000">승용차 한 대를</string>
+    <string name="fhistory_2000">기린 한 마리를</string>
+    <string name="fhistory_5000">티라노사우르스 한 마리를</string>
+    <string name="fhistory_10000">퀸 엘리자베스II호의 닻을</string>
+    <string name="fhistory_20000">F-15 이글 한 기를</string>
+    <string name="fhistory_50000">흰긴수염고래 한 마리를</string>
+  
 </resources>

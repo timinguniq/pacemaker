@@ -13,10 +13,12 @@ import com.devjj.pacemaker.core.extension.visible
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import kotlinx.android.synthetic.main.fragment_statistics.*
 import javax.inject.Inject
@@ -66,6 +68,7 @@ class StatisticsFragment : BaseFragment(){
         weightDataSet.circleRadius = 5f
         weightDataSet.setCircleColor(getColor(activity!!,R.color.blue_5C83CF))
         weightDataSet.valueTextSize = 10f
+        //weightDataSet
 
         when(setting.isNightMode){
             true-> {
@@ -103,10 +106,12 @@ class StatisticsFragment : BaseFragment(){
                 dataSets.add(weightDataSet)
                 dataSets.add(weightOnBMIDataSet)
                 fStatistics_clo_bmi_change.visible()
+                fStatistics_clo_line_03.visible()
             }
             false->{
                 dataSets.add(weightDataSet)
                 fStatistics_clo_bmi_change.gone()
+                fStatistics_clo_line_03.gone()
             }
         }
         fStatistics_linechart.xAxis.isGranularityEnabled = true
@@ -120,20 +125,26 @@ class StatisticsFragment : BaseFragment(){
         Log.d("jayStatistics" , "load statistics")
         val statisticsListener = StatisticsListener(activity!!,setting,statisticsViewModel)
         statisticsListener.initListener()
-        statisticsViewModel.loadStatistics()
+
         setColor()
         fStatistics_swc_mode_bmi.isChecked = setting.isShowbmi
         fStatistics_swc_monthly.isChecked = setting.isMonthly
         fStatistics_linechart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+        fStatistics_linechart.setMaxVisibleValueCount(20)
         fStatistics_tv_bmi.text = setting.bmi.toString()
         fStatistics_tv_mode_bmi.text = getString(R.string.template_bmi_str,setting.bmi)
         fStatistics_linechart.axisRight.isEnabled = false
         fStatistics_linechart.description.isEnabled = false
+
+        statisticsViewModel.loadStatistics()
     }
 
     private fun setColor(){
         when(setting.isNightMode){
             true ->{
+                fStatistics_clo_option.setBackgroundColor(activity!!.getColor(R.color.grey_606060))
+                fStatistics_tv_option.setTextColor(activity!!.getColor(R.color.black_3B4046))
+
                 fStatistics_swc_mode_bmi.thumbDrawable.setTint(activity!!.getColor(R.color.orange_F74938))
                 fStatistics_swc_mode_bmi.trackDrawable.setTint(activity!!.getColor(R.color.orange_FF765B))
                 fStatistics_tv_mode_bmi.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
@@ -153,8 +164,15 @@ class StatisticsFragment : BaseFragment(){
                 fStatistics_linechart.xAxis.textColor = activity!!.getColor(R.color.white_F7FAFD)
                 fStatistics_linechart.legend.textColor = activity!!.getColor(R.color.white_F7FAFD)
                 fStatistics_linechart.axisLeft.textColor = activity!!.getColor(R.color.white_F7FAFD)
+
+                fStatistics_clo_line_01.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
+                fStatistics_clo_line_02.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
+                fStatistics_clo_line_03.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
             }
             false ->{
+                fStatistics_clo_option.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9))
+                fStatistics_tv_option.setTextColor(activity!!.getColor(R.color.grey_87888A))
+
                 fStatistics_swc_mode_bmi.thumbDrawable.setTint(activity!!.getColor(R.color.blue_5F87D6))
                 fStatistics_swc_mode_bmi.trackDrawable.setTint(activity!!.getColor(R.color.blue_5C83CF))
                 fStatistics_tv_mode_bmi.setTextColor(activity!!.getColor(R.color.black_3B4046))
@@ -175,6 +193,10 @@ class StatisticsFragment : BaseFragment(){
                 fStatistics_linechart.rendererLeftYAxis.paintAxisLabels.color = activity!!.getColor(R.color.black_3B4046)
                 fStatistics_linechart.legend.textColor = activity!!.getColor(R.color.black_3B4046)
                 fStatistics_linechart.axisLeft.textColor = activity!!.getColor(R.color.black_3B4046)
+
+                fStatistics_clo_line_01.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9_70))
+                fStatistics_clo_line_02.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
+                fStatistics_clo_line_03.setBackgroundColor(activity!!.getColor(R.color.grey_88898A))
             }
         }
     }

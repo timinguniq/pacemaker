@@ -112,4 +112,23 @@
 
     <string name="stimer_tv_main_str">PaceMarker is running.</string>
     <string name="stimer_tv_tag_str">timerservice:wakelock</string>
+  
+    <string name="fhistory_comment_prefix_month">You\'ve lifted&#160;</string>
+    <string name="fhistory_comment_prefix_total">You\'ve lifted&#160;</string>
+    <string name="fhistory_comment_suffix_month">&#160;so far during the month</string>
+    <string name="fhistory_comment_suffix_total">&#160;so far with Pacemaker</string>
+
+    <string name="fhistory_no_data">No data. Let the exercise begin.</string>
+    <string name="fhistory_0">a 5 gallons(19 litters) Water bottle</string>
+    <string name="fhistory_50">a Dryer machine</string>
+    <string name="fhistory_100">a Motor scooter</string>
+    <string name="fhistory_200">one Barrel of oil</string>
+    <string name="fhistory_500">a Grand Piano</string>
+    <string name="fhistory_1000">a Sedan</string>
+    <string name="fhistory_2000">a Giraffe</string>
+    <string name="fhistory_5000">a Tyrannosaurus rex</string>
+    <string name="fhistory_10000">an Anchor of Queen Elizabeth 2</string>
+    <string name="fhistory_20000">a F-15 eagle</string>
+    <string name="fhistory_50000">a Blue whale</string>
+
 </resources>

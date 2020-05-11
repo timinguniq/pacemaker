@@ -40,7 +40,7 @@ class StatisticsListener (val activity: Activity, val setting : SettingSharedPre
             statisticsViewModel.loadStatistics()
         }
 
-        activity.fStatistics_iv_bmi_plus.setOnClickListener {
+        activity.fStatistics_flo_bmi_plus.setOnClickListener {
             var bmi = activity.fStatistics_tv_bmi.text.toString().toInt()
             bmi++
 
@@ -57,7 +57,7 @@ class StatisticsListener (val activity: Activity, val setting : SettingSharedPre
                 statisticsViewModel.loadStatistics()
         }
 
-        activity.fStatistics_iv_bmi_minus.setOnClickListener {
+        activity.fStatistics_flo_bmi_minus.setOnClickListener {
             var bmi = activity.fStatistics_tv_bmi.text.toString().toInt()
             bmi--
 

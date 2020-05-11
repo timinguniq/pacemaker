@@ -8,11 +8,6 @@ data class PlayPopupView(val id: Int, val part: Int, val name: String, val mass:
                          val rep: Int, val setGoal: Int, var setDone: Int,
                          val interval: Int, val achievement: Int) :
     Parcelable {
-    /*
-    companion object{
-        @JvmField val CREATOR = parcelableCreator(::HomeView)
-    }
-    */
 
     companion object CREATOR : Parcelable.Creator<PlayPopupView> {
         override fun createFromParcel(parcel: Parcel): PlayPopupView {

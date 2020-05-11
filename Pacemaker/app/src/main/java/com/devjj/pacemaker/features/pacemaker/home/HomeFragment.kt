@@ -41,11 +41,6 @@ class HomeFragment : BaseFragment(), OnBackPressedListener{
         }
     }
 
-    // 한번만 소환되는거 같다.
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun onResume() {
         super.onResume()
         initializeView()

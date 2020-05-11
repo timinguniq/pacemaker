@@ -89,7 +89,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
                 in 10..99 -> "0$i"
                 in 100..200 -> i.toString()
                 else -> {
-                   Dlog.d( "initNumberPicker error")
+                   Dlog.d("initNumberPicker error")
                    i.toString()
                 }
             }

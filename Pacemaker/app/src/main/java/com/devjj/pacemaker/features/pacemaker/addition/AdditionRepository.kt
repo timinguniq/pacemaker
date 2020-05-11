@@ -3,6 +3,7 @@ package com.devjj.pacemaker.features.pacemaker.addition
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.exception.Failure.DatabaseError
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.functional.Either.Right
 import com.devjj.pacemaker.core.functional.Either.Left
 import com.devjj.pacemaker.core.functional.Either
@@ -25,10 +26,7 @@ interface AdditionRepository {
 
         override fun theAdditionData(id: Int): Either<Failure, AdditionData> {
             val tempExerciseEntity: ExerciseEntity? = service.theAdditionData(id)
-            var tempAdditionData = AdditionData.empty()
-            if (tempExerciseEntity != null) {
-                tempAdditionData = tempExerciseEntity.toAdditionData()
-            }
+            var tempAdditionData = tempExerciseEntity?.toAdditionData() ?: AdditionData.empty()
             return try {
                 Right(tempAdditionData)
             } catch (exception: Throwable) {

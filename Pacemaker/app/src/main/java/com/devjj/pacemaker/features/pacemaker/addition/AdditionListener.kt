@@ -75,8 +75,9 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
                     } else {
                         activity.fAddition_ev_name.hint =
                             activity.resources.getString(R.string.faddition_tv_name_hint_str)
-                        // TODO : 임시코드
-                        Toast.makeText(activity, "운동 이름을 입력해주세요", Toast.LENGTH_SHORT).show()
+
+                        val exerciseName = activity.getString(R.string.faddition_tv_exercise_name_str)
+                        Toast.makeText(activity, exerciseName, Toast.LENGTH_SHORT).show()
                     }
                 }
                 EDITING_MODE -> {
@@ -96,8 +97,8 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
                     } else {
                         activity.fAddition_ev_name.hint =
                             activity.resources.getString(R.string.faddition_tv_name_hint_str)
-                        // TODO: 임시코드
-                        Toast.makeText(activity, "운동 이름을 입력해주세요", Toast.LENGTH_SHORT).show()
+                        val exerciseName = activity.getString(R.string.faddition_tv_exercise_name_str)
+                        Toast.makeText(activity, exerciseName, Toast.LENGTH_SHORT).show()
                     }
                 }
                 else -> {
@@ -128,7 +129,6 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
             Dlog.d( "mass picker.displayedValues ${picker.displayedValues[picker.value]}")
             additionData_mass = picker.displayedValues[picker.value].toInt()
         }
-
         activity.fAddition_np_rep.setOnValueChangedListener { picker, oldVal, newVal ->
             Dlog.d( "rep oldVal : ${oldVal}, rep newVal : $newVal")
             Dlog.d( "rep picker.displayedValues ${picker.displayedValues[picker.value - 1]}")

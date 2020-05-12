@@ -39,10 +39,10 @@
 
             <ImageView
                 android:id="@+id/aPacemaker_iv_setting"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_marginEnd="17dp"
-                android:layout_gravity="center"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_gravity="center_vertical|end"
                 android:contentDescription="@string/image_not_found"
                 android:src="@drawable/apacemaker_img_setting"/>
 

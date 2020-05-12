@@ -56,7 +56,7 @@ class HomeAdapter
                 // 다크 모드
                 val partImgResource = convertPartImgToResource(homeView.part_img, true)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-                itemView.rvExerciseItem_clo_main.setBackgroundColor(loadColor(context, R.color.grey_F9F9F9))
+                itemView.rvExerciseItem_clo_main.setBackgroundColor(loadColor(context, R.color.grey_88898A))
                 itemView.rvExerciseItem_tv_name.setTextColor(loadColor(context, R.color.white_F7FAFD))
                 itemView.rvExerciseItem_tv_mass.setTextColor(loadColor(context, R.color.grey_444646))
                 itemView.rvExerciseItem_tv_slash.setTextColor(loadColor(context, R.color.grey_444646))

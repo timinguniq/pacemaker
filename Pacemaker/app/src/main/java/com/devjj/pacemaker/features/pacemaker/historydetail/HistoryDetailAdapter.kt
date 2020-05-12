@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
-import com.devjj.pacemaker.core.extension.convertPartImgToResource
-import com.devjj.pacemaker.core.extension.gone
-import com.devjj.pacemaker.core.extension.inflate
-import com.devjj.pacemaker.core.extension.visible
+import com.devjj.pacemaker.core.extension.*
 import kotlinx.android.synthetic.main.fragment_history_detail.*
 import kotlinx.android.synthetic.main.fragment_history_detail.view.*
 import kotlinx.android.synthetic.main.recyclerview_exercise_detail_item.view.*
@@ -56,24 +53,24 @@ class HistoryDetailAdapter
             if(setting.isNightMode) {
                 val partImgResource = convertPartImgToResource(historyDetailView.part_img, true)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-                itemView.rvExerciseItem_clo_main.setBackgroundColor(context.getColor(R.color.grey_606060))
-                itemView.rvExerciseItem_tv_name.setTextColor(context.getColor(R.color.white_F7FAFD))
+                itemView.rvExerciseItem_clo_main.setBackgroundColor(loadColor(context,R.color.grey_606060))
+                itemView.rvExerciseItem_tv_name.setTextColor(loadColor(context,R.color.white_F7FAFD))
 
-                itemView.rvExerciseItem_clo_detail.setBackgroundColor(context.getColor(R.color.grey_F9F9F9_70))
-                itemView.rvExerciseItem_tv_mass.setTextColor(context.getColor(R.color.black_3B4046))
-                itemView.rvExerciseItem_tv_set.setTextColor(context.getColor(R.color.black_3B4046))
-                itemView.rvExerciseItem_tv_rep.setTextColor(context.getColor(R.color.black_3B4046))
+                itemView.rvExerciseItem_clo_detail.setBackgroundColor(loadColor(context,R.color.grey_F9F9F9_70))
+                itemView.rvExerciseItem_tv_mass.setTextColor(loadColor(context,R.color.black_3B4046))
+                itemView.rvExerciseItem_tv_set.setTextColor(loadColor(context,R.color.black_3B4046))
+                itemView.rvExerciseItem_tv_rep.setTextColor(loadColor(context,R.color.black_3B4046))
 
             }else{
                 val partImgResource = convertPartImgToResource(historyDetailView.part_img, false)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-                itemView.rvExerciseItem_clo_main.setBackgroundColor(context.getColor(R.color.grey_F9F9F9_70))
-                itemView.rvExerciseItem_tv_name.setTextColor(context.getColor(R.color.black_3B4046))
+                itemView.rvExerciseItem_clo_main.setBackgroundColor(loadColor(context,R.color.grey_F9F9F9_70))
+                itemView.rvExerciseItem_tv_name.setTextColor(loadColor(context,R.color.black_3B4046))
 
-                itemView.rvExerciseItem_clo_detail.setBackgroundColor(context.getColor(R.color.grey_606060))
-                itemView.rvExerciseItem_tv_mass.setTextColor(context.getColor(R.color.white_F7FAFD))
-                itemView.rvExerciseItem_tv_set.setTextColor(context.getColor(R.color.white_F7FAFD))
-                itemView.rvExerciseItem_tv_rep.setTextColor(context.getColor(R.color.white_F7FAFD))
+                itemView.rvExerciseItem_clo_detail.setBackgroundColor(loadColor(context,R.color.grey_606060))
+                itemView.rvExerciseItem_tv_mass.setTextColor(loadColor(context,R.color.white_F7FAFD))
+                itemView.rvExerciseItem_tv_set.setTextColor(loadColor(context,R.color.white_F7FAFD))
+                itemView.rvExerciseItem_tv_rep.setTextColor(loadColor(context,R.color.white_F7FAFD))
             }
 
 

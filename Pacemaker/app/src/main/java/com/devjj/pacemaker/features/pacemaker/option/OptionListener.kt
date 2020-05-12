@@ -7,6 +7,7 @@ import android.util.Log
 import com.devjj.pacemaker.BuildConfig
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.extension.loadColor
 import com.devjj.pacemaker.core.functional.Dlog
 import kotlinx.android.synthetic.main.fragment_option.*
 
@@ -21,7 +22,7 @@ class OptionListener(
     fun initListener() {
         activity.fOption_swc_mode_item.setOnCheckedChangeListener { buttonView, isChecked ->
             setting.isNightMode = isChecked
-            Dlog.d( "${activity!!.getColor(R.color.grey_F9F9F9)}")
+            Dlog.d( "${loadColor(activity!!,R.color.grey_F9F9F9)}")
             setColors()
         }
 

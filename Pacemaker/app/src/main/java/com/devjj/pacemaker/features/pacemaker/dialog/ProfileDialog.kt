@@ -31,28 +31,28 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
     if (setting.isNightMode) {
         dialogView.dProfile_clo_main.background =
             ResourcesCompat.getDrawable( activity.resources, R.drawable.img_popup_background_nighttime, null )
-        dialogView.dProfile_tv_height.setTextColor(activity.getColor(R.color.grey_F9F9F9))
-        dialogView.dProfile_ev_height.setTextColor(activity.getColor(R.color.blue_5F87D6))
-        dialogView.dProfile_ev_height.setHintTextColor(activity.getColor(R.color.white_F7FAFD_47))
+        dialogView.dProfile_tv_height.setTextColor(loadColor(activity,R.color.grey_F9F9F9))
+        dialogView.dProfile_ev_height.setTextColor(loadColor(activity,R.color.blue_5F87D6))
+        dialogView.dProfile_ev_height.setHintTextColor(loadColor(activity,R.color.white_F7FAFD_47))
 
-        dialogView.dProfile_tv_weight.setTextColor(activity.getColor(R.color.grey_F9F9F9))
-        dialogView.dProfile_ev_weight.setTextColor(activity.getColor(R.color.blue_5F87D6))
-        dialogView.dProfile_ev_weight.setHintTextColor(activity.getColor(R.color.white_F7FAFD_47))
+        dialogView.dProfile_tv_weight.setTextColor(loadColor(activity,R.color.grey_F9F9F9))
+        dialogView.dProfile_ev_weight.setTextColor(loadColor(activity,R.color.blue_5F87D6))
+        dialogView.dProfile_ev_weight.setHintTextColor(loadColor(activity,R.color.white_F7FAFD_47))
 
-        dialogView.dProfile_tv_confirm.setTextColor(activity.getColor(R.color.orange_F74938))
+        dialogView.dProfile_tv_confirm.setTextColor(loadColor(activity,R.color.orange_F74938))
 
     } else {
         dialogView.dProfile_clo_main.background =
             ResourcesCompat.getDrawable( activity.resources, R.drawable.img_popup_background_daytime, null )
-        dialogView.dProfile_tv_height.setTextColor(activity.getColor(R.color.grey_444646))
-        dialogView.dProfile_ev_height.setTextColor(activity.getColor(R.color.grey_444646))
-        dialogView.dProfile_ev_height.setHintTextColor(activity.getColor(R.color.grey_444646_47))
+        dialogView.dProfile_tv_height.setTextColor(loadColor(activity,R.color.grey_444646))
+        dialogView.dProfile_ev_height.setTextColor(loadColor(activity,R.color.grey_444646))
+        dialogView.dProfile_ev_height.setHintTextColor(loadColor(activity,R.color.grey_444646_47))
 
-        dialogView.dProfile_tv_weight.setTextColor(activity.getColor(R.color.grey_444646))
-        dialogView.dProfile_ev_weight.setTextColor(activity.getColor(R.color.grey_444646))
-        dialogView.dProfile_ev_weight.setHintTextColor(activity.getColor(R.color.grey_444646_47))
+        dialogView.dProfile_tv_weight.setTextColor(loadColor(activity,R.color.grey_444646))
+        dialogView.dProfile_ev_weight.setTextColor(loadColor(activity,R.color.grey_444646))
+        dialogView.dProfile_ev_weight.setHintTextColor(loadColor(activity,R.color.grey_444646_47))
 
-        dialogView.dProfile_tv_confirm.setTextColor(activity.getColor(R.color.blue_5F87D6))
+        dialogView.dProfile_tv_confirm.setTextColor(loadColor(activity,R.color.blue_5F87D6))
     }
 
 

@@ -52,11 +52,10 @@ class SplashActivity : AppCompatActivity() {
         showVersionTextView()
 
         // TODO : 2초 뒤 화면전환 구현하기 나중에
-        /*
         Handler().postDelayed({
             navigator.showMain(this)
         }, 2000)
-*/
+
         // 테스트 광고
         MobileAds.initialize(this) {}
 

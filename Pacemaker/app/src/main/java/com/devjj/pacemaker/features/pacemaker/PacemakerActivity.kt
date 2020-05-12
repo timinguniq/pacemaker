@@ -12,6 +12,7 @@ import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.extension.loadColor
 import com.devjj.pacemaker.core.extension.round
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
@@ -81,18 +82,18 @@ class PacemakerActivity : BaseActivity() {
 
         if(!setting.isNightMode){
             // 화이트 모드
-            window.statusBarColor = getColor(R.color.blue_5F87D6)
+            window.statusBarColor = loadColor(this,R.color.blue_5F87D6)
             aPacemaker_clo_title.setBackgroundResource(R.drawable.img_title_background_daytime)
-            aPacemaker_flo_container.setBackgroundColor(getColor(R.color.white_FFFFFF))
-            aPacemaker_bottom_navigation_view.setBackgroundColor(getColor(R.color.grey_F9F9F9))
+            aPacemaker_flo_container.setBackgroundColor(loadColor(this,R.color.white_FFFFFF))
+            aPacemaker_bottom_navigation_view.setBackgroundColor(loadColor(this,R.color.grey_F9F9F9))
             aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_bottom_icon_bg_color_daytime
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_wm_bottom_icon_color,null)
         }else{
             // 다크 모드
-            window.statusBarColor = getColor(R.color.grey_444646)
+            window.statusBarColor = loadColor(this,R.color.grey_444646)
             aPacemaker_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)
-            aPacemaker_flo_container.setBackgroundColor(getColor(R.color.grey_606060))
-            aPacemaker_bottom_navigation_view.setBackgroundColor(getColor(R.color.grey_444646))
+            aPacemaker_flo_container.setBackgroundColor(loadColor(this,R.color.grey_606060))
+            aPacemaker_bottom_navigation_view.setBackgroundColor(loadColor(this,R.color.grey_444646))
             aPacemaker_bottom_navigation_view.itemBackgroundResource = R.drawable.apacemaker_bottom_icon_bg_color_nighttime
             aPacemaker_bottom_navigation_view.itemIconTintList = resources.getColorStateList(R.color.apacemaker_dm_bottom_icon_color,null)
         }

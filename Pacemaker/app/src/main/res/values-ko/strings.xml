@@ -70,6 +70,7 @@
     <string name="foption_tv_feedback_str">피드백</string>
     <string name="foption_tv_share_str">공유</string>
     <string name="foption_toast_saved">설정 저장됨</string>
+    <string name="foption_UI_design_by">UI Design by Anna Chinellato</string>
 
     <string name="fhistory_tv_profile_str">프로필</string>
     <string name="fhistory_tv_report_str">리포트</string>

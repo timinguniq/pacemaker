@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.extension.loadColor
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.features.pacemaker.option.OptionFragment
@@ -43,14 +44,14 @@ class OptionActivity : BaseActivity() {
     fun setColor(){
         when(setting.isNightMode){
             true->{
-                window.statusBarColor = getColor(R.color.grey_444646)
+                window.statusBarColor = loadColor(this,R.color.grey_444646)
                 aOption_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)
-                aOption_flo_container.setBackgroundColor(getColor(R.color.grey_444646))
+                aOption_flo_container.setBackgroundColor(loadColor(this,R.color.grey_444646))
             }
             false->{
-                window.statusBarColor = getColor(R.color.blue_5C83CF)
+                window.statusBarColor = loadColor(this,R.color.blue_5C83CF)
                 aOption_clo_title.setBackgroundResource(R.drawable.img_title_background_daytime)
-                aOption_flo_container.setBackgroundColor(getColor(R.color.white_FFFFFF))
+                aOption_flo_container.setBackgroundColor(loadColor(this,R.color.white_FFFFFF))
             }
         }
     }

@@ -110,25 +110,25 @@ class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
     }
 
     private fun setColors(){
-        fHistoryDetail_circleView_rate.rimColor = activity!!.getColor(R.color.orange_FF765B_70)
+        fHistoryDetail_circleView_rate.rimColor = loadColor(activity!!,R.color.orange_FF765B_70)
         when(setting.isNightMode){
             true->{
-                fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_F74938))
-                fHistoryDetail_circleView_rate.setTextColor(activity!!.getColor(R.color.orange_F74938))
-                fHistoryDetail_tv_totalReps.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
-                fHistoryDetail_tv_totalSets.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
-                fHistoryDetail_clo_openAll.setBackgroundColor(activity!!.getColor(R.color.grey_606060))
-                fHistoryDetail_tv_openAll.setTextColor(activity!!.getColor(R.color.white_F7FAFD))
-                fHistoryDetail_iv_drop.drawable.setTint(activity!!.getColor(R.color.white_F7FAFD))
+                fHistoryDetail_circleView_rate.setBarColor(loadColor(activity!!,R.color.orange_F74938))
+                fHistoryDetail_circleView_rate.setTextColor(loadColor(activity!!,R.color.orange_F74938))
+                fHistoryDetail_tv_totalReps.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                fHistoryDetail_tv_totalSets.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                fHistoryDetail_clo_openAll.setBackgroundColor(loadColor(activity!!,R.color.grey_606060))
+                fHistoryDetail_tv_openAll.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                fHistoryDetail_iv_drop.drawable.setTint(loadColor(activity!!,R.color.white_F7FAFD))
             }
             false->{
-                fHistoryDetail_circleView_rate.setBarColor(activity!!.getColor(R.color.orange_FF765B))
-                fHistoryDetail_circleView_rate.setTextColor(activity!!.getColor(R.color.orange_FF765B))
-                fHistoryDetail_tv_totalReps.setTextColor(activity!!.getColor(R.color.black_3B4046))
-                fHistoryDetail_tv_totalSets.setTextColor(activity!!.getColor(R.color.black_3B4046))
-                fHistoryDetail_clo_openAll.setBackgroundColor(activity!!.getColor(R.color.grey_F9F9F9_70))
-                fHistoryDetail_tv_openAll.setTextColor(activity!!.getColor(R.color.black_3B4046))
-                fHistoryDetail_iv_drop.drawable.setTint(activity!!.getColor(R.color.black_3B4046))
+                fHistoryDetail_circleView_rate.setBarColor(loadColor(activity!!,R.color.orange_FF765B))
+                fHistoryDetail_circleView_rate.setTextColor(loadColor(activity!!,R.color.orange_FF765B))
+                fHistoryDetail_tv_totalReps.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                fHistoryDetail_tv_totalSets.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                fHistoryDetail_clo_openAll.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9_70))
+                fHistoryDetail_tv_openAll.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                fHistoryDetail_iv_drop.drawable.setTint(loadColor(activity!!,R.color.black_3B4046))
             }
         }
     }

@@ -7,6 +7,7 @@ import android.util.Log
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.StatisticsDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.extension.loadColor
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.core.platform.BaseFragment
@@ -42,13 +43,13 @@ class StatisticsActivity : BaseActivity(){
 
     private fun initializeView() {
         if(setting.isNightMode){
-            window.statusBarColor = getColor(R.color.grey_444646)
+            window.statusBarColor = loadColor(this,R.color.grey_444646)
             aStatistics_clo_title.setBackgroundResource(R.drawable.img_title_background_nighttime)
-            aStatistics_flo_container.setBackgroundColor(getColor(R.color.grey_444646))
+            aStatistics_flo_container.setBackgroundColor(loadColor(this,R.color.grey_444646))
         }else{
-            window.statusBarColor = getColor(R.color.blue_5F87D6)
+            window.statusBarColor = loadColor(this,R.color.blue_5F87D6)
             aStatistics_clo_title.setBackgroundResource(R.drawable.img_title_background_daytime)
-            aStatistics_flo_container.setBackgroundColor(getColor(R.color.white_FFFFFF))
+            aStatistics_flo_container.setBackgroundColor(loadColor(this,R.color.white_FFFFFF))
         }
 
         val adRequest = AdRequest.Builder().build()

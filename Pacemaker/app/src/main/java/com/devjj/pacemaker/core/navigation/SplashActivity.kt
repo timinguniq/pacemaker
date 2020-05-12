@@ -14,8 +14,10 @@ import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
+import com.devjj.pacemaker.core.extension.APP_VERSION
 import com.devjj.pacemaker.core.functional.Dlog
 import com.google.android.gms.ads.MobileAds
+import kotlinx.android.synthetic.main.activity_splash.*
 import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity() {
@@ -46,16 +48,23 @@ class SplashActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        Dlog.d("APP_VERSION : $APP_VERSION")
+        showVersionTextView()
+
         // TODO : 2초 뒤 화면전환 구현하기 나중에
+        /*
         Handler().postDelayed({
             navigator.showMain(this)
-        }, 1700)
-
+        }, 2000)
+*/
         // 테스트 광고
         MobileAds.initialize(this) {}
 
-        // TODO : 예시 코드 나중에 지워야 됨.
-        Dlog.d("test")
+    }
 
+    // 버전 텍스트에 옮기는 함수
+    private fun showVersionTextView(){
+        val version = "v$APP_VERSION"
+        aSplash_tv_version.text = version
     }
 }

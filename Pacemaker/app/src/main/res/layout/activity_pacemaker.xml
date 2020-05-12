@@ -28,7 +28,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
-
         <FrameLayout
             android:id="@+id/aPacemaker_flo_setting"
             android:layout_width="70dp"
@@ -47,7 +46,6 @@
                 android:src="@drawable/apacemaker_img_setting"/>
 
         </FrameLayout>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

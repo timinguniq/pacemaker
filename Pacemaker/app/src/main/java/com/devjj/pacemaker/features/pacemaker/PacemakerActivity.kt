@@ -28,7 +28,6 @@ import java.util.*
 import javax.inject.Inject
 import kotlin.concurrent.schedule
 
-
 class PacemakerActivity : BaseActivity() {
 
     companion object {

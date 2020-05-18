@@ -126,48 +126,6 @@ class HistoryFragment : BaseFragment() {
 
         }
 
-        /*
-        historyAdapter.clickListener = { date ->
-            navigator.showHistoryDetail(activity!!, date)
-        }
-*/
-
-        if (false) {
-            val a = ExerciseHistoryEntity(0,"2020-03-30",0,"벤치프레스",5,10,2,2,30)
-
-            val b = ExerciseHistoryEntity(0,"2020-04-01",1,"데드리프트",10,10,3,1,40)
-            val c = ExerciseHistoryEntity(0,"2020-04-01",2,"스쿼드",15,10,4,4,50)
-
-            val d = ExerciseHistoryEntity(0,"2020-04-03",3,"레그레이즈",20,10,5,0,60)
-            val e = ExerciseHistoryEntity(0,"2020-04-03",4,"크런치",25,10,6,6,70)
-            val f = ExerciseHistoryEntity(0,"2020-04-03",3,"이두컬",30,10,7,3,30)
-
-            val g = ExerciseHistoryEntity(0,"2020-04-05",2,"아놀드프레스",35,10,8,3,40)
-            val h = ExerciseHistoryEntity(0,"2020-04-05",1,"숄더프레스",40,10,7,7,50)
-
-            val i = ExerciseHistoryEntity(0,"2020-04-09",2,"플랭크",0,10,6,1,60)
-
-            val j = ExerciseHistoryEntity(0,"2020-04-13",3,"풀업",0,10,5,5,70)
-            val k = ExerciseHistoryEntity(0,"2020-04-13",3,"팔굽혀펴기",0,10,4,0,20)
-
-            val l = ExerciseHistoryEntity(0,"2020-04-15",4,"벤치프레스",30,10,6,6,30)
-
-            val A = StatisticsEntity(/*0,*/"2020-03-30",110f, 60f,10,100)
-            val B = StatisticsEntity(/*0,*/"2020-04-01",120f, 70f,20,71)
-            val C = StatisticsEntity(/*0,*/"2020-04-03",130f, 80f,30,50)
-            val D = StatisticsEntity(/*0,*/"2020-04-05",120f, 90f,40,66)
-            val E = StatisticsEntity(/*0,*/"2020-04-09",130f, 100f,50,16)
-            val F = StatisticsEntity(/*0,*/"2020-04-13",140f, 110f,60,55)
-            val G = StatisticsEntity(/*0,*/"2020-04-15",150f, 120f,70,100)
-
-            Flowable.just("abc")
-                .subscribeOn(Schedulers.io())
-                .subscribe {
-                    db.ExerciseHistoryDAO().insert(a, b, c, d, e, f, g, h, i, j, k, l)
-                    statisticsDB.StatisticsDAO().insert(A,B,C,D,E,F,G)
-                }
-        }
-
 
         @NonNull
         val today = CalendarDay.today().date.toString()
@@ -189,10 +147,6 @@ class HistoryFragment : BaseFragment() {
         Dlog.d( "tileWidth : ${convertDpToPx(context!!, 360f)}")
         Dlog.d( "tileHeight : ${convertDpToPx(context!!, 240f)}")
 
-/*
-        fHistory_txv_sets.text = getString(R.string.unit_sets, 10)
-        fHistory_txv_times.text = getString(R.string.unit_time_hour_min, 10, 10)
-*/
 
         when (setting.isNightMode) {
             true -> {

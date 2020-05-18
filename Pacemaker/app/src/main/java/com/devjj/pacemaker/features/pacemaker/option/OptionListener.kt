@@ -66,21 +66,15 @@ class OptionListener(
         }
 
         activity.fOption_tv_feedback.setOnClickListener {
-            var emailIntent = Intent(
-                Intent.ACTION_SENDTO,
-                Uri.fromParts("mailto", "inty.ashever@gmail.com", null)
-            )
-            emailIntent.putExtra(
-                Intent.EXTRA_SUBJECT,
+            var emailIntent = Intent(Intent.ACTION_SEND_MULTIPLE)
+            emailIntent.type = "message/rfc822"
+            emailIntent.putExtra(Intent.EXTRA_EMAIL,arrayOf("inty.ashever@gmail.com","timing.uniq@gmail.com"))
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT,
                 activity.getString(R.string.template_feedback_title)
             )
             emailIntent.putExtra(Intent.EXTRA_TEXT, "")
-            activity.startActivity(
-                Intent.createChooser(
-                    emailIntent,
-                    activity.getString(R.string.template_feedback_title)
-                )
-            )
+            activity.startActivity(emailIntent)
+
         }
 
         activity.fOption_tv_rateUs.setOnClickListener {
@@ -101,12 +95,7 @@ class OptionListener(
                 shareMessage + "http://play.google.com/store/apps/details?id=" + activity.packageName + "\n\n"
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
             activity.startActivity(Intent.createChooser(shareIntent, "choose one"))
-            /*
-            val shareIntent = Intent()
-            shareIntent.action = Intent.ACTION_SEND
-            shareIntent.type="text/plain"
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
-            activity.startActivity(Intent.createChooser(shareIntent, "send to"))*/
+
         }
     }
 }

@@ -96,7 +96,10 @@
     <string name="fplaypopup_tv_list_unavailable_str">데이터가 없습니다.</string>
     <string name="fplaypopup_tv_unit_mass_str">Kg</string>
     <string name="fplaypopup_tv_unit_set_str">세트</string>
+    <string name="fplaypopup_tv_unit_rep_str">횟수</string>
+<!--
     <string name="fplaypopup_tv_unit_rep_str">회</string>
+-->
 
     <string name="fstatistics_tv_mode_bmi_str">BMI(%d) 표시</string>
     <string name="fstatistics_tv_bmi_str">BMI</string>

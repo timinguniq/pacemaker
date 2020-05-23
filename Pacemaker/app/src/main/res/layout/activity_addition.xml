@@ -27,7 +27,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- 백업 본 광고 Id
-       ads:adUnitId="ca-app-pub-9818502417467314/5178000798"-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

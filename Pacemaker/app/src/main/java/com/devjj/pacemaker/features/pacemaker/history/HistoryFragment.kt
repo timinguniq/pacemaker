@@ -59,8 +59,6 @@ class HistoryFragment : BaseFragment() {
 
     }
 
-
-
     override fun onResume() {
         super.onResume()
         initializeView()

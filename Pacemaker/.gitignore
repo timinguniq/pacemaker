@@ -15,4 +15,5 @@
 /gradle
 /.idea/*
 .idea/*
-
+ids.xml
+/app/release

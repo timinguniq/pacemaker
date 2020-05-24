@@ -179,11 +179,15 @@ class HistoryFragment : BaseFragment() {
                 fHistory_tv_month_kgs.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
 
                 fHistory_iv_chart.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
+                fHistory_iv_chart.drawable.setTint(loadColor(activity!!,R.color.orange_F74938))
                 fHistory_iv_comment_month.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
                 fHistory_iv_comment_total.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
+                fHistory_iv_comment_month.drawable.setTint(loadColor(activity!!,R.color.orange_F74938))
+                fHistory_iv_comment_total.drawable.setTint(loadColor(activity!!,R.color.orange_F74938))
 
                 fHistory_clo_line_01.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
                 fHistory_clo_line_02.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
+
             }
             false -> {
                 Dlog.d( "Day time mode")
@@ -213,8 +217,11 @@ class HistoryFragment : BaseFragment() {
                 fHistory_tv_month_kgs.setTextColor(loadColor(activity!!,R.color.black_3B4046))
 
                 fHistory_iv_chart.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
+                fHistory_iv_chart.drawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
                 fHistory_iv_comment_month.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
                 fHistory_iv_comment_total.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
+                fHistory_iv_comment_month.drawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
+                fHistory_iv_comment_total.drawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
 
                 fHistory_clo_line_01.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
                 fHistory_clo_line_02.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))

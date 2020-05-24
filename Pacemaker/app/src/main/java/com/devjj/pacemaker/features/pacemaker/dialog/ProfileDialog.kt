@@ -100,6 +100,9 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
         setting.height = fSaveHeight
         setting.weight = fSaveWeight
 
+        // 전면광고
+        showInterstitialAd(activity, setting)
+
         dialog.dismiss()
     }
 

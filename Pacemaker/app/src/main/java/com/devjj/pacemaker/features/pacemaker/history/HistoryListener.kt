@@ -38,7 +38,7 @@ class HistoryListener(
         activity.fHistory_calendarView.setOnMonthChangedListener { widget, date ->
             historyViewModel.loadOneMonthSumOfSetsAndMass(date.date.toString())
             historyViewModel.loadTotalTimes(date.date.toString())
-            Log.d("jayDateCheck.OnChanged", date.date.toString())
+            Dlog.d(date.date.toString())
         }
 
         activity.fHistory_iv_chart.setOnClickListener {

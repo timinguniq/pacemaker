@@ -28,7 +28,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <FrameLayout
         android:id="@+id/aStatistics_flo_container"
@@ -40,12 +42,11 @@
         app:layout_constraintTop_toBottomOf="@+id/aStatistics_clo_title" />
 
     <com.google.android.gms.ads.AdView
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/aStatistics_adView"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        ads:adSize="BANNER"
-        ads:adUnitId="@string/AD_BANNER_UNIT_ID"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

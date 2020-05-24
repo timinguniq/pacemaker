@@ -72,6 +72,7 @@
     <string name="foption_tv_rateUs_str">Rate us</string>
     <string name="foption_tv_feedback_str">Feedback</string>
     <string name="foption_tv_share_str">Share</string>
+    <string name="foption_msg_share_str">This app helps your work out. Check it out.</string>
     <string name="foption_toast_saved">Option Saved</string>
     <string name="foption_UI_design_by">UI Design by Anna Chinellato</string>
 

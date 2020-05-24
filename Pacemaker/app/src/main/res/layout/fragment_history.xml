@@ -89,7 +89,7 @@
                     android:layout_marginStart="25dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/unit_height"
-                    android:textSize="30sp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/fHistory_tv_weight"
@@ -102,7 +102,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:text="@string/unit_weight"
-                    android:textSize="30sp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/fHistory_iv_chart"
@@ -129,7 +129,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="3dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="20dp" />
 
@@ -167,7 +167,7 @@
                         android:layout_marginStart="25dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/unit_sets"
-                        android:textSize="30sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -177,12 +177,13 @@
                         android:layout_marginStart="25dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/unit_time_hour_min"
-                        android:textSize="30sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
 
                         <TextView
                             android:id="@+id/fHistory_tv_month_kgs"
@@ -190,7 +191,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="25dp"
                             android:text="@string/unit_mass"
-                            android:textSize="30sp"
+                            android:textSize="25sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/fHistory_iv_comment_month"
@@ -218,7 +219,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="3dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="20dp" />
 
@@ -257,7 +258,7 @@
                         android:layout_marginStart="25dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/unit_sets"
-                        android:textSize="30sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -267,12 +268,13 @@
                         android:layout_marginStart="25dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/unit_time_hour_min"
-                        android:textSize="30sp"
+                        android:textSize="25sp"
                         android:textStyle="bold" />
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="10dp">
 
                         <TextView
                             android:id="@+id/fHistory_tv_total_kgs"
@@ -280,7 +282,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="25dp"
                             android:text="@string/unit_mass"
-                            android:textSize="30sp"
+                            android:textSize="25sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toStartOf="@id/fHistory_iv_comment_total"

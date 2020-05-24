@@ -69,6 +69,7 @@
     <string name="foption_tv_rateUs_str">평점주기</string>
     <string name="foption_tv_feedback_str">피드백</string>
     <string name="foption_tv_share_str">공유</string>
+    <string name="foption_msg_share_str">운동을 도와주는 어플이에요. 사용해보세요.</string>
     <string name="foption_toast_saved">설정 저장됨</string>
     <string name="foption_UI_design_by">UI Design by Anna Chinellato</string>
 

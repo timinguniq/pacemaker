@@ -52,4 +52,3 @@
         app:layout_constraintTop_toBottomOf="@+id/aStatistics_flo_container" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

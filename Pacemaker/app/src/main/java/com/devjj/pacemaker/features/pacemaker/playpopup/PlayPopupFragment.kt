@@ -415,6 +415,7 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_iv_part_img.layoutParams = params
     }
 
+
     // progressbar setting(초기 progressBar setting)
     // input값은 총 갯수
     private fun isVisibleProgressBars(count: Int){
@@ -466,6 +467,10 @@ class PlayPopupFragment : BaseFragment() {
         if(!setting.isUpdateHeight && !setting.isUpdateWeight){
             // 둘다 false 팝업창 안 띄우기
             activity?.finish()
+
+            // 전면 광고를 띄우는 메소드
+            showInterstitialAd(activity!!, setting)
+
             return
         }
 
@@ -494,4 +499,13 @@ class PlayPopupFragment : BaseFragment() {
     private fun renderFailure(@StringRes message: Int) {
         // TODO : 나중에 메세지에 따른 구현 해야 될듯.
     }
+
+/*
+    setting.interstitialCount++
+    if(setting.interstitialCount >= FINISH_MAX_COUNT){
+        setting.interstitialCount = 0
+        // 전면 광고를 띄우는 메소드
+        showInterstitialAd(this)
+    }
+*/
 }

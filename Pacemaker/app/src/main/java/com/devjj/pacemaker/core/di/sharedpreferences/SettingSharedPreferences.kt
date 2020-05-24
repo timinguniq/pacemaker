@@ -12,7 +12,7 @@ class SettingSharedPreferences(context: Context) {
     val PREF_KEY_REST_TIME = "restTime"
     val PREF_KEY_UPDATE_WEIGHT = "updateWeight"
     val PREF_KEY_UPDATE_HEIGHT = "updateHeight"
-    val PREF_KEY_FINISH_COUNT = "finishCount"
+    val PREF_KEY_FINISH_COUNT = "interstitialCount"
     val PREF_KEY_SHOW_BMI = "showbmi"
     val PREF_KEY_BMI = "BMI"
     val PREF_KEY_MONTLY_STATISTICS = "monthStat"
@@ -46,7 +46,7 @@ class SettingSharedPreferences(context: Context) {
         get() = prefs.getInt(PREF_KEY_REST_TIME, 60)
         set(value) = prefs.edit().putInt(PREF_KEY_REST_TIME, value).apply()
 
-    var finishCount: Int
+    var interstitialCount: Int
         get() = prefs.getInt(PREF_KEY_FINISH_COUNT, 0)
         set(value) = prefs.edit().putInt(PREF_KEY_FINISH_COUNT, value).apply()
   

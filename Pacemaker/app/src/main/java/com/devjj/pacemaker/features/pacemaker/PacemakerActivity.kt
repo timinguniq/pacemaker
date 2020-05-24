@@ -127,14 +127,17 @@ class PacemakerActivity : BaseActivity() {
 
     // 전면 광고를 셋팅하는 함수.
     private fun showInterstitialAd(){
-        val AD_INTERSTITIAL_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"
+        val AD_INTERSTITIAL_UNIT_ID = getString(R.string.AD_INTERSTITIAL_UNIT_ID)
+
+        // 테스트 광고 id
+        // "ca-app-pub-3940256099942544/1033173712"
 
         // Create the InterstitialAd and set it up.
         val mInterstitialAd = InterstitialAd(this).apply {
             adUnitId = AD_INTERSTITIAL_UNIT_ID
             adListener = (object : AdListener() {
                 override fun onAdLoaded() {
-                    Toast.makeText(this@PacemakerActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(this@PacemakerActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
                     if (isLoaded) {
                         show()
                         finishAffinity()

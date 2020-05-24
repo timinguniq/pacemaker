@@ -21,10 +21,13 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        ads:adUnitId="@string/AD_BANNER_UNIT_ID"
         app:layout_constraintTop_toBottomOf="@+id/aAddition_flo_container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- 테스트 광고 Id
+    ads:adUnitId="ca-app-pub-3940256099942544/6300978111"-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

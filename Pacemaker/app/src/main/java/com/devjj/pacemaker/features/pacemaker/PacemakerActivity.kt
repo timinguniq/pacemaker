@@ -129,9 +129,6 @@ class PacemakerActivity : BaseActivity() {
     private fun showInterstitialAd(){
         val AD_INTERSTITIAL_UNIT_ID = getString(R.string.AD_INTERSTITIAL_UNIT_ID)
 
-        // 테스트 광고 id
-        // "ca-app-pub-3940256099942544/1033173712"
-
         // Create the InterstitialAd and set it up.
         val mInterstitialAd = InterstitialAd(this).apply {
             adUnitId = AD_INTERSTITIAL_UNIT_ID

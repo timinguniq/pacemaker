@@ -123,9 +123,7 @@ class HistoryFragment : BaseFragment() {
             launch(Dispatchers.IO) {
                 statisticsDB.StatisticsDAO().getAll()
             }
-
         }
-
 
         @NonNull
         val today = CalendarDay.today().date.toString()
@@ -146,7 +144,6 @@ class HistoryFragment : BaseFragment() {
         Dlog.d( "tile density : ${context!!.resources.displayMetrics.density}")
         Dlog.d( "tileWidth : ${convertDpToPx(context!!, 360f)}")
         Dlog.d( "tileHeight : ${convertDpToPx(context!!, 240f)}")
-
 
         when (setting.isNightMode) {
             true -> {

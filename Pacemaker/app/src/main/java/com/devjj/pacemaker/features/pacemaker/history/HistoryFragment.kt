@@ -1,9 +1,7 @@
 package com.devjj.pacemaker.features.pacemaker.history
 
 import android.os.Bundle
-import android.util.Log
 import androidx.annotation.NonNull
-import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
@@ -13,17 +11,12 @@ import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
-import com.devjj.pacemaker.features.pacemaker.entities.ExerciseHistoryEntity
-import com.devjj.pacemaker.features.pacemaker.entities.StatisticsEntity
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import io.reactivex.Flowable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import okhttp3.Dispatcher
 import org.threeten.bp.LocalDate
 import javax.inject.Inject
 
@@ -176,12 +169,12 @@ class HistoryFragment : BaseFragment() {
                 fHistory_tv_month_times.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
                 fHistory_tv_month_kgs.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
 
+                fHistory_iv_chart.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_chart_nighttime))
+                fHistory_iv_comment_month.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_nighttime))
+                fHistory_iv_comment_total.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_nighttime))
                 fHistory_iv_chart.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
-                fHistory_iv_chart.drawable.setTint(loadColor(activity!!,R.color.orange_F74938))
                 fHistory_iv_comment_month.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
                 fHistory_iv_comment_total.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
-                fHistory_iv_comment_month.drawable.setTint(loadColor(activity!!,R.color.orange_F74938))
-                fHistory_iv_comment_total.drawable.setTint(loadColor(activity!!,R.color.orange_F74938))
 
                 fHistory_clo_line_01.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
                 fHistory_clo_line_02.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
@@ -214,12 +207,16 @@ class HistoryFragment : BaseFragment() {
                 fHistory_tv_month_times.setTextColor(loadColor(activity!!,R.color.black_3B4046))
                 fHistory_tv_month_kgs.setTextColor(loadColor(activity!!,R.color.black_3B4046))
 
-                fHistory_iv_chart.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
-                fHistory_iv_chart.drawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
-                fHistory_iv_comment_month.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
-                fHistory_iv_comment_total.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
+                fHistory_iv_chart.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_chart_daytime))
+                fHistory_iv_comment_month.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_daytime))
+                fHistory_iv_comment_total.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_daytime))
                 fHistory_iv_comment_month.drawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
                 fHistory_iv_comment_total.drawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
+
+                fHistory_iv_chart.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
+                fHistory_iv_comment_month.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
+                fHistory_iv_comment_total.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
+
 
                 fHistory_clo_line_01.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
                 fHistory_clo_line_02.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))

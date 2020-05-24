@@ -120,7 +120,7 @@
                     app:layout_constraintStart_toEndOf="@id/fHistory_tv_weight"
                     app:layout_constraintTop_toBottomOf="@id/fHistory_tv_profile"
                     app:layout_constraintVertical_bias="1.0"
-                    app:srcCompat="@drawable/fhistory_img_btn_chart" />
+                    app:srcCompat="@drawable/fhistory_img_btn_chart_nighttime" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -203,11 +203,12 @@
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:layout_marginEnd="18dp"
-                            android:src="@drawable/fhistory_img_btn_comment"
+                            android:src="@drawable/fhistory_img_btn_comment_nighttime"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/fHistory_tv_month_kgs"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/fhistory_img_btn_comment_nighttime" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
@@ -294,11 +295,12 @@
                             android:layout_width="35dp"
                             android:layout_height="35dp"
                             android:layout_marginEnd="18dp"
-                            android:src="@drawable/fhistory_img_btn_comment"
+                            android:src="@drawable/fhistory_img_btn_comment_nighttime"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toEndOf="@+id/fHistory_tv_total_kgs"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/fhistory_img_btn_comment_nighttime" />
 
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

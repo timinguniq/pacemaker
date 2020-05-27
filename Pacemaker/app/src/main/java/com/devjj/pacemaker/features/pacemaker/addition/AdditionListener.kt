@@ -13,6 +13,7 @@ import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.extension.convertPartImgToResource
+import com.devjj.pacemaker.core.extension.convertPartImgToStringResource
 import com.devjj.pacemaker.core.extension.empty
 import com.devjj.pacemaker.core.functional.Dlog
 import kotlinx.android.synthetic.main.fragment_addition.*
@@ -20,6 +21,8 @@ import javax.inject.Inject
 
 
 class AdditionListener(val activity: Activity, val additionViewModel: AdditionViewModel) {
+
+    private var clickTime: Long = 0
 
     fun clickListener() {
         // 백키를 눌렀을 떄 리스너
@@ -73,11 +76,29 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
                         additionViewModel.saveExerciseData(additionData)
                         activity.finish()
                     } else {
-                        activity.fAddition_ev_name.hint =
-                            activity.resources.getString(R.string.faddition_tv_name_hint_str)
+                        // 운동이름 빈칸으로 했을 때
+                        // TODO : 디폴트 값 입력되게 코드 수정해야 된다.
+                        if(System.currentTimeMillis() - clickTime < 30000){
+                            // 디폴트 운동 이름 받아오는 함수.
+                            val additionData_default_name = convertPartImgToStringResource(additionData_part_img, activity)
 
-                        val exerciseName = activity.getString(R.string.faddition_tv_exercise_name_str)
-                        Toast.makeText(activity, exerciseName, Toast.LENGTH_SHORT).show()
+                            val additionData =
+                                AdditionData(
+                                    0, additionData_part_img, additionData_default_name, additionData_mass,
+                                    additionData_rep, additionData_set, additionData_interval
+                                )
+                            additionViewModel.saveExerciseData(additionData)
+                            activity.finish()
+                        }else{
+                            clickTime = System.currentTimeMillis()
+
+                            activity.fAddition_ev_name.hint =
+                                activity.resources.getString(R.string.faddition_tv_name_hint_str)
+
+                            val exerciseName = activity.getString(R.string.faddition_tv_exercise_name_str)
+                            Toast.makeText(activity, exerciseName, Toast.LENGTH_SHORT).show()
+                        }
+
                     }
                 }
                 EDITING_MODE -> {

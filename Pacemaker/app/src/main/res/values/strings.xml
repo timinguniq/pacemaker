@@ -35,7 +35,16 @@
     <string name="faddition_tv_set_hint_str">Insert Sets</string>
     <string name="faddition_tv_interval_str">Rest</string>
     <string name="faddition_tv_interval_hint_str">Insert interval between exercise</string>
-    <string name="faddition_tv_exercise_name_str">Please insert the name of exercise</string>
+    <!-- TODO : 재영 검수 부탁 -->
+    <string name="faddition_tv_exercise_name_str">Please insert the name of exercise, If you touch save btn, default name insert</string>
+    <string name="faddition_tv_exercise_name_default_upper_body">Upperbody Exercise</string>
+    <string name="faddition_tv_exercise_name_default_arm">Arm Exercise</string>
+    <string name="faddition_tv_exercise_name_default_chest">Chest Exercise</string>
+    <string name="faddition_tv_exercise_name_default_abdomen">Abdomen Exercise</string>
+    <string name="faddition_tv_exercise_name_default_lower_body">Lowerbody Exercise</string>
+    <string name="faddition_tv_exercise_name_default_shoulder">Shoulder Exercise</string>
+    <!-- -->
+
 
     <string name="dremove_tv_main_str">Delete this one?</string>
     <string name="dremove_tv_confirm_str">Yes</string>

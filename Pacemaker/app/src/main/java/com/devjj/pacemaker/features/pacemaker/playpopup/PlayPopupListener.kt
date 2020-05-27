@@ -74,6 +74,9 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
         activity.fPlayPopup_flo_plus.setOnClickListener {
             if(plusClickNumber <= maxPlusClickNumber) plusClickNumber++
             if(plusClickNumber <= maxPlusClickNumber) interval+=plusInterval
+
+            // 휴식 시간 타이머 시간 조정하는 함수
+            playPopupFragment.settingRestTimeTv()
         }
 
         // 오른쪽 화살 이미지 눌렀을 때 이벤트 함수

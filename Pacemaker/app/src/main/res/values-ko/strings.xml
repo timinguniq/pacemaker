@@ -34,7 +34,15 @@
     <string name="faddition_tv_set_hint_str">운동 세트 수를 입력하세요</string>
     <string name="faddition_tv_interval_str">휴식</string>
     <string name="faddition_tv_interval_hint_str">운동간 휴식 시간을 입력하세요</string>
-    <string name="faddition_tv_exercise_name_str">운동 이름을 입력해주세요</string>
+    <!-- TODO : 재영 검수 부탁 -->
+    <string name="faddition_tv_exercise_name_str">운동 이름을 입력해주세요, 만일 한번 더 누르시면 기본값으로 입력됩니다.</string>
+    <string name="faddition_tv_exercise_name_default_upper_body">상체 운동</string>
+    <string name="faddition_tv_exercise_name_default_arm">팔 운동</string>
+    <string name="faddition_tv_exercise_name_default_chest">가슴 운동</string>
+    <string name="faddition_tv_exercise_name_default_abdomen">복부 운동</string>
+    <string name="faddition_tv_exercise_name_default_lower_body">하체 운동</string>
+    <string name="faddition_tv_exercise_name_default_shoulder">어깨 운동</string>
+    <!-- -->
 
     <string name="dremove_tv_main_str">이 운동을 지우시겠습니까?</string>
     <string name="dremove_tv_confirm_str">확인</string>

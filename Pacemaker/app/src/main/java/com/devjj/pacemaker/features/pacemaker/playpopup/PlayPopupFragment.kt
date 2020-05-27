@@ -59,12 +59,11 @@ class PlayPopupFragment : BaseFragment() {
             failure(failure, ::handleFailure)
         }
 
-        // 테스트 코드
         // 서비스 시작
         TimerService.startService(activity!!)
         //
 
-        // 테스트 중.
+        // 운동 시작 시간 측정
         totalTimeStart = System.currentTimeMillis()
     }
 
@@ -111,7 +110,6 @@ class PlayPopupFragment : BaseFragment() {
             val playPopupViewCurrentSet = currentPlayPopupData.setDone
 
             settingNextProgressBars(playPopupViewCurrentSet)
-
         }
 
     }
@@ -219,13 +217,15 @@ class PlayPopupFragment : BaseFragment() {
 
         // PlayPopupView를 핸들링하는 함수.
         handlePlayPopupView(playPopupView)
-
     }
 
     // 핸들링하는 함수
     fun handlePlayPopupView(playPopupView: List<PlayPopupView>?){
         var achivementCount = 0
         var playPopupDataList = mutableListOf<PlayPopupData>()
+        // 만일 운동이 하나일 때 예외처리(운동 간 휴식 시간이 나오지 않게 하기 위한 예외 처리)
+        if(playPopupView.orEmpty().size == 1) isFinalExercise = true
+
         for(popupView in playPopupView.orEmpty()){
             val achivement = popupView.achievement == 1
             if(!achivement){
@@ -281,7 +281,6 @@ class PlayPopupFragment : BaseFragment() {
                             )
 
                         playPopupViewModel.saveExerciseHistoryData(insertPlayPopupData)
-
                     }
 
                     playPopupViewModel.saveStatisticsData(todayTotalSetDone, todayTotalSetGoal)
@@ -300,10 +299,11 @@ class PlayPopupFragment : BaseFragment() {
                     Dlog.d( "totalTimer : $totalTime")
                 }
 
-                if(achivementCount == playPopupView?.size?.minus(1)){
+                if(achivementCount == playPopupView?.size?.minus(1)) {
                     isFinalExercise = true
                 }
             }
+
         }
     }
 
@@ -368,23 +368,30 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_tv_m_r.text = mstxv
 
         interval = currentPlayPopupView.interval
-        val timerText = settingFormatForTimer(interval)
-        fPlayPopup_tv_rest_time.text = timerText
+        // 휴식 시간 타이머 시간 조정하는 함수
+        settingRestTimeTv()
 
-        Dlog.d( "timerFinish $timerFinish")
+        Dlog.d("timerFinish $timerFinish")
 
         // 세트가 마지막 세트로 왔을 때 휴식 시간을 운동간 휴식시간으로 셋팅하기 위한 코드
         if(currentSet == maxSet){
             if(isFinalExercise) isFinalExerciseFinalSet = true
 
             interval = setting.restTime
-            val restTimeText = settingFormatForTimer(interval)
-            fPlayPopup_tv_rest_time.text = restTimeText
+            // 휴식 시간 타이머 시간 조정하는 함수
+            settingRestTimeTv()
         }
         //
 
         if(timerFinish)
             fPlayPopup_tv_rest_time.text = settingFormatForTimer(0)
+
+    }
+
+    // 휴식 시간 타이머 시간 조정하는 함수
+    fun settingRestTimeTv(){
+        val timerText = settingFormatForTimer(interval)
+        fPlayPopup_tv_rest_time.text = timerText
 
     }
 

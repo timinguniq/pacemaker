@@ -12,7 +12,6 @@
     <string name="aoption_tv_title_str">Option</string>
 
     <!-- 임시 단위 -->
-
     <string name="fhome_tv_fragment_name_str">HomeFragment</string>
     <string name="fhome_tv_list_unavailable_str">No data.</string>
     <string name="fhome_tv_title_part_str">Part</string>
@@ -35,10 +34,16 @@
     <string name="faddition_tv_set_hint_str">Insert Sets</string>
     <string name="faddition_tv_interval_str">Rest</string>
     <string name="faddition_tv_interval_hint_str">Insert interval between exercise</string>
-    <string name="faddition_tv_exercise_name_str">Please insert the name of exercise</string>
+    <string name="faddition_tv_exercise_name_str">Name will be filled automatically when you press again.</string>
+    <string name="faddition_tv_exercise_name_default_upper_body">Torso</string>
+    <string name="faddition_tv_exercise_name_default_arm">Arm</string>
+    <string name="faddition_tv_exercise_name_default_chest">Chest</string>
+    <string name="faddition_tv_exercise_name_default_abdomen">Abs</string>
+    <string name="faddition_tv_exercise_name_default_lower_body">legs</string>
+    <string name="faddition_tv_exercise_name_default_shoulder">Shoulder</string>
 
     <string name="dremove_tv_main_str">Delete this one?</string>
-    <string name="dremove_tv_confirm_str">Yes</string>
+    <string name="dremove_tv_confirm_str">Yes</string>1
     <string name="dremove_tv_cancel_str">No</string>
 
     <string name="dprofile_tv_height_str">Height</string>

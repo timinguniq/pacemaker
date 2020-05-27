@@ -34,7 +34,7 @@ class OptionListener(
             setting.isUpdateHeight = isChecked
         }
 
-        activity.fOption_iv_interval_plus.setOnClickListener {
+        activity.fOption_flo_interval_plus.setOnClickListener {
             var timeInSec = 60 * activity.fOption_tv_interval_time.text.split(":")[0].toInt()
             timeInSec += activity.fOption_tv_interval_time.text.split(":")[1].toInt()
             timeInSec += 5
@@ -50,7 +50,7 @@ class OptionListener(
             }
         }
 
-        activity.fOption_iv_interval_minus.setOnClickListener {
+        activity.fOption_flo_interval_minus.setOnClickListener {
             var timeInSec = 60 * activity.fOption_tv_interval_time.text.split(":")[0].toInt()
             timeInSec += activity.fOption_tv_interval_time.text.split(":")[1].toInt()
             timeInSec -= 5
@@ -65,25 +65,19 @@ class OptionListener(
             }
         }
 
-        activity.fOption_tv_feedback.setOnClickListener {
-            var emailIntent = Intent(
-                Intent.ACTION_SENDTO,
-                Uri.fromParts("mailto", "inty.ashever@gmail.com", null)
-            )
-            emailIntent.putExtra(
-                Intent.EXTRA_SUBJECT,
+        activity.fOption_clo_feedback.setOnClickListener {
+            var emailIntent = Intent(Intent.ACTION_SEND_MULTIPLE)
+            emailIntent.type = "message/rfc822"
+            emailIntent.putExtra(Intent.EXTRA_EMAIL,arrayOf("inty.ashever@gmail.com","timing.uniq@gmail.com"))
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT,
                 activity.getString(R.string.template_feedback_title)
             )
             emailIntent.putExtra(Intent.EXTRA_TEXT, "")
-            activity.startActivity(
-                Intent.createChooser(
-                    emailIntent,
-                    activity.getString(R.string.template_feedback_title)
-                )
-            )
+            activity.startActivity(emailIntent)
+
         }
 
-        activity.fOption_tv_rateUs.setOnClickListener {
+        activity.fOption_clo_rateUs.setOnClickListener {
             val rateIntent = Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse("http://play.google.com/store/apps/details?id=" + activity.packageName)
@@ -91,22 +85,17 @@ class OptionListener(
             activity.startActivity(rateIntent)
         }
 
-        activity.fOption_tv_share.setOnClickListener {
+        activity.fOption_clo_share.setOnClickListener {
 
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name")
-            var shareMessage = "\nLet me recommend you this application\n\n"
+            var shareMessage = "\n${activity.getString(R.string.foption_msg_share_str)}\n\n"
             shareMessage =
                 shareMessage + "http://play.google.com/store/apps/details?id=" + activity.packageName + "\n\n"
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
             activity.startActivity(Intent.createChooser(shareIntent, "choose one"))
-            /*
-            val shareIntent = Intent()
-            shareIntent.action = Intent.ACTION_SEND
-            shareIntent.type="text/plain"
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "This is my text to send.")
-            activity.startActivity(Intent.createChooser(shareIntent, "send to"))*/
+
         }
     }
 }

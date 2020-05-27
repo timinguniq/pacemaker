@@ -30,8 +30,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
     <FrameLayout
         android:id="@+id/aHistoryDetail_flo_container"
         android:layout_width="match_parent"

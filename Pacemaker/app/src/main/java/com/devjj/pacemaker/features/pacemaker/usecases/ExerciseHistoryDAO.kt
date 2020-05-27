@@ -23,13 +23,13 @@ interface ExerciseHistoryDAO {
     @Query("SELECT * FROM exerciseHistories WHERE date = :date")
     fun getAllByDate(date: String): List<ExerciseHistoryEntity>
 
-    @Query("SELECT Sum(setDone) as sets , Sum(mass*setDone) as mass FROM exerciseHistories ")
+    @Query("SELECT Sum(setDone) as sets , Sum(mass*setDone*rep) as mass FROM exerciseHistories ")
     fun getSetsAndMass() : SumOfSetsAndMass
 
     @Query("SELECT Sum(setDone) as sets FROM exerciseHistories WHERE date = :date")
     fun getOneDaySets(date: String) : OneDaySets
 
-    @Query("SELECT (SELECT Sum(setDone) FROM exerciseHistories  WHERE substr(date,0,8) = substr(:date,0,8) ) as sets ,(SELECT Sum(setDone*mass) FROM exerciseHistories  WHERE substr(date,0,8) = substr(:date,0,8) ) as mass")
+    @Query("SELECT (SELECT Sum(setDone) FROM exerciseHistories  WHERE substr(date,0,8) = substr(:date,0,8) ) as sets ,(SELECT Sum(setDone*mass*rep) FROM exerciseHistories  WHERE substr(date,0,8) = substr(:date,0,8) ) as mass")
     fun getOneMonthSumOfSetsAndMass(date: String) : SumOfSetsAndMass
 
     // date 검색 후 데이터 삭제하는 함수

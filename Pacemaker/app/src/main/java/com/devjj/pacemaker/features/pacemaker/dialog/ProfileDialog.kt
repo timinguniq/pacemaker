@@ -61,13 +61,8 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
         dialogView.dProfile_clo_option_weight.visible()
         dialogView.dProfile_tv_confirm.text = activity.getString(R.string.dprofile_tv_first_setting_str)
     }else {
-        if(!setting.isUpdateWeight){
-            dialogView.dProfile_clo_weight.gone()
-        }
-
-        if(!setting.isUpdateHeight){
-            dialogView.dProfile_clo_height.gone()
-        }
+        dialogView.dProfile_clo_option_height.gone()
+        dialogView.dProfile_clo_option_weight.gone()
     }
 
     when(flag){
@@ -104,6 +99,9 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
 
         setting.height = fSaveHeight
         setting.weight = fSaveWeight
+
+        // 전면광고
+        showInterstitialAd(activity, setting)
 
         dialog.dismiss()
     }

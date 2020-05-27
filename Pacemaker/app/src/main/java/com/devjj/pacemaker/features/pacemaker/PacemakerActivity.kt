@@ -14,6 +14,7 @@ import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.loadColor
 import com.devjj.pacemaker.core.extension.round
+import com.devjj.pacemaker.core.extension.showInterstitialAd
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
@@ -43,9 +44,6 @@ class PacemakerActivity : BaseActivity() {
     override var layout = R.layout.activity_pacemaker
     override var fragmentId = R.id.aPacemaker_flo_container
 
-    private var FINISH_MAX_COUNT = 5
-    private val FINSIH_MAX_COUNT_MIN_VALUE = 3
-    private val FINSIH_MAX_COUNT_MAX_VALUE = 10
     private var backKeyTime:Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,16 +52,11 @@ class PacemakerActivity : BaseActivity() {
         appComponent.inject(this)
         Dlog.d( "onCreate PacemakerActivity")
 
-        // FINSIH_MAX_COUNT 셋팅
-        FINISH_MAX_COUNT = (((FINSIH_MAX_COUNT_MAX_VALUE - FINSIH_MAX_COUNT_MIN_VALUE) * Math.random()) +
-                FINSIH_MAX_COUNT_MIN_VALUE).round(0).toInt()
     }
 
     override fun onResume() {
         super.onResume()
         initializeView()
-
-        Dlog.d( "PacemakerActivity finish_max_count : $FINISH_MAX_COUNT")
     }
 
     override fun fragment() = HomeFragment()
@@ -109,15 +102,8 @@ class PacemakerActivity : BaseActivity() {
 
         if(System.currentTimeMillis() - backKeyTime < 2000){
             Dlog.d( "PacemakerActivity if")
-            setting.finishCount++
-            Dlog.d( "PacemakerActivity setting.finishCount : ${setting.finishCount}")
-            if(setting.finishCount >= FINISH_MAX_COUNT){
-                setting.finishCount = 0
-                // 전면 광고를 띄우는 메소드
-                showInterstitialAd()
-            }else{
-                finishAffinity()
-            }
+            finishAffinity()
+
         }else{
             val toastStr = resources.getString(R.string.apacemaker_tv_terminate_str)
             Toast.makeText(this, toastStr, Toast.LENGTH_LONG).show()
@@ -125,35 +111,5 @@ class PacemakerActivity : BaseActivity() {
         backKeyTime = System.currentTimeMillis()
     }
 
-    // 전면 광고를 셋팅하는 함수.
-    private fun showInterstitialAd(){
-        val AD_INTERSTITIAL_UNIT_ID = "ca-app-pub-3940256099942544/1033173712"
 
-        // Create the InterstitialAd and set it up.
-        val mInterstitialAd = InterstitialAd(this).apply {
-            adUnitId = AD_INTERSTITIAL_UNIT_ID
-            adListener = (object : AdListener() {
-                override fun onAdLoaded() {
-                    Toast.makeText(this@PacemakerActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
-                    if (isLoaded) {
-                        show()
-                        finishAffinity()
-                    }
-                }
-
-                override fun onAdFailedToLoad(errorCode: Int) {
-                    Toast.makeText(this@PacemakerActivity,
-                        "onAdFailedToLoad() with error code: $errorCode",
-                        Toast.LENGTH_SHORT).show()
-                }
-
-                override fun onAdClosed() {
-                    Dlog.d( "onAdClosed")
-                }
-            })
-        }
-
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
-
-    }
 }

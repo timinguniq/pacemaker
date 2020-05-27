@@ -17,7 +17,7 @@ var interval = 0
 // plus click number
 var plusClickNumber = 0
 // plus interval(지금은 10초)
-var plusInterval = 11
+var plusInterval = 10
 // max plus click number
 val maxPlusClickNumber = 3
 // 날짜

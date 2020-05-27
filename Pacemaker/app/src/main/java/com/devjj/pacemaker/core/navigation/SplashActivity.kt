@@ -39,7 +39,7 @@ class SplashActivity : AppCompatActivity() {
         appComponent.inject(this)
         Dlog.d( "onCreate SplashActivity")
 
-        //log를 위한 코드
+        // Dlog를 위한 코드
         val app = AndroidApplication()
         AndroidApplication.DEBUG = app.isDebuggable(this)
         //
@@ -59,7 +59,6 @@ class SplashActivity : AppCompatActivity() {
 
         // 테스트 광고
         MobileAds.initialize(this) {}
-
     }
 
     // 버전 텍스트에 옮기는 함수

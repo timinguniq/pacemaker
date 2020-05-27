@@ -42,11 +42,12 @@
     <string name="dremove_tv_cancel_str">No</string>
 
     <string name="dprofile_tv_height_str">Height</string>
-    <string name="dprofile_tv_height_hint_str">Height(cm)</string>
+    <string name="dprofile_tv_height_hint_str">1 - 250(cm)</string>
     <string name="dprofile_tv_weight_str">Weight</string>
-    <string name="dprofile_tv_weight_hint_str">Weight(kg)</string>
+    <string name="dprofile_tv_weight_hint_str">1 - 300(kg)</string>
+    <string name="dprofile_msg_out_of_range_str">Out of Range.</string>
     <string name="dprofile_tv_confirm_str">Confirm</string>
-    <string name="dprofile_tv_first_setting_str">Save and start this app.</string>
+    <string name="dprofile_tv_first_setting_str">Save and start the app.</string>
     <string name="dprofile_tv_regex_str">Please enter your height and weight again.</string>
 
     <string name="dgiveup_tv_give_up_str">Give up the whole session?</string>
@@ -73,6 +74,7 @@
     <string name="foption_tv_feedback_str">Feedback</string>
     <string name="foption_tv_share_str">Share</string>
     <string name="foption_msg_share_str">This app helps your work out. Check it out.</string>
+    <string name="foption_msg_name_str">Pacemaker</string>
     <string name="foption_toast_saved">Option Saved</string>
     <string name="foption_UI_design_by">UI Design by Anna Chinellato</string>
 

@@ -4,6 +4,8 @@ import android.os.*
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -36,7 +38,7 @@ class PlayPopupFragment : BaseFragment() {
     private lateinit var playPopupViewModel: PlayPopupViewModel
 
     // 진행바들 변수 리스트
-    private val progressBars: List<View> by lazy{
+    val progressBars: List<View> by lazy{
         listOf(
             fPlayPopup_vi_progress_10, fPlayPopup_vi_progress_9, fPlayPopup_vi_progress_8, fPlayPopup_vi_progress_7,
             fPlayPopup_vi_progress_6, fPlayPopup_vi_progress_5, fPlayPopup_vi_progress_4, fPlayPopup_vi_progress_3,
@@ -459,6 +461,13 @@ class PlayPopupFragment : BaseFragment() {
                 progressBars[index].setBackgroundResource(resourcesSelect)
             }
         }
+        //10-currentCount 깜빡이게
+        var blinkAnim = AlphaAnimation(0.2f ,  1.0f)
+        blinkAnim.duration = 500
+        blinkAnim.repeatMode = Animation.REVERSE
+        blinkAnim.repeatCount = Animation.INFINITE
+        progressBars[10-currentCount].animation = blinkAnim
+        blinkAnim.start()
     }
 
     // ExerciseHistroyData 추가 후 데이터 받아오는 함수

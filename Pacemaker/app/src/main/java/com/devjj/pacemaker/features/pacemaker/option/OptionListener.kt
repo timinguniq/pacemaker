@@ -89,7 +89,7 @@ class OptionListener(
 
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "My application name")
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, activity.getString(R.string.foption_msg_name_str))
             var shareMessage = "\n${activity.getString(R.string.foption_msg_share_str)}\n\n"
             shareMessage =
                 shareMessage + "http://play.google.com/store/apps/details?id=" + activity.packageName + "\n\n"

@@ -18,6 +18,7 @@ import com.devjj.pacemaker.core.extension.APP_VERSION
 import com.devjj.pacemaker.core.functional.Dlog
 import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_splash.*
+import java.util.*
 import javax.inject.Inject
 
 class SplashActivity : AppCompatActivity() {

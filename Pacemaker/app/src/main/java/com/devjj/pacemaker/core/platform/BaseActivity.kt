@@ -24,6 +24,7 @@ abstract class BaseActivity : AppCompatActivity() {
     abstract var layout: Int
     abstract var fragmentId: Int
 
+
     @SuppressLint("SourceLockedOrientationActivity")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

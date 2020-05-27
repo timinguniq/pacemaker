@@ -48,7 +48,7 @@ class StatisticsFragment : BaseFragment(){
         val xAxisArray = ArrayList<String>()
         when(statistics){
             null ->{
-                Log.d("jayStatistics" , "no statistics")
+                Dlog.d("no statistics")
             }
             else ->{
                 for( (index , stats) in statistics.withIndex() ){
@@ -119,7 +119,7 @@ class StatisticsFragment : BaseFragment(){
     }
 
     private fun initializeView(){
-        Log.d("jayStatistics" , "load statistics")
+        Dlog.d("load statistics")
         val statisticsListener = StatisticsListener(activity!!,setting,statisticsViewModel)
         statisticsListener.initListener()
 

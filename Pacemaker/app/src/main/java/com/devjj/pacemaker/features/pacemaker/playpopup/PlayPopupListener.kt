@@ -53,6 +53,10 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
             // 타이머 시작
             TimerService.timerStart(activity)
+
+            for( progressBar in playPopupFragment.progressBars){
+                progressBar.clearAnimation()
+            }
         }
 
         // Next 버튼 눌렀을 떄. 이벤트 함수

@@ -2,11 +2,13 @@
 package com.devjj.pacemaker.features.pacemaker.dialog
 import android.app.Activity
 import android.app.AlertDialog
+import android.text.InputFilter
 import androidx.core.content.res.ResourcesCompat
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.functional.Dlog
+import com.devjj.pacemaker.core.functional.InputFilterMinMax
 import com.devjj.pacemaker.features.pacemaker.usecases.UpdateProfile
 import kotlinx.android.synthetic.main.dialog_profile_input.view.*
 import javax.inject.Inject
@@ -19,6 +21,9 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
 
     dialogView.dProfile_swc_mode_height.isChecked = setting.isUpdateHeight
     dialogView.dProfile_swc_mode_weight.isChecked = setting.isUpdateWeight
+
+    dialogView.dProfile_ev_height.filters = Array<InputFilter>(1) {InputFilterMinMax( activity, 1f, 250f )}
+    dialogView.dProfile_ev_weight.filters = Array<InputFilter>(1) {InputFilterMinMax( activity, 1f, 300f )}
 
     dialogView.dProfile_swc_mode_weight.setOnCheckedChangeListener { _, isChecked ->
         setting.isUpdateWeight = isChecked
@@ -99,6 +104,9 @@ fun showProfileDialog(activity: Activity, setting: SettingSharedPreferences, dat
 
         setting.height = fSaveHeight
         setting.weight = fSaveWeight
+
+        // 전면광고
+        showInterstitialAd(activity, setting)
 
         dialog.dismiss()
     }

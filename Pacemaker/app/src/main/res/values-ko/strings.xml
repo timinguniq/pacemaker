@@ -41,9 +41,10 @@
     <string name="dremove_tv_cancel_str">취소</string>
 
     <string name="dprofile_tv_height_str">신장</string>
-    <string name="dprofile_tv_height_hint_str">신장(cm)</string>
+    <string name="dprofile_tv_height_hint_str">1 - 250(cm)</string>
     <string name="dprofile_tv_weight_str">체중</string>
-    <string name="dprofile_tv_weight_hint_str">체중(kg)</string>
+    <string name="dprofile_tv_weight_hint_str">1 - 300(kg)</string>
+    <string name="dprofile_msg_out_of_range_str">입력 범위 초과입니다.</string>
     <string name="dprofile_tv_confirm_str">확인</string>
     <string name="dprofile_tv_first_setting_str">저장 후 시작</string>
     <string name="dprofile_tv_regex_str">신장과 체중을 다시 입력해주세요</string>
@@ -70,6 +71,7 @@
     <string name="foption_tv_feedback_str">피드백</string>
     <string name="foption_tv_share_str">공유</string>
     <string name="foption_msg_share_str">운동을 도와주는 어플이에요. 사용해보세요.</string>
+    <string name="foption_msg_name_str">페이스메이커(Pacemaker)</string>
     <string name="foption_toast_saved">설정 저장됨</string>
     <string name="foption_UI_design_by">UI Design by Anna Chinellato</string>
 

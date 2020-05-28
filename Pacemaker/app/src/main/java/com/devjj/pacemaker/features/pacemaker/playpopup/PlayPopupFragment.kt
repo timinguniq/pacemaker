@@ -33,9 +33,9 @@ class PlayPopupFragment : BaseFragment() {
     @Inject lateinit var navigator: Navigator
     @Inject lateinit var updateProfile: UpdateProfile
 
-    private lateinit var playPopupListener: PlayPopupListener
+    private lateinit var playPopupListener : PlayPopupListener
 
-    private lateinit var playPopupViewModel: PlayPopupViewModel
+    private lateinit var playPopupViewModel : PlayPopupViewModel
 
     // 진행바들 변수 리스트
     val progressBars: List<View> by lazy{
@@ -467,15 +467,18 @@ class PlayPopupFragment : BaseFragment() {
             handler.post{
                 progressBars[index].setBackgroundResource(resourcesSelect)
             }
+            progressBars[index].clearAnimation()
         }
 
-        //10-currentCount 깜빡이게
-        var blinkAnim = AlphaAnimation(0.2f ,  1.0f)
-        blinkAnim.duration = 500
-        blinkAnim.repeatMode = Animation.REVERSE
-        blinkAnim.repeatCount = Animation.INFINITE
-        progressBars[10-currentCount].animation = blinkAnim
-        blinkAnim.start()
+        if( mode == STOP_MODE ) {
+            //10-currentCount 깜빡이게
+            var blinkAnim = AlphaAnimation(0.2f, 1.0f)
+            blinkAnim.duration = 500
+            blinkAnim.repeatMode = Animation.REVERSE
+            blinkAnim.repeatCount = Animation.INFINITE
+            progressBars[10 - currentCount].animation = blinkAnim
+            blinkAnim.start()
+        }
     }
 
     // ExerciseHistroyData 추가 후 데이터 받아오는 함수
@@ -492,15 +495,24 @@ class PlayPopupFragment : BaseFragment() {
         }
 
         var standard = 0
-        if(setting.isUpdateHeight) standard++
-        if(setting.isUpdateWeight) standard+=2
+        if(setting.isUpdateHeight) standard += GET_HEIGHT_ONLY
+        if(setting.isUpdateWeight) standard += GET_WEIGHT_ONLY
 
+        when(standard){
+            GET_HEIGHT_ONLY -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY,updateProfile)
+            GET_WEIGHT_ONLY -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY,updateProfile)
+            GET_HEIGHT_WEIGHT -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT,updateProfile)
+            else -> Dlog.d( "getPlayPopupStatisticsView error")
+        }
+
+        //2020-05-27 marker_1
+        /*
         when(standard){
             1 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY,updateProfile)
             2 -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY,updateProfile)
             3 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT,updateProfile)
             else -> Dlog.d( "getPlayPopupStatisticsView error")
-        }
+        }*/
     }
 
     // playPopup 데이터 갱신 실패시 핸들링하는 함수.

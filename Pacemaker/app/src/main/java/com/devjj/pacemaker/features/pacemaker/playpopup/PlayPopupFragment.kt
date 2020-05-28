@@ -468,6 +468,7 @@ class PlayPopupFragment : BaseFragment() {
                 progressBars[index].setBackgroundResource(resourcesSelect)
             }
         }
+
         //10-currentCount 깜빡이게
         var blinkAnim = AlphaAnimation(0.2f ,  1.0f)
         blinkAnim.duration = 500

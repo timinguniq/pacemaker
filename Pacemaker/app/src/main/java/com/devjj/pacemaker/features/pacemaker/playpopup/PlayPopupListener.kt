@@ -77,7 +77,7 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
         // +10초 눌렀을 때수 이벤트 함수
         activity.fPlayPopup_flo_plus.setOnClickListener {
             if(plusClickNumber <= maxPlusClickNumber) plusClickNumber++
-            if(plusClickNumber <= maxPlusClickNumber) interval+=plusInterval
+            if(plusClickNumber <= maxPlusClickNumber&& interval != 0) interval+=plusInterval
 
             // 휴식 시간 타이머 시간 조정하는 함수
             playPopupFragment.settingRestTimeTv()

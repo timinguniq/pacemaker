@@ -46,6 +46,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
 
         // additionView의 name데이터를 이용하여 모드를 설정
         mode = if(additionView.name.isEmpty()) ADDITION_MODE else EDITING_MODE
+
         // 다크모드 설정
         isNightMode = setting.isNightMode
 
@@ -204,6 +205,8 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             EDITING_MODE -> {
                 additionData_id = tempAdditionView.id
                 additionData_part_img = tempAdditionView.part_img
+                val partImg = convertPartImgToResource(additionData_part_img, isNightMode)
+                fAddition_iv_part_main.setImageResource(partImg)
 
                 fAddition_tv_title.text = resources.getString(R.string.faddition_tv_title_edit_str)
                 fAddition_ev_name.text = String.editText(tempAdditionView.name)

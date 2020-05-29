@@ -359,7 +359,7 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_iv_part_img.setImageResource(partImgResources)
         //
 
-        fPlayPopup_tv_name.text = currentPlayPopupView.name
+        fPlayPopup_tv_name.text = String.regLen(currentPlayPopupView.name, EXERCISE_NAME_PLAY)
         var slash = getString(R.string.template_slash_str)
         var massUnit = getString(R.string.fplaypopup_tv_unit_mass_str)
         var repUnit = getString(R.string.fplaypopup_tv_unit_rep_str)
@@ -392,7 +392,6 @@ class PlayPopupFragment : BaseFragment() {
     fun settingRestTimeTv(){
         val timerText = settingFormatForTimer(interval)
         fPlayPopup_tv_rest_time.text = timerText
-
     }
 
     // 모드별 화면 셋팅
@@ -423,7 +422,6 @@ class PlayPopupFragment : BaseFragment() {
         params.setMargins(topMarginInt, topMarginInt, topMarginInt, topMarginInt)
         fPlayPopup_iv_part_img.layoutParams = params
     }
-
 
     // progressbar setting(초기 progressBar setting)
     // input값은 총 갯수

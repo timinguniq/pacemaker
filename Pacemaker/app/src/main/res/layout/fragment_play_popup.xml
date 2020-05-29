@@ -204,7 +204,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fPlayPopup_clo_exercise_content"
-        android:layout_width="200dp"
+        android:layout_width="220dp"
         android:layout_height="60dp"
         android:layout_marginTop="25dp"
         app:layout_constraintStart_toStartOf="parent"

@@ -461,11 +461,13 @@ class PlayPopupFragment : BaseFragment() {
             }
         }
 
+        clearAllProgressBarsAnimation()
+
         for(index in range){
             handler.post{
                 progressBars[index].setBackgroundResource(resourcesSelect)
             }
-            progressBars[index].clearAnimation()
+
         }
 
         if( mode == STOP_MODE ) {
@@ -496,6 +498,8 @@ class PlayPopupFragment : BaseFragment() {
         if(setting.isUpdateHeight) standard += GET_HEIGHT_ONLY
         if(setting.isUpdateWeight) standard += GET_WEIGHT_ONLY
 
+        clearAllProgressBarsAnimation()
+
         when(standard){
             GET_HEIGHT_ONLY -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY,updateProfile)
             GET_WEIGHT_ONLY -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY,updateProfile)
@@ -525,6 +529,12 @@ class PlayPopupFragment : BaseFragment() {
 
     private fun renderFailure(@StringRes message: Int) {
         // TODO : 나중에 메세지에 따른 구현 해야 될듯.
+    }
+
+    private fun clearAllProgressBarsAnimation(){
+        for(progressBar in progressBars){
+            progressBar.clearAnimation()
+        }
     }
 
 /*

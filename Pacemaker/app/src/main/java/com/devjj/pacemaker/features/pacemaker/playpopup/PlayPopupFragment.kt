@@ -370,7 +370,7 @@ class PlayPopupFragment : BaseFragment() {
         interval = currentPlayPopupView.interval
         // 휴식 시간 타이머 시간 조정하는 함수
         settingRestTimeTv()
-
+        Dlog.d("interval $interval")
         Dlog.d("timerFinish $timerFinish")
 
         // 세트가 마지막 세트로 왔을 때 휴식 시간을 운동간 휴식시간으로 셋팅하기 위한 코드

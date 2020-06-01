@@ -24,7 +24,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-
 class PlayPopupFragment : BaseFragment() {
     private var totalTimeStart: Long = 0
     private var totalTimeEnd: Long = 0

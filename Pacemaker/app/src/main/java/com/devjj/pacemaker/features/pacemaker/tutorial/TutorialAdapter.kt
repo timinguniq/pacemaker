@@ -23,6 +23,13 @@ class TutorialAdapter(private val tutorials : ArrayList<TutorialView>) : CardSli
         var tutorial = tutorials[position]
         Dlog.d("bindVh : ${tutorial.tutorial_img}")
         holder.itemView.rvTutorialItem_iv_main.setImageResource(tutorial.tutorial_img)
+        /*
+        holder.itemView.rvTutorialItem_iv_main.setOnClickListener {
+            if(position == 5){
+                Dlog.d("main clicked")
+            }
+        }
+        */
     }
 
     class TutorialHolder(view: View) : RecyclerView.ViewHolder(view)

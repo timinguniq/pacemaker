@@ -40,7 +40,7 @@ class HistoryDetailAdapter
         fun bind(historyDetailView: HistoryDetailView, context: Context,setting: SettingSharedPreferences,clickListener :(View,Int,String)->Unit={_,_,_->}){
             val partImgResource = convertPartImgToResource(historyDetailView.part_img, false)
             itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-            itemView.rvExerciseItem_tv_name.text = historyDetailView.name
+            itemView.rvExerciseItem_tv_name.text = String.regLen(historyDetailView.name, EXERCISE_NAME_HISTORY)
            // itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.rvexerciseitem_tv_unit_mass_str, historyDetailView.mass)
            // itemView.rvExerciseItem_tv_set.text = context.getString(R.string.unit_sets_goal_done, historyDetailView.setDone,historyDetailView.setGoal,historyDetailView.rep)
             itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.unit_mass, historyDetailView.mass)

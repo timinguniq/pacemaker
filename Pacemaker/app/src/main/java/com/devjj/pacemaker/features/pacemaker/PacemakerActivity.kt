@@ -92,7 +92,7 @@ class PacemakerActivity : BaseActivity() {
 
         // 광고 테스트 코드
         val adRequest = AdRequest.Builder().build()
-        aPacemaker_adView.loadAd(adRequest)
+        aPacemaker_adView?.loadAd(adRequest)
         // TODO : 여기까지 인데. 광고 때문에 view로 매개변수 받아야 될 것 같음.
     }
 

@@ -15,6 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/CustomSplashAppTheme">
+        <activity android:name=".features.pacemaker.TutorialActivity"></activity>
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
@@ -53,13 +55,10 @@
         <activity
             android:name=".features.pacemaker.HistoryDetailActivity"
             android:theme="@style/CustomAppTheme" />
-
         <activity
             android:name=".features.pacemaker.StatisticsActivity"
             android:theme="@style/CustomAppTheme" />
-
-        <activity android:name=".features.pacemaker.AppFinishActivity"/>
-
+        <activity android:name=".features.pacemaker.AppFinishActivity" />
 
         <service
             android:name=".features.pacemaker.service.TimerService"

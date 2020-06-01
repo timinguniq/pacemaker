@@ -38,14 +38,10 @@ import javax.inject.Inject
 class HistoryDetailFragment(private val intent: Intent) : BaseFragment() {
     override fun layoutId() = R.layout.fragment_history_detail
 
-    @Inject
-    lateinit var navigator: Navigator
-    @Inject
-    lateinit var db: ExerciseHistoryDatabase
-    @Inject
-    lateinit var historyDetailAdapter: HistoryDetailAdapter
+    @Inject lateinit var navigator: Navigator
+    @Inject lateinit var db: ExerciseHistoryDatabase
+    @Inject lateinit var historyDetailAdapter: HistoryDetailAdapter
     @Inject lateinit var setting: SettingSharedPreferences
-
 
     private lateinit var historyDetailViewModel: HistoryDetailViewModel
     private lateinit var historyDetailListener : HistoryDetailListener

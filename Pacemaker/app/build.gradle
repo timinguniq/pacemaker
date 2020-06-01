@@ -47,8 +47,6 @@ dependencies {
     implementation applicationDependencies.daggerLegacy
     implementation applicationDependencies.material
     implementation applicationDependencies.admob
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     kapt applicationDependencies.daggerProcessor
     kapt applicationDependencies.daggerCompiler
     implementation applicationDependencies.lifecycleExtensions
@@ -76,16 +74,16 @@ dependencies {
     androidTestImplementation acceptanceTestDependencies.testJunit
     androidTestImplementation acceptanceTestDependencies.espressoCore
 
-    //Development dependencies
+    // Development dependencies
     debugImplementation developmentDependencies.leakCanary
     releaseImplementation developmentDependencies.leakCanaryNoop
     testImplementation developmentDependencies.leakCanaryNoop
 
-    //Calendar
+    // Calendar
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.0'
 
-    //circle view
+    // circle view
     implementation 'com.github.jakob-grabner:Circle-Progress-View:1.4'
     implementation "androidx.core:core-ktx:+"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
@@ -97,8 +95,11 @@ dependencies {
     // Add the Firebase SDK for Crashlytics.
     implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta04'
 
-    //MP chart
+    // MP chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    // Card Slider
+    implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
 }
 
 repositories {

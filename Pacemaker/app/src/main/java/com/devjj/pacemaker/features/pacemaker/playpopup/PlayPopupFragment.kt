@@ -4,6 +4,8 @@ import android.os.*
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +24,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-
 class PlayPopupFragment : BaseFragment() {
     private var totalTimeStart: Long = 0
     private var totalTimeEnd: Long = 0
@@ -31,12 +32,12 @@ class PlayPopupFragment : BaseFragment() {
     @Inject lateinit var navigator: Navigator
     @Inject lateinit var updateProfile: UpdateProfile
 
-    private lateinit var playPopupListener: PlayPopupListener
+    private lateinit var playPopupListener : PlayPopupListener
 
-    private lateinit var playPopupViewModel: PlayPopupViewModel
+    private lateinit var playPopupViewModel : PlayPopupViewModel
 
     // 진행바들 변수 리스트
-    private val progressBars: List<View> by lazy{
+    val progressBars: List<View> by lazy{
         listOf(
             fPlayPopup_vi_progress_10, fPlayPopup_vi_progress_9, fPlayPopup_vi_progress_8, fPlayPopup_vi_progress_7,
             fPlayPopup_vi_progress_6, fPlayPopup_vi_progress_5, fPlayPopup_vi_progress_4, fPlayPopup_vi_progress_3,
@@ -57,12 +58,11 @@ class PlayPopupFragment : BaseFragment() {
             failure(failure, ::handleFailure)
         }
 
-        // 테스트 코드
         // 서비스 시작
         TimerService.startService(activity!!)
         //
 
-        // 테스트 중.
+        // 운동 시작 시간 측정
         totalTimeStart = System.currentTimeMillis()
     }
 
@@ -109,7 +109,6 @@ class PlayPopupFragment : BaseFragment() {
             val playPopupViewCurrentSet = currentPlayPopupData.setDone
 
             settingNextProgressBars(playPopupViewCurrentSet)
-
         }
 
     }
@@ -217,13 +216,15 @@ class PlayPopupFragment : BaseFragment() {
 
         // PlayPopupView를 핸들링하는 함수.
         handlePlayPopupView(playPopupView)
-
     }
 
     // 핸들링하는 함수
     fun handlePlayPopupView(playPopupView: List<PlayPopupView>?){
         var achivementCount = 0
         var playPopupDataList = mutableListOf<PlayPopupData>()
+        // 만일 운동이 하나일 때 예외처리(운동 간 휴식 시간이 나오지 않게 하기 위한 예외 처리)
+        if(playPopupView.orEmpty().size == 1) isFinalExercise = true
+
         for(popupView in playPopupView.orEmpty()){
             val achivement = popupView.achievement == 1
             if(!achivement){
@@ -279,7 +280,6 @@ class PlayPopupFragment : BaseFragment() {
                             )
 
                         playPopupViewModel.saveExerciseHistoryData(insertPlayPopupData)
-
                     }
 
                     playPopupViewModel.saveStatisticsData(todayTotalSetDone, todayTotalSetGoal)
@@ -298,10 +298,11 @@ class PlayPopupFragment : BaseFragment() {
                     Dlog.d( "totalTimer : $totalTime")
                 }
 
-                if(achivementCount == playPopupView?.size?.minus(1)){
+                if(achivementCount == playPopupView?.size?.minus(1)) {
                     isFinalExercise = true
                 }
             }
+
         }
     }
 
@@ -357,7 +358,7 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_iv_part_img.setImageResource(partImgResources)
         //
 
-        fPlayPopup_tv_name.text = currentPlayPopupView.name
+        fPlayPopup_tv_name.text = String.regLen(currentPlayPopupView.name, EXERCISE_NAME_PLAY)
         var slash = getString(R.string.template_slash_str)
         var massUnit = getString(R.string.fplaypopup_tv_unit_mass_str)
         var repUnit = getString(R.string.fplaypopup_tv_unit_rep_str)
@@ -366,24 +367,30 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_tv_m_r.text = mstxv
 
         interval = currentPlayPopupView.interval
-        val timerText = settingFormatForTimer(interval)
-        fPlayPopup_tv_rest_time.text = timerText
-
-        Dlog.d( "timerFinish $timerFinish")
+        // 휴식 시간 타이머 시간 조정하는 함수
+        settingRestTimeTv()
+        Dlog.d("interval $interval")
+        Dlog.d("timerFinish $timerFinish")
 
         // 세트가 마지막 세트로 왔을 때 휴식 시간을 운동간 휴식시간으로 셋팅하기 위한 코드
         if(currentSet == maxSet){
             if(isFinalExercise) isFinalExerciseFinalSet = true
 
             interval = setting.restTime
-            val restTimeText = settingFormatForTimer(interval)
-            fPlayPopup_tv_rest_time.text = restTimeText
+            // 휴식 시간 타이머 시간 조정하는 함수
+            settingRestTimeTv()
         }
         //
 
         if(timerFinish)
             fPlayPopup_tv_rest_time.text = settingFormatForTimer(0)
 
+    }
+
+    // 휴식 시간 타이머 시간 조정하는 함수
+    fun settingRestTimeTv(){
+        val timerText = settingFormatForTimer(interval)
+        fPlayPopup_tv_rest_time.text = timerText
     }
 
     // 모드별 화면 셋팅
@@ -414,7 +421,6 @@ class PlayPopupFragment : BaseFragment() {
         params.setMargins(topMarginInt, topMarginInt, topMarginInt, topMarginInt)
         fPlayPopup_iv_part_img.layoutParams = params
     }
-
 
     // progressbar setting(초기 progressBar setting)
     // input값은 총 갯수
@@ -454,10 +460,22 @@ class PlayPopupFragment : BaseFragment() {
             }
         }
 
+        clearAllProgressBarsAnimation()
+
         for(index in range){
             handler.post{
                 progressBars[index].setBackgroundResource(resourcesSelect)
             }
+        }
+
+        if( mode == STOP_MODE ) {
+            //10-currentCount 깜빡이게
+            var blinkAnim = AlphaAnimation(0.2f, 1.0f)
+            blinkAnim.duration = 500
+            blinkAnim.repeatMode = Animation.REVERSE
+            blinkAnim.repeatCount = Animation.INFINITE
+            progressBars[10 - currentCount].animation = blinkAnim
+            blinkAnim.start()
         }
     }
 
@@ -475,15 +493,26 @@ class PlayPopupFragment : BaseFragment() {
         }
 
         var standard = 0
-        if(setting.isUpdateHeight) standard++
-        if(setting.isUpdateWeight) standard+=2
+        if(setting.isUpdateHeight) standard += GET_HEIGHT_ONLY
+        if(setting.isUpdateWeight) standard += GET_WEIGHT_ONLY
 
+        clearAllProgressBarsAnimation()
+
+        when(standard){
+            GET_HEIGHT_ONLY -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY,updateProfile)
+            GET_WEIGHT_ONLY -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY,updateProfile)
+            GET_HEIGHT_WEIGHT -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT,updateProfile)
+            else -> Dlog.d( "getPlayPopupStatisticsView error")
+        }
+
+        //2020-05-27 marker_1
+        /*
         when(standard){
             1 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY,updateProfile)
             2 -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY,updateProfile)
             3 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT,updateProfile)
             else -> Dlog.d( "getPlayPopupStatisticsView error")
-        }
+        }*/
     }
 
     // playPopup 데이터 갱신 실패시 핸들링하는 함수.
@@ -498,6 +527,12 @@ class PlayPopupFragment : BaseFragment() {
 
     private fun renderFailure(@StringRes message: Int) {
         // TODO : 나중에 메세지에 따른 구현 해야 될듯.
+    }
+
+    private fun clearAllProgressBarsAnimation(){
+        for(progressBar in progressBars){
+            progressBar.clearAnimation()
+        }
     }
 
 /*

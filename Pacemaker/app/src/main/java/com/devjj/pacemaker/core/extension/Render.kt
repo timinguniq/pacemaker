@@ -83,6 +83,24 @@ fun showInterstitialAd(activity: Activity, setting : SettingSharedPreferences){
 
 }
 
+// part_img를 resource로 변경해주는 함수.
+fun convertPartImgToStringResource(part_img: Int, activity: Activity): String{
+        var result = ""
+        var resource = 0
+        when (part_img) {
+                0 -> resource = R.string.faddition_tv_exercise_name_default_upper_body
+                1 -> resource = R.string.faddition_tv_exercise_name_default_arm
+                2 -> resource = R.string.faddition_tv_exercise_name_default_chest
+                3 -> resource = R.string.faddition_tv_exercise_name_default_abdomen
+                4 -> resource = R.string.faddition_tv_exercise_name_default_lower_body
+                5 -> resource = R.string.faddition_tv_exercise_name_default_shoulder
+                else -> resource = R.string.faddition_tv_exercise_name_default_upper_body
+        }
+        result = activity.getString(resource)
+        return result
+}
+
+
 fun convertPxToDp(context : Context, px : Float) :Float {
         return px / context.resources.displayMetrics.density
 }

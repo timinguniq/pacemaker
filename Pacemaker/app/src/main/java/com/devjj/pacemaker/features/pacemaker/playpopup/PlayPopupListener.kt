@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.devjj.pacemaker.core.extension.invisible
 import com.devjj.pacemaker.core.extension.visible
+import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionViewModel
 import com.devjj.pacemaker.features.pacemaker.dialog.showGiveUpAllExerciseDialog
@@ -53,6 +54,10 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
             // 타이머 시작
             TimerService.timerStart(activity)
+
+            for( progressBar in playPopupFragment.progressBars){
+                progressBar.clearAnimation()
+            }
         }
 
         // Next 버튼 눌렀을 떄. 이벤트 함수
@@ -65,15 +70,22 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
                 playPopupFragment.settingForMode()
 
                 playPopupFragment.showSet()
+
+                playPopupFragment.marginPartImg(25)
             }
 
-            playPopupFragment.marginPartImg(25)
         }
 
         // +10초 눌렀을 때수 이벤트 함수
         activity.fPlayPopup_flo_plus.setOnClickListener {
+            Dlog.d("interval : $interval")
+
             if(plusClickNumber <= maxPlusClickNumber) plusClickNumber++
-            if(plusClickNumber <= maxPlusClickNumber) interval+=plusInterval
+            if(plusClickNumber <= maxPlusClickNumber&& !timerFinish) interval+=plusInterval
+
+            // 휴식 시간 타이머 시간 조정하는 함수
+            if(!timerFinish)
+                playPopupFragment.settingRestTimeTv()
         }
 
         // 오른쪽 화살 이미지 눌렀을 때 이벤트 함수

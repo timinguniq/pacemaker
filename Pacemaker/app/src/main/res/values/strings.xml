@@ -122,7 +122,7 @@
 
     <string name="stimer_tv_main_str">PaceMarker is running.</string>
     <string name="stimer_tv_tag_str">timerservice:wakelock</string>
-  
+
     <string name="fhistory_comment_prefix_month">You\'ve lifted&#160;</string>
     <string name="fhistory_comment_prefix_total">You\'ve lifted&#160;</string>
     <string name="fhistory_comment_suffix_month">&#160;so far during the month</string>
@@ -140,5 +140,8 @@
     <string name="fhistory_10000">an Anchor of Queen Elizabeth 2</string>
     <string name="fhistory_20000">a F-15 eagle</string>
     <string name="fhistory_50000">a Blue whale</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

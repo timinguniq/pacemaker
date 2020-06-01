@@ -7,9 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
-import com.devjj.pacemaker.core.extension.convertPartImgToResource
-import com.devjj.pacemaker.core.extension.inflate
-import com.devjj.pacemaker.core.extension.loadColor
+import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
 import kotlinx.android.synthetic.main.recyclerview_exercise_item.view.*
 import javax.inject.Inject
@@ -39,7 +37,7 @@ class HomeAdapter
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(homeView: HomeView, context: Context, setting: SettingSharedPreferences,
                  clickListener: (AdditionView) -> Unit, longClickListener: (HomeView) -> Unit) {
-            itemView.rvExerciseItem_tv_name.text = homeView.name
+            itemView.rvExerciseItem_tv_name.text = String.regLen(homeView.name, EXERCISE_NAME_HOME)
             itemView.rvExerciseItem_tv_mass.text = context.getString(R.string.unit_mass , homeView.mass)
             itemView.rvExerciseItem_tv_set.text = context.getString(R.string.unit_sets, homeView.set)
 

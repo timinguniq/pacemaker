@@ -24,7 +24,6 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-
 class PlayPopupFragment : BaseFragment() {
     private var totalTimeStart: Long = 0
     private var totalTimeEnd: Long = 0
@@ -33,9 +32,9 @@ class PlayPopupFragment : BaseFragment() {
     @Inject lateinit var navigator: Navigator
     @Inject lateinit var updateProfile: UpdateProfile
 
-    private lateinit var playPopupListener: PlayPopupListener
+    private lateinit var playPopupListener : PlayPopupListener
 
-    private lateinit var playPopupViewModel: PlayPopupViewModel
+    private lateinit var playPopupViewModel : PlayPopupViewModel
 
     // 진행바들 변수 리스트
     val progressBars: List<View> by lazy{
@@ -359,7 +358,7 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_iv_part_img.setImageResource(partImgResources)
         //
 
-        fPlayPopup_tv_name.text = currentPlayPopupView.name
+        fPlayPopup_tv_name.text = String.regLen(currentPlayPopupView.name, EXERCISE_NAME_PLAY)
         var slash = getString(R.string.template_slash_str)
         var massUnit = getString(R.string.fplaypopup_tv_unit_mass_str)
         var repUnit = getString(R.string.fplaypopup_tv_unit_rep_str)
@@ -370,7 +369,7 @@ class PlayPopupFragment : BaseFragment() {
         interval = currentPlayPopupView.interval
         // 휴식 시간 타이머 시간 조정하는 함수
         settingRestTimeTv()
-
+        Dlog.d("interval $interval")
         Dlog.d("timerFinish $timerFinish")
 
         // 세트가 마지막 세트로 왔을 때 휴식 시간을 운동간 휴식시간으로 셋팅하기 위한 코드
@@ -392,7 +391,6 @@ class PlayPopupFragment : BaseFragment() {
     fun settingRestTimeTv(){
         val timerText = settingFormatForTimer(interval)
         fPlayPopup_tv_rest_time.text = timerText
-
     }
 
     // 모드별 화면 셋팅
@@ -423,7 +421,6 @@ class PlayPopupFragment : BaseFragment() {
         params.setMargins(topMarginInt, topMarginInt, topMarginInt, topMarginInt)
         fPlayPopup_iv_part_img.layoutParams = params
     }
-
 
     // progressbar setting(초기 progressBar setting)
     // input값은 총 갯수
@@ -463,19 +460,23 @@ class PlayPopupFragment : BaseFragment() {
             }
         }
 
+        clearAllProgressBarsAnimation()
+
         for(index in range){
             handler.post{
                 progressBars[index].setBackgroundResource(resourcesSelect)
             }
-
         }
-        //10-currentCount 깜빡이게
-        var blinkAnim = AlphaAnimation(0.2f ,  1.0f)
-        blinkAnim.duration = 500
-        blinkAnim.repeatMode = Animation.REVERSE
-        blinkAnim.repeatCount = Animation.INFINITE
-        progressBars[10-currentCount].animation = blinkAnim
-        blinkAnim.start()
+
+        if( mode == STOP_MODE ) {
+            //10-currentCount 깜빡이게
+            var blinkAnim = AlphaAnimation(0.2f, 1.0f)
+            blinkAnim.duration = 500
+            blinkAnim.repeatMode = Animation.REVERSE
+            blinkAnim.repeatCount = Animation.INFINITE
+            progressBars[10 - currentCount].animation = blinkAnim
+            blinkAnim.start()
+        }
     }
 
     // ExerciseHistroyData 추가 후 데이터 받아오는 함수
@@ -492,15 +493,26 @@ class PlayPopupFragment : BaseFragment() {
         }
 
         var standard = 0
-        if(setting.isUpdateHeight) standard++
-        if(setting.isUpdateWeight) standard+=2
+        if(setting.isUpdateHeight) standard += GET_HEIGHT_ONLY
+        if(setting.isUpdateWeight) standard += GET_WEIGHT_ONLY
 
+        clearAllProgressBarsAnimation()
+
+        when(standard){
+            GET_HEIGHT_ONLY -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY,updateProfile)
+            GET_WEIGHT_ONLY -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY,updateProfile)
+            GET_HEIGHT_WEIGHT -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT,updateProfile)
+            else -> Dlog.d( "getPlayPopupStatisticsView error")
+        }
+
+        //2020-05-27 marker_1
+        /*
         when(standard){
             1 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_ONLY,updateProfile)
             2 -> showProfileDialog(activity!!, setting, date, GET_WEIGHT_ONLY,updateProfile)
             3 -> showProfileDialog(activity!!, setting, date, GET_HEIGHT_WEIGHT,updateProfile)
             else -> Dlog.d( "getPlayPopupStatisticsView error")
-        }
+        }*/
     }
 
     // playPopup 데이터 갱신 실패시 핸들링하는 함수.
@@ -515,6 +527,12 @@ class PlayPopupFragment : BaseFragment() {
 
     private fun renderFailure(@StringRes message: Int) {
         // TODO : 나중에 메세지에 따른 구현 해야 될듯.
+    }
+
+    private fun clearAllProgressBarsAnimation(){
+        for(progressBar in progressBars){
+            progressBar.clearAnimation()
+        }
     }
 
 /*

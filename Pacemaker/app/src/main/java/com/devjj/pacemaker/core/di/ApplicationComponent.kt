@@ -12,6 +12,7 @@ import com.devjj.pacemaker.features.pacemaker.option.OptionFragment
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupFragment
 import com.devjj.pacemaker.features.pacemaker.service.TimerService
 import com.devjj.pacemaker.features.pacemaker.statistics.StatisticsFragment
+import com.devjj.pacemaker.features.pacemaker.tutorial.TutorialFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -26,6 +27,7 @@ interface ApplicationComponent {
     fun inject(playPopupActivity: PlayPopupActivity)
     fun inject(historyDetailActivity: HistoryDetailActivity)
     fun inject(statisticsActivity: StatisticsActivity)
+    fun inject(tutorialActivity: TutorialActivity)
 
     fun inject(homeFragment: HomeFragment)
     fun inject(historyFragment: HistoryFragment)
@@ -34,6 +36,7 @@ interface ApplicationComponent {
     fun inject(playPopupFragment: PlayPopupFragment)
     fun inject(historyDetailFragment: HistoryDetailFragment)
     fun inject(statisticsFragment : StatisticsFragment)
+    fun inject(tutorialFragment: TutorialFragment)
 
     fun inject(timerService: TimerService)
 }

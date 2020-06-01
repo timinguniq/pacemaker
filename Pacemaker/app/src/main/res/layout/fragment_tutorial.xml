@@ -7,27 +7,26 @@
     tools:context=".features.pacemaker.tutorial.TutorialFragment">
 
     <com.github.islamkhsh.CardSliderIndicator
-        android:id="@+id/indicator"
-        android:layout_width="match_parent"
+        android:id="@+id/fTutorial_indicator"
+        android:layout_width="wrap_content"
         android:layout_height="30dp"
         app:indicatorsToShow="6"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/viewPager"/>
+        app:layout_constraintBottom_toTopOf="@+id/fTutorial_viewpager"/>
 
-    <!-- TODO: Update blank fragment layout -->
     <com.github.islamkhsh.CardSliderViewPager
-        android:id="@+id/viewPager"
+        android:id="@+id/fTutorial_viewpager"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        app:cardSlider_smallScaleFactor="0.9"
-        app:cardSlider_indicator="@id/indicator"
-        app:layout_constraintTop_toBottomOf="@+id/indicator"
+        app:cardSlider_indicator="@id/fTutorial_indicator"
+        app:layout_constraintTop_toBottomOf="@+id/fTutorial_indicator"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@+id/fTutorial_btn"/>
    <!--
+        app:cardSlider_smallScaleFactor="0.9"
         app:cardSlider_otherPagesWidth="24dp"
         app:cardSlider_pageMargin="12dp"
         -->
@@ -38,5 +37,16 @@
         // margin between pages
         // auto sliding time in seconds
     -->
+
+    <Button
+        android:id="@+id/fTutorial_btn"
+        android:layout_width="150dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="40dp"
+        android:text="splash 이동"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fTutorial_viewpager"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

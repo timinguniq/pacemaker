@@ -98,6 +98,7 @@
 
     <string name="dgiveup_tv_main_str">이 운동을 포기하시겠습니까?</string>
     <string name="dgiveupall_tv_main_str">모든 운동을 포기하시겠습니까?</string>
+
     <string name="fplaypopup_tv_btn_plus_str">+10초</string>
     <string name="fplaypopup_tv_exercise_finish_str">운동이 완료 되었습니다.</string>
     <string name="fplaypopup_tv_playlist_not_exist_str">재생 목록이 없습니다.</string>
@@ -106,6 +107,7 @@
     <string name="fplaypopup_tv_unit_mass_str">Kg</string>
     <string name="fplaypopup_tv_unit_set_str">세트</string>
     <string name="fplaypopup_tv_unit_rep_str">회</string>
+    <string name="fplaypopup_tv_rest_str">휴식중</string>
 
     <string name="fstatistics_tv_mode_bmi_str">BMI(%d) 표시</string>
     <string name="fstatistics_tv_bmi_str">BMI</string>

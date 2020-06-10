@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.extension.invisible
 import com.devjj.pacemaker.core.extension.visible
 import com.devjj.pacemaker.core.functional.Dlog
@@ -24,6 +25,8 @@ import kotlin.concurrent.schedule
 
 class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopupFragment,
                         val playPopupViewModel: PlayPopupViewModel, val navigator: Navigator) {
+
+    val handler = Handler(Looper.getMainLooper())
 
     fun clickListener() {
         // 백키를 눌렀을 떄 리스너
@@ -43,21 +46,26 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
             mode = PROGRESS_MODE
 
-            playPopupFragment.settingForMode()
+            val restText = activity.getString(R.string.fplaypopup_tv_rest_str)
+            handler.post {
+                playPopupFragment.settingExerciseName(restText)
 
-            // margin
-            playPopupFragment.marginPartImg(0)
-            //
+                playPopupFragment.settingForMode()
 
+                // margin
+                playPopupFragment.marginPartImg(0)
+                //
+                for( progressBar in playPopupFragment.progressBars){
+                    progressBar.clearAnimation()
+                }
+            }
             // plus number init
             plusClickNumber = 0
 
             // 타이머 시작
             TimerService.timerStart(activity)
 
-            for( progressBar in playPopupFragment.progressBars){
-                progressBar.clearAnimation()
-            }
+
         }
 
         // Next 버튼 눌렀을 떄. 이벤트 함수
@@ -65,7 +73,6 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
             mode = STOP_MODE
             TimerService.timerStop()
 
-            val handler = Handler(Looper.getMainLooper())
             handler.post{
                 playPopupFragment.settingForMode()
 
@@ -83,9 +90,11 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
             if(plusClickNumber <= maxPlusClickNumber) plusClickNumber++
             if(plusClickNumber <= maxPlusClickNumber&& !timerFinish) interval+=plusInterval
 
-            // 휴식 시간 타이머 시간 조정하는 함수
-            if(!timerFinish)
-                playPopupFragment.settingRestTimeTv()
+            handler.post {
+                // 휴식 시간 타이머 시간 조정하는 함수
+                if(!timerFinish)
+                    playPopupFragment.settingRestTimeTv()
+            }
         }
 
         // 오른쪽 화살 이미지 눌렀을 때 이벤트 함수

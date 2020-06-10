@@ -19,13 +19,8 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
-        <!--
- 본 광고 ID 값
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9818502417467314~6491082469"/>
-        -->
+            android:value="@string/APPLICATION_ID" />
+
         <activity
             android:name=".core.navigation.SplashActivity"
             android:launchMode="standard">
@@ -58,7 +53,6 @@
         <activity
             android:name=".features.pacemaker.StatisticsActivity"
             android:theme="@style/CustomAppTheme" />
-        <activity android:name=".features.pacemaker.AppFinishActivity" />
 
         <service
             android:name=".features.pacemaker.service.TimerService"

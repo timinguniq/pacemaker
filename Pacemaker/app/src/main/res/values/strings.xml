@@ -100,15 +100,16 @@
 
     <string name="dgiveup_tv_main_str">Skip this session?</string>
     <string name="dgiveupall_tv_main_str">Give up the whole session?</string>
+
     <string name="fplaypopup_tv_btn_plus_str">+10sec</string>
     <string name="fplaypopup_tv_exercise_finish_str">Completed today\'s session</string>
     <string name="fplaypopup_tv_playlist_not_exist_str">No list</string>
-
     <string name="fplaypopup_tv_exercise_name_str">Exercise Name</string>
     <string name="fplaypopup_tv_list_unavailable_str">No data.</string>
     <string name="fplaypopup_tv_unit_mass_str">Kg</string>
     <string name="fplaypopup_tv_unit_set_str">Set</string>
     <string name="fplaypopup_tv_unit_rep_str">Rep</string>
+    <string name="fplaypopup_tv_rest_str">resting</string>
 
     <string name="fstatistics_tv_mode_bmi_str">See BMI(%d)</string>
     <string name="fstatistics_tv_bmi_str">BMI</string>

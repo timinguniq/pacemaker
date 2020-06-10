@@ -358,7 +358,10 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_iv_part_img.setImageResource(partImgResources)
         //
 
-        fPlayPopup_tv_name.text = String.regLen(currentPlayPopupView.name, EXERCISE_NAME_PLAY)
+        // 운동 이름 셋팅하는 함수.
+        settingExerciseName(String.regLen(currentPlayPopupView.name, EXERCISE_NAME_PLAY))
+        //fPlayPopup_tv_name.text = String.regLen(currentPlayPopupView.name, EXERCISE_NAME_PLAY)
+
         var slash = getString(R.string.template_slash_str)
         var massUnit = getString(R.string.fplaypopup_tv_unit_mass_str)
         var repUnit = getString(R.string.fplaypopup_tv_unit_rep_str)
@@ -385,6 +388,11 @@ class PlayPopupFragment : BaseFragment() {
         if(timerFinish)
             fPlayPopup_tv_rest_time.text = settingFormatForTimer(0)
 
+    }
+
+    // 운동 이름 바꾸는 함수.
+    fun settingExerciseName(name : String){
+        fPlayPopup_tv_name.text = name
     }
 
     // 휴식 시간 타이머 시간 조정하는 함수

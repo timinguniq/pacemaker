@@ -60,7 +60,6 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
             settingIntervalTime(activity.fAddition_tv_interval_time)
         }
 
-
         // 저장 이미지를 클릭했을때 리스너
         activity.fAddition_flo_save.setOnClickListener {
             inputData(activity)
@@ -136,12 +135,6 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
                             val exerciseName = activity.getString(R.string.faddition_tv_exercise_name_str)
                             Toast.makeText(activity, exerciseName, Toast.LENGTH_SHORT).show()
                         }
-                        /* 원본 코드
-                        activity.fAddition_ev_name.hint =
-                            activity.resources.getString(R.string.faddition_tv_name_hint_str)
-                        val exerciseName = activity.getString(R.string.faddition_tv_exercise_name_str)
-                        Toast.makeText(activity, exerciseName, Toast.LENGTH_SHORT).show()
-                    */
                     }
                 }
                 else -> {

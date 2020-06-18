@@ -58,6 +58,7 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
                 for( progressBar in playPopupFragment.progressBars){
                     progressBar.clearAnimation()
                 }
+
             }
             // plus number init
             plusClickNumber = 0
@@ -89,10 +90,25 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
             if(plusClickNumber <= maxPlusClickNumber) plusClickNumber++
             if(plusClickNumber <= maxPlusClickNumber&& !timerFinish){
-                interval+=plusInterval
+                // 진행된 인터벌
+                var progressInterval = intervalMax - interval
 
-                val currentValue = activity.fPlayPopup_cv_rate.currentValue
-                playPopupFragment.circleViewAnimation(currentValue, (interval*1000).toLong())
+                interval+=plusInterval
+                intervalMax+=plusInterval
+
+                var currentValue = (progressInterval/((intervalMax).toFloat()))*100
+                val currentCircleViewValue = activity.fPlayPopup_cv_rate.currentValue
+                Dlog.d("currentValue : $currentValue")
+                if(currentCircleViewValue <= currentValue){
+                    currentValue = currentCircleViewValue
+                }
+
+                if(currentValue <= 0)
+                    currentValue = 0f
+
+                handler.post {
+                    playPopupFragment.circleViewAnimation(currentValue, (interval*1000).toLong())
+                }
             }
 
             handler.post {

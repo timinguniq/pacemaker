@@ -14,6 +14,8 @@ val PROGRESS_MODE = 1
 
 // 운동 간 휴식시간.
 var interval = 0
+// 운동 간 휴식시간 (max)
+var intervalMax = 0
 // plus click number
 var plusClickNumber = 0
 // plus interval(지금은 10초)

@@ -99,7 +99,7 @@ class PlayPopupFragment : BaseFragment() {
 
         if(!TimerService.isProgressTimer()) {
             // 초기 마진 셋팅
-            marginPartImg(25)
+            marginPartImg(0)
 
             // 데이터를 리스트를 로드하는 함수.
             playPopupViewModel.loadPlayPopupList()
@@ -348,11 +348,6 @@ class PlayPopupFragment : BaseFragment() {
         settingNextProgressBars(currentSet)
         //
 
-        // Circle 화면에 표시하는 코드
-        val circleProgress = (100 * currentSet / maxSet).toFloat()
-        fPlayPopup_cv_rate.setValue(circleProgress)
-        //
-
         // 근육 부위 화면에 셋팅하는 코드
         var partImgResources = convertPartImgToResource(currentPlayPopupView.part ,isNightMode)
         fPlayPopup_iv_part_img.setImageResource(partImgResources)
@@ -370,10 +365,15 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_tv_m_r.text = mstxv
 
         interval = currentPlayPopupView.interval
+
+        // Circle 화면에 표시하는 코드
+        //val circleProgress = (100 * currentSet / maxSet).toFloat()
+        circleViewAnimation(0f, (interval*1000).toLong())
+        //fPlayPopup_cv_rate.setValue(circleProgress)
+        //
+
         // 휴식 시간 타이머 시간 조정하는 함수
         settingRestTimeTv()
-        Dlog.d("interval $interval")
-        Dlog.d("timerFinish $timerFinish")
 
         // 세트가 마지막 세트로 왔을 때 휴식 시간을 운동간 휴식시간으로 셋팅하기 위한 코드
         if(currentSet == maxSet){
@@ -448,6 +448,12 @@ class PlayPopupFragment : BaseFragment() {
                 progressBars[index].gone()
             }
         }
+    }
+
+    // 가운데 circleView 애니메이션 주는 함수.
+    fun circleViewAnimation(startPosition: Float, duration: Long){
+        fPlayPopup_cv_rate.animation?.cancel()
+        fPlayPopup_cv_rate.setValueAnimated(startPosition, 100f, duration)
     }
 
     // progressbar 진행 셋팅하는 함수

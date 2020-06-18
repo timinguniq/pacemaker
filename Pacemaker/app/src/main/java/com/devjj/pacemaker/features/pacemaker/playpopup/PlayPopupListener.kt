@@ -53,7 +53,7 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
                 playPopupFragment.settingForMode()
 
                 // margin
-                playPopupFragment.marginPartImg(0)
+                playPopupFragment.marginPartImg(25)
                 //
                 for( progressBar in playPopupFragment.progressBars){
                     progressBar.clearAnimation()
@@ -78,7 +78,7 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
 
                 playPopupFragment.showSet()
 
-                playPopupFragment.marginPartImg(25)
+                playPopupFragment.marginPartImg(0)
             }
 
         }
@@ -88,7 +88,12 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
             Dlog.d("interval : $interval")
 
             if(plusClickNumber <= maxPlusClickNumber) plusClickNumber++
-            if(plusClickNumber <= maxPlusClickNumber&& !timerFinish) interval+=plusInterval
+            if(plusClickNumber <= maxPlusClickNumber&& !timerFinish){
+                interval+=plusInterval
+
+                val currentValue = activity.fPlayPopup_cv_rate.currentValue
+                playPopupFragment.circleViewAnimation(currentValue, (interval*1000).toLong())
+            }
 
             handler.post {
                 // 휴식 시간 타이머 시간 조정하는 함수

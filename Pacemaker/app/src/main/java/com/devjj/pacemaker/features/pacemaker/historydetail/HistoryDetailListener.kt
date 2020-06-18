@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.recyclerview_exercise_detail_item.view.*
 
 class HistoryDetailListener (val activity : Activity,private val historyDetailAdapter: HistoryDetailAdapter){
     fun initListener(){
-        activity.fHistoryDetail_iv_drop.setOnClickListener {
+        activity.fHistoryDetail_clo_openAll.setOnClickListener {
             when (activity.fHistoryDetail_iv_drop.tag) {
                 R.drawable.fhistorydetail_img_btn_dropdown_daytime -> {
                     activity.fHistoryDetail_iv_drop.setImageDrawable(activity.getDrawable(R.drawable.fhistorydetail_img_btn_dropup_daytime))

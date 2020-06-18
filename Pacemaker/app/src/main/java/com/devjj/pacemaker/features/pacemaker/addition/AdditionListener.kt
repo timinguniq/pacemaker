@@ -60,7 +60,6 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
             settingIntervalTime(activity.fAddition_tv_interval_time)
         }
 
-
         // 저장 이미지를 클릭했을때 리스너
         activity.fAddition_flo_save.setOnClickListener {
             inputData(activity)
@@ -77,7 +76,6 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
                         activity.finish()
                     } else {
                         // 운동이름 빈칸으로 했을 때
-                        // TODO : 디폴트 값 입력되게 코드 수정해야 된다.
                         if(System.currentTimeMillis() - clickTime < 30000){
                             // 디폴트 운동 이름 받아오는 함수.
                             val additionData_default_name = convertPartImgToStringResource(additionData_part_img, activity)
@@ -116,10 +114,27 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
                         additionViewModel.updateExerciseData(additionData)
                         activity.finish()
                     } else {
-                        activity.fAddition_ev_name.hint =
-                            activity.resources.getString(R.string.faddition_tv_name_hint_str)
-                        val exerciseName = activity.getString(R.string.faddition_tv_exercise_name_str)
-                        Toast.makeText(activity, exerciseName, Toast.LENGTH_SHORT).show()
+                        // 운동이름 빈칸으로 했을 때
+                        if(System.currentTimeMillis() - clickTime < 30000){
+                            // 디폴트 운동 이름 받아오는 함수.
+                            val additionData_default_name = convertPartImgToStringResource(additionData_part_img, activity)
+
+                            val additionData =
+                                AdditionData(
+                                    additionData_id, additionData_part_img, additionData_default_name, additionData_mass,
+                                    additionData_rep, additionData_set, additionData_interval
+                                )
+                            additionViewModel.updateExerciseData(additionData)
+                            activity.finish()
+                        }else{
+                            clickTime = System.currentTimeMillis()
+
+                            activity.fAddition_ev_name.hint =
+                                activity.resources.getString(R.string.faddition_tv_name_hint_str)
+
+                            val exerciseName = activity.getString(R.string.faddition_tv_exercise_name_str)
+                            Toast.makeText(activity, exerciseName, Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
                 else -> {

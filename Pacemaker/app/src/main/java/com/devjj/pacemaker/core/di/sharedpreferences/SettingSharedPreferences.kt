@@ -4,8 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 
 class SettingSharedPreferences(context: Context) {
-    val PREFS_FILENAME = "setting"
 
+    val PREFS_FILENAME = "setting"
     val PREF_KEY_DARK_MODE = "nightMode"
     val PREF_KEY_HEIGHT = "height"
     val PREF_KEY_WEIGHT = "weight"

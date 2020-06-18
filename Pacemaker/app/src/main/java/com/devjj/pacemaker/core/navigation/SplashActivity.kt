@@ -1,25 +1,17 @@
 package com.devjj.pacemaker.core.navigation
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.CancellationSignal
 import android.os.Handler
-import android.util.Log
-import android.view.ViewGroup
-import android.widget.Button
 import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.ApplicationComponent
-import com.devjj.pacemaker.core.di.database.ExerciseDatabase
-import com.devjj.pacemaker.core.di.database.ExerciseHistoryDatabase
-import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.APP_VERSION
 import com.devjj.pacemaker.core.functional.Dlog
 import com.google.android.gms.ads.MobileAds
 import kotlinx.android.synthetic.main.activity_splash.*
-import java.util.*
 import javax.inject.Inject
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 
 class SplashActivity : AppCompatActivity() {
 
@@ -28,10 +20,6 @@ class SplashActivity : AppCompatActivity() {
     }
 
     @Inject internal lateinit var navigator: Navigator
-    @Inject internal lateinit var dbEx: ExerciseDatabase
-    @Inject internal lateinit var dbExHi: ExerciseHistoryDatabase
-    // TODO : 테스트 코드 나중에 삭제
-    @Inject lateinit var setting: SettingSharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,6 +44,14 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             navigator.showMain(this)
         }, 2000)
+
+
+        // Operations on FirebaseCrashlytics.
+        val crashlytics = FirebaseCrashlytics.getInstance()
+        crashlytics.setUserId("Pacemaker")
+
+        // OPTIONAL: If crash reporting has been explicitly disabled previously, add:
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true)
 
         // 테스트 광고
         MobileAds.initialize(this) {}

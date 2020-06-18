@@ -24,7 +24,7 @@
         app:layout_constraintTop_toBottomOf="@+id/fTutorial_indicator"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/fTutorial_btn"/>
+        app:layout_constraintBottom_toTopOf="@+id/fTutorial_finish_btn"/>
    <!--
         app:cardSlider_smallScaleFactor="0.9"
         app:cardSlider_otherPagesWidth="24dp"
@@ -39,7 +39,7 @@
     -->
 
     <Button
-        android:id="@+id/fTutorial_btn"
+        android:id="@+id/fTutorial_finish_btn"
         android:layout_width="150dp"
         android:layout_height="80dp"
         android:layout_marginEnd="40dp"

@@ -365,9 +365,10 @@ class PlayPopupFragment : BaseFragment() {
         fPlayPopup_tv_m_r.text = mstxv
 
         interval = currentPlayPopupView.interval
-
+        intervalMax = currentPlayPopupView.interval
         // Circle 화면에 표시하는 코드
         //val circleProgress = (100 * currentSet / maxSet).toFloat()
+        fPlayPopup_cv_rate.setValue(0f)
         circleViewAnimation(0f, (interval*1000).toLong())
         //fPlayPopup_cv_rate.setValue(circleProgress)
         //
@@ -380,6 +381,7 @@ class PlayPopupFragment : BaseFragment() {
             if(isFinalExercise) isFinalExerciseFinalSet = true
 
             interval = setting.restTime
+            intervalMax = interval
             // 휴식 시간 타이머 시간 조정하는 함수
             settingRestTimeTv()
         }

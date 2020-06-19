@@ -21,8 +21,8 @@ class TutorialListener(val activity: Activity, val tutorialFragment: TutorialFra
 
             tutorialViewModel.currentItemData.value = activity.fTutorial_viewpager.currentItem
             Dlog.d("currentItem doOnPageSelected : ${activity.fTutorial_viewpager.currentItem}")
-            if(activity.fTutorial_viewpager.currentItem == 5){
-                Dlog.d("currentItem 5")
+            if(activity.fTutorial_viewpager.currentItem == 12){
+                Dlog.d("currentItem 12")
                 tutorialFragment.setFinishBtnVisible(true)
             }else{
                 tutorialFragment.setFinishBtnVisible(false)
@@ -30,7 +30,7 @@ class TutorialListener(val activity: Activity, val tutorialFragment: TutorialFra
         }
 
         // finish btn을 클릭했을 때 이벤트 함수
-        activity.fTutorial_finish_btn.setOnClickListener {
+        activity.fTutorial_iv_finish.setOnClickListener {
             navigator.showPacemaker(activity)
         }
 

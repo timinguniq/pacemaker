@@ -11,7 +11,9 @@ import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.fragment_tutorial.*
+import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 /**
  * A simple [Fragment] subclass.
@@ -65,12 +67,14 @@ class TutorialFragment : BaseFragment() {
 
 
         // 혹시나 쓸일 있으면 쓸 코드
-        //fTutorial_indicator.indicatorsToShow = 3
+        fTutorial_indicator.indicatorsToShow = 5
 
     }
 
     // 데이터 초기화 하는 함수
     private fun initTutorialData(){
+        val displayLanguage = Locale.getDefault().displayLanguage
+/*
         val tutorials = ArrayList<TutorialView>().apply{
             // add items to arraylist
             add(TutorialView(0, R.drawable.img_part_upper_body_daytime))
@@ -80,6 +84,43 @@ class TutorialFragment : BaseFragment() {
             add(TutorialView(0, R.drawable.img_part_lower_body_daytime))
             add(TutorialView(0, R.drawable.img_part_shoulder_daytime))
         }
+*/
+        var tutorials = ArrayList<TutorialView>()
+        when(displayLanguage){
+            "English" -> {
+                tutorials.add(TutorialView(0, R.drawable.img_part_upper_body_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_upper_body_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_abdomen_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_arm_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_chest_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_lower_body_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_shoulder_daytime))
+            }
+            "한국어" -> {
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide1))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide2))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide3))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide4))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide5))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide6))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide7))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide8))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide9))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide10))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide11))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide12))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_guide13))
+            }
+            else -> {
+                tutorials.add(TutorialView(0, R.drawable.img_part_upper_body_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_upper_body_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_abdomen_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_arm_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_chest_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_lower_body_daytime))
+                tutorials.add(TutorialView(0, R.drawable.img_part_shoulder_daytime))
+            }
+        }
 
         fTutorial_viewpager.adapter = TutorialAdapter(tutorials)
     }
@@ -87,9 +128,9 @@ class TutorialFragment : BaseFragment() {
     // finish btn visible
     fun setFinishBtnVisible(visible: Boolean){
         if(visible){
-            fTutorial_finish_btn.visible()
+            fTutorial_iv_finish.visible()
         }else{
-            fTutorial_finish_btn.invisible()
+            fTutorial_iv_finish.invisible()
         }
     }
 

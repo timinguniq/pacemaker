@@ -10,7 +10,8 @@
         android:id="@+id/fTutorial_indicator"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        app:indicatorsToShow="6"
+        android:layout_marginTop="20dp"
+        app:indicatorsToShow="13"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,12 +20,12 @@
     <com.github.islamkhsh.CardSliderViewPager
         android:id="@+id/fTutorial_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="500dp"
         app:cardSlider_indicator="@id/fTutorial_indicator"
         app:layout_constraintTop_toBottomOf="@+id/fTutorial_indicator"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/fTutorial_finish_btn"/>
+        app:layout_constraintBottom_toTopOf="@+id/fTutorial_iv_finish"/>
    <!--
         app:cardSlider_smallScaleFactor="0.9"
         app:cardSlider_otherPagesWidth="24dp"
@@ -38,13 +39,12 @@
         // auto sliding time in seconds
     -->
 
-    <Button
-        android:id="@+id/fTutorial_finish_btn"
-        android:layout_width="150dp"
-        android:layout_height="80dp"
+    <ImageView
+        android:id="@+id/fTutorial_iv_finish"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginEnd="40dp"
-        android:text="splash 이동"
-        android:textSize="20sp"
+        android:src="@drawable/img_save_nighttime"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fTutorial_viewpager"/>

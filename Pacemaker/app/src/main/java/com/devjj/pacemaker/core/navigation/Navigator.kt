@@ -43,7 +43,7 @@ class Navigator
     // TODO : 나중에 showpacemaker를 showTutorial로 바꾸고 tutorial 슬라이드하는거 연구해야 될듯.
     fun showMain(context: Context) {
         when (authenticator.userLoggedIn()) {
-            true -> showPacemaker(context)
+            true -> showTutorial(context)
             false -> showLogin(context)
         }
     }

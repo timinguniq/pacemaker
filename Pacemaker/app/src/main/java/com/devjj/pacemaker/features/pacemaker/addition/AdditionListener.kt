@@ -23,6 +23,7 @@ import javax.inject.Inject
 class AdditionListener(val activity: Activity, val additionViewModel: AdditionViewModel) {
 
     private var clickTime: Long = 0
+    private var clickTimeSave: Long = 0
 
     fun clickListener() {
         // 백키를 눌렀을 떄 리스너
@@ -67,13 +68,16 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
             when (mode) {
                 ADDITION_MODE -> {
                     if (additionData_name != String.empty()) {
-                        val additionData =
-                            AdditionData(
-                                0, additionData_part_img, additionData_name, additionData_mass,
-                                additionData_rep, additionData_set, additionData_interval
-                            )
-                        additionViewModel.saveExerciseData(additionData)
-                        activity.finish()
+                        if(System.currentTimeMillis() - clickTimeSave < 2000){
+                            val additionData =
+                                AdditionData(
+                                    0, additionData_part_img, additionData_name, additionData_mass,
+                                    additionData_rep, additionData_set, additionData_interval
+                                )
+                            additionViewModel.saveExerciseData(additionData)
+                            activity.finish()
+                        }
+                        clickTimeSave = System.currentTimeMillis()
                     } else {
                         // 운동이름 빈칸으로 했을 때
                         if(System.currentTimeMillis() - clickTime < 30000){
@@ -101,18 +105,21 @@ class AdditionListener(val activity: Activity, val additionViewModel: AdditionVi
                 }
                 EDITING_MODE -> {
                     if (additionData_name != String.empty()) {
-                        val additionData =
-                            AdditionData(
-                                additionData_id,
-                                additionData_part_img,
-                                additionData_name,
-                                additionData_mass,
-                                additionData_rep,
-                                additionData_set,
-                                additionData_interval
-                            )
-                        additionViewModel.updateExerciseData(additionData)
-                        activity.finish()
+                        if(System.currentTimeMillis() - clickTimeSave < 2000){
+                            val additionData =
+                                AdditionData(
+                                    additionData_id,
+                                    additionData_part_img,
+                                    additionData_name,
+                                    additionData_mass,
+                                    additionData_rep,
+                                    additionData_set,
+                                    additionData_interval
+                                )
+                            additionViewModel.updateExerciseData(additionData)
+                            activity.finish()
+                        }
+                        clickTimeSave = System.currentTimeMillis()
                     } else {
                         // 운동이름 빈칸으로 했을 때
                         if(System.currentTimeMillis() - clickTime < 30000){

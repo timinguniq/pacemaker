@@ -97,6 +97,8 @@ class OptionFragment : BaseFragment() {
                 fOption_clo_line_02.setBackgroundColor(loadColor(activity!!,R.color.grey_606060))
                 fOption_clo_line_03.setBackgroundColor(loadColor(activity!!,R.color.grey_606060))
                 fOption_clo_line_04.setBackgroundColor(loadColor(activity!!,R.color.grey_606060))
+                fOption_clo_line_05.setBackgroundColor(loadColor(activity!!,R.color.grey_606060))
+                fOption_clo_line_06.setBackgroundColor(loadColor(activity!!,R.color.grey_606060))
 
                 fOption_tv_UI_Design_by.setTextColor(loadColor(activity!!,R.color.grey_B2B2B2))
             }
@@ -136,6 +138,8 @@ class OptionFragment : BaseFragment() {
                 fOption_clo_line_02.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
                 fOption_clo_line_03.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
                 fOption_clo_line_04.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
+                fOption_clo_line_05.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
+                fOption_clo_line_06.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
 
                 fOption_tv_UI_Design_by.setTextColor(loadColor(activity!!,R.color.grey_87888A))
             }

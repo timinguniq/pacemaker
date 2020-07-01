@@ -72,12 +72,14 @@
     <string name="foption_tv_mode_str">Night mode</string>
     <string name="foption_tv_mode_weight_str">Always update weight</string>
     <string name="foption_tv_mode_height_str">Always update height</string>
+    <string name="foption_tv_toturial_str">See tutorial again</string>
     <string name="foption_tv_interval_str">Rest time</string>
     <string name="foption_tv_option_str">Option</string>
     <string name="foption_tv_supportUs_str">SUPPORT US</string>
     <string name="foption_tv_rateUs_str">Rate us</string>
     <string name="foption_tv_feedback_str">Feedback</string>
     <string name="foption_tv_share_str">Share</string>
+    <string name="foption_tv_openSource_str">Open Source License</string>
     <string name="foption_msg_share_str">This app helps your work out. Check it out.</string>
     <string name="foption_msg_name_str">Pacemaker</string>
     <string name="foption_toast_saved">Option Saved</string>

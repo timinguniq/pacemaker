@@ -10,23 +10,23 @@
         android:id="@+id/fTutorial_indicator"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         app:indicatorsToShow="13"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fTutorial_viewpager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/fTutorial_viewpager"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.github.islamkhsh.CardSliderViewPager
         android:id="@+id/fTutorial_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="0dp"
         app:cardSlider_indicator="@id/fTutorial_indicator"
         app:cardSlider_pageMargin="0dp"
-        app:layout_constraintTop_toBottomOf="@+id/fTutorial_indicator"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fTutorial_iv_finish"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/fTutorial_iv_finish"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fTutorial_indicator" />
    <!--
         app:cardSlider_smallScaleFactor="0.9"
         app:cardSlider_otherPagesWidth="24dp"
@@ -44,10 +44,14 @@
         android:id="@+id/fTutorial_iv_finish"
         android:layout_width="70dp"
         android:layout_height="70dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
         android:src="@drawable/img_save_nighttime"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fTutorial_viewpager"/>
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fTutorial_viewpager" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -70,12 +70,14 @@
     <string name="foption_tv_mode_str">야간 모드</string>
     <string name="foption_tv_mode_weight_str">매번 체중 입력</string>
     <string name="foption_tv_mode_height_str">매번 신장 입력</string>
+    <string name="foption_tv_toturial_str">튜토리얼 다시보기</string>
     <string name="foption_tv_interval_str">휴식 시간</string>
     <string name="foption_tv_supportUs_str">SUPPORT US</string>
     <string name="foption_tv_option_str">설정</string>
     <string name="foption_tv_rateUs_str">평점주기</string>
     <string name="foption_tv_feedback_str">피드백</string>
     <string name="foption_tv_share_str">공유</string>
+    <string name="foption_tv_openSource_str">오픈소스 라이센스</string>
     <string name="foption_msg_share_str">운동을 도와주는 어플이에요. 사용해보세요.</string>
     <string name="foption_msg_name_str">페이스메이커(Pacemaker)</string>
     <string name="foption_toast_saved">설정 저장됨</string>

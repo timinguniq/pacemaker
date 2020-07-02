@@ -14,6 +14,7 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.loadColor
 import com.devjj.pacemaker.core.functional.Dlog
+import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import kotlinx.android.synthetic.main.activity_option.*
 import kotlinx.android.synthetic.main.fragment_option.*
@@ -25,6 +26,8 @@ class OptionFragment : BaseFragment() {
     private lateinit var optionViewModel: OptionViewModel
     @Inject
     lateinit var setting: SettingSharedPreferences
+    @Inject
+    lateinit var navigator: Navigator
 
     override fun layoutId() = R.layout.fragment_option
 
@@ -52,7 +55,7 @@ class OptionFragment : BaseFragment() {
         fOption_swc_mode_weight.isChecked = setting.isUpdateWeight
         fOption_swc_mode_height.isChecked = setting.isUpdateHeight
 
-        val optionListener = OptionListener(activity!!,setting,::setColors)
+        val optionListener = OptionListener(activity!!, setting, navigator, ::setColors)
         optionListener.initListener()
         fOption_tv_interval_time.text = getString(R.string.unit_time_min_sec,setting.restTime/60,setting.restTime%60)
     }

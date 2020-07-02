@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_FFFFFF"
+    tools:context=".features.pacemaker.OpenSourceActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/aOpenSource_clo_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/img_title_background_daytime"
+        app:layout_constraintBottom_toTopOf="@+id/aOpenSource_flo_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/aOpenSource_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/aopensource_tv_title_str"
+            android:textColor="#fff7fafd"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/aOpenSource_flo_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/white_FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/aOpenSource_adView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/aOpenSource_clo_title" />
+
+    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/aOpenSource_adView"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/AD_BANNER_UNIT_ID"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aOpenSource_flo_container" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

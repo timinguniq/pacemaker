@@ -55,7 +55,8 @@ class OptionFragment : BaseFragment() {
         fOption_swc_mode_weight.isChecked = setting.isUpdateWeight
         fOption_swc_mode_height.isChecked = setting.isUpdateHeight
 
-        val optionListener = OptionListener(activity!!,setting,::setColors, navigator)
+        val optionListener = OptionListener(activity!!, setting, navigator, ::setColors)
+
         optionListener.initListener()
         fOption_tv_interval_time.text = getString(R.string.unit_time_min_sec,setting.restTime/60,setting.restTime%60)
     }

@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 
 import com.devjj.pacemaker.R
+import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.functional.Dlog
@@ -21,6 +22,7 @@ import kotlin.collections.ArrayList
 class TutorialFragment : BaseFragment() {
 
     @Inject lateinit var navigator: Navigator
+    @Inject lateinit var setting: SettingSharedPreferences
 
     private lateinit var tutorialViewModel: TutorialViewModel
 
@@ -42,8 +44,10 @@ class TutorialFragment : BaseFragment() {
 
     override fun onStart() {
         super.onStart()
-        // finish btn 숨기기.
-        setFinishBtnVisible(false)
+        // finish btn visible setting
+        if(setting.height == -1.0f && setting.weight == -1.0f) setFinishBtnVisible(false)
+        else setFinishBtnVisible(true)
+
         // viewModel로부터 currentItemData 가져오기
         currentTempItem = tutorialViewModel.currentItemData.value?:0
         Dlog.d("currentTempItem : $currentTempItem")
@@ -60,7 +64,7 @@ class TutorialFragment : BaseFragment() {
         fTutorial_viewpager.currentItem = currentTempItem
 
         // tutorialListener 초기화
-        tutorialListener = TutorialListener(activity!!, this, navigator, tutorialViewModel)
+        tutorialListener = TutorialListener(activity!!, this, navigator, setting, tutorialViewModel)
 
         // 클릭 리스너들 모아둔 함수.
         tutorialListener.clickListener()
@@ -74,17 +78,7 @@ class TutorialFragment : BaseFragment() {
     // 데이터 초기화 하는 함수
     private fun initTutorialData(){
         val displayLanguage = Locale.getDefault().displayLanguage
-/*
-        val tutorials = ArrayList<TutorialView>().apply{
-            // add items to arraylist
-            add(TutorialView(0, R.drawable.img_part_upper_body_daytime))
-            add(TutorialView(0, R.drawable.img_part_abdomen_daytime))
-            add(TutorialView(0, R.drawable.img_part_arm_daytime))
-            add(TutorialView(0, R.drawable.img_part_chest_daytime))
-            add(TutorialView(0, R.drawable.img_part_lower_body_daytime))
-            add(TutorialView(0, R.drawable.img_part_shoulder_daytime))
-        }
-*/
+
         var tutorials = ArrayList<TutorialView>()
         when(displayLanguage){
             "English" -> {
@@ -118,13 +112,19 @@ class TutorialFragment : BaseFragment() {
                 tutorials.add(TutorialView(0, R.drawable.ftutorial_img_kor_guide13))
             }
             else -> {
-                tutorials.add(TutorialView(0, R.drawable.img_part_upper_body_daytime))
-                tutorials.add(TutorialView(0, R.drawable.img_part_upper_body_daytime))
-                tutorials.add(TutorialView(0, R.drawable.img_part_abdomen_daytime))
-                tutorials.add(TutorialView(0, R.drawable.img_part_arm_daytime))
-                tutorials.add(TutorialView(0, R.drawable.img_part_chest_daytime))
-                tutorials.add(TutorialView(0, R.drawable.img_part_lower_body_daytime))
-                tutorials.add(TutorialView(0, R.drawable.img_part_shoulder_daytime))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide1))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide2))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide3))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide4))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide5))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide6))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide7))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide8))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide9))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide10))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide11))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide12))
+                tutorials.add(TutorialView(0, R.drawable.ftutorial_img_eng_guide13))
             }
         }
 

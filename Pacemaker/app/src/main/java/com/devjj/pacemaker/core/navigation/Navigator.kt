@@ -50,6 +50,8 @@ class Navigator
         }
     }
 
+    fun showLicense(context: Context) = context.startActivity(OpenSourceActivity.callingIntent(context))
+
     fun showTutorial(context: Context) = context.startActivity(TutorialActivity.callingIntent(context))
 
     fun showPacemaker(context: Context) = context.startActivity(PacemakerActivity.callingIntent(context))

@@ -19,7 +19,6 @@ class TutorialListener(val activity: Activity, val tutorialFragment: TutorialFra
     fun clickListener() {
         // viewpager page listener
         activity.fTutorial_viewpager.doOnPageSelected {
-
             tutorialViewModel.currentItemData.value = activity.fTutorial_viewpager.currentItem
             Dlog.d("currentItem doOnPageSelected : ${activity.fTutorial_viewpager.currentItem}")
             if(activity.fTutorial_viewpager.currentItem == 12){
@@ -34,7 +33,7 @@ class TutorialListener(val activity: Activity, val tutorialFragment: TutorialFra
         // finish btn을 클릭했을 때 이벤트 함수
         activity.fTutorial_iv_finish.setOnClickListener {
             if(setting.height == -1.0f && setting.weight == -1.0f) navigator.showPacemaker(activity)
-            else navigator.showOption(activity)
+            else activity.onBackPressed()
         }
 
     }

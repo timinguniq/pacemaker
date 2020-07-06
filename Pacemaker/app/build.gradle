@@ -9,7 +9,7 @@ apply plugin: 'com.google.firebase.crashlytics'
 android {
     def config = rootProject.extensions.getByName("ext")
 
-    buildToolsVersion "29.0.2"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId config["applicationId"]
         minSdkVersion config["min_sdk"]
@@ -21,7 +21,15 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'),  'proguard-rules.pro'
+
+            /* Add the firebaseCrashlytics extension (by default,
+            * it's disabled to improve build speeds) and set
+            * nativeSymbolUploadEnabled to true. */
+
+            firebaseCrashlytics {
+                nativeSymbolUploadEnabled true
+            }
         }
     }
     compileSdkVersion = compile_sdk
@@ -90,10 +98,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Recommended: Add the Firebase SDK for Google Analytics.
-    implementation 'com.google.firebase:firebase-analytics:17.3.0'
+    implementation 'com.google.firebase:firebase-analytics:17.4.3'
 
     // Add the Firebase SDK for Crashlytics.
-    implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta04'
+    implementation 'com.google.firebase:firebase-crashlytics:17.0.1'
+
+    // Add the Firebase Crashlytics NDK dependency.
+    implementation 'com.google.firebase:firebase-crashlytics-ndk:17.0.1'
 
     // MP chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'

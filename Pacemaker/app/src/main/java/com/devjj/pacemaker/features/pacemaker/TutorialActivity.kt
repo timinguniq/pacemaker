@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.devjj.pacemaker.R
+import com.devjj.pacemaker.core.extension.loadColor
 import com.devjj.pacemaker.core.platform.BaseActivity
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.devjj.pacemaker.features.pacemaker.playpopup.STOP_MODE
@@ -26,5 +27,12 @@ class TutorialActivity : BaseActivity() {
         appComponent.inject(this)
     }
 
+    override fun onResume() {
+        super.onResume()
+        window.statusBarColor = loadColor(this,R.color.grey_88898A)
+    }
+
     override fun fragment() = TutorialFragment()
+
+
 }

@@ -9,14 +9,20 @@ import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.loadColor
 import com.devjj.pacemaker.core.functional.Dlog
+import com.devjj.pacemaker.core.navigation.Navigator
 import kotlinx.android.synthetic.main.fragment_option.*
+import javax.inject.Inject
 
 
 class OptionListener(
     val activity: Activity,
     val setting: SettingSharedPreferences,
+    val navigator: Navigator,
     val setColors: () -> Unit
+
 ) {
+
+
     val MAX_TIME = 300
     val MIN_TIME = 0
     fun initListener() {
@@ -65,6 +71,10 @@ class OptionListener(
             }
         }
 
+        activity.fOption_clo_option_tutorial.setOnClickListener {
+            navigator.showTutorial(activity)
+        }
+
         activity.fOption_clo_feedback.setOnClickListener {
             var emailIntent = Intent(Intent.ACTION_SEND_MULTIPLE)
             emailIntent.type = "message/rfc822"
@@ -86,7 +96,6 @@ class OptionListener(
         }
 
         activity.fOption_clo_share.setOnClickListener {
-
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, activity.getString(R.string.foption_msg_name_str))
@@ -96,6 +105,10 @@ class OptionListener(
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
             activity.startActivity(Intent.createChooser(shareIntent, "choose one"))
 
+        }
+
+        activity.fOption_clo_openSource.setOnClickListener {
+            navigator.showLicense(activity);
         }
     }
 }

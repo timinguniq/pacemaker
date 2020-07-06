@@ -37,16 +37,20 @@ import kotlin.math.roundToInt
 
 @Singleton
 class Navigator
-@Inject constructor(private val authenticator: Authenticator){
+@Inject constructor(private val authenticator: Authenticator, private val setting: SettingSharedPreferences){
     fun showLogin(context: Context) = context.startActivity(LoginActivity.callingIntent(context))
 
     // TODO : 나중에 showpacemaker를 showTutorial로 바꾸고 tutorial 슬라이드하는거 연구해야 될듯.
     fun showMain(context: Context) {
         when (authenticator.userLoggedIn()) {
-            true -> showPacemaker(context)
+            // TODO :
+            true -> if(setting.height == -1.0f && setting.weight == -1.0f) showTutorial(context)
+                    else showPacemaker(context)
             false -> showLogin(context)
         }
     }
+
+    fun showLicense(context: Context) = context.startActivity(OpenSourceActivity.callingIntent(context))
 
     fun showTutorial(context: Context) = context.startActivity(TutorialActivity.callingIntent(context))
 

@@ -4,6 +4,7 @@ import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.core.di.viewmodel.ViewModelModule
 import com.devjj.pacemaker.core.navigation.SplashActivity
 import com.devjj.pacemaker.features.pacemaker.*
+import com.devjj.pacemaker.features.pacemaker.opensource.OpenSourceFragment
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionFragment
 import com.devjj.pacemaker.features.pacemaker.history.HistoryFragment
 import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailFragment
@@ -28,6 +29,7 @@ interface ApplicationComponent {
     fun inject(historyDetailActivity: HistoryDetailActivity)
     fun inject(statisticsActivity: StatisticsActivity)
     fun inject(tutorialActivity: TutorialActivity)
+    fun inject(openSourceActivity: OpenSourceActivity)
 
     fun inject(homeFragment: HomeFragment)
     fun inject(historyFragment: HistoryFragment)
@@ -37,6 +39,7 @@ interface ApplicationComponent {
     fun inject(historyDetailFragment: HistoryDetailFragment)
     fun inject(statisticsFragment : StatisticsFragment)
     fun inject(tutorialFragment: TutorialFragment)
+    fun inject(openSourceFragment: OpenSourceFragment)
 
     fun inject(timerService: TimerService)
 }

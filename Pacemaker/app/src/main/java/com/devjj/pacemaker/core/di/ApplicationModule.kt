@@ -21,6 +21,7 @@ import javax.inject.Singleton
 
 @Module
 class ApplicationModule(private val application: AndroidApplication) {
+
     @Provides
     @Singleton
     fun provideApplicationContext(): Context = application
@@ -77,7 +78,6 @@ class ApplicationModule(private val application: AndroidApplication) {
     fun provideSettingSharedPreferences(): SettingSharedPreferences {
         return SettingSharedPreferences(application)
     }
-
 
     @Provides
     @Singleton

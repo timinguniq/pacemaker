@@ -190,12 +190,6 @@ class HomeAdapter(
         homeViewModel.swapExerciseData(collection[fromPosition].id, collection[toPosition].id)
         notifyItemMoved(fromPosition, toPosition)
         swapCollectionId(fromPosition, toPosition)
-        //homeViewModel.loadHomeList()
-        /*
-        // TODO : rxJava로 구현해야 될듯.
-        Handler().postDelayed({
-        }, 1500)
-        */
     }
 
     override fun onRowSelected(itemViewHolder: HomeAdapter.ViewHolder) {

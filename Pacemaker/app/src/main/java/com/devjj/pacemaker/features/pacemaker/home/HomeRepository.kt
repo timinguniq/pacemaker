@@ -18,6 +18,9 @@ interface HomeRepository {
     // DB에 ExerciseData를 삭제하는 함수.
     fun deleteExerciseData(homeData: HomeData): Either<Failure, HomeData>
 
+    // DB에 ExerciseData Swap하는 함수.
+    fun swapExerciseData(homeData1Id: Int, homeData2Id: Int) : Either<Failure, HomeData>
+
     class DbRepository
     @Inject constructor(private val service: HomeDatabaseService) :
         HomeRepository {
@@ -34,6 +37,18 @@ interface HomeRepository {
             return try {
                 Right(HomeData.empty())
             } catch (exception: Throwable) {
+                Left(DatabaseError)
+            }
+        }
+
+        override fun swapExerciseData(
+            homeData1Id: Int,
+            homeData2Id: Int
+        ): Either<Failure, HomeData> {
+            service.swapExerciseData(homeData1Id, homeData2Id)
+            return try{
+                Right(HomeData.empty())
+            }catch(exception: Throwable){
                 Left(DatabaseError)
             }
         }

@@ -1,11 +1,13 @@
 package com.devjj.pacemaker.core.navigation
 
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.ApplicationComponent
+import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.APP_VERSION
 import com.devjj.pacemaker.core.functional.Dlog
 import com.google.android.gms.ads.MobileAds
@@ -20,6 +22,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     @Inject internal lateinit var navigator: Navigator
+    @Inject lateinit var setting: SettingSharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,9 @@ class SplashActivity : AppCompatActivity() {
         val app = AndroidApplication()
         AndroidApplication.DEBUG = app.isDebuggable(this)
         //
+
+        // 정렬모드 초기화.
+        setting.isEditMode = false
 
     }
 

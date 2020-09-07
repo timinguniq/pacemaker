@@ -22,6 +22,8 @@ import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.android.play.core.review.testing.FakeReviewManager
 import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -51,12 +53,13 @@ class PacemakerActivity : BaseActivity() {
         setContentView(R.layout.activity_pacemaker)
         appComponent.inject(this)
         Dlog.d( "onCreate PacemakerActivity")
-
     }
 
     override fun onResume() {
         super.onResume()
         initializeView()
+
+
     }
 
     override fun fragment() = HomeFragment()
@@ -95,6 +98,7 @@ class PacemakerActivity : BaseActivity() {
         aPacemaker_adView?.loadAd(adRequest)
         // TODO : 여기까지 인데. 광고 때문에 view로 매개변수 받아야 될 것 같음.
     }
+
 
     override fun onBackPressed() {
         //super.onBackPressed()

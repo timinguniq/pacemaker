@@ -35,7 +35,7 @@ class HomeAdapter(
 
     internal var clickListener: (AdditionView) -> Unit = { _ -> }
 
-    internal var longClickListener: (HomeView) -> Unit = { _ -> }
+    internal var deleteClickListener: (HomeView) -> Unit = { _ -> }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(parent.inflate(R.layout.recyclerview_exercise_item))
@@ -47,7 +47,7 @@ class HomeAdapter(
             setting,
             startDragListener,
             clickListener,
-            longClickListener
+            deleteClickListener
         )
     }
 
@@ -57,7 +57,7 @@ class HomeAdapter(
         fun bind(
             homeView: HomeView, context: Context, setting: SettingSharedPreferences,
             startDragListener: OnStartDragListener,
-            clickListener: (AdditionView) -> Unit, longClickListener: (HomeView) -> Unit
+            clickListener: (AdditionView) -> Unit, deleteClickListener: (HomeView) -> Unit
         ) {
             itemView.rvExerciseItem_tv_name.text = String.regLen(homeView.name, EXERCISE_NAME_HOME)
             itemView.rvExerciseItem_tv_mass.text =
@@ -68,67 +68,40 @@ class HomeAdapter(
                 // 화이트 모드
                 val partImgResource = convertPartImgToResource(homeView.part_img, false)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-                itemView.rvExerciseItem_clo_main.setBackgroundColor(
-                    loadColor(
-                        context,
-                        R.color.grey_F9F9F9
-                    )
-                )
-                itemView.rvExerciseItem_tv_name.setTextColor(
-                    loadColor(
-                        context,
-                        R.color.black_3B4046
-                    )
-                )
-                itemView.rvExerciseItem_tv_mass.setTextColor(
-                    loadColor(
-                        context,
-                        R.color.grey_88898A
-                    )
-                )
-                itemView.rvExerciseItem_tv_slash.setTextColor(
-                    loadColor(
-                        context,
-                        R.color.grey_88898A
-                    )
-                )
+                itemView.rvExerciseItem_clo_main.setBackgroundColor(loadColor(context, R.color.grey_F9F9F9))
+                itemView.rvExerciseItem_tv_name.setTextColor(loadColor(context, R.color.black_3B4046))
+                itemView.rvExerciseItem_tv_mass.setTextColor(loadColor(context, R.color.grey_88898A))
+                itemView.rvExerciseItem_tv_slash.setTextColor(loadColor(context, R.color.grey_88898A))
                 itemView.rvExerciseItem_tv_set.setTextColor(loadColor(context, R.color.grey_88898A))
+                itemView.rvExerciseItem_iv_sort.setImageResource(R.drawable.rvexerciseitem_img_wm_drag_handle)
+                itemView.rvExerciseItem_iv_delete.setImageResource(R.drawable.rvexerciseitem_img_wm_delete)
             } else {
                 // 다크 모드
                 val partImgResource = convertPartImgToResource(homeView.part_img, true)
                 itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-                itemView.rvExerciseItem_clo_main.setBackgroundColor(
-                    loadColor(
-                        context,
-                        R.color.grey_88898A
-                    )
-                )
-                itemView.rvExerciseItem_tv_name.setTextColor(
-                    loadColor(
-                        context,
-                        R.color.white_F7FAFD
-                    )
-                )
-                itemView.rvExerciseItem_tv_mass.setTextColor(
-                    loadColor(
-                        context,
-                        R.color.grey_444646
-                    )
-                )
-                itemView.rvExerciseItem_tv_slash.setTextColor(
-                    loadColor(
-                        context,
-                        R.color.grey_444646
-                    )
-                )
+                itemView.rvExerciseItem_clo_main.setBackgroundColor(loadColor(context, R.color.grey_88898A))
+                itemView.rvExerciseItem_tv_name.setTextColor(loadColor(context, R.color.white_F7FAFD))
+                itemView.rvExerciseItem_tv_mass.setTextColor(loadColor(context, R.color.grey_444646))
+                itemView.rvExerciseItem_tv_slash.setTextColor(loadColor(context, R.color.grey_444646))
                 itemView.rvExerciseItem_tv_set.setTextColor(loadColor(context, R.color.grey_444646))
-
+                itemView.rvExerciseItem_iv_sort.setImageResource(R.drawable.rvexerciseitem_img_dm_drag_handle)
+                itemView.rvExerciseItem_iv_delete.setImageResource(R.drawable.rvexerciseitem_img_dm_delete)
             }
 
-            if (setting.isSortMode) {
+            if (setting.isEditMode) {
                 itemView.rvExerciseItem_flo_sort.visible()
+                itemView.rvExerciseItem_flo_delete.visible()
+
+                itemView.rvExerciseItem_tv_mass.gone()
+                itemView.rvExerciseItem_tv_slash.gone()
+                itemView.rvExerciseItem_tv_set.gone()
             } else {
                 itemView.rvExerciseItem_flo_sort.gone()
+                itemView.rvExerciseItem_flo_delete.gone()
+
+                itemView.rvExerciseItem_tv_mass.visible()
+                itemView.rvExerciseItem_tv_slash.visible()
+                itemView.rvExerciseItem_tv_set.visible()
             }
 
             // 메인 레이아웃 클릭 시 이벤트 함수.
@@ -141,16 +114,26 @@ class HomeAdapter(
                     )
                 )
             }
-
+/*
             // 메인 레이아웃 롱 클릭 시 이벤트 함수.
             itemView.rvExerciseItem_clo_main.setOnLongClickListener {
-                longClickListener(
+                deleteClickListener(
                     HomeView(
                         homeView.id, homeView.part_img, homeView.name,
                         homeView.mass, homeView.rep, homeView.set, homeView.interval
                     )
                 )
                 true
+            }
+*/
+            // Item Delete를 위한 이벤트 함수.
+            itemView.rvExerciseItem_flo_delete.setOnClickListener {
+                deleteClickListener(
+                    HomeView(
+                        homeView.id, homeView.part_img, homeView.name,
+                        homeView.mass, homeView.rep, homeView.set, homeView.interval
+                    )
+                )
             }
 
             // Item Move를 위한 이벤트 함수.
@@ -161,9 +144,7 @@ class HomeAdapter(
                 }
                 return@setOnTouchListener true
             }
-
         }
-
     }
 
     private fun swapCollectionId(fromPosition: Int, toPosition: Int){

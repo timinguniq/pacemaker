@@ -18,6 +18,8 @@ import com.devjj.pacemaker.core.functional.OnStartDragListener
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.devjj.pacemaker.features.pacemaker.usecases.UpdateProfile
+import com.google.android.play.core.review.ReviewManagerFactory
+import com.google.android.play.core.review.testing.FakeReviewManager
 import kotlinx.android.synthetic.main.activity_pacemaker.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
@@ -33,6 +35,8 @@ class HomeFragment : BaseFragment(), OnBackPressedListener, OnStartDragListener 
 
     private lateinit var homeAdapter: HomeAdapter
     private lateinit var touchHelper: ItemTouchHelper
+
+    private var testCount = 0
 
     override fun layoutId() = R.layout.fragment_home
 
@@ -51,6 +55,37 @@ class HomeFragment : BaseFragment(), OnBackPressedListener, OnStartDragListener 
         super.onResume()
         initializeHomeAdapter()
         initializeView()
+
+        /*
+        // TODO : 테스트 코드..
+        testCount++
+        Dlog.d("testCount : $testCount")
+        if(testCount >= 4){
+            testCount = 0
+            // 테스트 코드
+            val manager = ReviewManagerFactory.create(activity!!)
+            //val manager = FakeReviewManager(activity!!)
+            val request = manager.requestReviewFlow()
+            request.addOnCompleteListener { request ->
+                if (request.isSuccessful) {
+                    // We got the ReviewInfo object
+                    val reviewInfo = request.result
+
+                    val flow = manager.launchReviewFlow(activity!!, reviewInfo)
+                    flow.addOnCompleteListener { _ ->
+                        // The flow has finished. The API does not indicate whether the user
+                        // reviewed or not, or even whether the review dialog was shown. Thus, no
+                        // matter the result, we continue our app flow.
+                        Dlog.d("InApp addOnCompleteListener ")
+                    }
+                } else {
+                    Dlog.d("InApp error")
+                    // There was some problem, continue regardless of the result.
+                }
+            }
+        }
+         */
+        // 플레이 스토어 올려보고 되나 확인해봐야 될듯.
     }
 
     override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {
@@ -60,7 +95,7 @@ class HomeFragment : BaseFragment(), OnBackPressedListener, OnStartDragListener 
     // homeFragment 초기화 하는 함수
     private fun initializeView() {
         this.activity!!.aPacemaker_tv_title.text = this.getString(R.string.apacemaker_tv_title_str)
-        this.activity!!.aPacemaker_flo_sort.visible()
+        this.activity!!.aPacemaker_flo_edit.visible()
         if(!setting.isNightMode){
             // 화이트모드
             fHome_floating_action_btn.setImageResource(R.drawable.fhome_img_fabtn_daytime)
@@ -74,7 +109,8 @@ class HomeFragment : BaseFragment(), OnBackPressedListener, OnStartDragListener 
         }
 
         // homeListener 초기화
-        homeListener = HomeListener(activity!!, context!!, navigator, homeAdapter, homeViewModel, setting)
+        homeListener = HomeListener(activity!!, context!!, navigator, homeAdapter,
+            this, homeViewModel, setting)
         // 클릭 리스너
         homeListener.clickListener()
 
@@ -94,6 +130,12 @@ class HomeFragment : BaseFragment(), OnBackPressedListener, OnStartDragListener 
         touchHelper.attachToRecyclerView(fHome_recyclerview)
         fHome_recyclerview.layoutManager = LinearLayoutManager(context)
         fHome_recyclerview.adapter = homeAdapter
+    }
+
+    // edit image save로 바꾸는 함수.
+    fun switchEditImage(isChecked: Boolean){
+        if(isChecked) activity?.aPacemaker_iv_edit?.setImageResource(R.drawable.apacemaker_img_edit_save)
+        else activity?.aPacemaker_iv_edit?.setImageResource(R.drawable.apacemaker_img_edit)
     }
 
     // Home 데이터들 갱신하는 함수.

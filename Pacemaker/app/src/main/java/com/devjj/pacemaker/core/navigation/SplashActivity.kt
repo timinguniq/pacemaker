@@ -36,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
         //
 
         // 정렬모드 초기화.
-        setting.isSortMode = false
+        setting.isEditMode = false
 
     }
 

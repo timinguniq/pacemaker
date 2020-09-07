@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="70dp">
 
@@ -38,7 +39,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_iv_part"
             app:layout_constraintEnd_toStartOf="@+id/rvExerciseItem_tv_mass"/>
-
 
         <TextView
             android:id="@+id/rvExerciseItem_tv_mass"
@@ -77,23 +77,44 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_tv_slash"
-            app:layout_constraintEnd_toStartOf="@+id/rvExerciseItem_flo_sort"/>
+            app:layout_constraintEnd_toStartOf="@+id/rvExerciseItem_flo_delete"/>
 
         <FrameLayout
-            android:id="@+id/rvExerciseItem_flo_sort"
+            android:id="@+id/rvExerciseItem_flo_delete"
             android:layout_width="55dp"
             android:layout_height="match_parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_tv_set"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toStartOf="@+id/rvExerciseItem_flo_sort">
 
             <ImageView
+                android:id="@+id/rvExerciseItem_iv_delete"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/image_not_found"
+                android:src="@drawable/rvexerciseitem_img_wm_delete" />
+
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/rvExerciseItem_flo_sort"
+            android:layout_width="62dp"
+            android:layout_height="59dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/rvExerciseItem_flo_delete"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/rvExerciseItem_iv_sort"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:src="@drawable/rvexerciseitem_img_wm_drag_handle"
-                android:contentDescription="@string/image_not_found" />
+                android:contentDescription="@string/image_not_found"
+                android:src="@drawable/rvexerciseitem_img_wm_drag_handle" />
 
         </FrameLayout>
 

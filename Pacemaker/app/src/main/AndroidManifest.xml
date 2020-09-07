@@ -35,6 +35,7 @@
             android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".features.pacemaker.PacemakerActivity"
+            android:launchMode="singleTop"
             android:theme="@style/CustomAppTheme" />
         <activity
             android:name=".features.pacemaker.AdditionActivity"

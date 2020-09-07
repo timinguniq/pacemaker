@@ -43,7 +43,7 @@ class SettingSharedPreferences(context: Context) {
         get() = prefs.getFloat(PREF_KEY_WEIGHT, -1.0f)
         set(value) = prefs.edit().putFloat(PREF_KEY_WEIGHT, value).apply()
 
-    var isSortMode: Boolean
+    var isEditMode: Boolean
         get() = prefs.getBoolean(PREF_KEY_SORT_MODE, false)
         set(value) = prefs.edit().putBoolean(PREF_KEY_SORT_MODE, value).apply()
 

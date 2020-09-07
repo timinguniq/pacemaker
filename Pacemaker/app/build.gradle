@@ -93,24 +93,29 @@ dependencies {
 
     // circle view
     implementation 'com.github.jakob-grabner:Circle-Progress-View:1.4'
-    implementation "androidx.core:core-ktx:+"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Recommended: Add the Firebase SDK for Google Analytics.
-    implementation 'com.google.firebase:firebase-analytics:17.4.3'
+    implementation 'com.google.firebase:firebase-analytics:17.5.0'
 
     // Add the Firebase SDK for Crashlytics.
-    implementation 'com.google.firebase:firebase-crashlytics:17.0.1'
+    implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
 
     // Add the Firebase Crashlytics NDK dependency.
-    implementation 'com.google.firebase:firebase-crashlytics-ndk:17.0.1'
+    implementation 'com.google.firebase:firebase-crashlytics-ndk:17.2.1'
 
     // MP chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 
     // Card Slider
     implementation 'com.github.IslamKhSh:CardSlider:1.0.1'
+
+    // This dependency is downloaded from the Google’s Maven repository.
+    // So, make sure you also include that repository in your project's build.gradle file.
+    implementation 'com.google.android.play:core:1.8.0'
+
+    // For Kotlin users also import the Kotlin extensions library for Play Core:
+    implementation 'com.google.android.play:core-ktx:1.8.1'
 }
 
 repositories {

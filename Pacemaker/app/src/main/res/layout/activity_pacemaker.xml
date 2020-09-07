@@ -29,7 +29,7 @@
             app:layout_constraintBottom_toBottomOf="parent"/>
 
         <FrameLayout
-            android:id="@+id/aPacemaker_flo_sort"
+            android:id="@+id/aPacemaker_flo_edit"
             android:layout_width="60dp"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toStartOf="@+id/aPacemaker_flo_setting"
@@ -37,13 +37,13 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
-                android:id="@+id/aPacemaker_iv_sort"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/aPacemaker_iv_edit"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:layout_marginEnd="5dp"
                 android:layout_gravity="center_vertical|end"
                 android:contentDescription="@string/image_not_found"
-                android:src="@drawable/apacemaker_img_sort"/>
+                android:src="@drawable/apacemaker_img_edit"/>
 
         </FrameLayout>
 

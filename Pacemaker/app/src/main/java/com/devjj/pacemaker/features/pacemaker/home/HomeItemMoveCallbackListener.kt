@@ -11,12 +11,15 @@ class HomeItemMoveCallbackListener(val adapter: HomeAdapter) : ItemTouchHelper.C
         val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN
         return ItemTouchHelper.Callback.makeMovementFlags(dragFlags, 0)
     }
+
     override fun isItemViewSwipeEnabled(): Boolean {
         return false
     }
+
     override fun isLongPressDragEnabled(): Boolean {
         return false
     }
+
     override fun onMove(
         recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder,
         target: RecyclerView.ViewHolder
@@ -24,6 +27,7 @@ class HomeItemMoveCallbackListener(val adapter: HomeAdapter) : ItemTouchHelper.C
         adapter.onRowMoved(viewHolder.adapterPosition, target.adapterPosition)
         return true
     }
+
     override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
             if (viewHolder is HomeAdapter.ViewHolder) {
@@ -32,6 +36,7 @@ class HomeItemMoveCallbackListener(val adapter: HomeAdapter) : ItemTouchHelper.C
         }
         super.onSelectedChanged(viewHolder, actionState)
     }
+
     override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
         super.clearView(recyclerView, viewHolder)
         if (viewHolder is HomeAdapter.ViewHolder) {

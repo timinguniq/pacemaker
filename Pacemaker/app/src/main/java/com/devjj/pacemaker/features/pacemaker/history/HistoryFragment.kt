@@ -105,7 +105,7 @@ class HistoryFragment : BaseFragment() {
     private fun initializeView() {
         setColors()
         this.activity!!.aPacemaker_tv_title.text = this.getString(R.string.fhistory_tv_title_str)
-        this.activity!!.aPacemaker_flo_sort.gone()
+        this.activity!!.aPacemaker_flo_edit.gone()
         //fHistory_recyclerview.layoutManager = LinearLayoutManager(activity)
         //fHistory_recyclerview.adapter = historyAdapter
         fHistory_tv_height.text= getString(R.string.unit_height,setting.height)

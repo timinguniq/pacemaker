@@ -12,6 +12,7 @@ class SettingSharedPreferences(context: Context) {
     val PREF_KEY_REST_TIME = "restTime"
     val PREF_KEY_UPDATE_WEIGHT = "updateWeight"
     val PREF_KEY_UPDATE_HEIGHT = "updateHeight"
+    val PREF_KEY_SORT_MODE = "sortMode"
     val PREF_KEY_FINISH_COUNT = "interstitialCount"
     val PREF_KEY_SHOW_BMI = "showbmi"
     val PREF_KEY_BMI = "BMI"
@@ -41,6 +42,10 @@ class SettingSharedPreferences(context: Context) {
     var weight: Float
         get() = prefs.getFloat(PREF_KEY_WEIGHT, -1.0f)
         set(value) = prefs.edit().putFloat(PREF_KEY_WEIGHT, value).apply()
+
+    var isEditMode: Boolean
+        get() = prefs.getBoolean(PREF_KEY_SORT_MODE, false)
+        set(value) = prefs.edit().putBoolean(PREF_KEY_SORT_MODE, value).apply()
 
     var restTime: Int
         get() = prefs.getInt(PREF_KEY_REST_TIME, 60)

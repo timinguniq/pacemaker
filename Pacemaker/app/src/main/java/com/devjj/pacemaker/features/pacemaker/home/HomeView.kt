@@ -9,7 +9,7 @@ import android.os.Parcelable
 // rep는 횟수 없을시 0
 // set는 횟수 ex) 3
 // interval는 운동간 휴식시간 단위는 초 ex) 40
-data class HomeView(val id: Int, val part_img: Int, val name: String, val mass: Int, val rep: Int, val set: Int, val interval: Int) :
+data class HomeView(var id: Int, val part_img: Int, val name: String, val mass: Int, val rep: Int, val set: Int, val interval: Int) :
     Parcelable {
 
     companion object CREATOR : Parcelable.Creator<HomeView> {
@@ -39,4 +39,5 @@ data class HomeView(val id: Int, val part_img: Int, val name: String, val mass: 
             writeInt(interval)
         }
     }
+
 }

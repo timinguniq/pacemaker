@@ -11,8 +11,8 @@ ext {
     applicationId = "com.devjj.pacemaker"
     min_sdk = 24
     target_sdk = 29
-    version_code = 10
-    version_name = "1.2.0"
+    version_code = 12
+    version_name = "1.2.2"
     test_runner = "androidx.test.runner.AndroidJUnitRunner"
 
     //Android libraries

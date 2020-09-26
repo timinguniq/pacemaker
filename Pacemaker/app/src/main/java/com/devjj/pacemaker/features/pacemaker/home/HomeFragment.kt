@@ -18,6 +18,7 @@ import com.devjj.pacemaker.core.functional.OnStartDragListener
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
 import com.devjj.pacemaker.features.pacemaker.usecases.UpdateProfile
+import com.google.android.play.core.ktx.requestReview
 import com.google.android.play.core.review.ReviewManagerFactory
 import com.google.android.play.core.review.testing.FakeReviewManager
 import kotlinx.android.synthetic.main.activity_pacemaker.*
@@ -36,8 +37,6 @@ class HomeFragment : BaseFragment(), OnBackPressedListener, OnStartDragListener 
     private lateinit var homeAdapter: HomeAdapter
     private lateinit var touchHelper: ItemTouchHelper
 
-    private var testCount = 0
-
     override fun layoutId() = R.layout.fragment_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,28 +48,20 @@ class HomeFragment : BaseFragment(), OnBackPressedListener, OnStartDragListener 
             observe(homeList, ::renderHomeList)
             failure(failure, ::handleFailure)
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
-        initializeHomeAdapter()
-        initializeView()
-
-        /*
         // TODO : 테스트 코드..
-        testCount++
-        Dlog.d("testCount : $testCount")
-        if(testCount >= 4){
-            testCount = 0
+        Dlog.d("homeFragment interstitialCount : ${setting.interstitialCount}")
+        if(setting.interstitialCount >= 2){
             // 테스트 코드
             val manager = ReviewManagerFactory.create(activity!!)
             //val manager = FakeReviewManager(activity!!)
             val request = manager.requestReviewFlow()
-            request.addOnCompleteListener { request ->
-                if (request.isSuccessful) {
+            request.addOnCompleteListener { request1 ->
+                if (request1.isSuccessful) {
                     // We got the ReviewInfo object
-                    val reviewInfo = request.result
-
+                    val reviewInfo = request1.result
+                    Dlog.d("InApp reviewInfo : $reviewInfo")
+                    Dlog.d("InApp request.isSuccessful")
                     val flow = manager.launchReviewFlow(activity!!, reviewInfo)
                     flow.addOnCompleteListener { _ ->
                         // The flow has finished. The API does not indicate whether the user
@@ -84,8 +75,14 @@ class HomeFragment : BaseFragment(), OnBackPressedListener, OnStartDragListener 
                 }
             }
         }
-         */
         // 플레이 스토어 올려보고 되나 확인해봐야 될듯.
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        initializeHomeAdapter()
+        initializeView()
     }
 
     override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {

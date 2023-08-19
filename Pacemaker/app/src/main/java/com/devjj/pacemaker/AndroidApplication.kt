@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.di.ApplicationModule
 import com.devjj.pacemaker.core.di.DaggerApplicationComponent
-import leakcanary.LeakCanary
 
 class AndroidApplication : Application() {
 

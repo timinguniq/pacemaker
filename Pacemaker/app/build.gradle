@@ -33,6 +33,11 @@ android {
         }
     }
     compileSdkVersion = compile_sdk
+
+    buildFeatures {
+        viewBinding = true
+    }
+
 }
 
 dependencies {
@@ -84,8 +89,6 @@ dependencies {
 
     // Development dependencies
     debugImplementation developmentDependencies.leakCanary
-    releaseImplementation developmentDependencies.leakCanaryNoop
-    testImplementation developmentDependencies.leakCanaryNoop
 
     // Calendar
     implementation 'com.github.prolificinteractive:material-calendarview:2.0.1'

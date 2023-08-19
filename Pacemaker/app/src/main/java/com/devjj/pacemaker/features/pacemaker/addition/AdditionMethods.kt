@@ -1,16 +1,12 @@
 package com.devjj.pacemaker.features.pacemaker.addition
 
-import android.app.Activity
-import android.content.Context
 import android.graphics.Paint
 import android.os.Build
-import android.util.Log
 import android.widget.EditText
 import android.widget.NumberPicker
 import android.widget.TextView
 import com.devjj.pacemaker.core.functional.Dlog
-import kotlinx.android.synthetic.main.fragment_addition.*
-import javax.inject.Inject
+import com.devjj.pacemaker.databinding.FragmentAdditionBinding
 
 // 부위 로테이션 함수(왼쪽과 오른쪽 화살 이미지 클릭했을 떄 변수가 변하는 함수
 // direction 이 0이면 left, 1이면 right
@@ -75,13 +71,13 @@ fun convertIntervalTimeToSec(input: String): Int{
 }
 
 // editText에 입력한 데이터들을 넣는 함수.
-fun inputData(activity: Activity){
-    activity.fAddition_ev_name.hint = activity.fAddition_ev_name.text.toString()
-    additionData_name = activity.fAddition_ev_name.text.toString()
-    additionData_mass = activity.fAddition_np_mass.displayedValues[activity.fAddition_np_mass.value].toInt()
-    additionData_rep = activity.fAddition_np_rep.displayedValues[activity.fAddition_np_rep.value-1].toInt()
-    additionData_set = activity.fAddition_np_set.displayedValues[activity.fAddition_np_set.value-1].toInt()
-    additionData_interval = convertIntervalTimeToSec(activity.fAddition_tv_interval_time.text.toString())
+fun inputData(binding: FragmentAdditionBinding){
+    binding.fAdditionEvName.hint = binding.fAdditionEvName.text.toString()
+    additionData_name = binding.fAdditionEvName.text.toString()
+    additionData_mass = binding.fAdditionNpMass.displayedValues[binding.fAdditionNpMass.value].toInt()
+    additionData_rep = binding.fAdditionNpRep.displayedValues[binding.fAdditionNpRep.value-1].toInt()
+    additionData_set = binding.fAdditionNpSet.displayedValues[binding.fAdditionNpSet.value-1].toInt()
+    additionData_interval = convertIntervalTimeToSec(binding.fAdditionTvIntervalTime.text.toString())
 }
 
 // 넘버 픽커 텍스트 색깔 설정하는 함수

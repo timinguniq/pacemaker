@@ -2,7 +2,8 @@ package com.devjj.pacemaker.features.pacemaker.dialog
 
 import android.app.Activity
 import android.app.AlertDialog
-import android.util.Log
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.ResourcesCompat
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.extension.loadColor
@@ -10,7 +11,6 @@ import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.features.pacemaker.home.HomeData
 import com.devjj.pacemaker.features.pacemaker.home.HomeView
 import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
-import kotlinx.android.synthetic.main.dialog_remove.view.*
 
 // 삭제 다이얼 로그를 보여주는 함수.
 fun showDeleteDialog(activity: Activity, isNightMode: Boolean, homeViewModel: HomeViewModel, homeView: HomeView){
@@ -19,24 +19,23 @@ fun showDeleteDialog(activity: Activity, isNightMode: Boolean, homeViewModel: Ho
 
     if(!isNightMode){
         // 화이트모드
-        dialogView.dRemove_clo_main.background =
+        dialogView.findViewById<ConstraintLayout>(R.id.dRemove_clo_main).background =
             ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_daytime, null)
-        dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_444646))
-        dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_444646))
-        dialogView.dRemove_tv_confirm.setTextColor(loadColor(activity, R.color.blue_5F87D6))
-        dialogView.dRemove_tv_cancel.setTextColor(loadColor(activity, R.color.blue_5F87D6))
+        dialogView.findViewById<TextView>(R.id.dRemove_tv_main).setTextColor(loadColor(activity, R.color.grey_444646))
+        dialogView.findViewById<TextView>(R.id.dRemove_tv_confirm).setTextColor(loadColor(activity, R.color.blue_5F87D6))
+        dialogView.findViewById<TextView>(R.id.dRemove_tv_cancel).setTextColor(loadColor(activity, R.color.blue_5F87D6))
     }else{
         // 다크모드
-        dialogView.dRemove_clo_main.background =
+        dialogView.findViewById<ConstraintLayout>(R.id.dRemove_clo_main).background =
             ResourcesCompat.getDrawable(activity.resources, R.drawable.img_popup_background_nighttime, null)
-        dialogView.dRemove_tv_main.setTextColor(loadColor(activity, R.color.grey_F9F9F9))
-        dialogView.dRemove_tv_confirm.setTextColor(loadColor(activity, R.color.orange_F74938))
-        dialogView.dRemove_tv_cancel.setTextColor(loadColor(activity, R.color.orange_F74938))
+        dialogView.findViewById<TextView>(R.id.dRemove_tv_main).setTextColor(loadColor(activity, R.color.grey_F9F9F9))
+        dialogView.findViewById<TextView>(R.id.dRemove_tv_confirm).setTextColor(loadColor(activity, R.color.orange_F74938))
+        dialogView.findViewById<TextView>(R.id.dRemove_tv_cancel).setTextColor(loadColor(activity, R.color.orange_F74938))
     }
 
     val dialog = builder.setView(dialogView).show()
 
-    dialogView.dRemove_tv_confirm.setOnClickListener {
+    dialogView.findViewById<TextView>(R.id.dRemove_tv_confirm).setOnClickListener {
         Dlog.d( "showDeleteDialog confirm")
         val homeData =
             HomeData(
@@ -51,7 +50,7 @@ fun showDeleteDialog(activity: Activity, isNightMode: Boolean, homeViewModel: Ho
         dialog.dismiss()
     }
 
-    dialogView.dRemove_tv_cancel.setOnClickListener {
+    dialogView.findViewById<TextView>(R.id.dRemove_tv_cancel).setOnClickListener {
         Dlog.d( "showDeletedialog cancel")
         dialog.dismiss()
     }

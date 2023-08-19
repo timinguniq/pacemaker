@@ -22,7 +22,8 @@
 
         <activity
             android:name=".core.navigation.SplashActivity"
-            android:launchMode="standard">
+            android:launchMode="standard"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -32,35 +33,44 @@
         </activity>
         <activity
             android:name=".features.login.LoginActivity"
-            android:theme="@style/CustomAppTheme" />
+            android:theme="@style/CustomAppTheme"
+            android:exported="true"/>
         <activity
             android:name=".features.pacemaker.PacemakerActivity"
             android:launchMode="singleTop"
-            android:theme="@style/CustomAppTheme" />
+            android:theme="@style/CustomAppTheme"
+            android:exported="true"/>
         <activity
             android:name=".features.pacemaker.AdditionActivity"
-            android:theme="@style/CustomAppTheme" />
+            android:theme="@style/CustomAppTheme"
+            android:exported="true"/>
         <activity
             android:name=".features.pacemaker.PlayPopupActivity"
             android:launchMode="singleTop"
-            android:theme="@style/CustomAppTheme" />
+            android:theme="@style/CustomAppTheme"
+            android:exported="true"/>
         <activity
             android:name=".features.pacemaker.OptionActivity"
-            android:theme="@style/CustomAppTheme" />
+            android:theme="@style/CustomAppTheme"
+            android:exported="true"/>
         <activity
             android:name=".features.pacemaker.HistoryDetailActivity"
-            android:theme="@style/CustomAppTheme" />
+            android:theme="@style/CustomAppTheme"
+            android:exported="true"/>
         <activity
             android:name=".features.pacemaker.StatisticsActivity"
-            android:theme="@style/CustomAppTheme" />
+            android:theme="@style/CustomAppTheme"
+            android:exported="true"/>
 
         <activity
             android:name=".features.pacemaker.OpenSourceActivity"
-            android:theme="@style/CustomAppTheme"/>
+            android:theme="@style/CustomAppTheme"
+            android:exported="true"/>
 
         <activity
             android:name=".features.pacemaker.TutorialActivity"
-            android:theme="@style/CustomAppTheme"/>
+            android:theme="@style/CustomAppTheme"
+            android:exported="true"/>
 
         <service
             android:name=".features.pacemaker.service.TimerService"

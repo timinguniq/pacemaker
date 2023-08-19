@@ -8,8 +8,8 @@ import io.reactivex.Flowable
 
 @Dao
 interface ExerciseDAO {
-    @Query("SELECT * FROM exercises")
-    fun getAll(): List<ExerciseEntity>
+    @Query("SELECT * FROM exercises WHERE division=:division")
+    fun getDivisionAll(division: Int): List<ExerciseEntity>
 
     @Insert(onConflict = REPLACE)
     fun insert(vararg exerciseEntity: ExerciseEntity)

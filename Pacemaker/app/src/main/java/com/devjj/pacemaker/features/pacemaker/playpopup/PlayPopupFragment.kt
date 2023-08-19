@@ -2,6 +2,7 @@ package com.devjj.pacemaker.features.pacemaker.playpopup
 
 import android.os.*
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
@@ -17,9 +18,9 @@ import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
+import com.devjj.pacemaker.databinding.FragmentPlayPopupBinding
 import com.devjj.pacemaker.features.pacemaker.service.TimerService
 import com.devjj.pacemaker.features.pacemaker.usecases.UpdateProfile
-import kotlinx.android.synthetic.main.fragment_play_popup.*
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
@@ -39,9 +40,16 @@ class PlayPopupFragment : BaseFragment() {
     // 진행바들 변수 리스트
     val progressBars: List<View> by lazy{
         listOf(
-            fPlayPopup_vi_progress_10, fPlayPopup_vi_progress_9, fPlayPopup_vi_progress_8, fPlayPopup_vi_progress_7,
-            fPlayPopup_vi_progress_6, fPlayPopup_vi_progress_5, fPlayPopup_vi_progress_4, fPlayPopup_vi_progress_3,
-            fPlayPopup_vi_progress_2, fPlayPopup_vi_progress_1)
+            binding.fPlayPopupViProgress10, binding.fPlayPopupViProgress9, binding.fPlayPopupViProgress8, binding.fPlayPopupViProgress7,
+            binding.fPlayPopupViProgress6, binding.fPlayPopupViProgress5, binding.fPlayPopupViProgress4, binding.fPlayPopupViProgress3,
+            binding.fPlayPopupViProgress2, binding.fPlayPopupViProgress1)
+    }
+
+    private var _binding: FragmentPlayPopupBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding by lazy {
+        _binding!!
     }
 
     override fun layoutId() = R.layout.fragment_play_popup
@@ -71,6 +79,15 @@ class PlayPopupFragment : BaseFragment() {
         Dlog.d( "onViewCreated")
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentPlayPopupBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onResume() {
         super.onResume()
 
@@ -89,7 +106,7 @@ class PlayPopupFragment : BaseFragment() {
         settingForMode()
 
         // playPopupListener 초기화
-        playPopupListener = PlayPopupListener(activity!!, this, playPopupViewModel, navigator)
+        playPopupListener = PlayPopupListener(activity!!, binding, this, playPopupViewModel, navigator)
 
         // 클릭 리스너들 모아둔 함수.
         playPopupListener.clickListener()
@@ -111,6 +128,11 @@ class PlayPopupFragment : BaseFragment() {
             settingNextProgressBars(playPopupViewCurrentSet)
         }
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     // 뷰 모드에 대한 초기 셋팅
@@ -163,21 +185,21 @@ class PlayPopupFragment : BaseFragment() {
         }
 
         activity?.window?.statusBarColor = listResource[0]
-        fPlayPopup_clo_main.setBackgroundResource(listResource[1])
+        binding.fPlayPopupCloMain.setBackgroundResource(listResource[1])
         for(view in progressBars){
             view.setBackgroundResource(listResource[2])
         }
-        fPlayPopup_cv_rate.rimColor = listResource[3]
-        fPlayPopup_cv_rate.setBarColor(listResource[4])
-        fPlayPopup_tv_name.setTextColor(listResource[5])
-        fPlayPopup_tv_m_r.setTextColor(listResource[6])
-        fPlayPopup_iv_confirm.setImageResource(listResource[7])
-        fPlayPopup_tv_plus.setTextColor(listResource[8])
-        fPlayPopup_tv_plus.setBackgroundResource(listResource[9])
-        fPlayPopup_vi_under.setBackgroundResource(listResource[10])
-        fPlayPopup_flo_next.setBackgroundResource(listResource[11])
+        binding.fPlayPopupCvRate.rimColor = listResource[3]
+        binding.fPlayPopupCvRate.setBarColor(listResource[4])
+        binding.fPlayPopupTvName.setTextColor(listResource[5])
+        binding.fPlayPopupTvMR.setTextColor(listResource[6])
+        binding.fPlayPopupIvConfirm.setImageResource(listResource[7])
+        binding.fPlayPopupTvPlus.setTextColor(listResource[8])
+        binding.fPlayPopupTvPlus.setBackgroundResource(listResource[9])
+        binding.fPlayPopupViUnder.setBackgroundResource(listResource[10])
+        binding.fPlayPopupFloNext.setBackgroundResource(listResource[11])
 
-        fPlayPopup_clo_next.visibility = View.GONE
+        binding.fPlayPopupCloNext.visibility = View.GONE
     }
 
     // 재생 목록 확인하고 창 종료하는 함수
@@ -350,7 +372,7 @@ class PlayPopupFragment : BaseFragment() {
 
         // 근육 부위 화면에 셋팅하는 코드
         var partImgResources = convertPartImgToResource(currentPlayPopupView.part ,isNightMode)
-        fPlayPopup_iv_part_img.setImageResource(partImgResources)
+        binding.fPlayPopupIvPartImg.setImageResource(partImgResources)
         //
 
         // 운동 이름 셋팅하는 함수.
@@ -362,13 +384,13 @@ class PlayPopupFragment : BaseFragment() {
         var repUnit = getString(R.string.fplaypopup_tv_unit_rep_str)
         var mstxv = currentPlayPopupView.mass.toString() + massUnit + " $slash " +
                 currentPlayPopupView.rep.toString() + repUnit
-        fPlayPopup_tv_m_r.text = mstxv
+        binding.fPlayPopupTvMR.text = mstxv
 
         interval = currentPlayPopupView.interval
         intervalMax = currentPlayPopupView.interval
         // Circle 화면에 표시하는 코드
         //val circleProgress = (100 * currentSet / maxSet).toFloat()
-        fPlayPopup_cv_rate.setValue(0f)
+        binding.fPlayPopupCvRate.setValue(0f)
         circleViewAnimation(0f, (interval*1000).toLong())
         //fPlayPopup_cv_rate.setValue(circleProgress)
         //
@@ -388,31 +410,31 @@ class PlayPopupFragment : BaseFragment() {
         //
 
         if(timerFinish)
-            fPlayPopup_tv_rest_time.text = settingFormatForTimer(0)
+            binding.fPlayPopupTvRestTime.text = settingFormatForTimer(0)
 
     }
 
     // 운동 이름 바꾸는 함수.
     fun settingExerciseName(name : String){
-        fPlayPopup_tv_name.text = name
+        binding.fPlayPopupTvName.text = name
     }
 
     // 휴식 시간 타이머 시간 조정하는 함수
     fun settingRestTimeTv(){
         val timerText = settingFormatForTimer(interval)
-        fPlayPopup_tv_rest_time.text = timerText
+        binding.fPlayPopupTvRestTime.text = timerText
     }
 
     // 모드별 화면 셋팅
     fun settingForMode(){
         when (mode) {
             STOP_MODE -> {
-                fPlayPopup_clo_confirm.visible()
-                fPlayPopup_clo_next.gone()
+                binding.fPlayPopupCloConfirm.visible()
+                binding.fPlayPopupCloNext.gone()
             }
             PROGRESS_MODE -> {
-                fPlayPopup_clo_confirm.gone()
-                fPlayPopup_clo_next.visible()
+                binding.fPlayPopupCloConfirm.gone()
+                binding.fPlayPopupCloNext.visible()
             }
             else -> {
                 Dlog.d( "settingForMode Method error")
@@ -429,7 +451,7 @@ class PlayPopupFragment : BaseFragment() {
         // dp값 구하는 함수.
         val topMarginInt = getPixelValue(context!!, margin)
         params.setMargins(topMarginInt, topMarginInt, topMarginInt, topMarginInt)
-        fPlayPopup_iv_part_img.layoutParams = params
+        binding.fPlayPopupIvPartImg.layoutParams = params
     }
 
     // progressbar setting(초기 progressBar setting)
@@ -454,8 +476,8 @@ class PlayPopupFragment : BaseFragment() {
 
     // 가운데 circleView 애니메이션 주는 함수.
     fun circleViewAnimation(startPosition: Float, duration: Long){
-        fPlayPopup_cv_rate.animation?.cancel()
-        fPlayPopup_cv_rate.setValueAnimated(startPosition, 100f, duration)
+        binding.fPlayPopupCvRate.animation?.cancel()
+        binding.fPlayPopupCvRate.setValueAnimated(startPosition, 100f, duration)
     }
 
     // progressbar 진행 셋팅하는 함수

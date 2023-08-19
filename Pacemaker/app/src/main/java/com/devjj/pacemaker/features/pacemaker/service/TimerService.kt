@@ -1,27 +1,20 @@
 package com.devjj.pacemaker.features.pacemaker.service
 
-import android.annotation.SuppressLint
 import android.app.*
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.media.AudioAttributes
 import android.os.*
-import android.util.Log
 import android.widget.RemoteViews
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.functional.Dlog
+import com.devjj.pacemaker.databinding.FragmentPlayPopupBinding
 import com.devjj.pacemaker.features.pacemaker.PlayPopupActivity
 import com.devjj.pacemaker.features.pacemaker.playpopup.*
-import kotlinx.android.synthetic.main.fragment_play_popup.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.*
-import javax.inject.Inject
 import javax.inject.Singleton
 import kotlin.concurrent.schedule
 
@@ -80,7 +73,7 @@ class TimerService : Service() {
         // timer가 진행중인지 나타내는 변수
         private var isTimerProgress: Boolean = false
 
-        fun timerStart(activity: Activity) {
+        fun timerStart(activity: Activity, binding: FragmentPlayPopupBinding) {
             timerFinish = false
             startPowerManager()
             timer.cancel()
@@ -90,13 +83,13 @@ class TimerService : Service() {
                 Dlog.d( "timerStart interval : $interval")
                 runBlocking {
                     launch(Dispatchers.Main) {
-                        activity.fPlayPopup_tv_rest_time?.text = settingFormatForTimer(interval)
+                        binding.fPlayPopupTvRestTime?.text = settingFormatForTimer(interval)
                     }
                 }
 
                 if (interval <= 0) {
                     interval = 0
-                    activity.fPlayPopup_tv_rest_time?.text = settingFormatForTimer(interval)
+                    binding.fPlayPopupTvRestTime?.text = settingFormatForTimer(interval)
                     timer.cancel()
                     isTimerProgress = false
                     endPowerManager()

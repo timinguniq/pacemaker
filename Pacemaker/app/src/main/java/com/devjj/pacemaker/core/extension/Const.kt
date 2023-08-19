@@ -22,5 +22,14 @@ const val EXERCISE_NAME_HOME = 0
 const val EXERCISE_NAME_PLAY = 1
 const val EXERCISE_NAME_HISTORY = 2
 
+// 현재 화면 분할
+var cur_division = 0
+// 첫번째 분할
+const val DIVISION_1 = 0
+// 두번째 분할
+const val DIVISION_2 = 1
+// 세번째 분할
+const val DIVISION_3 = 2
+
 
 const val APP_VERSION = BuildConfig.VERSION_NAME

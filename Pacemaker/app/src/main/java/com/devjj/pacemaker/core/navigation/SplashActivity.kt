@@ -1,6 +1,5 @@
 package com.devjj.pacemaker.core.navigation
 
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -10,8 +9,9 @@ import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.APP_VERSION
 import com.devjj.pacemaker.core.functional.Dlog
+import com.devjj.pacemaker.databinding.ActivityPacemakerBinding
+import com.devjj.pacemaker.databinding.ActivitySplashBinding
 import com.google.android.gms.ads.MobileAds
-import kotlinx.android.synthetic.main.activity_splash.*
 import javax.inject.Inject
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 
@@ -24,9 +24,13 @@ class SplashActivity : AppCompatActivity() {
     @Inject internal lateinit var navigator: Navigator
     @Inject lateinit var setting: SettingSharedPreferences
 
+    private lateinit var binding: ActivitySplashBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+        binding = ActivitySplashBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
         appComponent.inject(this)
         Dlog.d( "onCreate SplashActivity")
 
@@ -66,6 +70,6 @@ class SplashActivity : AppCompatActivity() {
     // 버전 텍스트에 옮기는 함수
     private fun showVersionTextView(){
         val version = "v$APP_VERSION"
-        aSplash_tv_version.text = version
+        binding.aSplashTvVersion.text = version
     }
 }

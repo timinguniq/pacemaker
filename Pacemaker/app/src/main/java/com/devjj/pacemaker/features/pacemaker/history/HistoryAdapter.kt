@@ -7,8 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.extension.inflate
 import com.devjj.pacemaker.features.pacemaker.historydetail.HistoryDetailView
-import kotlinx.android.synthetic.main.recyclerview_exercise_history_item.view.*
-import kotlinx.android.synthetic.main.recyclerview_exercise_item.view.*
 import javax.inject.Inject
 import kotlin.math.roundToInt
 import kotlin.properties.Delegates

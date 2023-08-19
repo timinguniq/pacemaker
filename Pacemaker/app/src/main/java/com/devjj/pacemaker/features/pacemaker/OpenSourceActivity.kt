@@ -6,15 +6,17 @@ import android.os.Bundle
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.platform.BaseActivity
+import com.devjj.pacemaker.databinding.ActivityOpenSourceBinding
 import com.devjj.pacemaker.features.pacemaker.opensource.OpenSourceFragment
 import com.google.android.gms.ads.AdRequest
-import kotlinx.android.synthetic.main.activity_open_source.*
 
 class OpenSourceActivity : BaseActivity() {
 
     companion object {
         fun callingIntent(context: Context) = Intent(context, OpenSourceActivity::class.java)
     }
+
+    private lateinit var binding: ActivityOpenSourceBinding
 
     override fun fragment() = OpenSourceFragment()
 
@@ -23,6 +25,8 @@ class OpenSourceActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityOpenSourceBinding.inflate(layoutInflater)
+
         appComponent.inject(this)
         initializeView()
         Dlog.d( "onCreate OptionActivity")
@@ -31,6 +35,8 @@ class OpenSourceActivity : BaseActivity() {
     // OptionActivity 초기화 하는 함수
     private fun initializeView() {
         val adRequest = AdRequest.Builder().build()
-        aOpenSource_adView.loadAd(adRequest)
+        binding.aOpenSourceAdView.loadAd(adRequest)
     }
+
+    fun getBinding() = binding
 }

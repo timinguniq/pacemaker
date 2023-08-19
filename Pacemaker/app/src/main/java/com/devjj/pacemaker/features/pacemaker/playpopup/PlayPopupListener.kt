@@ -3,34 +3,23 @@ package com.devjj.pacemaker.features.pacemaker.playpopup
 import android.app.Activity
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import android.view.View
-import android.view.ViewGroup
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.devjj.pacemaker.R
-import com.devjj.pacemaker.core.extension.invisible
-import com.devjj.pacemaker.core.extension.visible
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionViewModel
+import com.devjj.pacemaker.databinding.FragmentPlayPopupBinding
 import com.devjj.pacemaker.features.pacemaker.dialog.showGiveUpAllExerciseDialog
 import com.devjj.pacemaker.features.pacemaker.dialog.showGiveUpExerciseDialog
 import com.devjj.pacemaker.features.pacemaker.service.TimerService
-import kotlinx.android.synthetic.main.fragment_play_popup.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import java.util.*
-import kotlin.concurrent.schedule
 
-class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopupFragment,
+class PlayPopupListener(val activity: Activity, val binding: FragmentPlayPopupBinding, val playPopupFragment: PlayPopupFragment,
                         val playPopupViewModel: PlayPopupViewModel, val navigator: Navigator) {
 
     val handler = Handler(Looper.getMainLooper())
 
     fun clickListener() {
         // 백키를 눌렀을 떄 리스너
-        activity.fPlayPopup_flo_back.setOnClickListener {
+        binding.fPlayPopupFloBack.setOnClickListener {
             mode = STOP_MODE
             TimerService.setProgressTimer(false)
             TimerService.stopService(activity)
@@ -38,9 +27,9 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
         }
 
         // 확인 키를 눌렀을 때 리스너
-        activity.fPlayPopup_iv_confirm.setOnClickListener {
+        binding.fPlayPopupIvConfirm.setOnClickListener {
             if(isFinalExerciseFinalSet){
-                activity.fPlayPopup_flo_next.callOnClick()
+                binding.fPlayPopupFloNext.callOnClick()
                 return@setOnClickListener
             }
 
@@ -64,13 +53,13 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
             plusClickNumber = 0
 
             // 타이머 시작
-            TimerService.timerStart(activity)
+            TimerService.timerStart(activity, binding)
 
 
         }
 
         // Next 버튼 눌렀을 떄. 이벤트 함수
-        activity.fPlayPopup_flo_next.setOnClickListener{
+        binding.fPlayPopupFloNext.setOnClickListener{
             mode = STOP_MODE
             TimerService.timerStop()
 
@@ -85,7 +74,7 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
         }
 
         // +10초 눌렀을 때수 이벤트 함수
-        activity.fPlayPopup_flo_plus.setOnClickListener {
+        binding.fPlayPopupFloPlus.setOnClickListener {
             Dlog.d("interval : $interval")
 
             if(plusClickNumber <= maxPlusClickNumber) plusClickNumber++
@@ -97,7 +86,7 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
                 intervalMax+=plusInterval
 
                 var currentValue = (progressInterval/((intervalMax).toFloat()))*100
-                val currentCircleViewValue = activity.fPlayPopup_cv_rate.currentValue
+                val currentCircleViewValue = binding.fPlayPopupCvRate.currentValue
                 Dlog.d("currentValue : $currentValue")
                 if(currentCircleViewValue <= currentValue){
                     currentValue = currentCircleViewValue
@@ -119,12 +108,12 @@ class PlayPopupListener(val activity: Activity, val playPopupFragment: PlayPopup
         }
 
         // 오른쪽 화살 이미지 눌렀을 때 이벤트 함수
-        activity.fPlayPopup_flo_right_arrow.setOnClickListener {
+        binding.fPlayPopupFloRightArrow.setOnClickListener {
             showGiveUpExerciseDialog(activity, isNightMode, playPopupViewModel, currentPlayPopupData)
         }
 
         // 왼쪽 화살 이미지 눌렀을 때 이벤트 함수
-        activity.fPlayPopup_flo_left_arrow.setOnClickListener {
+        binding.fPlayPopupFloLeftArrow.setOnClickListener {
             showGiveUpAllExerciseDialog(activity, isNightMode, playPopupViewModel, allPlayPopupDataList)
         }
     }

@@ -1,39 +1,20 @@
 package com.devjj.pacemaker.core.navigation
 
-import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
-import android.text.Editable
-import android.util.Log
 import android.view.View
-import android.widget.Toast
-import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.FragmentManager
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
-import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.features.login.Authenticator
 import com.devjj.pacemaker.features.login.LoginActivity
 import com.devjj.pacemaker.features.pacemaker.*
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
 import com.devjj.pacemaker.features.pacemaker.history.HistoryFragment
-import com.devjj.pacemaker.features.pacemaker.home.HomeData
 import com.devjj.pacemaker.features.pacemaker.home.HomeFragment
-import com.devjj.pacemaker.features.pacemaker.home.HomeView
-import com.devjj.pacemaker.features.pacemaker.home.HomeViewModel
-import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupData
-import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupViewModel
-import com.devjj.pacemaker.features.pacemaker.service.TimerService
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import kotlinx.android.synthetic.main.dialog_give_up_exercise.view.*
-import kotlinx.android.synthetic.main.dialog_profile_input.view.*
-import kotlinx.android.synthetic.main.dialog_remove.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
-import kotlin.math.roundToInt
 
 @Singleton
 class Navigator
@@ -74,7 +55,9 @@ class Navigator
     // NavigationBottomView 화면 전환하는 함수.
     fun transitonNavigationBottomView(bottomView: BottomNavigationView, fragmentManager: FragmentManager,context: Context){
         val homeFragment = HomeFragment()
+        Dlog.d("transitonNavigationBottomView 1")
         bottomView.setOnNavigationItemSelectedListener {
+            Dlog.d("transitonNavigationBottomView 2")
             it.isChecked = true
             when(it.itemId){
                 R.id.navigation_home -> {

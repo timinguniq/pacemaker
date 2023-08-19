@@ -1,23 +1,22 @@
 package com.devjj.pacemaker.features.pacemaker.statistics
 
 import android.os.Bundle
-import android.util.Log
-import androidx.core.content.ContextCompat.getColor
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.database.StatisticsDatabase
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.platform.BaseFragment
+import com.devjj.pacemaker.databinding.FragmentStatisticsBinding
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import kotlinx.android.synthetic.main.fragment_statistics.*
 import javax.inject.Inject
 
 
@@ -28,6 +27,12 @@ class StatisticsFragment : BaseFragment(){
     private lateinit var statisticsViewModel: StatisticsViewModel
     @Inject lateinit var setting: SettingSharedPreferences
 
+    private var _binding: FragmentStatisticsBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding by lazy {
+        _binding!!
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +42,23 @@ class StatisticsFragment : BaseFragment(){
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentStatisticsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onResume() {
         super.onResume()
         initializeView()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     private fun renderStatistics(statistics: List<StatisticsView>?){
@@ -96,42 +115,42 @@ class StatisticsFragment : BaseFragment(){
         }
 
         var dataSets = ArrayList<ILineDataSet>()
-        fStatistics_linechart.clear()
+        binding.fStatisticsLinechart.clear()
 
         when(setting.isShowbmi){
             true-> {
                 dataSets.add(weightDataSet)
                 dataSets.add(weightOnBMIDataSet)
-                fStatistics_clo_bmi_change.visible()
-                fStatistics_clo_line_03.visible()
+                binding.fStatisticsCloBmiChange.visible()
+                binding.fStatisticsCloLine03.visible()
             }
             false->{
                 dataSets.add(weightDataSet)
-                fStatistics_clo_bmi_change.gone()
-                fStatistics_clo_line_03.gone()
+                binding.fStatisticsCloBmiChange.gone()
+                binding.fStatisticsCloLine03.gone()
             }
         }
-        fStatistics_linechart.xAxis.isGranularityEnabled = true
-        fStatistics_linechart.xAxis.valueFormatter = IndexAxisValueFormatter(xAxisArray)
-        fStatistics_linechart.data = LineData(dataSets)
+        binding.fStatisticsLinechart.xAxis.isGranularityEnabled = true
+        binding.fStatisticsLinechart.xAxis.valueFormatter = IndexAxisValueFormatter(xAxisArray)
+        binding.fStatisticsLinechart.data = LineData(dataSets)
         //fStatistics_linechart.data = LineData(weightOnBMIDataSet)
 
     }
 
     private fun initializeView(){
         Dlog.d("load statistics")
-        val statisticsListener = StatisticsListener(activity!!,setting,statisticsViewModel)
+        val statisticsListener = StatisticsListener(activity!!, binding, setting, statisticsViewModel)
         statisticsListener.initListener()
 
         setColor()
-        fStatistics_swc_mode_bmi.isChecked = setting.isShowbmi
-        fStatistics_swc_monthly.isChecked = setting.isMonthly
-        fStatistics_linechart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-        fStatistics_linechart.setMaxVisibleValueCount(20)
-        fStatistics_tv_bmi.text = setting.bmi.toString()
-        fStatistics_tv_mode_bmi.text = getString(R.string.template_bmi_str,setting.bmi)
-        fStatistics_linechart.axisRight.isEnabled = false
-        fStatistics_linechart.description.isEnabled = false
+        binding.fStatisticsSwcModeBmi.isChecked = setting.isShowbmi
+        binding.fStatisticsSwcMonthly.isChecked = setting.isMonthly
+        binding.fStatisticsLinechart.xAxis.position = XAxis.XAxisPosition.BOTTOM
+        binding.fStatisticsLinechart.setMaxVisibleValueCount(20)
+        binding.fStatisticsTvBmi.text = setting.bmi.toString()
+        binding.fStatisticsTvModeBmi.text = getString(R.string.template_bmi_str,setting.bmi)
+        binding.fStatisticsLinechart.axisRight.isEnabled = false
+        binding.fStatisticsLinechart.description.isEnabled = false
 
         statisticsViewModel.loadStatistics()
     }
@@ -139,61 +158,61 @@ class StatisticsFragment : BaseFragment(){
     private fun setColor(){
         when(setting.isNightMode){
             true ->{
-                fStatistics_clo_option.setBackgroundColor(loadColor(activity!!,R.color.grey_606060))
-                fStatistics_tv_option.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fStatisticsCloOption.setBackgroundColor(loadColor(activity!!,R.color.grey_606060))
+                binding.fStatisticsTvOption.setTextColor(loadColor(activity!!,R.color.black_3B4046))
 
-                fStatistics_swc_mode_bmi.thumbDrawable.setTint(loadColor(activity!!,R.color.orange_F74938))
-                fStatistics_swc_mode_bmi.trackDrawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
-                fStatistics_tv_mode_bmi.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fStatisticsSwcModeBmi.thumbDrawable.setTint(loadColor(activity!!,R.color.orange_F74938))
+                binding.fStatisticsSwcModeBmi.trackDrawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
+                binding.fStatisticsTvModeBmi.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
 
-                fStatistics_swc_monthly.thumbDrawable.setTint(loadColor(activity!!,R.color.orange_F74938))
-                fStatistics_swc_monthly.trackDrawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
-                fStatistics_tv_monthly_title.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fStatisticsSwcMonthly.thumbDrawable.setTint(loadColor(activity!!,R.color.orange_F74938))
+                binding.fStatisticsSwcMonthly.trackDrawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
+                binding.fStatisticsTvMonthlyTitle.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
 
-                fStatistics_tv_bmi_title.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
-                fStatistics_tv_bmi.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fStatisticsTvBmiTitle.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fStatisticsTvBmi.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
 
-                fStatistics_tv_bmi_link.setTextColor(loadColor(activity!!,R.color.blue_A3BCE8))
+                binding.fStatisticsTvBmiLink.setTextColor(loadColor(activity!!,R.color.blue_A3BCE8))
 
-                fStatistics_iv_bmi_minus.setImageResource(R.drawable.img_rest_minus_nighttime)
-                fStatistics_iv_bmi_plus.setImageResource(R.drawable.img_rest_plus_nighttime)
+                binding.fStatisticsIvBmiMinus.setImageResource(R.drawable.img_rest_minus_nighttime)
+                binding.fStatisticsIvBmiPlus.setImageResource(R.drawable.img_rest_plus_nighttime)
 
-                fStatistics_linechart.xAxis.textColor = loadColor(activity!!,R.color.white_F7FAFD)
-                fStatistics_linechart.legend.textColor = loadColor(activity!!,R.color.white_F7FAFD)
-                fStatistics_linechart.axisLeft.textColor = loadColor(activity!!,R.color.white_F7FAFD)
+                binding.fStatisticsLinechart.xAxis.textColor = loadColor(activity!!,R.color.white_F7FAFD)
+                binding.fStatisticsLinechart.legend.textColor = loadColor(activity!!,R.color.white_F7FAFD)
+                binding.fStatisticsLinechart.axisLeft.textColor = loadColor(activity!!,R.color.white_F7FAFD)
 
-                fStatistics_clo_line_01.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
-                fStatistics_clo_line_02.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
-                fStatistics_clo_line_03.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
+                binding.fStatisticsCloLine01.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
+                binding.fStatisticsCloLine02.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
+                binding.fStatisticsCloLine03.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
             }
             false ->{
-                fStatistics_clo_option.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
-                fStatistics_tv_option.setTextColor(loadColor(activity!!,R.color.grey_87888A))
+                binding.fStatisticsCloOption.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
+                binding.fStatisticsTvOption.setTextColor(loadColor(activity!!,R.color.grey_87888A))
 
-                fStatistics_swc_mode_bmi.thumbDrawable.setTint(loadColor(activity!!,R.color.blue_5F87D6))
-                fStatistics_swc_mode_bmi.trackDrawable.setTint(loadColor(activity!!,R.color.blue_5C83CF))
-                fStatistics_tv_mode_bmi.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fStatisticsSwcModeBmi.thumbDrawable.setTint(loadColor(activity!!,R.color.blue_5F87D6))
+                binding.fStatisticsSwcModeBmi.trackDrawable.setTint(loadColor(activity!!,R.color.blue_5C83CF))
+                binding.fStatisticsTvModeBmi.setTextColor(loadColor(activity!!,R.color.black_3B4046))
 
-                fStatistics_swc_monthly.thumbDrawable.setTint(loadColor(activity!!,R.color.blue_5F87D6))
-                fStatistics_swc_monthly.trackDrawable.setTint(loadColor(activity!!,R.color.blue_5C83CF))
-                fStatistics_tv_monthly_title.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fStatisticsSwcMonthly.thumbDrawable.setTint(loadColor(activity!!,R.color.blue_5F87D6))
+                binding.fStatisticsSwcMonthly.trackDrawable.setTint(loadColor(activity!!,R.color.blue_5C83CF))
+                binding.fStatisticsTvMonthlyTitle.setTextColor(loadColor(activity!!,R.color.black_3B4046))
 
-                fStatistics_tv_bmi_title.setTextColor(loadColor(activity!!,R.color.black_3B4046))
-                fStatistics_tv_bmi.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fStatisticsTvBmiTitle.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fStatisticsTvBmi.setTextColor(loadColor(activity!!,R.color.black_3B4046))
 
-                fStatistics_tv_bmi_link.setTextColor(loadColor(activity!!,R.color.blue_5C83CF_70))
+                binding.fStatisticsTvBmiLink.setTextColor(loadColor(activity!!,R.color.blue_5C83CF_70))
 
-                fStatistics_iv_bmi_minus.setImageResource(R.drawable.img_rest_minus_daytime)
-                fStatistics_iv_bmi_plus.setImageResource(R.drawable.img_rest_plus_daytime)
+                binding.fStatisticsIvBmiMinus.setImageResource(R.drawable.img_rest_minus_daytime)
+                binding.fStatisticsIvBmiPlus.setImageResource(R.drawable.img_rest_plus_daytime)
 
-                fStatistics_linechart.xAxis.textColor = loadColor(activity!!,R.color.black_3B4046)
-                fStatistics_linechart.rendererLeftYAxis.paintAxisLabels.color = loadColor(activity!!,R.color.black_3B4046)
-                fStatistics_linechart.legend.textColor = loadColor(activity!!,R.color.black_3B4046)
-                fStatistics_linechart.axisLeft.textColor = loadColor(activity!!,R.color.black_3B4046)
+                binding.fStatisticsLinechart.xAxis.textColor = loadColor(activity!!,R.color.black_3B4046)
+                binding.fStatisticsLinechart.rendererLeftYAxis.paintAxisLabels.color = loadColor(activity!!,R.color.black_3B4046)
+                binding.fStatisticsLinechart.legend.textColor = loadColor(activity!!,R.color.black_3B4046)
+                binding.fStatisticsLinechart.axisLeft.textColor = loadColor(activity!!,R.color.black_3B4046)
 
-                fStatistics_clo_line_01.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
-                fStatistics_clo_line_02.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
-                fStatistics_clo_line_03.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
+                binding.fStatisticsCloLine01.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
+                binding.fStatisticsCloLine02.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
+                binding.fStatisticsCloLine03.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
             }
         }
     }

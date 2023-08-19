@@ -7,7 +7,7 @@ import android.content.pm.PackageManager
 import com.devjj.pacemaker.core.di.ApplicationComponent
 import com.devjj.pacemaker.core.di.ApplicationModule
 import com.devjj.pacemaker.core.di.DaggerApplicationComponent
-import com.squareup.leakcanary.LeakCanary
+import leakcanary.LeakCanary
 
 class AndroidApplication : Application() {
 
@@ -29,11 +29,10 @@ class AndroidApplication : Application() {
         this.initializeLeakDetection()
     }
 
-
     private fun injectMembers() = appComponent.inject(this)
 
     private fun initializeLeakDetection() {
-        if (BuildConfig.DEBUG) LeakCanary.install(this)
+        //if (BuildConfig.DEBUG) LeakCanary.install(this)
     }
 
     fun isDebuggable(context: Context) : Boolean{

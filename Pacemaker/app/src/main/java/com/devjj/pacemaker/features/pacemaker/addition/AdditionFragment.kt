@@ -3,7 +3,9 @@ package com.devjj.pacemaker.features.pacemaker.addition
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.StringRes
 
 import com.devjj.pacemaker.R
@@ -12,7 +14,7 @@ import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.platform.BaseFragment
-import kotlinx.android.synthetic.main.fragment_addition.*
+import com.devjj.pacemaker.databinding.FragmentAdditionBinding
 import javax.inject.Inject
 
 class AdditionFragment(private val intent: Intent) : BaseFragment() {
@@ -20,8 +22,14 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
     @Inject lateinit var setting: SettingSharedPreferences
 
     private lateinit var additionViewModel: AdditionViewModel
-
     private lateinit var additionListener: AdditionListener
+
+    private var _binding: FragmentAdditionBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding by lazy {
+        _binding!!
+    }
 
     override fun layoutId() = R.layout.fragment_addition
 
@@ -33,6 +41,15 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
             observe(additionData, ::renderExerciseData)
             failure(failure, ::handleFailure)
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentAdditionBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,7 +71,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         initializeView()
 
         // additionListener 초기화
-        additionListener = AdditionListener(activity!!, additionViewModel)
+        additionListener = AdditionListener(requireActivity(), binding, additionViewModel)
 
         // 클릭 리스너들 모아둔 함수.
         additionListener.clickListener()
@@ -66,6 +83,11 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         additionListener.numberPickerListener()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     // AdditionFragment 초기화 하는 함수
     private fun initializeView() {
         initSettingMode(isNightMode)
@@ -73,7 +95,7 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         // 초기화
         additionData_part_img = 0
         val partImg = convertPartImgToResource(additionData_part_img, isNightMode)
-        fAddition_iv_part_main.setImageResource(partImg)
+        binding.fAdditionIvPartMain.setImageResource(partImg)
         additionData_mass = 0
         additionData_rep = 1
         additionData_set = 1
@@ -105,26 +127,26 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         }
 
         // 테스트 코드
-        fAddition_np_mass.minValue = 0
-        fAddition_np_mass.maxValue = massData.size-1
-        fAddition_np_mass.wrapSelectorWheel = false
+        binding.fAdditionNpMass.minValue = 0
+        binding.fAdditionNpMass.maxValue = massData.size-1
+        binding.fAdditionNpMass.wrapSelectorWheel = false
         massData.reverse()
-        fAddition_np_mass.displayedValues = massData
-        fAddition_np_mass.value = MASS_MAXVALUE
+        binding.fAdditionNpMass.displayedValues = massData
+        binding.fAdditionNpMass.value = MASS_MAXVALUE
 
-        fAddition_np_rep.minValue = 1
-        fAddition_np_rep.maxValue = repData.size
-        fAddition_np_rep.wrapSelectorWheel = false
+        binding.fAdditionNpRep.minValue = 1
+        binding.fAdditionNpRep.maxValue = repData.size
+        binding.fAdditionNpRep.wrapSelectorWheel = false
         repData.reverse()
-        fAddition_np_rep.displayedValues = repData
-        fAddition_np_rep.value = REP_MAXVALUE
+        binding.fAdditionNpRep.displayedValues = repData
+        binding.fAdditionNpRep.value = REP_MAXVALUE
 
-        fAddition_np_set.minValue = 1
-        fAddition_np_set.maxValue = setData.size
-        fAddition_np_set.wrapSelectorWheel = false
+        binding.fAdditionNpSet.minValue = 1
+        binding.fAdditionNpSet.maxValue = setData.size
+        binding.fAdditionNpSet.wrapSelectorWheel = false
         setData.reverse()
-        fAddition_np_set.displayedValues = setData
-        fAddition_np_set.value = SET_MAXVALUE
+        binding.fAdditionNpSet.displayedValues = setData
+        binding.fAdditionNpSet.value = SET_MAXVALUE
         //
     }
 
@@ -165,31 +187,31 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         }
 
         activity?.window?.statusBarColor = listResource[0]
-        fAddition_clo_status.setBackgroundResource(listResource[1])
-        fAddition_clo_main.setBackgroundColor(listResource[2])
-        fAddition_iv_part_main.setImageResource(listResource[3])
-        fAddition_iv_name_line.setImageResource(listResource[4])
-        fAddition_ev_name.setTextColor(listResource[5])
-        fAddition_ev_name.setHintTextColor(listResource[6])
+        binding.fAdditionCloStatus.setBackgroundResource(listResource[1])
+        binding.fAdditionCloMain.setBackgroundColor(listResource[2])
+        binding.fAdditionIvPartMain.setImageResource(listResource[3])
+        binding.fAdditionIvNameLine.setImageResource(listResource[4])
+        binding.fAdditionEvName.setTextColor(listResource[5])
+        binding.fAdditionEvName.setHintTextColor(listResource[6])
 
-        fAddition_tv_mass.setTextColor(listResource[7])
-        fAddition_tv_rep.setTextColor(listResource[7])
-        fAddition_tv_set.setTextColor(listResource[7])
-        fAddition_tv_interval.setTextColor(listResource[7])
+        binding.fAdditionTvMass.setTextColor(listResource[7])
+        binding.fAdditionTvRep.setTextColor(listResource[7])
+        binding.fAdditionTvSet.setTextColor(listResource[7])
+        binding.fAdditionTvInterval.setTextColor(listResource[7])
 
-        setNumberPickerTextColor(fAddition_np_mass, listResource[5])
-        fAddition_np_mass.setBackgroundColor(listResource[8])
-        setNumberPickerTextColor(fAddition_np_rep, listResource[5])
-        fAddition_np_rep.setBackgroundColor(listResource[8])
-        setNumberPickerTextColor(fAddition_np_set, listResource[5])
-        fAddition_np_set.setBackgroundColor(listResource[8])
+        setNumberPickerTextColor(binding.fAdditionNpMass, listResource[5])
+        binding.fAdditionNpMass.setBackgroundColor(listResource[8])
+        setNumberPickerTextColor(binding.fAdditionNpRep, listResource[5])
+        binding.fAdditionNpRep.setBackgroundColor(listResource[8])
+        setNumberPickerTextColor(binding.fAdditionNpSet, listResource[5])
+        binding.fAdditionNpSet.setBackgroundColor(listResource[8])
 
-        fAddition_clo_interval_time.setBackgroundColor(listResource[8])
-        fAddition_iv_interval_minus.setImageResource(listResource[9])
-        fAddition_iv_interval_plus.setImageResource(listResource[10])
-        fAddition_tv_interval_time.setTextColor(listResource[5])
+        binding.fAdditionCloIntervalTime.setBackgroundColor(listResource[8])
+        binding.fAdditionIvIntervalMinus.setImageResource(listResource[9])
+        binding.fAdditionIvIntervalPlus.setImageResource(listResource[10])
+        binding.fAdditionTvIntervalTime.setTextColor(listResource[5])
 
-        fAddition_iv_save.setImageResource(listResource[11])
+        binding.fAdditionIvSave.setImageResource(listResource[11])
     }
 
     // Exercise 데이터들 갱신하는 함수.
@@ -199,22 +221,22 @@ class AdditionFragment(private val intent: Intent) : BaseFragment() {
         // 모드에 따라 추가모드일때는 뷰를 비어있게 나타내고 편집모드일때는 관련 데이터를 표시해준다.
         when (mode) {
             ADDITION_MODE -> {
-                fAddition_tv_title.text = resources.getString(R.string.faddition_tv_title_addition_str)
-                fAddition_ev_name.text = String.editText(String.empty())
+                binding.fAdditionTvTitle.text = resources.getString(R.string.faddition_tv_title_addition_str)
+                binding.fAdditionEvName.text = String.editText(String.empty())
             }
             EDITING_MODE -> {
                 additionData_id = tempAdditionView.id
                 additionData_part_img = tempAdditionView.part_img
                 val partImg = convertPartImgToResource(additionData_part_img, isNightMode)
-                fAddition_iv_part_main.setImageResource(partImg)
+                binding.fAdditionIvPartMain.setImageResource(partImg)
 
-                fAddition_tv_title.text = resources.getString(R.string.faddition_tv_title_edit_str)
-                fAddition_ev_name.text = String.editText(tempAdditionView.name)
-                fAddition_np_mass.value = MASS_MAXVALUE - tempAdditionView.mass
-                fAddition_np_rep.value = (REP_MAXVALUE + 1) - tempAdditionView.rep
-                fAddition_np_set.value = (SET_MAXVALUE + 1) - tempAdditionView.set
+                binding.fAdditionTvTitle.text = resources.getString(R.string.faddition_tv_title_edit_str)
+                binding.fAdditionEvName.text = String.editText(tempAdditionView.name)
+                binding.fAdditionNpMass.value = MASS_MAXVALUE - tempAdditionView.mass
+                binding.fAdditionNpRep.value = (REP_MAXVALUE + 1) - tempAdditionView.rep
+                binding.fAdditionNpSet.value = (SET_MAXVALUE + 1) - tempAdditionView.set
                 additionData_interval = tempAdditionView.interval
-                settingIntervalTime(fAddition_tv_interval_time)
+                settingIntervalTime(binding.fAdditionTvIntervalTime)
             }
             else -> {
                 Dlog.d( "renderExerciseData error")

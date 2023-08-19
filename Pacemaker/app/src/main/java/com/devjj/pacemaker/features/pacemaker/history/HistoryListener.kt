@@ -1,24 +1,23 @@
 package com.devjj.pacemaker.features.pacemaker.history
 
 import android.app.Activity
-import android.util.Log
 import android.widget.Toast
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
+import com.devjj.pacemaker.databinding.FragmentHistoryBinding
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import kotlinx.android.synthetic.main.fragment_history.*
 import org.threeten.bp.LocalDate
 
 class HistoryListener(
     val activity: Activity,
+    val binding: FragmentHistoryBinding,
     val navigator: Navigator,
     private val historyViewModel: HistoryViewModel
 ) {
 
-
     fun initListener() {
-        activity.fHistory_calendarView.setOnDateChangedListener { calendarView, date, selected ->
+        binding.fHistoryCalendarView.setOnDateChangedListener { calendarView, date, selected ->
             Dlog.d("date : ${date.date} , selected : $selected")
 
             calendarView.setDateSelected(
@@ -35,17 +34,17 @@ class HistoryListener(
             }
         }
 
-        activity.fHistory_calendarView.setOnMonthChangedListener { widget, date ->
+        binding.fHistoryCalendarView.setOnMonthChangedListener { widget, date ->
             historyViewModel.loadOneMonthSumOfSetsAndMass(date.date.toString())
             historyViewModel.loadTotalTimes(date.date.toString())
             Dlog.d(date.date.toString())
         }
 
-        activity.fHistory_iv_chart.setOnClickListener {
+        binding.fHistoryIvChart.setOnClickListener {
             navigator.showStatistics(activity)
         }
 
-        activity.fHistory_iv_comment_month.setOnClickListener {
+        binding.fHistoryIvCommentMonth.setOnClickListener {
 
             if (historyViewModel.setsAndMassOneMonth.value != null) {
                 Toast.makeText(
@@ -65,11 +64,9 @@ class HistoryListener(
                     Toast.LENGTH_LONG
                 ).show()
             }
-
-
         }
 
-        activity.fHistory_iv_comment_total.setOnClickListener {
+        binding.fHistoryIvCommentTotal.setOnClickListener {
 
             if (historyViewModel.setsAndMass.value != null) {
                 Toast.makeText(

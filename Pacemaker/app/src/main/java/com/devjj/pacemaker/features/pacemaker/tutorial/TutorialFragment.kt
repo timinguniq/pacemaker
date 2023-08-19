@@ -1,9 +1,11 @@
 package com.devjj.pacemaker.features.pacemaker.tutorial
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.exception.Failure
@@ -11,7 +13,7 @@ import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
-import kotlinx.android.synthetic.main.fragment_tutorial.*
+import com.devjj.pacemaker.databinding.FragmentTutorialBinding
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
@@ -28,9 +30,16 @@ class TutorialFragment : BaseFragment() {
 
     private lateinit var tutorialListener: TutorialListener
 
-    override fun layoutId() = R.layout.fragment_tutorial
-
     private var currentTempItem = 0
+
+    private var _binding: FragmentTutorialBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding by lazy {
+        _binding!!
+    }
+
+    override fun layoutId() = R.layout.fragment_tutorial
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +51,15 @@ class TutorialFragment : BaseFragment() {
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentTutorialBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onStart() {
         super.onStart()
         // finish btn visible setting
@@ -51,7 +69,7 @@ class TutorialFragment : BaseFragment() {
         // viewModel로부터 currentItemData 가져오기
         currentTempItem = tutorialViewModel.currentItemData.value?:0
         Dlog.d("currentTempItem : $currentTempItem")
-        fTutorial_viewpager.currentItem = 0
+        binding.fTutorialViewpager.currentItem = 0
     }
 
     override fun onResume() {
@@ -61,18 +79,23 @@ class TutorialFragment : BaseFragment() {
         initTutorialData()
 
         // viewpager 현재 아이템으로 셋팅하는 코드
-        fTutorial_viewpager.currentItem = currentTempItem
+        binding.fTutorialViewpager.currentItem = currentTempItem
 
         // tutorialListener 초기화
-        tutorialListener = TutorialListener(activity!!, this, navigator, setting, tutorialViewModel)
+        tutorialListener = TutorialListener(activity!!, this, binding, navigator, setting, tutorialViewModel)
 
         // 클릭 리스너들 모아둔 함수.
         tutorialListener.clickListener()
 
 
         // 혹시나 쓸일 있으면 쓸 코드
-        fTutorial_indicator.indicatorsToShow = 5
+        binding.fTutorialIndicator.indicatorsToShow = 5
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     // 데이터 초기화 하는 함수
@@ -128,21 +151,21 @@ class TutorialFragment : BaseFragment() {
             }
         }
 
-        fTutorial_viewpager.adapter = TutorialAdapter(tutorials)
+        binding.fTutorialViewpager.adapter = TutorialAdapter(tutorials)
     }
 
     // finish btn visible
     fun setFinishBtnVisible(visible: Boolean){
         if(visible){
-            fTutorial_iv_finish.visible()
+            binding.fTutorialIvFinish.visible()
         }else{
-            fTutorial_iv_finish.invisible()
+            binding.fTutorialIvFinish.invisible()
         }
     }
 
     // currentItem 데이터들 갱신하는 함수.
     private fun renderCurrentItemData(currentItem: Int?) {
-        fTutorial_viewpager.currentItem = currentItem?:0
+        binding.fTutorialViewpager.currentItem = currentItem?:0
     }
 
     // currentItem 데이터 갱신 실패시 핸들링하는 함수.

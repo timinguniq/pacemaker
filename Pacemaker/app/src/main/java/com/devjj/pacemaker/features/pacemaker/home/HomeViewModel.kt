@@ -3,8 +3,6 @@ package com.devjj.pacemaker.features.pacemaker.home
 import androidx.lifecycle.MutableLiveData
 import com.devjj.pacemaker.core.interactor.UseCase
 import com.devjj.pacemaker.core.platform.BaseViewModel
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
 import com.devjj.pacemaker.features.pacemaker.usecases.DeleteExerciseData
 import com.devjj.pacemaker.features.pacemaker.usecases.GetHomeData
 import com.devjj.pacemaker.features.pacemaker.usecases.SwapExerciseData

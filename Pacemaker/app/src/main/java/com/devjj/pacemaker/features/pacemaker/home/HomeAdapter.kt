@@ -1,10 +1,8 @@
 package com.devjj.pacemaker.features.pacemaker.home
 
 import android.content.Context
-import android.graphics.Color
-import android.os.Handler
+import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.devjj.pacemaker.R
@@ -12,10 +10,9 @@ import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.functional.OnStartDragListener
+import com.devjj.pacemaker.databinding.RecyclerviewExerciseItemBinding
 import com.devjj.pacemaker.features.pacemaker.addition.AdditionView
-import kotlinx.android.synthetic.main.recyclerview_exercise_item.view.*
 import java.util.*
-import javax.inject.Inject
 import kotlin.properties.Delegates
 
 class HomeAdapter(
@@ -37,8 +34,10 @@ class HomeAdapter(
 
     internal var deleteClickListener: (HomeView) -> Unit = { _ -> }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(parent.inflate(R.layout.recyclerview_exercise_item))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val itemBinding = RecyclerviewExerciseItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(itemBinding)
+    }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         viewHolder.bind(
@@ -53,59 +52,60 @@ class HomeAdapter(
 
     override fun getItemCount() = collection.size
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(private val itemBinding: RecyclerviewExerciseItemBinding)
+        : RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(
             homeView: HomeView, context: Context, setting: SettingSharedPreferences,
             startDragListener: OnStartDragListener,
             clickListener: (AdditionView) -> Unit, deleteClickListener: (HomeView) -> Unit
         ) {
-            itemView.rvExerciseItem_tv_name.text = String.regLen(homeView.name, EXERCISE_NAME_HOME)
-            itemView.rvExerciseItem_tv_mass.text =
+            itemBinding.rvExerciseItemTvName.text = String.regLen(homeView.name, EXERCISE_NAME_HOME)
+            itemBinding.rvExerciseItemTvMass.text =
                 context.getString(R.string.unit_mass, homeView.mass)
-            itemView.rvExerciseItem_tv_set.text =
+            itemBinding.rvExerciseItemTvSet.text =
                 context.getString(R.string.unit_sets, homeView.set)
             if (!setting.isNightMode) {
                 // 화이트 모드
                 val partImgResource = convertPartImgToResource(homeView.part_img, false)
-                itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-                itemView.rvExerciseItem_clo_main.setBackgroundColor(loadColor(context, R.color.grey_F9F9F9))
-                itemView.rvExerciseItem_tv_name.setTextColor(loadColor(context, R.color.black_3B4046))
-                itemView.rvExerciseItem_tv_mass.setTextColor(loadColor(context, R.color.grey_88898A))
-                itemView.rvExerciseItem_tv_slash.setTextColor(loadColor(context, R.color.grey_88898A))
-                itemView.rvExerciseItem_tv_set.setTextColor(loadColor(context, R.color.grey_88898A))
-                itemView.rvExerciseItem_iv_sort.setImageResource(R.drawable.rvexerciseitem_img_wm_drag_handle)
-                itemView.rvExerciseItem_iv_delete.setImageResource(R.drawable.rvexerciseitem_img_wm_delete)
+                itemBinding.rvExerciseItemIvPart.setImageResource(partImgResource)
+                itemBinding.rvExerciseItemCloMain.setBackgroundColor(loadColor(context, R.color.grey_F9F9F9))
+                itemBinding.rvExerciseItemTvName.setTextColor(loadColor(context, R.color.black_3B4046))
+                itemBinding.rvExerciseItemTvMass.setTextColor(loadColor(context, R.color.grey_88898A))
+                itemBinding.rvExerciseItemTvSlash.setTextColor(loadColor(context, R.color.grey_88898A))
+                itemBinding.rvExerciseItemTvSet.setTextColor(loadColor(context, R.color.grey_88898A))
+                itemBinding.rvExerciseItemIvSort.setImageResource(R.drawable.rvexerciseitem_img_wm_drag_handle)
+                itemBinding.rvExerciseItemIvDelete.setImageResource(R.drawable.rvexerciseitem_img_wm_delete)
             } else {
                 // 다크 모드
                 val partImgResource = convertPartImgToResource(homeView.part_img, true)
-                itemView.rvExerciseItem_iv_part.setImageResource(partImgResource)
-                itemView.rvExerciseItem_clo_main.setBackgroundColor(loadColor(context, R.color.grey_88898A))
-                itemView.rvExerciseItem_tv_name.setTextColor(loadColor(context, R.color.white_F7FAFD))
-                itemView.rvExerciseItem_tv_mass.setTextColor(loadColor(context, R.color.grey_444646))
-                itemView.rvExerciseItem_tv_slash.setTextColor(loadColor(context, R.color.grey_444646))
-                itemView.rvExerciseItem_tv_set.setTextColor(loadColor(context, R.color.grey_444646))
-                itemView.rvExerciseItem_iv_sort.setImageResource(R.drawable.rvexerciseitem_img_dm_drag_handle)
-                itemView.rvExerciseItem_iv_delete.setImageResource(R.drawable.rvexerciseitem_img_dm_delete)
+                itemBinding.rvExerciseItemIvPart.setImageResource(partImgResource)
+                itemBinding.rvExerciseItemCloMain.setBackgroundColor(loadColor(context, R.color.grey_88898A))
+                itemBinding.rvExerciseItemTvName.setTextColor(loadColor(context, R.color.white_F7FAFD))
+                itemBinding.rvExerciseItemTvMass.setTextColor(loadColor(context, R.color.grey_444646))
+                itemBinding.rvExerciseItemTvSlash.setTextColor(loadColor(context, R.color.grey_444646))
+                itemBinding.rvExerciseItemTvSet.setTextColor(loadColor(context, R.color.grey_444646))
+                itemBinding.rvExerciseItemIvSort.setImageResource(R.drawable.rvexerciseitem_img_dm_drag_handle)
+                itemBinding.rvExerciseItemIvDelete.setImageResource(R.drawable.rvexerciseitem_img_dm_delete)
             }
 
             if (setting.isEditMode) {
-                itemView.rvExerciseItem_flo_sort.visible()
-                itemView.rvExerciseItem_flo_delete.visible()
+                itemBinding.rvExerciseItemFloSort.visible()
+                itemBinding.rvExerciseItemFloDelete.visible()
 
-                itemView.rvExerciseItem_tv_mass.gone()
-                itemView.rvExerciseItem_tv_slash.gone()
-                itemView.rvExerciseItem_tv_set.gone()
+                itemBinding.rvExerciseItemTvMass.gone()
+                itemBinding.rvExerciseItemTvSlash.gone()
+                itemBinding.rvExerciseItemTvSet.gone()
             } else {
-                itemView.rvExerciseItem_flo_sort.gone()
-                itemView.rvExerciseItem_flo_delete.gone()
+                itemBinding.rvExerciseItemFloSort.gone()
+                itemBinding.rvExerciseItemFloDelete.gone()
 
-                itemView.rvExerciseItem_tv_mass.visible()
-                itemView.rvExerciseItem_tv_slash.visible()
-                itemView.rvExerciseItem_tv_set.visible()
+                itemBinding.rvExerciseItemTvMass.visible()
+                itemBinding.rvExerciseItemTvSlash.visible()
+                itemBinding.rvExerciseItemTvSet.visible()
             }
 
             // 메인 레이아웃 클릭 시 이벤트 함수.
-            itemView.rvExerciseItem_clo_main.setOnClickListener {
+            itemBinding.rvExerciseItemCloMain.setOnClickListener {
                 // HomeView에서 AdditionView로 컨버팅하는 함수 필요.
                 clickListener(
                     AdditionView(
@@ -127,7 +127,7 @@ class HomeAdapter(
             }
 */
             // Item Delete를 위한 이벤트 함수.
-            itemView.rvExerciseItem_flo_delete.setOnClickListener {
+            itemBinding.rvExerciseItemFloDelete.setOnClickListener {
                 deleteClickListener(
                     HomeView(
                         homeView.id, homeView.part_img, homeView.name,
@@ -137,7 +137,7 @@ class HomeAdapter(
             }
 
             // Item Move를 위한 이벤트 함수.
-            itemView.rvExerciseItem_flo_sort.setOnTouchListener { view, event ->
+            itemBinding.rvExerciseItemFloSort.setOnTouchListener { view, event ->
                 view.performClick()
                 if (event.action == MotionEvent.ACTION_DOWN) {
                     startDragListener.onStartDrag(this)

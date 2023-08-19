@@ -3,6 +3,7 @@ package com.devjj.pacemaker.core.di
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.devjj.pacemaker.AndroidApplication
 import com.devjj.pacemaker.core.di.database.ExerciseDatabase
@@ -22,6 +23,12 @@ import javax.inject.Singleton
 @Module
 class ApplicationModule(private val application: AndroidApplication) {
 
+    val MIGRATION_1_2 = object : Migration(1, 2) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("ALTER TABLE exercises ADD COLUMN division INTEGER NOT NULL DEFAULT 0 ")
+        }
+    }
+
     @Provides
     @Singleton
     fun provideApplicationContext(): Context = application
@@ -40,7 +47,8 @@ class ApplicationModule(private val application: AndroidApplication) {
                     db.beginTransactionNonExclusive()
                 }
             }
-        }).build()
+        }).addMigrations(MIGRATION_1_2)
+          .build()
         return db
     }
 

@@ -1,26 +1,19 @@
 package com.devjj.pacemaker.features.pacemaker
 
-import android.app.ActivityManager
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.DisplayMetrics
-import android.util.Log
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseActivity
+import com.devjj.pacemaker.databinding.ActivityPlayPopupBinding
 import com.devjj.pacemaker.features.pacemaker.playpopup.PlayPopupFragment
 import com.devjj.pacemaker.features.pacemaker.playpopup.STOP_MODE
 import com.devjj.pacemaker.features.pacemaker.playpopup.mode
 import com.devjj.pacemaker.features.pacemaker.service.TimerService
 import com.google.android.gms.ads.AdRequest
-import kotlinx.android.synthetic.main.activity_addition.*
-import kotlinx.android.synthetic.main.activity_play_popup.*
 import javax.inject.Inject
-import kotlin.math.roundToInt
 
 
 class PlayPopupActivity : BaseActivity() {
@@ -34,10 +27,13 @@ class PlayPopupActivity : BaseActivity() {
 
     @Inject lateinit var navigator: Navigator
 
+    private lateinit var binding: ActivityPlayPopupBinding
+
     override fun fragment() = PlayPopupFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityPlayPopupBinding.inflate(layoutInflater)
         appComponent.inject(this)
         initAd()
         Dlog.d( "onCreate PlayPopupActivity")
@@ -46,7 +42,7 @@ class PlayPopupActivity : BaseActivity() {
     // 광고 초기화 하는 함수
     private fun initAd() {
         val adRequest = AdRequest.Builder().build()
-        aPlayPopup_adView.loadAd(adRequest)
+        binding.aPlayPopupAdView.loadAd(adRequest)
     }
 
     override fun onBackPressed() {

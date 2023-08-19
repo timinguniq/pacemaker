@@ -2,15 +2,11 @@ package com.devjj.pacemaker.features.pacemaker
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.devjj.pacemaker.R
 import com.devjj.pacemaker.core.extension.loadColor
 import com.devjj.pacemaker.core.platform.BaseActivity
-import com.devjj.pacemaker.core.platform.BaseFragment
-import com.devjj.pacemaker.features.pacemaker.playpopup.STOP_MODE
-import com.devjj.pacemaker.features.pacemaker.playpopup.mode
-import com.devjj.pacemaker.features.pacemaker.service.TimerService
+import com.devjj.pacemaker.databinding.ActivityTutorialBinding
 import com.devjj.pacemaker.features.pacemaker.tutorial.TutorialFragment
 
 class TutorialActivity : BaseActivity() {
@@ -19,11 +15,14 @@ class TutorialActivity : BaseActivity() {
         fun callingIntent(context: Context) = Intent(context, TutorialActivity::class.java)
     }
 
+    private lateinit var binding: ActivityTutorialBinding
+
     override var layout = R.layout.activity_tutorial
     override var fragmentId = R.id.aTutorial_flo_container
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityTutorialBinding.inflate(layoutInflater)
         appComponent.inject(this)
     }
 

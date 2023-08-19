@@ -1,6 +1,9 @@
 package com.devjj.pacemaker.features.pacemaker.history
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.NonNull
 
 import com.devjj.pacemaker.R
@@ -11,9 +14,9 @@ import com.devjj.pacemaker.core.extension.*
 import com.devjj.pacemaker.core.functional.Dlog
 import com.devjj.pacemaker.core.navigation.Navigator
 import com.devjj.pacemaker.core.platform.BaseFragment
+import com.devjj.pacemaker.databinding.FragmentHistoryBinding
+import com.devjj.pacemaker.features.pacemaker.PacemakerActivity
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import kotlinx.android.synthetic.main.activity_pacemaker.*
-import kotlinx.android.synthetic.main.fragment_history.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -37,6 +40,13 @@ class HistoryFragment : BaseFragment() {
     @Inject
     lateinit var setting: SettingSharedPreferences
 
+    private var _binding: FragmentHistoryBinding? = null
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding by lazy {
+        _binding!!
+    }
+
     private lateinit var historyListener: HistoryListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,9 +62,23 @@ class HistoryFragment : BaseFragment() {
 
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentHistoryBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onResume() {
         super.onResume()
         initializeView()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun renderHistoryList(histories: List<HistoryView>?) {
@@ -68,7 +92,7 @@ class HistoryFragment : BaseFragment() {
                     Dlog.d( "datess ${history.date}")
                     var dates = history.date.split("-")
                     Dlog.d( "${dates[0]} , ${dates[1]} , ${dates[2]}")
-                    fHistory_calendarView.setDateSelected(
+                    binding.fHistoryCalendarView.setDateSelected(
                         CalendarDay.from(
                             LocalDate.of(
                                 dates[0].toInt(),
@@ -83,34 +107,35 @@ class HistoryFragment : BaseFragment() {
     }
 
     private fun renderSetsAndMass(sumOfSetsAndMass: SumOfSetsAndMass?) {
-
-        fHistory_tv_total_sets.text = getString(R.string.unit_sets, sumOfSetsAndMass!!.sets)
+        binding.fHistoryTvTotalSets.text = getString(R.string.unit_sets, sumOfSetsAndMass!!.sets)
       //  fHistory_tv_total_times.text = getString(R.string.unit_time_hour_min, sumOfSetsAndMass.times / 60, sumOfSetsAndMass.times % 60)
-        fHistory_tv_total_kgs.text = getString(R.string.unit_mass, sumOfSetsAndMass.mass)
+        binding.fHistoryTvTotalKgs.text = getString(R.string.unit_mass, sumOfSetsAndMass.mass)
     }
 
     private fun renderSetsAndMassOneMonthOneMonth(sumOfSetsAndMass : SumOfSetsAndMass?){
-
-        fHistory_tv_month_sets.text = getString(R.string.unit_sets, sumOfSetsAndMass!!.sets)
+        binding.fHistoryTvMonthSets.text = getString(R.string.unit_sets, sumOfSetsAndMass!!.sets)
       //  fHistory_tv_month_times.text = getString(R.string.unit_time_hour_min, sumOfSetsAndMass.times / 60, sumOfSetsAndMass.times % 60)
-        fHistory_tv_month_kgs.text = getString(R.string.unit_mass, sumOfSetsAndMass.mass)
+        binding.fHistoryTvMonthKgs.text = getString(R.string.unit_mass, sumOfSetsAndMass.mass)
        // Dlog.d( sumOfSetsAndMass.times.toString())
     }
 
     private fun renderTotalTimes(totalTimes: TotalTimes?){
-        fHistory_tv_total_times.text = getString(R.string.unit_time_hour_min, totalTimes!!.totalTime / 60, totalTimes.totalTime % 60)
-        fHistory_tv_month_times.text = getString(R.string.unit_time_hour_min, totalTimes.totalTimeOneMonth / 60, totalTimes.totalTimeOneMonth % 60)
+        binding.fHistoryTvTotalTimes.text = getString(R.string.unit_time_hour_min, totalTimes!!.totalTime / 60, totalTimes.totalTime % 60)
+        binding.fHistoryTvMonthTimes.text = getString(R.string.unit_time_hour_min, totalTimes.totalTimeOneMonth / 60, totalTimes.totalTimeOneMonth % 60)
     }
 
     private fun initializeView() {
         setColors()
-        this.activity!!.aPacemaker_tv_title.text = this.getString(R.string.fhistory_tv_title_str)
-        this.activity!!.aPacemaker_flo_edit.gone()
+        val pacemakerActivity = requireActivity() as PacemakerActivity
+        pacemakerActivity.getBinding().aPacemakerTvTitle.text = this.getString(R.string.fhistory_tv_title_str)
+        pacemakerActivity.getBinding().aPacemakerFloEdit.gone()
+        //this.activity!!.aPacemaker_tv_title.text = this.getString(R.string.fhistory_tv_title_str)
+        //this.activity!!.aPacemaker_flo_edit.gone()
         //fHistory_recyclerview.layoutManager = LinearLayoutManager(activity)
         //fHistory_recyclerview.adapter = historyAdapter
-        fHistory_tv_height.text= getString(R.string.unit_height,setting.height)
-        fHistory_tv_weight.text= getString(R.string.unit_weight,setting.weight)
-        historyListener = HistoryListener(activity!!, navigator,historyViewModel)
+        binding.fHistoryTvHeight.text = getString(R.string.unit_height,setting.height)
+        binding.fHistoryTvWeight.text = getString(R.string.unit_weight,setting.weight)
+        historyListener = HistoryListener(activity!!, binding, navigator, historyViewModel)
         historyListener.initListener()
 
         runBlocking {
@@ -132,8 +157,8 @@ class HistoryFragment : BaseFragment() {
     private fun setColors() {
         Dlog.d( "history fragment")
 
-        fHistory_calendarView.tileWidth = convertDpToPx(context!!,52f).toInt()
-        fHistory_calendarView.tileHeight = convertDpToPx(context!!,40f).toInt()
+        binding.fHistoryCalendarView.tileWidth = convertDpToPx(context!!,52f).toInt()
+        binding.fHistoryCalendarView.tileHeight = convertDpToPx(context!!,40f).toInt()
 
         Dlog.d( "tile density : ${context!!.resources.displayMetrics.density}")
         Dlog.d( "tileWidth : ${convertDpToPx(context!!, 360f)}")
@@ -143,81 +168,79 @@ class HistoryFragment : BaseFragment() {
             true -> {
                 Dlog.d( "Night time mode")
                 // loadColor(activity!!,R.color.orange_F74938)
-                fHistory_calendarView.selectionColor = loadColor(activity!!,R.color.orange_F74938)
-                fHistory_calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearanceNightTime)
-                fHistory_calendarView.setHeaderTextAppearance(R.style.CalendarHeaderTextAppearanceNightTime)
-                fHistory_calendarView.setWeekDayTextAppearance(R.style.CalendarHeaderTextAppearanceNightTime)
-                fHistory_calendarView.leftArrow.setTint(loadColor(activity!!,R.color.white_F7FAFD))
-                fHistory_calendarView.rightArrow.setTint(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fHistoryCalendarView.selectionColor = loadColor(activity!!,R.color.orange_F74938)
+                binding.fHistoryCalendarView.setDateTextAppearance(R.style.CalendarDateTextAppearanceNightTime)
+                binding.fHistoryCalendarView.setHeaderTextAppearance(R.style.CalendarHeaderTextAppearanceNightTime)
+                binding.fHistoryCalendarView.setWeekDayTextAppearance(R.style.CalendarHeaderTextAppearanceNightTime)
+                binding.fHistoryCalendarView.leftArrow.setTint(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fHistoryCalendarView.rightArrow.setTint(loadColor(activity!!,R.color.white_F7FAFD))
 
-                fHistory_clo_report.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
-                fHistory_tv_report.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fHistoryCloReport.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
+                binding.fHistoryTvReport.setTextColor(loadColor(activity!!,R.color.black_3B4046))
 
-                fHistory_tv_profile.setTextColor(loadColor(activity!!,R.color.grey_AEB3B3))
-                fHistory_tv_weight.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
-                fHistory_tv_height.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fHistoryTvProfile.setTextColor(loadColor(activity!!,R.color.grey_AEB3B3))
+                binding.fHistoryTvWeight.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fHistoryTvHeight.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
 
-                fHistory_tv_total.setTextColor(loadColor(activity!!,R.color.grey_AEB3B3))
-                fHistory_tv_total_sets.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
-                fHistory_tv_total_times.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
-                fHistory_tv_total_kgs.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fHistoryTvTotal.setTextColor(loadColor(activity!!,R.color.grey_AEB3B3))
+                binding.fHistoryTvTotalSets.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fHistoryTvTotalTimes.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fHistoryTvTotalKgs.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
 
-                fHistory_tv_month.setTextColor(loadColor(activity!!,R.color.grey_AEB3B3))
-                fHistory_tv_month_sets.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
-                fHistory_tv_month_times.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
-                fHistory_tv_month_kgs.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fHistoryTvMonth.setTextColor(loadColor(activity!!,R.color.grey_AEB3B3))
+                binding.fHistoryTvMonthSets.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fHistoryTvMonthTimes.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
+                binding.fHistoryTvMonthKgs.setTextColor(loadColor(activity!!,R.color.white_F7FAFD))
 
-                fHistory_iv_chart.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_chart_nighttime))
-                fHistory_iv_comment_month.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_nighttime))
-                fHistory_iv_comment_total.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_nighttime))
-                fHistory_iv_chart.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
-                fHistory_iv_comment_month.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
-                fHistory_iv_comment_total.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
+                binding.fHistoryIvChart.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_chart_nighttime))
+                binding.fHistoryIvCommentMonth.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_nighttime))
+                binding.fHistoryIvCommentTotal.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_nighttime))
+                binding.fHistoryIvChart.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
+                binding.fHistoryIvCommentMonth.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
+                binding.fHistoryIvCommentTotal.setBackgroundResource(R.drawable.fhistory_button_bg_color_nighttime)
 
-                fHistory_clo_line_01.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
-                fHistory_clo_line_02.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
-
+                binding.fHistoryCloLine01.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
+                binding.fHistoryCloLine02.setBackgroundColor(loadColor(activity!!,R.color.grey_88898A))
             }
             false -> {
                 Dlog.d( "Day time mode")
-                fHistory_calendarView.selectionColor = loadColor(activity!!,R.color.orange_F74938)
+                binding.fHistoryCalendarView.selectionColor = loadColor(activity!!,R.color.orange_F74938)
 
-                fHistory_calendarView.setDateTextAppearance(R.style.CalendarDateTextAppearanceDayTime)
-                fHistory_calendarView.setHeaderTextAppearance(R.style.CalendarHeaderTextAppearanceDayTime)
-                fHistory_calendarView.setWeekDayTextAppearance(R.style.CalendarHeaderTextAppearanceDayTime)
-                fHistory_calendarView.leftArrow.setTint(loadColor(activity!!,R.color.black_3B4046))
-                fHistory_calendarView.rightArrow.setTint(loadColor(activity!!,R.color.black_3B4046))
+                binding.fHistoryCalendarView.setDateTextAppearance(R.style.CalendarDateTextAppearanceDayTime)
+                binding.fHistoryCalendarView.setHeaderTextAppearance(R.style.CalendarHeaderTextAppearanceDayTime)
+                binding.fHistoryCalendarView.setWeekDayTextAppearance(R.style.CalendarHeaderTextAppearanceDayTime)
+                binding.fHistoryCalendarView.leftArrow.setTint(loadColor(activity!!,R.color.black_3B4046))
+                binding.fHistoryCalendarView.rightArrow.setTint(loadColor(activity!!,R.color.black_3B4046))
 
-                fHistory_clo_report.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9_70))
-                fHistory_tv_report.setTextColor(loadColor(activity!!,R.color.grey_87888A))
+                binding.fHistoryCloReport.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9_70))
+                binding.fHistoryTvReport.setTextColor(loadColor(activity!!,R.color.grey_87888A))
 
-                fHistory_tv_profile.setTextColor(loadColor(activity!!,R.color.grey_87888A))
-                fHistory_tv_weight.setTextColor(loadColor(activity!!,R.color.black_3B4046))
-                fHistory_tv_height.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fHistoryTvProfile.setTextColor(loadColor(activity!!,R.color.grey_87888A))
+                binding.fHistoryTvWeight.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fHistoryTvHeight.setTextColor(loadColor(activity!!,R.color.black_3B4046))
 
-                fHistory_tv_total.setTextColor(loadColor(activity!!,R.color.grey_87888A))
-                fHistory_tv_total_sets.setTextColor(loadColor(activity!!,R.color.black_3B4046))
-                fHistory_tv_total_times.setTextColor(loadColor(activity!!,R.color.black_3B4046))
-                fHistory_tv_total_kgs.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fHistoryTvTotal.setTextColor(loadColor(activity!!,R.color.grey_87888A))
+                binding.fHistoryTvTotalSets.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fHistoryTvTotalTimes.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fHistoryTvTotalKgs.setTextColor(loadColor(activity!!,R.color.black_3B4046))
 
-                fHistory_tv_month.setTextColor(loadColor(activity!!,R.color.grey_87888A))
-                fHistory_tv_month_sets.setTextColor(loadColor(activity!!,R.color.black_3B4046))
-                fHistory_tv_month_times.setTextColor(loadColor(activity!!,R.color.black_3B4046))
-                fHistory_tv_month_kgs.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fHistoryTvMonth.setTextColor(loadColor(activity!!,R.color.grey_87888A))
+                binding.fHistoryTvMonthSets.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fHistoryTvMonthTimes.setTextColor(loadColor(activity!!,R.color.black_3B4046))
+                binding.fHistoryTvMonthKgs.setTextColor(loadColor(activity!!,R.color.black_3B4046))
 
-                fHistory_iv_chart.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_chart_daytime))
-                fHistory_iv_comment_month.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_daytime))
-                fHistory_iv_comment_total.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_daytime))
-                fHistory_iv_comment_month.drawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
-                fHistory_iv_comment_total.drawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
+                binding.fHistoryIvChart.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_chart_daytime))
+                binding.fHistoryIvCommentMonth.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_daytime))
+                binding.fHistoryIvCommentTotal.setImageDrawable(activity!!.getDrawable(R.drawable.fhistory_img_btn_comment_daytime))
+                binding.fHistoryIvCommentMonth.drawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
+                binding.fHistoryIvCommentTotal.drawable.setTint(loadColor(activity!!,R.color.orange_FF765B))
 
-                fHistory_iv_chart.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
-                fHistory_iv_comment_month.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
-                fHistory_iv_comment_total.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
+                binding.fHistoryIvChart.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
+                binding.fHistoryIvCommentMonth.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
+                binding.fHistoryIvCommentTotal.setBackgroundResource(R.drawable.fhistory_button_bg_color_daytime)
 
-
-                fHistory_clo_line_01.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
-                fHistory_clo_line_02.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
+                binding.fHistoryCloLine01.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
+                binding.fHistoryCloLine02.setBackgroundColor(loadColor(activity!!,R.color.grey_F9F9F9))
             }
         }
     }

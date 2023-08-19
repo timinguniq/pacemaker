@@ -1,15 +1,10 @@
 package com.devjj.pacemaker.features.pacemaker.home
 
-import android.database.DatabaseErrorHandler
-import android.util.Log
-import com.devjj.pacemaker.core.di.database.ExerciseDatabase
 import com.devjj.pacemaker.core.exception.Failure
 import com.devjj.pacemaker.core.exception.Failure.DatabaseError
-import com.devjj.pacemaker.core.exception.Failure.SharedPreferencesError
 import com.devjj.pacemaker.core.functional.Either
 import com.devjj.pacemaker.core.functional.Either.Left
 import com.devjj.pacemaker.core.functional.Either.Right
-import com.devjj.pacemaker.features.pacemaker.addition.AdditionData
 import javax.inject.Inject
 
 interface HomeRepository {

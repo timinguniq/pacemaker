@@ -1,6 +1,7 @@
 package com.devjj.pacemaker.features.pacemaker.service
 
 import android.app.*
+import android.app.PendingIntent.FLAG_IMMUTABLE
 import android.content.Context
 import android.content.Intent
 import android.media.AudioAttributes
@@ -172,7 +173,7 @@ class TimerService : Service() {
 
         // PendingIntent 입니다.
         val contentIntent =
-            PendingIntent.getActivity(this, 0, Intent(this, PlayPopupActivity::class.java), 0)
+            PendingIntent.getActivity(this, 0, Intent(this, PlayPopupActivity::class.java), FLAG_IMMUTABLE)
 
         // Foreground Service의 layout입니다.
         val view = RemoteViews(packageName, R.layout.service_timer)

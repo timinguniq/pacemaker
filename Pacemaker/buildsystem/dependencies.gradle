@@ -22,7 +22,7 @@ ext {
     lifecycle_version = '2.1.0'
     room_version = '2.2.1'
     material_version = '1.0.0'
-    admob_version = '18.3.0'
+    admob_version = '19.3.0'
     //archComponents_version = '1.1.1'
     //glide_version = '4.0.0'
 

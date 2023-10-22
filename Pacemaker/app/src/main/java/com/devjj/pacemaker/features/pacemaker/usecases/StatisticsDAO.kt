@@ -3,7 +3,7 @@ package com.devjj.pacemaker.features.pacemaker.usecases
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy.REPLACE
+import androidx.room.OnConflictStrategy.Companion.REPLACE
 import androidx.room.Query
 import com.devjj.pacemaker.features.pacemaker.entities.StatisticsEntity
 import com.devjj.pacemaker.features.pacemaker.history.TotalTimes

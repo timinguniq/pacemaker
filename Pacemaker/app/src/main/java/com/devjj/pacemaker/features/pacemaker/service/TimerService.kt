@@ -173,7 +173,12 @@ class TimerService : Service() {
 
         // PendingIntent 입니다.
         val contentIntent =
-            PendingIntent.getActivity(this, 0, Intent(this, PlayPopupActivity::class.java), FLAG_IMMUTABLE)
+            PendingIntent.getActivity(
+                this,
+                0,
+                Intent(this, PlayPopupActivity::class.java),
+                PendingIntent.FLAG_IMMUTABLE,
+           )
 
         // Foreground Service의 layout입니다.
         val view = RemoteViews(packageName, R.layout.service_timer)

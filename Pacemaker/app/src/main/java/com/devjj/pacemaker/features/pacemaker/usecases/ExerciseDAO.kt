@@ -1,7 +1,7 @@
 package com.devjj.pacemaker.features.pacemaker.usecases
 
 import androidx.room.*
-import androidx.room.OnConflictStrategy.REPLACE
+import androidx.room.OnConflictStrategy.Companion.REPLACE
 import com.devjj.pacemaker.features.pacemaker.entities.ExerciseEntity
 import com.devjj.pacemaker.features.pacemaker.history.SumOfSetsAndMass
 import io.reactivex.Flowable

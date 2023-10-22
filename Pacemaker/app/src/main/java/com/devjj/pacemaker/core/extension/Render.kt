@@ -9,7 +9,9 @@ import com.devjj.pacemaker.core.di.sharedpreferences.SettingSharedPreferences
 import com.devjj.pacemaker.core.functional.Dlog
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.InterstitialAd
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 
 // TODO : 나중에 상의
@@ -57,29 +59,29 @@ fun showInterstitialAd(activity: Activity, setting : SettingSharedPreferences){
         val AD_INTERSTITIAL_UNIT_ID = activity.getString(R.string.AD_INTERSTITIAL_UNIT_ID)
 
         // Create the InterstitialAd and set it up.
-        val mInterstitialAd = InterstitialAd(activity).apply {
-                adUnitId = AD_INTERSTITIAL_UNIT_ID
-                adListener = (object : AdListener() {
-                        override fun onAdLoaded() {
-                                //Toast.makeText(this@PacemakerActivity, "onAdLoaded()", Toast.LENGTH_SHORT).show()
-                                if (isLoaded) {
-                                        show()
-                                }
+        var mInterstitialAd: InterstitialAd? = null
+
+        InterstitialAd.load(
+                activity,
+                AD_INTERSTITIAL_UNIT_ID,
+                AdRequest.Builder().build(),
+                object : InterstitialAdLoadCallback() {
+                        override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                                // The mInterstitialAd reference will be null until
+                                // an ad is loaded.
+                                mInterstitialAd = interstitialAd
+                                Dlog.d( "onAdLoaded")
                         }
 
-                        override fun onAdFailedToLoad(errorCode: Int) {
-                                Toast.makeText(activity,
-                                        "onAdFailedToLoad() with error code: $errorCode",
-                                        Toast.LENGTH_SHORT).show()
+                        override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                                // Handle the error
+                                Dlog.d( "InterstitialAd failed to load: $loadAdError")
+                                mInterstitialAd = null
                         }
+                }
+        )
 
-                        override fun onAdClosed() {
-                                Dlog.d( "onAdClosed")
-                        }
-                })
-        }
-
-        mInterstitialAd.loadAd(AdRequest.Builder().build())
+        //mInterstitialAd.loadAd(AdRequest.Builder().build())
 
 }
 

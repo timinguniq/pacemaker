@@ -1,10 +1,18 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.android.application'
+//apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-kapt'
+//apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'com.google.gms.google-services'
 // Apply the Crashlytics Gradle plugin
-apply plugin: 'com.google.firebase.crashlytics'
+//apply plugin: 'com.google.firebase.crashlytics'
+
+plugins{
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
 
 android {
     def config = rootProject.extensions.getByName("ext")
@@ -17,6 +25,7 @@ android {
         versionCode config["version_code"]
         versionName config["version_name"]
         testInstrumentationRunner config["test_runner"]
+
     }
     buildTypes {
         release {
@@ -26,10 +35,11 @@ android {
             /* Add the firebaseCrashlytics extension (by default,
             * it's disabled to improve build speeds) and set
             * nativeSymbolUploadEnabled to true. */
-
+/*
             firebaseCrashlytics {
                 nativeSymbolUploadEnabled true
             }
+  */
         }
     }
     compileSdkVersion = compile_sdk
@@ -39,6 +49,7 @@ android {
     }
 
 }
+
 
 dependencies {
     //implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -60,9 +71,9 @@ dependencies {
     implementation applicationDependencies.daggerLegacy
     implementation applicationDependencies.material
     implementation applicationDependencies.admob
+    implementation applicationDependencies.admobLite
     kapt applicationDependencies.daggerProcessor
     kapt applicationDependencies.daggerCompiler
-    implementation applicationDependencies.lifecycleExtensions
     implementation applicationDependencies.lifecycleViewModel
     implementation applicationDependencies.lifecycleLiveData
     implementation applicationDependencies.lifecycleRuntime
@@ -71,12 +82,16 @@ dependencies {
     implementation applicationDependencies.lifecycleReactivestreams
     implementation applicationDependencies.lifecycleFragment
     implementation applicationDependencies.roomRuntime
+    annotationProcessor applicationDependencies.roomCompiler
     kapt applicationDependencies.roomCompiler
     implementation applicationDependencies.roomKtx
     implementation applicationDependencies.roomRxJava
     implementation applicationDependencies.roomGuava
-    implementation applicationDependencies.rxJava
-    implementation applicationDependencies.rxKotlin
+
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.21'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    implementation "androidx.work:work-runtime:2.8.1"
+    implementation "androidx.work:work-runtime-ktx:2.8.1"
 
     // Unit/Integration tests dependencies
     testImplementation unitTestDependencies.junit
@@ -99,13 +114,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Recommended: Add the Firebase SDK for Google Analytics.
-    implementation 'com.google.firebase:firebase-analytics:17.5.0'
+    implementation 'com.google.firebase:firebase-analytics:21.4.0'
 
     // Add the Firebase SDK for Crashlytics.
-    implementation 'com.google.firebase:firebase-crashlytics:17.2.1'
+    implementation 'com.google.firebase:firebase-crashlytics:18.5.0'
 
     // Add the Firebase Crashlytics NDK dependency.
-    implementation 'com.google.firebase:firebase-crashlytics-ndk:17.2.1'
+    implementation 'com.google.firebase:firebase-crashlytics-ndk:18.5.0'
 
     // MP chart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
@@ -115,7 +130,7 @@ dependencies {
 
     // This dependency is downloaded from the Google’s Maven repository.
     // So, make sure you also include that repository in your project's build.gradle file.
-    implementation 'com.google.android.play:core:1.8.0'
+    implementation 'com.google.android.play:core:1.10.3'
 
     // For Kotlin users also import the Kotlin extensions library for Play Core:
     implementation 'com.google.android.play:core-ktx:1.8.1'

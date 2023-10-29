@@ -24,7 +24,7 @@ class OptionListener(
     fun initListener() {
         binding.fOptionSwcModeItem.setOnCheckedChangeListener { buttonView, isChecked ->
             setting.isNightMode = isChecked
-            Dlog.d( "${loadColor(activity!!,R.color.grey_F9F9F9)}")
+            Dlog.d( "isNightMode: ${loadColor(activity!!,R.color.grey_F9F9F9)}")
             setColors()
         }
 

@@ -31,6 +31,7 @@ class OptionActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityOptionBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         appComponent.inject(this)
         initializeView()
         Dlog.d( "onCreate OptionActivity")
